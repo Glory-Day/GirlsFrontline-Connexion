@@ -22,8 +22,9 @@ namespace Manager
                 // The singleton is gameObject. OnDestroy() doesn't use it or If uses it, let's make a null check
                 if (_quited)
                 {
-                    Debug.LogWarning("<b>[Singleton]</b> Instance '" +
-                                     typeof(T) + "' already destroyed. Returning null.");
+                    Debug.LogWarning("<b>[Singleton]</b> Instance '" + typeof(T) + 
+                                     "' already destroyed. Returning null.");
+                    
                     return null;
                 }
 
