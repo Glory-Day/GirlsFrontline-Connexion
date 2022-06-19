@@ -5,7 +5,7 @@
 # Only Include Project Scripts, Data Folder
 /Connexion (Girl's Frontline)/Assets/*
 !/Connexion (Girl's Frontline)/Assets/Scripts
-!/Connexion (Girl's Frontline)/Assets/Database
+!/Connexion (Girl's Frontline)/Assets/Data
 
 # Exclude .meta
 *.meta
