@@ -5,10 +5,11 @@
 <div align="center">Now is updating...</div>
 <br>
 <p align="center">
-<img src="https://img.shields.io/badge/JetBrain Rider-critical?style=flat&logo=Rider&logoColor=#000000"/>
-<img src="https://img.shields.io/badge/C Sharp-blue?style=flat&logo=C Sharp&logoColor=#239120"/>
-<img src="https://img.shields.io/badge/Unity 2019.4.31f1-lightgrey?style=flat&logo=Unity&logoColor=#000000"/>
-<img src="https://img.shields.io/badge/JSON-yellow?style=flat&logo=JSON&logoColor=#000000"/>
+<img src="https://img.shields.io/badge/JetBrain Rider-critical?style=for-the-badge&logo=Rider&logoColor=white"/>
+<img src="https://img.shields.io/badge/C%23-375BD2.svg?&style=for-the-badge&logo=Csharp&logoColor=white"/>
+<img src="https://img.shields.io/badge/Unity-lightgrey?style=for-the-badge&logo=Unity&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
+<img src="https://img.shields.io/badge/Git-F05032.svg?&style=for-the-badge&logo=Git&logoColor=white"/>
 </p>
 
 ## # Unity Version
