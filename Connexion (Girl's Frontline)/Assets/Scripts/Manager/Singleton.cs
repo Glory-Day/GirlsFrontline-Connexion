@@ -7,25 +7,27 @@ namespace Manager
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        // 객체가 소멸되었는지 아닌지 확인하기 위한 boolean 변수
+        // Check to see if we're about to be destroyed.
         private static bool _quited;
 
         private static object Locked => new Object();
         private static T _instance;
 
+        // Access singleton instance through this propriety.
         public static T Instance
         {
             get
             {
-                // 객체가 소멸해서 없는 경우 null을 반환함
+                // At the end of the game than object OnDestroy() of singleton can also be first.
+                // The single tone is gameObject.OnDestroy() doesn't use it or If uses it, let's make a null check. 
                 if (_quited)
                 {
-                    Debug.LogWarning("[Singleton] Instance '" +
+                    Debug.LogWarning("<b>[Singleton]</b> Instance '" +
                                      typeof(T) + "' already destroyed. Returning null.");
                     return null;
                 }
 
-                // 스레드 안전 (Thread Safe)
+                // Double-checked locking (Thread Safe)
                 lock (Locked)
                 {
                     if (_instance != null)
@@ -33,20 +35,20 @@ namespace Manager
                         return _instance;
                     }
 
-                    // 인스턴스가 존재하면 가져와서 _instance에 저장함
-                    _instance = (T)FindObjectOfType(typeof(T));
+                    // Search for existing instance.
+                    _instance = FindObjectOfType(typeof(T)) as T;
 
                     if (_instance != null)
                     {
                         return _instance;
                     }
 
-                    // 인스턴스가 아직 생성되지 않았으면 생성함
+                    // If it hasn't been created yet, create an instance
                     var gameObject = new GameObject();
                     _instance = gameObject.AddComponent<T>();
                     gameObject.name = typeof(T) + " (Singleton)";
 
-                    // 인스턴스가 소멸되지 않게 함
+                    // Make instance persistent.
                     DontDestroyOnLoad(gameObject);
 
                     return _instance;
