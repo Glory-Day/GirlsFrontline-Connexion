@@ -19,7 +19,7 @@ namespace Manager
             get
             {
                 // At the end of the game than object OnDestroy() of singleton can also be first
-                // The single tone is gameObject.OnDestroy() doesn't use it or If uses it, let's make a null check
+                // The singleton is gameObject. OnDestroy() doesn't use it or If uses it, let's make a null check
                 if (_quited)
                 {
                     Debug.LogWarning("<b>[Singleton]</b> Instance '" +
