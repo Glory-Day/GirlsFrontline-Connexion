@@ -7,19 +7,19 @@ namespace Manager
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        // Check to see if we're about to be destroyed.
+        // Check to see if we're about to be destroyed
         private static bool _quited;
 
         private static object Locked => new Object();
         private static T _instance;
 
-        // Access singleton instance through this propriety.
+        // Access singleton instance through this propriety
         public static T Instance
         {
             get
             {
-                // At the end of the game than object OnDestroy() of singleton can also be first.
-                // The single tone is gameObject.OnDestroy() doesn't use it or If uses it, let's make a null check. 
+                // At the end of the game than object OnDestroy() of singleton can also be first
+                // The single tone is gameObject.OnDestroy() doesn't use it or If uses it, let's make a null check
                 if (_quited)
                 {
                     Debug.LogWarning("<b>[Singleton]</b> Instance '" +
@@ -35,7 +35,7 @@ namespace Manager
                         return _instance;
                     }
 
-                    // Search for existing instance.
+                    // Search for existing instance
                     _instance = FindObjectOfType(typeof(T)) as T;
 
                     if (_instance != null)
@@ -48,7 +48,7 @@ namespace Manager
                     _instance = gameObject.AddComponent<T>();
                     gameObject.name = typeof(T) + " (Singleton)";
 
-                    // Make instance persistent.
+                    // Make instance persistent
                     DontDestroyOnLoad(gameObject);
 
                     return _instance;
