@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Manager.Resource;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -13,6 +14,8 @@ namespace Main
         private void Start()
         {
             videoPlayer = GetComponent<VideoPlayer>();
+            
+            ResourceManager.OnInitializeAudioAssets();
         }
 
         // Update is called once per frame
