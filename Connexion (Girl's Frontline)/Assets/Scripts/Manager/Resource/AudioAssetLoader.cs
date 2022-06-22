@@ -12,19 +12,25 @@ using LabelType = Manager.Log.Console.Label.LabelType;
 
 namespace Manager.Resource
 {
+    /// <summary>
+    /// Class to read audio assets
+    /// </summary>
     public static class AudioAssetLoader
     {
         private static AsyncOperationHandle<IList<AudioClip>> _backgroundAudioAssetHandle;
         private static AsyncOperationHandle<IList<AudioClip>> _effectAudioAssetHandle;
         private static AsyncOperationHandle<IList<AudioClip>> _voiceAudioAssetHandle;
         
-        public static void OnLoadBackgroundAudioResources()
+        /// <summary>
+        /// Load background audio assets
+        /// </summary>
+        public static void OnLoadBackgroundAudioAssets()
         {
 #if UNITY_EDITOR
 
             LogManager.OnDebugLog(
                 typeof(ResourceManager), 
-                $"Called OnLoadBackgroundAudioResources()");
+                $"Called OnLoadBackgroundAudioAssets()");
 
 #endif
             
@@ -46,13 +52,16 @@ namespace Manager.Resource
                 (Action<AudioClip>)Callback);
         }
         
-        public static void OnLoadEffectAudioResources()
+        /// <summary>
+        /// Load effect audio assets
+        /// </summary>
+        public static void OnLoadEffectAudioAssets()
         {
 #if UNITY_EDITOR
 
             LogManager.OnDebugLog(
                 typeof(ResourceManager), 
-                $"Called OnLoadEffectAudioResources()");
+                $"Called OnLoadEffectAudioAssets()");
 
 #endif
             
@@ -74,13 +83,16 @@ namespace Manager.Resource
                 (Action<AudioClip>)Callback);
         }
         
-        public static void OnLoadVoiceAudioResources()
+        /// <summary>
+        /// Load voice audio assets
+        /// </summary>
+        public static void OnLoadVoiceAudioAssets()
         {
 #if UNITY_EDITOR
 
             LogManager.OnDebugLog(
                 typeof(ResourceManager), 
-                $"Called OnLoadVoiceAudioResources()");
+                $"Called OnLoadVoiceAudioAssets()");
 
 #endif
             
@@ -102,17 +114,26 @@ namespace Manager.Resource
                 (Action<AudioClip>)Callback);
         }
 
-        public static void OnUnloadBackgroundAudioResources()
+        /// <summary>
+        /// Unload background audio assets
+        /// </summary>
+        public static void OnUnloadBackgroundAudioAssets()
         {
             Addressables.Release(_backgroundAudioAssetHandle);
         }
         
-        public static void OnUnloadEffectAudioResources()
+        /// <summary>
+        /// Unload effect audio assets
+        /// </summary>
+        public static void OnUnloadEffectAudioAssets()
         {
             Addressables.Release(_effectAudioAssetHandle);
         }
         
-        public static void OnUnloadVoiceAudioResources()
+        /// <summary>
+        /// Unload voice audio assets
+        /// </summary>
+        public static void OnUnloadVoiceAudioAssets()
         {
             Addressables.Release(_voiceAudioAssetHandle);
         }
