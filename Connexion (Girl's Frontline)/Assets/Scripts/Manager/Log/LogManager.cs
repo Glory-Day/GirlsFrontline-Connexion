@@ -5,6 +5,9 @@ using Manager.Log.Console;
 
 namespace Manager.Log
 {
+    /// <summary>
+    /// Class to manage log
+    /// </summary>
     public class LogManager : Singleton<LogManager>
     {
         protected LogManager()
