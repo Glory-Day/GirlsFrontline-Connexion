@@ -6,6 +6,10 @@ using LabelType = Manager.Log.Console.Label.LabelType;
 
 namespace Manager.Data
 {
+    /// <summary>
+    /// Class to return data from json file by reading it in type T
+    /// </summary>
+    /// <typeparam name="T"> The data type of json </typeparam>
     public static class DataLoader<T> where T : class
     {
         /// <summary>
