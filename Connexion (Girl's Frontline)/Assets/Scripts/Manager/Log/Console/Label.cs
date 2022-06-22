@@ -1,5 +1,8 @@
 ﻿namespace Manager.Log.Console
 {
+    /// <summary>
+    /// Class with label or label-related data in the output log
+    /// </summary>
     public static class Label
     {
         // Log Label Text
