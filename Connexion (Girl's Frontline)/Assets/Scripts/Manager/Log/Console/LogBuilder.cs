@@ -2,6 +2,9 @@
 
 namespace Manager.Log.Console
 {
+    /// <summary>
+    /// Class building output log
+    /// </summary>
     public static class LogBuilder
     {
         /// <summary>
