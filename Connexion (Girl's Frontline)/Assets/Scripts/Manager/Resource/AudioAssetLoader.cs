@@ -5,15 +5,12 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-using Manager.Data;
-
-using Manager.Log;
 using LabelType = Manager.Log.Console.Label.LabelType;
 
 namespace Manager.Resource
 {
     /// <summary>
-    /// Class to read audio assets
+    /// Audio asset loader with <b>Addressable</b>
     /// </summary>
     public static class AudioAssetLoader
     {
@@ -26,29 +23,18 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadBackgroundAudioAssets()
         {
-#if UNITY_EDITOR
-
-            LogManager.OnDebugLog(
-                typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(ResourceManager), 
                 $"Called OnLoadBackgroundAudioAssets()");
 
-#endif
-            
             void Callback(AudioClip loadedAudioAsset)
             {
                 SoundManager.AddBackgroundAudioClip(loadedAudioAsset.name, loadedAudioAsset);
-
-#if UNITY_EDITOR
-
-                LogManager.OnDebugLog(
-                    LabelType.Success,
-                    typeof(AudioAssetLoader),
-                    $"Load {loadedAudioAsset.name} is complete");
-
-#endif
+                
+                LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
+                    $"{loadedAudioAsset.name} is loaded");
             }
 
-            _backgroundAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.Audio.audios[0],
+            _backgroundAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[0],
                 (Action<AudioClip>)Callback);
         }
         
@@ -57,29 +43,18 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadEffectAudioAssets()
         {
-#if UNITY_EDITOR
-
-            LogManager.OnDebugLog(
-                typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(ResourceManager), 
                 $"Called OnLoadEffectAudioAssets()");
 
-#endif
-            
             void Callback(AudioClip loadedAudioAsset)
             {
                 SoundManager.AddEffectAudioClip(loadedAudioAsset.name, loadedAudioAsset);
 
-#if UNITY_EDITOR
-
-                LogManager.OnDebugLog(
-                    LabelType.Success,
-                    typeof(AudioAssetLoader),
-                    $"Load {loadedAudioAsset.name} is complete");
-
-#endif
+                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                    $"{loadedAudioAsset.name} is loaded");
             }
 
-            _effectAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.Audio.audios[1],
+            _effectAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[1],
                 (Action<AudioClip>)Callback);
         }
         
@@ -88,29 +63,18 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadVoiceAudioAssets()
         {
-#if UNITY_EDITOR
-
-            LogManager.OnDebugLog(
-                typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(ResourceManager), 
                 $"Called OnLoadVoiceAudioAssets()");
 
-#endif
-            
             void Callback(AudioClip loadedAudioAsset)
             {
                 SoundManager.AddVoiceAudioClip(loadedAudioAsset.name, loadedAudioAsset);
 
-#if UNITY_EDITOR
-
-                LogManager.OnDebugLog(
-                    LabelType.Success,
-                    typeof(AudioAssetLoader),
-                    $"Load {loadedAudioAsset.name} is complete");
-
-#endif
+                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                    $"{loadedAudioAsset.name} is loaded");
             }
 
-            _voiceAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.Audio.audios[2],
+            _voiceAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[2],
                 (Action<AudioClip>)Callback);
         }
 
@@ -137,5 +101,20 @@ namespace Manager.Resource
         {
             Addressables.Release(_voiceAudioAssetHandle);
         }
+
+        /// <summary>
+        /// Check background audio assets load is done
+        /// </summary>
+        public static bool IsBackgroundAudioAssetsLoaded() => _backgroundAudioAssetHandle.IsDone;
+        
+        /// <summary>
+        /// Check effect audio assets load is done
+        /// </summary>
+        public static bool IsEffectAudioAssetsLoaded() => _effectAudioAssetHandle.IsDone;
+        
+        /// <summary>
+        /// Check voice audio assets load is done
+        /// </summary>
+        public static bool IsVoiceAudioAssetsLoaded() => _voiceAudioAssetHandle.IsDone;
     }
 }
