@@ -38,7 +38,7 @@ namespace Main
             if (!videoPlayer.isLooping || !ResourceManager.IsAudioAssetsLoaded()) return;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
-                "Load all audio asset is complete");
+                "All audio assets are loaded");
 
             // Unset the loop of the video and set the method called at the end of the video
             videoPlayer.isLooping = false;
@@ -54,6 +54,9 @@ namespace Main
         /// <param name="player"> video player in introduction video scene </param>
         private static void IsVideoOver(VideoPlayer player)
         {
+            LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
+                "Introduction video is over");
+            
             SceneManager.OnLoadScene(SceneName.MainScene);
         }
 
