@@ -9,7 +9,9 @@ namespace Manager
     /// </summary>
     public class SceneManager : Singleton<SceneManager>
     {
-        // Enum type for select scene
+        /// <summary>
+        /// Enum type for select scene
+        /// </summary>
         public enum SceneName
         {
             MainScene = 0,
@@ -23,43 +25,31 @@ namespace Manager
 
         #region STATIC API
 
+        /// <summary>
+        /// Load scene with scene name
+        /// </summary>
+        /// <param name="name"> Name of scene </param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static void OnLoadScene(SceneName name)
         {
-#if UNITY_EDITOR
-
-            LogManager.OnDebugLog(
-                typeof(SceneManager), 
+            LogManager.OnDebugLog(typeof(SceneManager), 
                 $"Called OnLoadScene()");
 
-#endif
-            
             switch (name)
             {
                 case SceneName.MainScene:
-                    
-#if UNITY_EDITOR
-
-                    LogManager.OnDebugLog(
-                        LabelType.Success,
-                        typeof(SceneManager),
-                        $"{DataManager.SceneInformation.names[0]} is loaded completely");
-
-#endif
-                    
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneInformation.names[0]);
+                    SoundManager.OnChangeBackgroundAudioClip(SceneName.MainScene);
+                    
+                    LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
+                        $"<b>{DataManager.SceneInformation.names[0]}</b> is loaded");
                     break;
                 case SceneName.SelectionScene:
-                    
-#if UNITY_EDITOR
-
-                    LogManager.OnDebugLog(
-                        LabelType.Success,
-                        typeof(SceneManager),
-                        $"{DataManager.SceneInformation.names[1]} is loaded completely");
-
-#endif
-                    
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneInformation.names[1]);
+                    SoundManager.OnChangeBackgroundAudioClip(SceneName.SelectionScene);
+                    
+                    LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
+                        $"<b>{DataManager.SceneInformation.names[1]}</b> is loaded");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
