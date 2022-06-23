@@ -1,48 +1,39 @@
 ﻿using System.IO;
 using UnityEngine;
 
-using Manager.Log;
 using LabelType = Manager.Log.Console.Label.LabelType;
 
 namespace Manager.Data
 {
     /// <summary>
-    /// Class to return data from json file by reading it in type T
+    /// Management Loading data according to the Json file format
     /// </summary>
-    /// <typeparam name="T"> The data type of json </typeparam>
+    /// <typeparam name="T"> Json file format in namespace <b>Data.Category</b> </typeparam>
     public static class DataLoader<T> where T : class
     {
         /// <summary>
-        /// Read the Json file from the corresponding file path and save it in class format
+        /// Load data according to the Json file format
         /// </summary>
-        /// <param name="path"> Json file path </param>
-        /// <returns> Json file stored in class format </returns>
+        /// <param name="path"> Json file local path </param>
+        /// <returns> Loaded data in Json file </returns>
         public static T OnLoadData(string path)
         {
+            LogManager.OnDebugLog(typeof(DataLoader<T>), 
+                $"Called OnLoadData<{typeof(T).Name}>()");
+
             T data;
 
             try
             {
-#if UNITY_EDITOR
+                LogManager.OnDebugLog(LabelType.Success, typeof(DataLoader<T>),
+                    $"{typeof(T).Name} is loaded completely");
 
-                LogManager.OnDebugLog(
-                    typeof(DataLoader<T>), 
-                    $"Called OnLoadData<{typeof(T).Name}>()");
-
-#endif
-                
                 data = JsonUtility.FromJson<T>(File.ReadAllText(Application.dataPath + path));
             }
             catch (DirectoryNotFoundException error)
             {
-#if UNITY_EDITOR
-
-                LogManager.OnDebugLog(
-                    LabelType.Error,
-                    typeof(DataLoader<T>),
+                LogManager.OnDebugLog(LabelType.Error, typeof(DataLoader<T>),
                     error.Message);
-
-#endif
 
                 // Directory not found exception error
                 return null;
