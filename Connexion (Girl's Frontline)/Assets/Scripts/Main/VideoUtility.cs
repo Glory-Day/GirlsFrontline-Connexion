@@ -55,7 +55,7 @@ namespace Main
         private static void IsVideoOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
-                "Introduction video is over");
+                "<b>Introduction video</b> is over");
             
             SceneManager.OnLoadScene(SceneName.MainScene);
         }
