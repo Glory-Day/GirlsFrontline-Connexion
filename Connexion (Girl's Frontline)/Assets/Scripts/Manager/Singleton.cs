@@ -14,7 +14,7 @@ namespace Manager
         private static T _instance;
 
         // Access singleton instance through this propriety
-        public static T Instance
+        protected static T Instance
         {
             get
             {
@@ -22,8 +22,8 @@ namespace Manager
                 // The singleton is gameObject. OnDestroy() doesn't use it or If uses it, let's make a null check
                 if (_quited)
                 {
-                    Debug.LogWarning("<b>[Singleton]</b> Instance '" + typeof(T) + 
-                                     "' already destroyed. Returning null.");
+                    Debug.LogWarning("<color=#F7E600><b>[WARNING][Singleton]</b> Instance '" + typeof(T) + 
+                                     "' already destroyed. Returning null.</color>");
                     
                     return null;
                 }
@@ -47,7 +47,7 @@ namespace Manager
                     // If it hasn't been created yet, create an instance
                     var gameObject = new GameObject();
                     _instance = gameObject.AddComponent<T>();
-                    gameObject.name = typeof(T) + " (Singleton)";
+                    gameObject.name = typeof(T).Name + " (Singleton)";
 
                     // Make instance persistent
                     DontDestroyOnLoad(gameObject);
