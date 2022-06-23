@@ -28,10 +28,10 @@ namespace Manager.Resource
 
             void Callback(AudioClip loadedAudioAsset)
             {
-                SoundManager.AddBackgroundAudioClip(loadedAudioAsset.name, loadedAudioAsset);
+                SoundManager.AddBackgroundAudioClip(loadedAudioAsset);
                 
                 LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                    $"{loadedAudioAsset.name} is loaded");
+                    $"<b>{loadedAudioAsset.name}</b> audio clip is loaded");
             }
 
             _backgroundAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[0],
@@ -48,10 +48,10 @@ namespace Manager.Resource
 
             void Callback(AudioClip loadedAudioAsset)
             {
-                SoundManager.AddEffectAudioClip(loadedAudioAsset.name, loadedAudioAsset);
+                SoundManager.AddEffectAudioClip(loadedAudioAsset);
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
-                    $"{loadedAudioAsset.name} is loaded");
+                LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
+                    $"<b>{loadedAudioAsset.name}</b> audio clip is loaded");
             }
 
             _effectAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[1],
@@ -68,10 +68,10 @@ namespace Manager.Resource
 
             void Callback(AudioClip loadedAudioAsset)
             {
-                SoundManager.AddVoiceAudioClip(loadedAudioAsset.name, loadedAudioAsset);
+                SoundManager.AddVoiceAudioClip(loadedAudioAsset);
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
-                    $"{loadedAudioAsset.name} is loaded");
+                LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
+                    $"<b>{loadedAudioAsset.name}</b> audio clip is loaded");
             }
 
             _voiceAudioAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[2],
