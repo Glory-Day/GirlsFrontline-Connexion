@@ -3,10 +3,10 @@
 namespace Manager.Data.Category
 {
     /// <summary>
-    /// Labels of assets
+    /// Addressable label format in <b>AddressableLabel</b> Json file
     /// </summary>
     [Serializable]
-    public class Label
+    public class AddressableLabel
     {
         public string[] audios;
     }
