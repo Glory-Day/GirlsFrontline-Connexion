@@ -17,8 +17,9 @@
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
                 $"Called InitializeAudioAssets()");
-
-            Resource.AudioAssetLoader.OnLoadBackgroundAudioAssets();
+            
+            Resource.AudioAssetLoader.OnLoadBackgroundAudioMixerAsset();
+            Resource.AudioAssetLoader.OnLoadBackgroundAudioClipAssets();
             
             //DEBUG: This code is not working yet
             // Resources with labels "effect" and "voice" are available after registration
@@ -43,15 +44,37 @@
             InitializeAudioAssets();
         }
 
-        public static bool IsAudioAssetsLoaded() => Resource.AudioAssetLoader.IsBackgroundAudioAssetsLoaded();
+        /// <summary>
+        /// Unload all the audio related assets
+        /// </summary>
+        public static void OnUnloadAudioAssets()
+        {
+            LogManager.OnDebugLog(typeof(ResourceManager), 
+                $"Called OnUnloadAudioAssets()");
+            
+            Resource.AudioAssetLoader.OnUnloadBackgroundAudioMixerAsset();
+            Resource.AudioAssetLoader.OnUnloadBackgroundAudioClipAssets();
+            
+            //DEBUG: This code is not working yet
+            // Resources with labels "effect" and "voice" are available after registration
+            /*
+            Resource.AudioAssetLoader.OnUnloadEffectAudioClipAssets();
+            Resource.AudioAssetLoader.OnUnloadVoiceAudioClipAssets();
+            */
+        }
+
+        public static bool IsAudioAssetsLoaded() =>
+            Resource.AudioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
+            Resource.AudioAssetLoader.IsBackgroundAudioClipAssetsLoaded();
 
         //DEBUG: This code is not working yet
         // Resources with labels "effect" and "voice" are available after registration
         /*
         public static bool IsAudioAssetsLoaded() =>
-            AudioAssetLoader.IsBackgroundAudioAssetsLoaded() &&
-            AudioAssetLoader.IsEffectAudioAssetsLoaded() &&
-            AudioAssetLoader.IsVoiceAudioAssetsLoaded();
+            Resource.AudioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
+            Resource.AudioAssetLoader.IsBackgroundAudioClipAssetsLoaded() &&
+            Resource.AudioAssetLoader.IsEffectAudioClipAssetsLoaded() &&
+            Resource.AudioAssetLoader.IsVoiceAudioClipAssetsLoaded();
         */
 
         #endregion
