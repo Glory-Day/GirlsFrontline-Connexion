@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Text;
+
 using UnityEngine;
 
 using LabelType = Manager.Log.Console.Label.LabelType;
@@ -28,7 +30,7 @@ namespace Manager.Data
                 LogManager.OnDebugLog(LabelType.Success, typeof(DataLoader<T>),
                     $"<b>{typeof(T).Name}</b> data is loaded from <b>{typeof(T).Name}.json</b>");
 
-                data = JsonUtility.FromJson<T>(File.ReadAllText(Application.dataPath + path));
+                data = JsonUtility.FromJson<T>(File.ReadAllText(Application.streamingAssetsPath + path));
             }
             catch (DirectoryNotFoundException error)
             {
