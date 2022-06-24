@@ -1,5 +1,5 @@
 # Exclude Build Folder
-/Bulld/*
+/Build/*
 
 # Only Include Project Assets Folder
 /Connexion (Girl's Frontline)/*
