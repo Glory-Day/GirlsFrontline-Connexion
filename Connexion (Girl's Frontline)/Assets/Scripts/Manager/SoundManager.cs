@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using Manager.Log;
 using Manager.Log.Console;
+using UnityEngine.Audio;
 
 namespace Manager
 {
@@ -21,12 +21,15 @@ namespace Manager
         /// Audio source playing background audio in <b>SoundManager</b> class
         /// </summary>
         private AudioSource backgroundAudioSource;
+
+        private AudioMixer backgroundAudioMixer;
         
         private List<AudioClip> backgroundAudioClips;
         private List<AudioClip> effectAudioClips;
         private List<AudioClip> voiceAudioClips;
 
         private const string None = "None";
+        private const string Master = "Master";
 
         protected SoundManager()
         {
@@ -61,12 +64,15 @@ namespace Manager
             LogManager.OnDebugLog(typeof(SoundManager), 
                 $"Called PlayBackgroundAudio()");
 
+            // If there is no audio clip, set the name as 'None', set it as the name of the audio clip
             var audioClipName = Instance.playingBackgroundAudioClip != null
                 ? Instance.playingBackgroundAudioClip.name
                 : None;
 
+            // Audio clip to change
             var audioClip = Instance.backgroundAudioClips[index];
 
+            // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;
 
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(SoundManager), 
@@ -77,6 +83,18 @@ namespace Manager
         }
 
         #region STATIC API
+
+        /// <summary>
+        /// Initialize background audio mixer to output audio mixer of background audio source
+        /// </summary>
+        public static void OnInitializeBackgroundAudioMixer()
+        {
+            LogManager.OnDebugLog(typeof(SoundManager), 
+                $"Called OnInitializeBackgroundAudioMixer()");
+            
+            Instance.backgroundAudioSource.outputAudioMixerGroup = 
+                Instance.backgroundAudioMixer.FindMatchingGroups(Master)[0];
+        }
         
         /// <summary>
         /// Change the background audio clip when the scene changes
@@ -101,6 +119,13 @@ namespace Manager
             }
         }
 
+        /// <summary>
+        /// Set background audio mixer
+        /// </summary>
+        /// <param name="audioMixer"> Background audio mixer </param>
+        public static void SetBackgroundAudioMixer(AudioMixer audioMixer) =>
+            Instance.backgroundAudioMixer = audioMixer;
+        
         /// <summary>
         /// Add background audio clip with name
         /// </summary>
