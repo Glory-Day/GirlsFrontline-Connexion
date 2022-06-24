@@ -5,7 +5,7 @@
     /// </summary>
     public static class JsonLocalPath
     {
-        public const string AddressableLabel = "/Data/AddressableLabel.json";
-        public const string SceneName = "/Data/SceneInformation.json";
+        public const string AddressableLabel = "/AddressableLabel.json";
+        public const string SceneName = "/SceneInformation.json";
     }
 }
