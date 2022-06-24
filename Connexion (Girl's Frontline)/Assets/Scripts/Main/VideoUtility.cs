@@ -27,6 +27,7 @@ namespace Main
         private void Start()
         {
             videoPlayer = GetComponent<VideoPlayer>();
+            skipButton.gameObject.SetActive(false);
 
             DataManager.OnInitializeSceneInformationData();
             ResourceManager.OnInitializeAudioAssets();
@@ -35,7 +36,8 @@ namespace Main
         // Update is called once per frame
         private void Update()
         {
-            if (!videoPlayer.isLooping || !ResourceManager.IsAudioAssetsLoaded()) return;
+            if (!ResourceManager.IsAudioAssetsLoaded()) return;
+            if (!videoPlayer.isLooping) return;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
                 "All audio assets are loaded");
@@ -45,7 +47,7 @@ namespace Main
             videoPlayer.loopPointReached += IsVideoOver;
             
             // Activate the skip button
-            skipButton.interactable = true;
+            skipButton.gameObject.SetActive(true);
         }
         
         /// <summary>
@@ -57,6 +59,7 @@ namespace Main
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
                 "<b>Introduction video</b> is over");
             
+            SoundManager.OnInitializeBackgroundAudioMixer();
             SceneManager.OnLoadScene(SceneName.MainScene);
         }
 
@@ -67,6 +70,10 @@ namespace Main
         /// </summary>
         public void OnClickedSkipButton()
         {
+            LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
+                "<b>Skip button</b> is clicked");
+
+            //SoundManager.OnInitializeBackgroundAudioMixer();
             SceneManager.OnLoadScene(SceneName.MainScene);
         }
 
