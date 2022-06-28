@@ -1,3 +1,6 @@
+# Exclude Bash Script For Start .exe
+/TestBuild.sh
+
 # Exclude Build Folder
 /Build/*
 
