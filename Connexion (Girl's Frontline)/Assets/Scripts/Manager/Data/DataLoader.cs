@@ -3,7 +3,7 @@ using System.Text;
 
 using UnityEngine;
 
-using LabelType = Manager.Log.Console.Label.LabelType;
+using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager.Data
 {
@@ -21,7 +21,7 @@ namespace Manager.Data
         public static T OnLoadData(string path)
         {
             LogManager.OnDebugLog(typeof(DataLoader<T>), 
-                $"Called OnLoadData<{typeof(T).Name}>()");
+                $"OnLoadData<{typeof(T).Name}>()");
 
             T data;
 
