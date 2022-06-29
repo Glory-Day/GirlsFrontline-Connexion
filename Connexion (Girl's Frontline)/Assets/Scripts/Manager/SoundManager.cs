@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using Manager.Log.Console;
+using Manager.Log;
 using UnityEngine.Audio;
 
 namespace Manager
@@ -48,7 +48,7 @@ namespace Manager
         public static void OnInitializeAudioClips()
         {
             LogManager.OnDebugLog(typeof(SoundManager), 
-                $"Called OnInitializeAudioClips()");
+                $"OnInitializeAudioClips()");
 
             Instance.backgroundAudioClips = new List<AudioClip>();
             Instance.effectAudioClips     = new List<AudioClip>();
@@ -62,7 +62,7 @@ namespace Manager
         private static void PlayBackgroundAudio(int index)
         {
             LogManager.OnDebugLog(typeof(SoundManager), 
-                $"Called PlayBackgroundAudio()");
+                $"PlayBackgroundAudio()");
 
             // If there is no audio clip, set the name as 'None', set it as the name of the audio clip
             var audioClipName = Instance.playingBackgroundAudioClip != null
@@ -90,7 +90,7 @@ namespace Manager
         public static void OnInitializeBackgroundAudioMixer()
         {
             LogManager.OnDebugLog(typeof(SoundManager), 
-                $"Called OnInitializeBackgroundAudioMixer()");
+                $"OnInitializeBackgroundAudioMixer()");
             
             Instance.backgroundAudioSource.outputAudioMixerGroup = 
                 Instance.backgroundAudioMixer.FindMatchingGroups(Master)[0];
@@ -104,7 +104,7 @@ namespace Manager
         public static void OnChangeBackgroundAudioClip(SceneManager.SceneName name)
         {
             LogManager.OnDebugLog(typeof(SoundManager), 
-                $"Called OnChangeBackgroundAudioClip()");
+                $"OnChangeBackgroundAudioClip()");
             
             switch (name)
             {
