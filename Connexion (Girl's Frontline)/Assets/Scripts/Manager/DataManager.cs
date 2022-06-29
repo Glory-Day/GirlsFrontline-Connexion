@@ -27,7 +27,7 @@ namespace Manager
         public static void OnInitializeSceneInformationData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"Called OnInitializeSceneInformationData()");
+                $"OnInitializeSceneInformationData()");
 
             SceneInformation = DataLoader<Data.Category.SceneInformation>.OnLoadData(
                 JsonLocalPath.SceneName);
@@ -48,7 +48,7 @@ namespace Manager
         public static void OnInitializeAudioAddressableLabelData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"Called OnInitializeAudioAddressableLabelData()");
+                $"OnInitializeAudioAddressableLabelData()");
 
             AudioAddressableLabel = DataLoader<Data.Category.AddressableLabel>.OnLoadData(
                 JsonLocalPath.AddressableLabel);
