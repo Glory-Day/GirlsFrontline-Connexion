@@ -1,6 +1,6 @@
 ﻿using System;
 
-using LabelType = Manager.Log.Console.Label.LabelType;
+using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager
 {
@@ -33,7 +33,7 @@ namespace Manager
         public static void OnLoadScene(SceneName name)
         {
             LogManager.OnDebugLog(typeof(SceneManager), 
-                $"Called OnLoadScene()");
+                $"OnLoadScene()");
 
             switch (name)
             {
