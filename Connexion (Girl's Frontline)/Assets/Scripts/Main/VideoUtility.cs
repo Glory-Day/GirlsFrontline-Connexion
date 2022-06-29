@@ -4,7 +4,7 @@ using UnityEngine.Video;
 
 using Manager;
 
-using LabelType = Manager.Log.Console.Label.LabelType;
+using LabelType = Manager.Log.Label.LabelType;
 using SceneName = Manager.SceneManager.SceneName;
 
 namespace Main
@@ -40,7 +40,7 @@ namespace Main
             if (!videoPlayer.isLooping) return;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
-                "All audio assets are loaded");
+                "<b>All audio assets</b> are loaded");
 
             // Unset the loop of the video and set the method called at the end of the video
             videoPlayer.isLooping = false;
@@ -73,7 +73,7 @@ namespace Main
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
                 "<b>Skip button</b> is clicked");
 
-            //SoundManager.OnInitializeBackgroundAudioMixer();
+            SoundManager.OnInitializeBackgroundAudioMixer();
             SceneManager.OnLoadScene(SceneName.MainScene);
         }
 
