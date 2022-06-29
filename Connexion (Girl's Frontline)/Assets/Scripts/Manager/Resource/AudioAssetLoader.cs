@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-using LabelType = Manager.Log.Console.Label.LabelType;
+using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager.Resource
 {
@@ -27,7 +27,7 @@ namespace Manager.Resource
         public static void OnLoadBackgroundAudioMixerAsset()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnLoadBackgroundAudioMixerAsset()");
+                $"OnLoadBackgroundAudioMixerAsset()");
 
             void Callback(AsyncOperationHandle<AudioMixer> handle)
             {
@@ -62,7 +62,7 @@ namespace Manager.Resource
         public static void OnLoadBackgroundAudioClipAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnLoadBackgroundAudioClipAssets()");
+                $"OnLoadBackgroundAudioClipAssets()");
 
             void Callback(AudioClip loadedAudioClipAsset)
             {
@@ -82,7 +82,7 @@ namespace Manager.Resource
         public static void OnLoadEffectAudioClipAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnLoadEffectAudioClipAssets()");
+                $"OnLoadEffectAudioClipAssets()");
 
             void Callback(AudioClip loadedAudioClipAsset)
             {
@@ -122,7 +122,7 @@ namespace Manager.Resource
         public static void OnUnloadBackgroundAudioMixerAsset()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnUnloadBackgroundAudioMixerAsset()");
+                $"OnUnloadBackgroundAudioMixerAsset()");
             
             Addressables.Release(_backgroundAudioMixerAssetHandle);
             
@@ -136,7 +136,7 @@ namespace Manager.Resource
         public static void OnUnloadBackgroundAudioClipAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnUnloadBackgroundAudioClipAssets()");
+                $"OnUnloadBackgroundAudioClipAssets()");
             
             Addressables.Release(_backgroundAudioClipAssetHandle);
             
@@ -150,7 +150,7 @@ namespace Manager.Resource
         public static void OnUnloadEffectAudioClipAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnUnloadEffectAudioClipAssets()");
+                $"OnUnloadEffectAudioClipAssets()");
             
             Addressables.Release(_effectAudioClipAssetHandle);
             
@@ -164,7 +164,7 @@ namespace Manager.Resource
         public static void OnUnloadVoiceAudioClipAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnUnloadVoiceAudioClipAssets()");
+                $"OnUnloadVoiceAudioClipAssets()");
             
             Addressables.Release(_voiceAudioClipAssetHandle);
             
