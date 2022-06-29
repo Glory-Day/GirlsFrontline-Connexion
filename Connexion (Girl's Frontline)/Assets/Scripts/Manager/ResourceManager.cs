@@ -16,7 +16,7 @@
         private static void InitializeAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called InitializeAudioAssets()");
+                $"InitializeAudioAssets()");
             
             Resource.AudioAssetLoader.OnLoadBackgroundAudioMixerAsset();
             Resource.AudioAssetLoader.OnLoadBackgroundAudioClipAssets();
@@ -37,7 +37,7 @@
         public static void OnInitializeAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnInitializeAudioAssets()");
+                $"OnInitializeAudioAssets()");
 
             DataManager.OnInitializeAudioAddressableLabelData();
             
@@ -50,7 +50,7 @@
         public static void OnUnloadAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"Called OnUnloadAudioAssets()");
+                $"OnUnloadAudioAssets()");
             
             Resource.AudioAssetLoader.OnUnloadBackgroundAudioMixerAsset();
             Resource.AudioAssetLoader.OnUnloadBackgroundAudioClipAssets();
