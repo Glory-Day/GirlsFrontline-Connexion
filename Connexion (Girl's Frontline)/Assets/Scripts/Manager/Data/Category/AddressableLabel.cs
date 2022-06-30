@@ -9,5 +9,6 @@ namespace Manager.Data.Category
     public class AddressableLabel
     {
         public string[] audios;
+        public string[] prefabs;
     }
 }
