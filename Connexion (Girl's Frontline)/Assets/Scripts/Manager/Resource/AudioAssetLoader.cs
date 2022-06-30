@@ -26,10 +26,10 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadBackgroundAudioMixerAsset()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnLoadBackgroundAudioMixerAsset()");
 
-            void Callback(AsyncOperationHandle<AudioMixer> handle)
+            void Loaded(AsyncOperationHandle<AudioMixer> handle)
             {
                 switch (handle.Status)
                 {
@@ -51,9 +51,9 @@ namespace Manager.Resource
             }
 
             _backgroundAudioMixerAssetHandle = Addressables.LoadAssetAsync<AudioMixer>(
-                DataManager.AudioAddressableLabel.audios[3]);
+                DataManager.AddressableLabel.audios[3]);
 
-            _backgroundAudioMixerAssetHandle.Completed += Callback;
+            _backgroundAudioMixerAssetHandle.Completed += Loaded;
         }
         
         /// <summary>
@@ -61,10 +61,10 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadBackgroundAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnLoadBackgroundAudioClipAssets()");
 
-            void Callback(AudioClip loadedAudioClipAsset)
+            void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.AddBackgroundAudioClip(loadedAudioClipAsset);
                 
@@ -72,8 +72,8 @@ namespace Manager.Resource
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
             }
 
-            _backgroundAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[0],
-                (Action<AudioClip>)Callback);
+            _backgroundAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[0],
+                (Action<AudioClip>)Loaded);
         }
         
         /// <summary>
@@ -81,10 +81,10 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadEffectAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnLoadEffectAudioClipAssets()");
 
-            void Callback(AudioClip loadedAudioClipAsset)
+            void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.AddEffectAudioClip(loadedAudioClipAsset);
 
@@ -92,8 +92,8 @@ namespace Manager.Resource
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
             }
 
-            _effectAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[1],
-                (Action<AudioClip>)Callback);
+            _effectAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[1],
+                (Action<AudioClip>)Loaded);
         }
         
         /// <summary>
@@ -101,10 +101,10 @@ namespace Manager.Resource
         /// </summary>
         public static void OnLoadVoiceAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"Called OnLoadVoiceAudioClipAssets()");
 
-            void Callback(AudioClip loadedAudioClipAsset)
+            void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.AddVoiceAudioClip(loadedAudioClipAsset);
 
@@ -112,8 +112,8 @@ namespace Manager.Resource
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
             }
 
-            _voiceAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AudioAddressableLabel.audios[2],
-                (Action<AudioClip>)Callback);
+            _voiceAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[2],
+                (Action<AudioClip>)Loaded);
         }
         
         /// <summary>
@@ -121,7 +121,7 @@ namespace Manager.Resource
         /// </summary>
         public static void OnUnloadBackgroundAudioMixerAsset()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnUnloadBackgroundAudioMixerAsset()");
             
             Addressables.Release(_backgroundAudioMixerAssetHandle);
@@ -135,7 +135,7 @@ namespace Manager.Resource
         /// </summary>
         public static void OnUnloadBackgroundAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnUnloadBackgroundAudioClipAssets()");
             
             Addressables.Release(_backgroundAudioClipAssetHandle);
@@ -149,7 +149,7 @@ namespace Manager.Resource
         /// </summary>
         public static void OnUnloadEffectAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnUnloadEffectAudioClipAssets()");
             
             Addressables.Release(_effectAudioClipAssetHandle);
@@ -163,7 +163,7 @@ namespace Manager.Resource
         /// </summary>
         public static void OnUnloadVoiceAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
+            LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnUnloadVoiceAudioClipAssets()");
             
             Addressables.Release(_voiceAudioClipAssetHandle);
