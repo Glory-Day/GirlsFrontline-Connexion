@@ -30,21 +30,26 @@ namespace Main
             skipButton.gameObject.SetActive(false);
 
             DataManager.OnInitializeSceneInformationData();
+            DataManager.OnInitializeAddressableLabelData();
+            
             ResourceManager.OnInitializeAudioAssets();
+            ResourceManager.OnInitializePrefabAssets();
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (!ResourceManager.IsAudioAssetsLoaded()) return;
+            if (!ResourceManager.IsAllResourceLoaded()) return;
             if (!videoPlayer.isLooping) return;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
-                "<b>All audio assets</b> are loaded");
+                "<b>All asset resources</b> are loaded");
 
             // Unset the loop of the video and set the method called at the end of the video
             videoPlayer.isLooping = false;
             videoPlayer.loopPointReached += IsVideoOver;
+            
+            UIManager.OnInstantiateScreenTransition();
             
             // Activate the skip button
             skipButton.gameObject.SetActive(true);
