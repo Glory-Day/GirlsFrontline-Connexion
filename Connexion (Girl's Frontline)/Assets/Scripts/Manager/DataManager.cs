@@ -17,12 +17,12 @@ namespace Manager
         #region SCENE INFORMATION DATA
 
         /// <summary>
-        /// Scene information needed for loading scene
+        /// Scene information data needed for loading scene
         /// </summary>
         public static Data.Category.SceneInformation SceneInformation { get; private set; }
         
         /// <summary>
-        /// Initialize Scene information with <b>DataLoader</b> class
+        /// Initialize Scene information data with <b>DataLoader</b> class
         /// </summary>
         public static void OnInitializeSceneInformationData()
         {
@@ -38,22 +38,20 @@ namespace Manager
         #region AUDIO ASSET DATA
 
         /// <summary>
-        /// Label to load audio assets using <b>Addressable</b>
+        /// Label data to load assets using <b>Addressable</b>
         /// </summary>
-        public static Data.Category.AddressableLabel AudioAddressableLabel { get; private set; }
+        public static Data.Category.AddressableLabel AddressableLabel { get; private set; }
         
         /// <summary>
-        /// Initialize audio assets addressable label with <b>DataLoader</b> class
+        /// Initialize addressable asset label data with <b>DataLoader</b> class
         /// </summary>
-        public static void OnInitializeAudioAddressableLabelData()
+        public static void OnInitializeAddressableLabelData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"OnInitializeAudioAddressableLabelData()");
+                $"OnInitializeAddressableLabelData()");
 
-            AudioAddressableLabel = DataLoader<Data.Category.AddressableLabel>.OnLoadData(
+            AddressableLabel = DataLoader<Data.Category.AddressableLabel>.OnLoadData(
                 JsonLocalPath.AddressableLabel);
-            
-            SoundManager.OnInitializeAudioClips();
         }
 
         #endregion
