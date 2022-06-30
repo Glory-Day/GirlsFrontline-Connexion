@@ -6,6 +6,6 @@
     public static class JsonLocalPath
     {
         public const string AddressableLabel = "/AddressableLabel.json";
-        public const string SceneName = "/SceneInformation.json";
+        public const string SceneName        = "/SceneInformation.json";
     }
 }
