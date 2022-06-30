@@ -28,7 +28,7 @@ namespace Manager
         private List<AudioClip> effectAudioClips;
         private List<AudioClip> voiceAudioClips;
 
-        private const string None = "None";
+        private const string None   = "None";
         private const string Master = "Master";
 
         protected SoundManager()
@@ -127,35 +127,35 @@ namespace Manager
             Instance.backgroundAudioMixer = audioMixer;
         
         /// <summary>
-        /// Add background audio clip with name
+        /// Add background audio clip in <b>List&lt;AudioClip&gt; backgroundAudioClips</b>
         /// </summary>
         /// <param name="audioClip"> Background audio clip </param>
         public static void AddBackgroundAudioClip(AudioClip audioClip) => 
             Instance.backgroundAudioClips.Add(audioClip);
         
         /// <summary>
-        /// Add effect audio clip with name
+        /// Add effect audio clip in <b>List&lt;AudioClip&gt; effectAudioClips</b>
         /// </summary>
         /// <param name="audioClip"> Effect audio clip </param>
         public static void AddEffectAudioClip(AudioClip audioClip) => 
             Instance.effectAudioClips.Add(audioClip);
         
         /// <summary>
-        /// Add voice audio clip with name
+        /// Add voice audio clip in <b>List&lt;AudioClip&gt; voiceAudioClips</b>
         /// </summary>
         /// <param name="audioClip"> Voice audio clip </param>
         public static void AddVoiceAudioClip(AudioClip audioClip) => 
             Instance.voiceAudioClips.Add(audioClip);
 
         /// <summary>
-        /// Returns effect audio clip search by name
+        /// Returns effect audio clip search by index
         /// </summary>
         /// <param name="index"> Index of effect audio clips </param>
         /// <returns> Effect audio clip </returns>
         public static AudioClip GetEffectAudioClip(int index) => Instance.effectAudioClips[index];
         
         /// <summary>
-        /// Returns voice audio clip search by name
+        /// Returns voice audio clip search by index
         /// </summary>
         /// <param name="index"> Index of voice audio clips </param>
         /// <returns> Voice audio clip </returns>
