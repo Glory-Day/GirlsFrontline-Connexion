@@ -14,7 +14,7 @@ namespace Manager
         /// </summary>
         public enum SceneName
         {
-            MainScene = 0,
+            MainScene = 1,
             SelectionScene
         }
         
@@ -56,6 +56,13 @@ namespace Manager
             }
         }
 
+        /// <summary>
+        /// Get the currently active current scene name
+        /// </summary>
+        public static SceneName CurrentSceneName => 
+            (SceneName)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+
         #endregion
+
     }
 }
