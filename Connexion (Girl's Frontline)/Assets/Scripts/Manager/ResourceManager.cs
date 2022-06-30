@@ -9,14 +9,18 @@
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
-
+        
+        #region AUDIO ASSET API
+        
         /// <summary>
         /// Initialize audio assets using <b>AudioAssetLoader</b> class
         /// </summary>
-        private static void InitializeAudioAssets()
+        public static void OnInitializeAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
                 $"InitializeAudioAssets()");
+            
+            SoundManager.OnInitializeAudioClips();
             
             Resource.AudioAssetLoader.OnLoadBackgroundAudioMixerAsset();
             Resource.AudioAssetLoader.OnLoadBackgroundAudioClipAssets();
@@ -29,23 +33,8 @@
             */
         }
 
-        #region STATIC API
-        
         /// <summary>
-        /// Before initializing the audio assets, initialize the audio related label
-        /// </summary>
-        public static void OnInitializeAudioAssets()
-        {
-            LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"OnInitializeAudioAssets()");
-
-            DataManager.OnInitializeAudioAddressableLabelData();
-            
-            InitializeAudioAssets();
-        }
-
-        /// <summary>
-        /// Unload all the audio related assets
+        /// Unload all the audio related assets using <b>AudioAssetLoader</b> class
         /// </summary>
         public static void OnUnloadAudioAssets()
         {
@@ -63,14 +52,17 @@
             */
         }
 
-        public static bool IsAudioAssetsLoaded() =>
+        /// <summary>
+        /// Check audio asset load is done
+        /// </summary>
+        private static bool IsAudioAssetsLoaded() =>
             Resource.AudioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
             Resource.AudioAssetLoader.IsBackgroundAudioClipAssetsLoaded();
 
         //DEBUG: This code is not working yet
         // Resources with labels "effect" and "voice" are available after registration
         /*
-        public static bool IsAudioAssetsLoaded() =>
+        private static bool IsAudioAssetsLoaded() =>
             Resource.AudioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
             Resource.AudioAssetLoader.IsBackgroundAudioClipAssetsLoaded() &&
             Resource.AudioAssetLoader.IsEffectAudioClipAssetsLoaded() &&
@@ -79,5 +71,45 @@
 
         #endregion
 
+        #region PREFAB ASSET API
+
+        /// <summary>
+        /// Initialize prefab assets using <b>PrefabAssetLoader</b> class
+        /// </summary>
+        public static void OnInitializePrefabAssets()
+        {
+            LogManager.OnDebugLog(typeof(ResourceManager), 
+                $"OnInitializePrefabAssets()");
+            
+            UIManager.OnInitializeUIPrefabs();
+            
+            Resource.PrefabAssetLoader.OnLoadUIPrefabAssets();
+        }
+
+        /// <summary>
+        /// Unload all the prefab related assets using <b>PrefabAssetLoader</b> class
+        /// </summary>
+        public static void OnUnloadPrefabAssets()
+        {
+            LogManager.OnDebugLog(typeof(ResourceManager), 
+                $"OnUnloadPrefabAssets()");
+            
+            Resource.PrefabAssetLoader.OnUnloadUIPrefabAssets();
+        }
+
+        /// <summary>
+        /// Check prefab asset load is done
+        /// </summary>
+        private static bool IsPrefabAssetsLoaded() =>
+            Resource.PrefabAssetLoader.IsUIPrefabAssetsLoaded();
+
+        #endregion
+
+        /// <summary>
+        /// Check all asset resource load is done
+        /// </summary>
+        public static bool IsAllResourceLoaded() =>
+            IsAudioAssetsLoaded() &&
+            IsPrefabAssetsLoaded();
     }
 }
