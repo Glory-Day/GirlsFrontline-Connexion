@@ -7,7 +7,7 @@ namespace Main
     public class MainButtonUtility : MonoBehaviour
     {
         /// <summary>
-        /// Button event to click <b>Game Start Button</b>
+        /// Button event to click <b>Game Start Button</b> in <b>Main Scene</b>
         /// </summary>
         public void OnClickedGameStartButton()
         {
