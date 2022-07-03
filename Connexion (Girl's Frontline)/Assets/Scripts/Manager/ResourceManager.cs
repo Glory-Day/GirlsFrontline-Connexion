@@ -22,7 +22,7 @@
             
             SoundManager.OnInitializeAudioClips();
             
-            Resource.AudioAssetLoader.OnLoadBackgroundAudioMixerAsset();
+            Resource.AudioAssetLoader.OnLoadAudioMixerAssets();
             Resource.AudioAssetLoader.OnLoadBackgroundAudioClipAssets();
             
             //DEBUG: This code is not working yet
