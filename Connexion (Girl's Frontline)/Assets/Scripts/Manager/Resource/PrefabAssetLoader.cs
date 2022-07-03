@@ -23,7 +23,7 @@ namespace Manager.Resource
 
             void Loaded(GameObject loadedGameObject)
             {
-                UIManager.AddUIPrefabs(loadedGameObject);
+                UIManager.AddUIPrefabs(loadedGameObject.name, loadedGameObject);
                 
                 LogManager.OnDebugLog(LabelType.Event, typeof(PrefabAssetLoader),
                     $"<b>{loadedGameObject.name}</b> prefab is loaded");
