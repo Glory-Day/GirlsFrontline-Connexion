@@ -15,7 +15,7 @@ namespace Manager.Resource
     /// </summary>
     public static class AudioAssetLoader
     {
-        private static AsyncOperationHandle<AudioMixer> _backgroundAudioMixerAssetHandle;
+        private static AsyncOperationHandle<IList<AudioMixer>> _audioMixerAssetHandle;
         
         private static AsyncOperationHandle<IList<AudioClip>> _backgroundAudioClipAssetHandle;
         private static AsyncOperationHandle<IList<AudioClip>> _effectAudioClipAssetHandle;
@@ -24,36 +24,21 @@ namespace Manager.Resource
         /// <summary>
         /// Load background audio mixer asset
         /// </summary>
-        public static void OnLoadBackgroundAudioMixerAsset()
+        public static void OnLoadAudioMixerAssets()
         {
             LogManager.OnDebugLog(typeof(AudioAssetLoader), 
-                $"OnLoadBackgroundAudioMixerAsset()");
+                $"OnLoadAudioMixerAssets()");
 
-            void Loaded(AsyncOperationHandle<AudioMixer> handle)
+            void Loaded(AudioMixer loadedAudioMixer)
             {
-                switch (handle.Status)
-                {
-                    case AsyncOperationStatus.None:
-                        break;
-                    case AsyncOperationStatus.Succeeded:
-                        LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                            $"<b>{handle.Result.name}</b> audio mixer is loaded");
-                        
-                        SoundManager.SetBackgroundAudioMixer(handle.Result);
-                        break;
-                    case AsyncOperationStatus.Failed:
-                        LogManager.OnDebugLog(LabelType.Error, typeof(AudioAssetLoader),
-                            $"Failed to load background audio mixer");
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                SoundManager.AddAudioMixer(loadedAudioMixer.name, loadedAudioMixer);
+                
+                LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
+                    $"<b>{loadedAudioMixer.name}</b> audio mixer is loaded");
             }
 
-            _backgroundAudioMixerAssetHandle = Addressables.LoadAssetAsync<AudioMixer>(
-                DataManager.AddressableLabel.audios[3]);
-
-            _backgroundAudioMixerAssetHandle.Completed += Loaded;
+            _audioMixerAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[3],
+                (Action<AudioMixer>)Loaded);
         }
         
         /// <summary>
@@ -66,7 +51,7 @@ namespace Manager.Resource
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
-                SoundManager.AddBackgroundAudioClip(loadedAudioClipAsset);
+                SoundManager.AddBackgroundAudioClip(loadedAudioClipAsset.name, loadedAudioClipAsset);
                 
                 LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
@@ -86,7 +71,7 @@ namespace Manager.Resource
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
-                SoundManager.AddEffectAudioClip(loadedAudioClipAsset);
+                SoundManager.AddEffectAudioClip(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
                 LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
@@ -106,7 +91,7 @@ namespace Manager.Resource
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
-                SoundManager.AddVoiceAudioClip(loadedAudioClipAsset);
+                SoundManager.AddVoiceAudioClip(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
                 LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
@@ -124,7 +109,7 @@ namespace Manager.Resource
             LogManager.OnDebugLog(typeof(AudioAssetLoader), 
                 $"OnUnloadBackgroundAudioMixerAsset()");
             
-            Addressables.Release(_backgroundAudioMixerAssetHandle);
+            Addressables.Release(_audioMixerAssetHandle);
             
             LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
                 $"<b>Background audio mixer</b> is unloaded");
@@ -175,7 +160,7 @@ namespace Manager.Resource
         /// <summary>
         /// Check main audio mixer asset load is done
         /// </summary>
-        public static bool IsBackgroundAudioMixerAssetLoaded() => _backgroundAudioMixerAssetHandle.IsDone;
+        public static bool IsBackgroundAudioMixerAssetLoaded() => _audioMixerAssetHandle.IsDone;
 
         /// <summary>
         /// Check background audio clip assets load is done
