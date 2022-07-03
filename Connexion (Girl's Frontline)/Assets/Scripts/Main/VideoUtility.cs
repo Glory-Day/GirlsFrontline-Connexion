@@ -30,6 +30,7 @@ namespace Main
             skipButton.gameObject.SetActive(false);
 
             DataManager.OnInitializeSceneInformationData();
+            DataManager.OnInitializeResourceInformationData();
             DataManager.OnInitializeAddressableLabelData();
             
             ResourceManager.OnInitializeAudioAssets();
@@ -71,7 +72,7 @@ namespace Main
         #region BUTTON API
 
         /// <summary>
-        /// Button event to skip video when clicked
+        /// Button event to skip video when clicked in <b>Introduction Video Scene</b>
         /// </summary>
         public void OnClickedSkipButton()
         {
