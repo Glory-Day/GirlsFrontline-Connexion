@@ -22,11 +22,11 @@ namespace Manager
         /// </summary>
         private AudioSource backgroundAudioSource;
 
-        private AudioMixer backgroundAudioMixer;
+        private Dictionary<string, AudioMixer> audioMixers;
         
-        private List<AudioClip> backgroundAudioClips;
-        private List<AudioClip> effectAudioClips;
-        private List<AudioClip> voiceAudioClips;
+        private Dictionary<string, AudioClip> backgroundAudioClips;
+        private Dictionary<string, AudioClip> effectAudioClips;
+        private Dictionary<string, AudioClip> voiceAudioClips;
 
         private const string None   = "None";
         private const string Master = "Master";
@@ -50,19 +50,20 @@ namespace Manager
             LogManager.OnDebugLog(typeof(SoundManager), 
                 $"OnInitializeAudioClips()");
 
-            Instance.backgroundAudioClips = new List<AudioClip>();
-            Instance.effectAudioClips     = new List<AudioClip>();
-            Instance.voiceAudioClips      = new List<AudioClip>();
+            Instance.audioMixers          = new Dictionary<string, AudioMixer>();
+            Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
+            Instance.effectAudioClips     = new Dictionary<string, AudioClip>();
+            Instance.voiceAudioClips      = new Dictionary<string, AudioClip>();
         }
 
         /// <summary>
-        /// Play background audio select by index
+        /// Play background audio source select by key value
         /// </summary>
-        /// <param name="index"> Index of background audio clips </param>
-        private static void PlayBackgroundAudio(int index)
+        /// <param name="key"> Key value of background audio clips </param>
+        private static void PlayBackgroundAudioSource(string key)
         {
             LogManager.OnDebugLog(typeof(SoundManager), 
-                $"PlayBackgroundAudio()");
+                $"PlayBackgroundAudioSource()");
 
             // If there is no audio clip, set the name as 'None', set it as the name of the audio clip
             var audioClipName = Instance.playingBackgroundAudioClip != null
@@ -70,7 +71,7 @@ namespace Manager
                 : None;
 
             // Audio clip to change
-            var audioClip = Instance.backgroundAudioClips[index];
+            var audioClip = Instance.backgroundAudioClips[key];
 
             // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;
@@ -93,7 +94,8 @@ namespace Manager
                 $"OnInitializeBackgroundAudioMixer()");
             
             Instance.backgroundAudioSource.outputAudioMixerGroup = 
-                Instance.backgroundAudioMixer.FindMatchingGroups(Master)[0];
+                Instance.audioMixers[DataManager.ResourceInformation.audioMixer.names[0]].FindMatchingGroups(
+                    Master)[0];
         }
         
         /// <summary>
@@ -109,10 +111,10 @@ namespace Manager
             switch (name)
             {
                 case SceneManager.SceneName.MainScene:
-                    PlayBackgroundAudio(0);
+                    PlayBackgroundAudioSource(DataManager.ResourceInformation.backgroundAudioClip.names[0]);
                     break;
                 case SceneManager.SceneName.SelectionScene:
-                    PlayBackgroundAudio(0);
+                    PlayBackgroundAudioSource(DataManager.ResourceInformation.backgroundAudioClip.names[0]);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
@@ -122,44 +124,48 @@ namespace Manager
         /// <summary>
         /// Set background audio mixer
         /// </summary>
+        /// <param name="key"> <b>string</b> type key value </param>
         /// <param name="audioMixer"> Background audio mixer </param>
-        public static void SetBackgroundAudioMixer(AudioMixer audioMixer) =>
-            Instance.backgroundAudioMixer = audioMixer;
+        public static void AddAudioMixer(string key, AudioMixer audioMixer) =>
+            Instance.audioMixers.Add(key, audioMixer);
         
         /// <summary>
         /// Add background audio clip in <b>List&lt;AudioClip&gt; backgroundAudioClips</b>
         /// </summary>
+        /// <param name="key"> <b>string</b> type key value </param>
         /// <param name="audioClip"> Background audio clip </param>
-        public static void AddBackgroundAudioClip(AudioClip audioClip) => 
-            Instance.backgroundAudioClips.Add(audioClip);
+        public static void AddBackgroundAudioClip(string key, AudioClip audioClip) => 
+            Instance.backgroundAudioClips.Add(key, audioClip);
         
         /// <summary>
         /// Add effect audio clip in <b>List&lt;AudioClip&gt; effectAudioClips</b>
         /// </summary>
+        /// <param name="key"> <b>string</b> type key value </param>
         /// <param name="audioClip"> Effect audio clip </param>
-        public static void AddEffectAudioClip(AudioClip audioClip) => 
-            Instance.effectAudioClips.Add(audioClip);
+        public static void AddEffectAudioClip(string key, AudioClip audioClip) => 
+            Instance.effectAudioClips.Add(key, audioClip);
         
         /// <summary>
         /// Add voice audio clip in <b>List&lt;AudioClip&gt; voiceAudioClips</b>
         /// </summary>
+        /// <param name="key"> <b>string</b> type key value </param>
         /// <param name="audioClip"> Voice audio clip </param>
-        public static void AddVoiceAudioClip(AudioClip audioClip) => 
-            Instance.voiceAudioClips.Add(audioClip);
+        public static void AddVoiceAudioClip(string key, AudioClip audioClip) => 
+            Instance.voiceAudioClips.Add(key, audioClip);
 
         /// <summary>
-        /// Returns effect audio clip search by index
+        /// Returns effect audio clip search by key value
         /// </summary>
-        /// <param name="index"> Index of effect audio clips </param>
+        /// <param name="key"> Key value of effect audio clips </param>
         /// <returns> Effect audio clip </returns>
-        public static AudioClip GetEffectAudioClip(int index) => Instance.effectAudioClips[index];
+        public static AudioClip GetEffectAudioClip(string key) => Instance.effectAudioClips[key];
         
         /// <summary>
-        /// Returns voice audio clip search by index
+        /// Returns voice audio clip search by key value
         /// </summary>
-        /// <param name="index"> Index of voice audio clips </param>
+        /// <param name="key"> Key value of voice audio clips </param>
         /// <returns> Voice audio clip </returns>
-        public static AudioClip GetVoiceAudioClip(int index) => Instance.voiceAudioClips[index];
+        public static AudioClip GetVoiceAudioClip(string key) => Instance.voiceAudioClips[key];
 
         #endregion
     }
