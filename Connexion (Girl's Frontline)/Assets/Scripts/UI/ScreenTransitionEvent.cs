@@ -34,6 +34,7 @@ namespace UI
                 case SceneManager.SceneName.MainScene:
                     break;
                 case SceneManager.SceneName.SelectionScene:
+                    SceneManager.OnLoadScene(SceneManager.SceneName.MainScene);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
