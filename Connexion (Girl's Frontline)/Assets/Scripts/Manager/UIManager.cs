@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
-using Manager.Log;
+
 using UnityEngine;
+
+using Manager;
+using Manager.Log;
 
 namespace Manager
 {
     public class UIManager : Singleton<UIManager>
     {
-        private List<GameObject> uiPrefabs;
+        private Dictionary<string, GameObject> uiPrefabs;
 
         private Animation screenTransitionAnimation;
 
@@ -27,7 +30,8 @@ namespace Manager
             LogManager.OnDebugLog(typeof(UIManager), 
                 $"OnInstantiateScreenTransition()");
             
-            var gameObject = Instantiate(Instance.uiPrefabs[0], Instance.transform, true);
+            var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceInformation.uiPrefab.names[0]],
+                Instance.transform, true);
             Instance.screenTransitionAnimation = gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
         }
 
@@ -39,15 +43,16 @@ namespace Manager
             LogManager.OnDebugLog(typeof(UIManager), 
                 $"OnInitializeUIPrefabs()");
 
-            Instance.uiPrefabs = new List<GameObject>();
+            Instance.uiPrefabs = new Dictionary<string, GameObject>();
         }
         
         /// <summary>
         /// Add UI prefabs in <b>List&lt;GameObject&gt; uiPrefabs</b>
         /// </summary>
+        /// <param name="key"> <b>string</b> type key value </param>
         /// <param name="gameObject"> UI Prefab </param>
-        public static void AddUIPrefabs(GameObject gameObject) => 
-            Instance.uiPrefabs.Add(gameObject);
+        public static void AddUIPrefabs(string key, GameObject gameObject) => 
+            Instance.uiPrefabs.Add(key, gameObject);
 
         /// <summary>
         /// Set screen transition animation to left
