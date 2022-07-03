@@ -30,12 +30,33 @@ namespace Manager
                 $"OnInitializeSceneInformationData()");
 
             SceneInformation = DataLoader<Data.Category.SceneInformation>.OnLoadData(
-                JsonLocalPath.SceneName);
+                JsonLocalPath.SceneInformation);
+        }
+
+        #endregion
+
+        #region RESOURCE INFORMATION DATA
+
+        /// <summary>
+        /// Resource information data needed for using key of resource
+        /// </summary>
+        public static Data.Category.ResourceInformation ResourceInformation { get; private set; }
+        
+        /// <summary>
+        /// Initialize resource information data with <b>DataLoader</b> class
+        /// </summary>
+        public static void OnInitializeResourceInformationData()
+        {
+            LogManager.OnDebugLog(typeof(DataManager), 
+                $"OnInitializeResourceInformationData()");
+
+            ResourceInformation = DataLoader<Data.Category.ResourceInformation>.OnLoadData(
+                JsonLocalPath.ResourceInformation);
         }
 
         #endregion
         
-        #region AUDIO ASSET DATA
+        #region ADDRESSIBLE LABEL DATA
 
         /// <summary>
         /// Label data to load assets using <b>Addressable</b>
