@@ -13,12 +13,12 @@
         #region AUDIO ASSET API
         
         /// <summary>
-        /// Initialize audio assets using <b>AudioAssetLoader</b> class
+        /// Load audio assets using <b>AudioAssetLoader</b> class
         /// </summary>
-        public static void OnInitializeAudioAssets()
+        private static void LoadAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"InitializeAudioAssets()");
+                $"LoadAudioAssets()");
             
             SoundManager.OnInitializeAudioClips();
             
@@ -36,10 +36,10 @@
         /// <summary>
         /// Unload all the audio related assets using <b>AudioAssetLoader</b> class
         /// </summary>
-        public static void OnUnloadAudioAssets()
+        private static void UnloadAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"OnUnloadAudioAssets()");
+                $"UnloadAudioAssets()");
             
             Resource.AudioAssetLoader.OnUnloadBackgroundAudioMixerAsset();
             Resource.AudioAssetLoader.OnUnloadBackgroundAudioClipAssets();
@@ -74,12 +74,12 @@
         #region PREFAB ASSET API
 
         /// <summary>
-        /// Initialize prefab assets using <b>PrefabAssetLoader</b> class
+        /// Load prefab assets using <b>PrefabAssetLoader</b> class
         /// </summary>
-        public static void OnInitializePrefabAssets()
+        private static void LoadPrefabAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"OnInitializePrefabAssets()");
+                $"LoadPrefabAssets()");
             
             UIManager.OnInitializeUIPrefabs();
             
@@ -89,10 +89,10 @@
         /// <summary>
         /// Unload all the prefab related assets using <b>PrefabAssetLoader</b> class
         /// </summary>
-        public static void OnUnloadPrefabAssets()
+        private static void UnloadPrefabAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
-                $"OnUnloadPrefabAssets()");
+                $"UnloadPrefabAssets()");
             
             Resource.PrefabAssetLoader.OnUnloadUIPrefabAssets();
         }
@@ -104,6 +104,30 @@
             Resource.PrefabAssetLoader.IsUIPrefabAssetsLoaded();
 
         #endregion
+
+        /// <summary>
+        /// Load all asset resources
+        /// </summary>
+        public static void OnLoadAllResources()
+        {
+            LogManager.OnDebugLog(typeof(ResourceManager), 
+                $"OnLoadAllResources()");
+            
+            LoadAudioAssets();
+            LoadPrefabAssets();
+        }
+
+        /// <summary>
+        /// Unload all asset resources
+        /// </summary>
+        public static void OnUnloadAllResources()
+        {
+            LogManager.OnDebugLog(typeof(ResourceManager), 
+                $"OnUnloadAllResources()");
+            
+            UnloadAudioAssets();
+            UnloadPrefabAssets();
+        }
 
         /// <summary>
         /// Check all asset resource load is done
