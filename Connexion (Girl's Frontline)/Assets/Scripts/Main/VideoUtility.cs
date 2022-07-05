@@ -29,12 +29,8 @@ namespace Main
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
 
-            DataManager.OnInitializeSceneInformationData();
-            DataManager.OnInitializeResourceInformationData();
-            DataManager.OnInitializeAddressableLabelData();
-            
-            ResourceManager.OnInitializeAudioAssets();
-            ResourceManager.OnInitializePrefabAssets();
+            DataManager.OnInitializeAllData();
+            ResourceManager.OnLoadAllResources();
         }
 
         // Update is called once per frame
