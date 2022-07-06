@@ -1,7 +1,4 @@
-﻿using LabelType = Manager.Log.Label.LabelType;
-using SceneName = Manager.SceneManager.SceneName;
-
-namespace Manager
+﻿namespace Manager
 {
     public class GameManager : Singleton<GameManager>
     {
