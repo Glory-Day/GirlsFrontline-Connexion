@@ -13,6 +13,7 @@ namespace Main
         {
             public Button button;
             public GameObject block;
+            public GameObject decorators;
             public GameObject title;
         }
         
@@ -69,6 +70,7 @@ namespace Main
             {
                 var isEnable = chapterButtonData[i];
                 chapters[i].block.SetActive(isEnable);
+                chapters[i].decorators.SetActive(!isEnable);
                 chapters[i].title.SetActive(!isEnable);
             }
         }
