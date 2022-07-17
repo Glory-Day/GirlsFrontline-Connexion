@@ -7,6 +7,9 @@ using Manager.Log;
 
 namespace Manager
 {
+    /// <summary>
+    /// Manager that manages UI in the game
+    /// </summary>
     public class UIManager : Singleton<UIManager>
     {
         private Dictionary<string, GameObject> uiPrefabs;
@@ -30,7 +33,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(UIManager), 
                 $"OnInstantiateScreenTransition()");
             
-            var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceInformation.uiPrefab.names[0]],
+            var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[0]],
                 Instance.transform, true);
             Instance.screenTransitionAnimation = gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
         }
