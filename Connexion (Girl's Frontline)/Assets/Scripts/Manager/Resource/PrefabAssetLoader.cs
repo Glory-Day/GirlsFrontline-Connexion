@@ -29,7 +29,7 @@ namespace Manager.Resource
                     $"<b>{loadedGameObject.name}</b> prefab is loaded");
             }
             
-            _uiPrefabAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.prefabs[0],
+            _uiPrefabAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.prefabs[0],
                 (Action<GameObject>)Loaded);
         }
         
