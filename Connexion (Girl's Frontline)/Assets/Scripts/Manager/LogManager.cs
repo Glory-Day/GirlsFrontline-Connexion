@@ -74,7 +74,7 @@ namespace Manager
 
         #endregion
 
-        #region DEVELOPMENT BUILD API
+        #region DEVELOPMENT BUILD CONSOLE API
 
         private const string BuildLogPath = @"/Build.log";
 
