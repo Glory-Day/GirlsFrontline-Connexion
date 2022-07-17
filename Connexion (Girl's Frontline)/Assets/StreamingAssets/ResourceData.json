@@ -1,0 +1,29 @@
+﻿{
+  "audioMixer": {
+    "names": [
+      "Background_Audio_Mixer",
+      "Effect_Audio_Mixer",
+      "Voice_Audio_Mixer"
+    ]
+  },
+  "backgroundAudioClip": {
+    "names": [
+      "Main_Screen_Audio_Source"
+    ]
+  },
+  "effectAudioClip": {
+    "names": [
+
+    ]
+  },
+  "voiceAudioClip": {
+    "names": [
+
+    ]
+  },
+  "uiPrefab": {
+    "names": [
+      "Screen_Transition"
+    ]
+  }
+}
