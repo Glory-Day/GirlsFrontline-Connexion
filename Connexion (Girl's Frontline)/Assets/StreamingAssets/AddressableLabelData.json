@@ -1,0 +1,11 @@
+﻿{
+  "audios": [
+    "background",
+    "effect",
+    "voice",
+    "mixer"
+  ],
+  "prefabs": [
+    "UI"
+  ]
+}
