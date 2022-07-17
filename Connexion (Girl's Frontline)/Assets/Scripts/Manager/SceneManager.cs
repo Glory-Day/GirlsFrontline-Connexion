@@ -38,18 +38,18 @@ namespace Manager
             switch (name)
             {
                 case SceneName.MainScene:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneInformation.names[0]);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.names[0]);
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.MainScene);
                     
                     LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
-                        $"<b>{DataManager.SceneInformation.names[0]}</b> is loaded");
+                        $"<b>{DataManager.SceneData.names[0]}</b> is loaded");
                     break;
                 case SceneName.SelectionScene:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneInformation.names[1]);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.names[1]);
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.SelectionScene);
                     
                     LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
-                        $"<b>{DataManager.SceneInformation.names[1]}</b> is loaded");
+                        $"<b>{DataManager.SceneData.names[1]}</b> is loaded");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
