@@ -12,53 +12,53 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region INITIALIZE API
+        #region LOAD METHOD API
 
         /// <summary>
-        /// Initialize previously saved game data with <b>DataLoader</b> class
+        /// Load previously saved game data with <b>DataLoader</b> class
         /// </summary>
-        private static void InitializeGameData()
+        private static void LoadGameData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"InitializeGameData()");
+                $"LoadGameData()");
 
-            GameData = DataLoader<Data.Category.GameData>.OnLoadData(JsonLocalPath.GameData);
+            GameData = DataLoader<Data.Category.GameData>.OnLoadData(JsonLocalPath.GameDataPath);
         }
 
         /// <summary>
-        /// Initialize Scene information data with <b>DataLoader</b> class
+        /// Load Scene information data with <b>DataLoader</b> class
         /// </summary>
-        private static void InitializeSceneInformationData()
+        private static void LoadSceneInformationData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"InitializeSceneInformationData()");
+                $"LoadSceneInformationData()");
 
-            SceneInformation = DataLoader<Data.Category.SceneInformation>.OnLoadData(
-                JsonLocalPath.SceneInformation);
+            SceneData = DataLoader<Data.Category.SceneData>.OnLoadData(
+                JsonLocalPath.SceneDataPath);
         }
 
         /// <summary>
-        /// Initialize resource information data with <b>DataLoader</b> class
+        /// Load resource information data with <b>DataLoader</b> class
         /// </summary>
-        private static void InitializeResourceInformationData()
+        private static void LoadResourceInformationData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"InitializeResourceInformationData()");
+                $"LoadResourceInformationData()");
 
-            ResourceInformation = DataLoader<Data.Category.ResourceInformation>.OnLoadData(
-                JsonLocalPath.ResourceInformation);
+            ResourceData = DataLoader<Data.Category.ResourceData>.OnLoadData(
+                JsonLocalPath.ResourceDataPath);
         }
 
         /// <summary>
-        /// Initialize addressable asset label data with <b>DataLoader</b> class
+        /// Load addressable asset label data with <b>DataLoader</b> class
         /// </summary>
-        private static void InitializeAddressableLabelData()
+        private static void LoadAddressableLabelData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"InitializeAddressableLabelData()");
+                $"LoadAddressableLabelData()");
 
-            AddressableLabel = DataLoader<Data.Category.AddressableLabel>.OnLoadData(
-                JsonLocalPath.AddressableLabel);
+            AddressableLabelData = DataLoader<Data.Category.AddressableLabelData>.OnLoadData(
+                JsonLocalPath.AddressableLabelDataPath);
         }
 
         #endregion
@@ -71,17 +71,17 @@ namespace Manager
         /// <summary>
         /// Scene information data needed for loading scene
         /// </summary>
-        public static Data.Category.SceneInformation SceneInformation { get; private set; }
+        public static Data.Category.SceneData SceneData { get; private set; }
         
         /// <summary>
         /// Resource information data needed for using key of resource
         /// </summary>
-        public static Data.Category.ResourceInformation ResourceInformation { get; private set; }
+        public static Data.Category.ResourceData ResourceData { get; private set; }
         
         /// <summary>
         /// Label data to load assets using <b>Addressable</b>
         /// </summary>
-        public static Data.Category.AddressableLabel AddressableLabel { get; private set; }
+        public static Data.Category.AddressableLabelData AddressableLabelData { get; private set; }
 
         /// <summary>
         /// Initialize all data related to running game programs
@@ -91,10 +91,10 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager), 
                 $"OnInitializeAllData()");
             
-            InitializeGameData();
-            InitializeAddressableLabelData();
-            InitializeResourceInformationData();
-            InitializeSceneInformationData();
+            LoadGameData();
+            LoadAddressableLabelData();
+            LoadResourceInformationData();
+            LoadSceneInformationData();
         }
     }
 }
