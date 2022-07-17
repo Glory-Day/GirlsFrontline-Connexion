@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Text;
 
 using UnityEngine;
 
@@ -28,7 +27,7 @@ namespace Manager.Data
             try
             {
                 LogManager.OnDebugLog(LabelType.Success, typeof(DataLoader<T>),
-                    $"<b>{typeof(T).Name}</b> data is loaded from <b>{typeof(T).Name}.json</b>");
+                    $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b>");
 
                 data = JsonUtility.FromJson<T>(File.ReadAllText(Application.streamingAssetsPath + path));
             }
