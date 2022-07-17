@@ -3,10 +3,10 @@
 namespace Manager.Data.Category
 {
     /// <summary>
-    /// Scene information format in <b>SceneInformation</b> Json file
+    /// Scene format data in <b>SceneInformation</b> Json file
     /// </summary>
     [Serializable]
-    public class SceneInformation
+    public class SceneData
     {
         public string[] names;
     }
