@@ -94,7 +94,7 @@ namespace Manager
                 $"OnInitializeBackgroundAudioMixer()");
             
             Instance.backgroundAudioSource.outputAudioMixerGroup = 
-                Instance.audioMixers[DataManager.ResourceInformation.audioMixer.names[0]].FindMatchingGroups(
+                Instance.audioMixers[DataManager.ResourceData.audioMixer.names[0]].FindMatchingGroups(
                     Master)[0];
         }
         
@@ -111,10 +111,10 @@ namespace Manager
             switch (name)
             {
                 case SceneManager.SceneName.MainScene:
-                    PlayBackgroundAudioSource(DataManager.ResourceInformation.backgroundAudioClip.names[0]);
+                    PlayBackgroundAudioSource(DataManager.ResourceData.backgroundAudioClip.names[0]);
                     break;
                 case SceneManager.SceneName.SelectionScene:
-                    PlayBackgroundAudioSource(DataManager.ResourceInformation.backgroundAudioClip.names[0]);
+                    PlayBackgroundAudioSource(DataManager.ResourceData.backgroundAudioClip.names[0]);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
