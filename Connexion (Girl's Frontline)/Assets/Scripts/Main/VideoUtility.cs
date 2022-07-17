@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -15,12 +16,15 @@ namespace Main
     public class VideoUtility : MonoBehaviour
     {
         /// <summary>
-        /// Button to skip the video player
+        /// Button to skip introduction video
         /// </summary>
         [Header("# Skip Button")]
         [SerializeField]
         public Button skipButton;
 
+        /// <summary>
+        /// Video player playing introduction video
+        /// </summary>
         private VideoPlayer videoPlayer;
 
         // Start is called before the first frame update
@@ -29,34 +33,37 @@ namespace Main
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
 
-            DataManager.OnInitializeAllData();
-            ResourceManager.OnLoadAllResources();
+            StartCoroutine(LoadAllDataAndResources());
         }
 
-        // Update is called once per frame
-        private void Update()
+        /// <summary>
+        /// Load all data and resources related running game application
+        /// </summary>
+        private IEnumerator LoadAllDataAndResources()
         {
-            if (!ResourceManager.IsAllResourceLoaded()) return;
-            if (!videoPlayer.isLooping) return;
-
+            DataManager.OnInitializeAllData();
+            ResourceManager.OnLoadAllResources();
+            
+            while (!ResourceManager.IsAllResourceLoaded()) yield return null;
+            
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
-                "<b>All asset resources</b> are loaded");
+                "<b>All data and resources</b> are loaded");
 
-            // Unset the loop of the video and set the method called at the end of the video
+            // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;
-            videoPlayer.loopPointReached += IsVideoOver;
+            videoPlayer.loopPointReached += IsOver;
             
             UIManager.OnInstantiateScreenTransition();
             
             // Activate the skip button
             skipButton.gameObject.SetActive(true);
         }
-        
+
         /// <summary>
-        /// Callback at the end of the video
+        /// Callback event at the end of the video
         /// </summary>
-        /// <param name="player"> video player in introduction video scene </param>
-        private static void IsVideoOver(VideoPlayer player)
+        /// <param name="player"> Video player in introduction video scene </param>
+        private static void IsOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
                 "<b>Introduction video</b> is over");
