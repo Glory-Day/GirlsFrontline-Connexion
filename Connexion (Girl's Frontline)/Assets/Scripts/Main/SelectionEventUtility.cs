@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 namespace Main
 {
-    public class SelectionButtonUtility : MonoBehaviour
+    /// <summary>
+    /// Events in the <b>Selection Scene</b>
+    /// </summary>
+    public class SelectionEventUtility : MonoBehaviour
     {
         [Serializable]
         public struct Chapter
@@ -43,12 +46,14 @@ namespace Main
 
         #region ANIMATION NAME API
 
+        // Animation names in Next Button
         private readonly string[] nextButtonAnimationNames =
         {
             "Next_Button_Animation_01","Next_Button_Animation_02",
             "Next_Button_Animation_03","Next_Button_Animation_04"
         };
         
+        // Animation names in Preview Button
         private readonly string[] previewButtonAnimationNames =
         {
             "Preview_Button_Animation_01","Preview_Button_Animation_02", 
@@ -64,7 +69,7 @@ namespace Main
 
             chapterIndex = 0;
             previewButton.interactable = false;
-            chapterButtonData = DataManager.GameData.chapterButtonData;
+            chapterButtonData = DataManager.GameData.isChapterLock;
 
             for (var i = 0; i < 5; i++)
             {
@@ -82,7 +87,7 @@ namespace Main
         /// </summary>
         public void OnClickedUndoButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionButtonUtility), 
+            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
                 "<b>Undo Button</b> is clicked");
             
             UIManager.SetRightScreenTransitionAnimation();
@@ -94,7 +99,7 @@ namespace Main
         /// </summary>
         public void OnClickedNextButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionButtonUtility), 
+            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
                 $"<b>Next Button</b> is clicked.");
 
             // Play animation for select next chapter button
@@ -103,7 +108,7 @@ namespace Main
 
             chapterIndex++;
             
-            LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionButtonUtility), 
+            LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
                 $"<b>Chapter 0{chapterIndex + 1}</b> is selected");
         }
         
@@ -112,7 +117,7 @@ namespace Main
         /// </summary>
         public void OnClickedPreviewButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionButtonUtility), 
+            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
                 $"<b>Preview Button</b> is clicked.");
 
             // Play animation for select preview chapter button
@@ -121,7 +126,7 @@ namespace Main
 
             chapterIndex--;
             
-            LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionButtonUtility), 
+            LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
                 $"<b>Chapter 0{chapterIndex + 1}</b> is selected");
         }
 
