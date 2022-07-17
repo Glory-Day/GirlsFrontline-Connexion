@@ -5,9 +5,9 @@
     /// </summary>
     public static class JsonLocalPath
     {
-        public const string AddressableLabel    = "/AddressableLabel.json";
-        public const string GameData            = "/GameData.json";
-        public const string SceneInformation    = "/SceneInformation.json";
-        public const string ResourceInformation = "/ResourceInformation.json";
+        public const string AddressableLabelDataPath = "/AddressableLabelData.json";
+        public const string GameDataPath             = "/GameData.json";
+        public const string SceneDataPath            = "/SceneData.json";
+        public const string ResourceDataPath         = "/ResourceData.json";
     }
 }
