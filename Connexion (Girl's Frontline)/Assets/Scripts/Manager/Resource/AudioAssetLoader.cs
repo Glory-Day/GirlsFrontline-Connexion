@@ -37,7 +37,7 @@ namespace Manager.Resource
                     $"<b>{loadedAudioMixer.name}</b> audio mixer is loaded");
             }
 
-            _audioMixerAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[3],
+            _audioMixerAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.audios[3],
                 (Action<AudioMixer>)Loaded);
         }
         
@@ -57,7 +57,7 @@ namespace Manager.Resource
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
             }
 
-            _backgroundAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[0],
+            _backgroundAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.audios[0],
                 (Action<AudioClip>)Loaded);
         }
         
@@ -77,7 +77,7 @@ namespace Manager.Resource
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
             }
 
-            _effectAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[1],
+            _effectAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.audios[1],
                 (Action<AudioClip>)Loaded);
         }
         
@@ -97,7 +97,7 @@ namespace Manager.Resource
                     $"<b>{loadedAudioClipAsset.name}</b> audio clip is loaded");
             }
 
-            _voiceAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabel.audios[2],
+            _voiceAudioClipAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.audios[2],
                 (Action<AudioClip>)Loaded);
         }
         
