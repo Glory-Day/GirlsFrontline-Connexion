@@ -13,7 +13,7 @@
         #region AUDIO ASSET API
         
         /// <summary>
-        /// Load audio assets using <b>AudioAssetLoader</b> class
+        /// Load audio assets using <b>AudioAssetLoader</b>
         /// </summary>
         private static void LoadAudioAssets()
         {
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// Unload all the audio related assets using <b>AudioAssetLoader</b> class
+        /// Unload all the audio related assets using <b>AudioAssetLoader</b>
         /// </summary>
         private static void UnloadAudioAssets()
         {
@@ -74,7 +74,7 @@
         #region PREFAB ASSET API
 
         /// <summary>
-        /// Load prefab assets using <b>PrefabAssetLoader</b> class
+        /// Load prefab assets using <b>PrefabAssetLoader</b>
         /// </summary>
         private static void LoadPrefabAssets()
         {
@@ -87,7 +87,7 @@
         }
 
         /// <summary>
-        /// Unload all the prefab related assets using <b>PrefabAssetLoader</b> class
+        /// Unload all the prefab related assets using <b>PrefabAssetLoader</b>
         /// </summary>
         private static void UnloadPrefabAssets()
         {
