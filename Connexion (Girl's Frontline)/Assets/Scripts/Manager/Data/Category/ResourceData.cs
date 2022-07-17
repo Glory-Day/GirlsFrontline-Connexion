@@ -41,7 +41,7 @@ namespace Manager.Data.Category
     #endregion
 
     [Serializable]
-    public class ResourceInformation
+    public class ResourceData
     {
         public AudioMixer audioMixer;
         public BackgroundAudioClip backgroundAudioClip;
