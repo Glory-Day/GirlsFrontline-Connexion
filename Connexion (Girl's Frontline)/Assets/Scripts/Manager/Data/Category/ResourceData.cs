@@ -2,26 +2,38 @@
 
 namespace Manager.Data.Category
 {
-    #region Audio API
+    #region AUDIO DATA API
 
+    /// <summary>
+    /// Audio mixer data in <b>ResourceData</b> Json file
+    /// </summary>
     [Serializable]
     public class AudioMixer
     {
         public string[] names;
     }
 
+    /// <summary>
+    /// Background audio clip data in <b>ResourceData</b> Json file
+    /// </summary>
     [Serializable]
     public class BackgroundAudioClip
     {
         public string[] names;
     }
     
+    /// <summary>
+    /// Effect audio clip data in <b>ResourceData</b> Json file
+    /// </summary>
     [Serializable]
     public class EffectAudioClip
     {
         public string[] names;
     }
     
+    /// <summary>
+    /// Video audio clip data in <b>ResourceData</b> Json file
+    /// </summary>
     [Serializable]
     public class VoiceAudioClip
     {
@@ -30,8 +42,11 @@ namespace Manager.Data.Category
 
     #endregion
 
-    #region PREFAB API
+    #region PREFAB DATA API
 
+    /// <summary>
+    /// UI prefab data in <b>ResourceData</b> Json file
+    /// </summary>
     [Serializable]
     public class UIPrefab
     {
@@ -40,6 +55,9 @@ namespace Manager.Data.Category
 
     #endregion
 
+    /// <summary>
+    /// Resource data in <b>ResourceData</b> Json file
+    /// </summary>
     [Serializable]
     public class ResourceData
     {
