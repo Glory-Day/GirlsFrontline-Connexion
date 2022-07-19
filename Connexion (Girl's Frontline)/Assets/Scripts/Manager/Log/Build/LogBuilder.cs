@@ -25,7 +25,7 @@ namespace Manager.Log.Build
         /// <param name="classType"> The type of the class where the log was called </param>
         /// <param name="contents"> Contents of the log </param>
         /// <returns> The string of special log </returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
         public static string OnBuild(Label.LabelType type, Type classType, string contents)
         {
             string log;
