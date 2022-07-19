@@ -29,7 +29,7 @@ namespace Manager
         /// Load scene with scene name
         /// </summary>
         /// <param name="name"> Name of scene </param>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>SceneName</b> </exception>
         public static void OnLoadScene(SceneName name)
         {
             LogManager.OnDebugLog(typeof(SceneManager), 
