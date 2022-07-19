@@ -3,7 +3,7 @@
 namespace Manager.Data.Category
 {
     /// <summary>
-    /// Scene format data in <b>SceneInformation</b> Json file
+    /// Scene data in <b>SceneData</b> Json file
     /// </summary>
     [Serializable]
     public class SceneData
