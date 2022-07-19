@@ -1,6 +1,7 @@
-﻿using Manager;
+﻿using UnityEngine;
+
+using Manager;
 using Manager.Log;
-using UnityEngine;
 
 namespace Main
 {
@@ -9,6 +10,8 @@ namespace Main
     /// </summary>
     public class MainEventUtility : MonoBehaviour
     {
+        #region BUTTON EVENT API
+
         /// <summary>
         /// Button event to click <b>Game Start Button</b> in <b>Main Scene</b>
         /// </summary>
@@ -20,5 +23,7 @@ namespace Main
             UIManager.SetLeftScreenTransitionAnimation();
             UIManager.OnPlayScreenTransitionAnimation();
         }
+
+        #endregion
     }
 }
