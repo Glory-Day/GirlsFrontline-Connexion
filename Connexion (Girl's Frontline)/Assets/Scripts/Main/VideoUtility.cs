@@ -15,12 +15,13 @@ namespace Main
     /// </summary>
     public class VideoUtility : MonoBehaviour
     {
-        /// <summary>
-        /// Button to skip introduction video
-        /// </summary>
+        #region SERIALIZABLE FIELD
+
         [Header("# Skip Button")]
         [SerializeField]
         public Button skipButton;
+
+        #endregion
 
         /// <summary>
         /// Video player playing introduction video
@@ -72,7 +73,7 @@ namespace Main
             SceneManager.OnLoadScene(SceneName.MainScene);
         }
 
-        #region BUTTON API
+        #region BUTTON EVENT API
 
         /// <summary>
         /// Button event to skip video when clicked in <b>Introduction Video Scene</b>
