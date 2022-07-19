@@ -2,7 +2,6 @@
 
 using UnityEngine;
 
-using Manager;
 using Manager.Log;
 
 namespace Manager
