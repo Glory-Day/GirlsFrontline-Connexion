@@ -3,7 +3,7 @@
 namespace Manager.Data.Category
 {
     /// <summary>
-    /// Addressable label format data in <b>AddressableLabel</b> Json file
+    /// Addressable label data in <b>AddressableLabel</b> Json file
     /// </summary>
     [Serializable]
     public class AddressableLabelData
