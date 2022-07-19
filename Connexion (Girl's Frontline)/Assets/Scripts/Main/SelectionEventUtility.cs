@@ -1,8 +1,10 @@
 ﻿using System;
-using Manager;
-using Manager.Log;
+
 using UnityEngine;
 using UnityEngine.UI;
+
+using Manager;
+using Manager.Log;
 
 namespace Main
 {
@@ -11,6 +13,9 @@ namespace Main
     /// </summary>
     public class SelectionEventUtility : MonoBehaviour
     {
+
+        #region SERIALIZABLE FIELD
+
         [Serializable]
         public struct Chapter
         {
@@ -29,8 +34,10 @@ namespace Main
         [SerializeField]
         public Chapter[] chapters;
 
+        #endregion
+
         /// <summary>
-        /// Chapter button index
+        /// Number of chapter button index
         /// </summary>
         private int chapterIndex;
         
@@ -40,9 +47,9 @@ namespace Main
         private Animation selectionAnimation;
 
         /// <summary>
-        /// Whether chapter buttons stored in game data are enabled
+        /// Whether chapter buttons stored in <b>GameData</b> are enabled
         /// </summary>
-        private bool[] chapterButtonData;
+        private bool[] isChapterLock;
 
         #region ANIMATION NAME API
 
@@ -62,25 +69,30 @@ namespace Main
 
         #endregion
 
-        // Start is called before the first frame update
-        private void Start()
+        // Awake is called when the script instance is being loaded
+        private void Awake()
         {
-            selectionAnimation = GetComponent<Animation>();
-
-            chapterIndex = 0;
-            previewButton.interactable = false;
-            chapterButtonData = DataManager.GameData.isChapterLock;
-
+            isChapterLock = DataManager.GameData.isChapterLock;
+            
             for (var i = 0; i < 5; i++)
             {
-                var isEnable = chapterButtonData[i];
+                var isEnable = isChapterLock[i];
                 chapters[i].block.SetActive(isEnable);
                 chapters[i].decorators.SetActive(!isEnable);
                 chapters[i].title.SetActive(!isEnable);
             }
+
+            previewButton.interactable = false;
+            chapterIndex = 0;
         }
 
-        #region BUTTON API
+        // Start is called before the first frame update
+        private void Start()
+        {
+            selectionAnimation = GetComponent<Animation>();
+        }
+
+        #region BUTTON EVENT API
         
         /// <summary>
         /// Button event to click <b>Undo Button</b> in <b>Selection Scene</b>
@@ -103,11 +115,9 @@ namespace Main
                 $"<b>Next Button</b> is clicked.");
 
             // Play animation for select next chapter button
-            selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[chapterIndex]);
+            selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[chapterIndex++]);
             selectionAnimation.Play();
 
-            chapterIndex++;
-            
             LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
                 $"<b>Chapter 0{chapterIndex + 1}</b> is selected");
         }
@@ -121,11 +131,9 @@ namespace Main
                 $"<b>Preview Button</b> is clicked.");
 
             // Play animation for select preview chapter button
-            selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[chapterIndex - 1]);
+            selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--chapterIndex]);
             selectionAnimation.Play();
 
-            chapterIndex--;
-            
             LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
                 $"<b>Chapter 0{chapterIndex + 1}</b> is selected");
         }
@@ -164,7 +172,7 @@ namespace Main
             }
             
             // Enable chapter button to context
-            chapters[chapterIndex].button.interactable = !chapterButtonData[chapterIndex];
+            chapters[chapterIndex].button.interactable = !isChapterLock[chapterIndex];
         }
 
         #endregion
