@@ -13,10 +13,14 @@ namespace Manager
     /// </summary>
     public class SoundManager : Singleton<SoundManager>
     {
+        #region SERIALIZABLE FIELD
+
         [Header("# Playing Background Audio Clip")]
         [SerializeField] 
         public AudioClip playingBackgroundAudioClip;
-        
+
+        #endregion
+
         /// <summary>
         /// Audio source playing background audio in <b>SoundManager</b> class
         /// </summary>
