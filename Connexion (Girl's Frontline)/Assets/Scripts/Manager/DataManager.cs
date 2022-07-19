@@ -12,7 +12,7 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region LOAD METHOD API
+        #region LOAD DATA API
 
         /// <summary>
         /// Load previously saved game data with <b>DataLoader</b> class
@@ -28,7 +28,7 @@ namespace Manager
         /// <summary>
         /// Load Scene information data with <b>DataLoader</b> class
         /// </summary>
-        private static void LoadSceneInformationData()
+        private static void LoadSceneData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
                 $"LoadSceneInformationData()");
@@ -40,7 +40,7 @@ namespace Manager
         /// <summary>
         /// Load resource information data with <b>DataLoader</b> class
         /// </summary>
-        private static void LoadResourceInformationData()
+        private static void LoadResourceData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
                 $"LoadResourceInformationData()");
@@ -93,8 +93,8 @@ namespace Manager
             
             LoadGameData();
             LoadAddressableLabelData();
-            LoadResourceInformationData();
-            LoadSceneInformationData();
+            LoadResourceData();
+            LoadSceneData();
         }
     }
 }
