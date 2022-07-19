@@ -40,6 +40,7 @@ namespace Manager
         /// <param name="type"> Type of Log </param>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
+        /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
         [System.Diagnostics.Conditional(UnityEditor)]
         private static void EditorLog(Label.LabelType type, Type classType, string contexts)
         {
@@ -118,7 +119,7 @@ namespace Manager
         /// </summary>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild),
+        [System.Diagnostics.Conditional(DevelopmentBuild), 
          System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Type classType, string contexts)
         {
