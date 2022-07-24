@@ -33,7 +33,7 @@ namespace Main
 
             gameStartButton.interactable = false;
             
-            UIManager.SetLeftScreenTransitionAnimation();
+            UIManager.SetScreenTransitionDirectionToLeft();
             UIManager.OnPlayScreenTransitionAnimation();
         }
 
