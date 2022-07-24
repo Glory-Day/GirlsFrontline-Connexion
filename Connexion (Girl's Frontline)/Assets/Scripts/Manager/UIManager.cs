@@ -15,10 +15,14 @@ namespace Manager
 
         private Animation screenTransitionAnimation;
 
+        #region ANIMATION NAME API
+
         // Screen transition animation names
-        private const string LeftScreenTransitionAnimation = "Left_Screen_Transition_Animation";
-        private const string RightScreenTransitionAnimation = "Right_Screen_Transition_Animation";
-        
+        private const string ScreenTransitionToLeftAnimation = "Screen_Transition_To_Left_Animation";
+        private const string ScreenTransitionToRightAnimation = "Screen_Transition_To_Right_Animation";
+
+        #endregion
+
         protected UIManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
@@ -29,12 +33,15 @@ namespace Manager
         /// </summary>
         public static void OnInstantiateScreenTransition()
         {
-            LogManager.OnDebugLog(typeof(UIManager), 
-                $"OnInstantiateScreenTransition()");
+            LogManager.OnDebugLog(Label.LabelType.Event,typeof(UIManager), 
+                $"Instantiate <b>Screen Transition Prefab</b>");
             
             var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[0]],
                 Instance.transform, true);
             Instance.screenTransitionAnimation = gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
+            
+            LogManager.OnDebugLog(Label.LabelType.Success,typeof(UIManager), 
+                $"Instantiate <b>Screen Transition Prefab</b> completely");
         }
 
         /// <summary>
@@ -59,25 +66,25 @@ namespace Manager
         /// <summary>
         /// Set screen transition animation to <b>LeftScreenTransitionAnimation</b>
         /// </summary>
-        public static void SetLeftScreenTransitionAnimation()
+        public static void SetScreenTransitionDirectionToLeft()
         {
             LogManager.OnDebugLog(typeof(UIManager), 
-                $"SetLeftScreenTransitionAnimation()");
+                $"SetScreenTransitionDirectionToLeft()");
             
             Instance.screenTransitionAnimation.clip =
-                Instance.screenTransitionAnimation.GetClip(LeftScreenTransitionAnimation);
+                Instance.screenTransitionAnimation.GetClip(ScreenTransitionToLeftAnimation);
         }
 
         /// <summary>
         /// Set screen transition animation to <b>RightScreenTransitionAnimation</b>
         /// </summary>
-        public static void SetRightScreenTransitionAnimation()
+        public static void SetScreenTransitionDirectionToRight()
         {
             LogManager.OnDebugLog(typeof(UIManager), 
-                $"SetLeftScreenTransitionAnimation()");
+                $"SetScreenTransitionDirectionToRight()");
             
             Instance.screenTransitionAnimation.clip =
-                Instance.screenTransitionAnimation.GetClip(RightScreenTransitionAnimation);
+                Instance.screenTransitionAnimation.GetClip(ScreenTransitionToRightAnimation);
         }
 
         /// <summary>
