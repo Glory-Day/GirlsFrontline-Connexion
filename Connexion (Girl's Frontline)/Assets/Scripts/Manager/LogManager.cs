@@ -19,7 +19,7 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region EDITOR CONSOLE API
+        #region UNITY EDITOR CONSOLE API
 
         /// <summary>
         /// Outputs a general log to the console in <b>Unity Editor</b>
@@ -30,7 +30,7 @@ namespace Manager
         private static void UnityEditorLog(Type classType, string contexts)
         {
 #if UNITY_EDITOR
-            Debug.Log(Log.Console.LogBuilder.OnBuild(classType, contexts));
+            Debug.Log(Log.UnityEditor.LogBuilder.OnBuild(classType, contexts));
 #endif
         }
 
@@ -44,7 +44,7 @@ namespace Manager
         [System.Diagnostics.Conditional(UnityEditor)]
         private static void UnityEditorLog(Label.LabelType type, Type classType, string contexts)
         {
-            var message = Log.Console.LogBuilder.OnBuild(type, classType, contexts);
+            var message = Log.UnityEditor.LogBuilder.OnBuild(type, classType, contexts);
             
             switch (type)
             {
@@ -91,7 +91,7 @@ namespace Manager
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
                        append: true))
             {
-                writer.WriteLine(Log.Build.LogBuilder.OnBuild(classType, contexts));
+                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(classType, contexts));
             }
 #endif
         }
@@ -106,9 +106,10 @@ namespace Manager
         private static void DevelopmentBuildLog(Label.LabelType type, Type classType, string contexts)
         {
 #if DEVELOPMENT_BUILD
-            using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath, append: true))
+            using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
+                       append: true))
             {
-                writer.WriteLine(Log.Build.LogBuilder.OnBuild(type, classType, contexts));
+                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(type, classType, contexts));
             }
 #endif
         }
