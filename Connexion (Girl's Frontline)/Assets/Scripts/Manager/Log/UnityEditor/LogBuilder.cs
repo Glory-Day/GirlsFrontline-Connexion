@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Manager.Log.Console
+namespace Manager.Log.UnityEditor
 {
     /// <summary>
     /// Output log string builder by purpose in <b>Unity Editor Console</b>
