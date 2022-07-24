@@ -13,7 +13,6 @@ namespace Main
     /// </summary>
     public class SelectionEventUtility : MonoBehaviour
     {
-
         #region SERIALIZABLE FIELD
 
         [Serializable]
