@@ -23,10 +23,10 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region STATIC API
+        #region LOAD API
 
         /// <summary>
-        /// Load scene with scene name
+        /// Load scene by scene name
         /// </summary>
         /// <param name="name"> Name of scene </param>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>SceneName</b> </exception>
