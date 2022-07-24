@@ -5,9 +5,16 @@ using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// Events for screen transition
+    /// </summary>
     public class ScreenTransitionEvent : MonoBehaviour
     {
-        public void OnLoadSceneWhenLeftTransition()
+        /// <summary>
+        /// When scene transition animation is left, load scene by <b>CurrentSceneName</b>
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
+        public void OnLoadSceneWhenSceneTransitionToLeft()
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(ScreenTransitionEvent), 
                 $"<b>Left Scene Transition Animation</b> event is activated");
@@ -24,7 +31,11 @@ namespace UI
             }
         }
         
-        public void OnLoadSceneWhenRightTransition()
+        /// <summary>
+        /// When scene transition animation is right, load scene by <b>CurrentSceneName</b>
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
+        public void OnLoadSceneWhenSceneTransitionToRight()
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(ScreenTransitionEvent), 
                 $"<b>Right Scene Transition Animation</b> event is activated");
