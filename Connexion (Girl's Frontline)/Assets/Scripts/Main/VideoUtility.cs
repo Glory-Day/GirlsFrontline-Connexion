@@ -70,7 +70,7 @@ namespace Main
                 "<b>Introduction video</b> is over");
             
             SoundManager.OnInitializeBackgroundAudioMixer();
-            SceneManager.OnLoadScene(SceneName.MainScene);
+            SceneManager.OnLoadSceneByName(SceneName.MainScene);
         }
 
         #region BUTTON EVENT API
@@ -84,7 +84,7 @@ namespace Main
                 "<b>Skip button</b> is clicked");
 
             SoundManager.OnInitializeBackgroundAudioMixer();
-            SceneManager.OnLoadScene(SceneName.MainScene);
+            SceneManager.OnLoadSceneByName(SceneName.MainScene);
         }
 
         #endregion
