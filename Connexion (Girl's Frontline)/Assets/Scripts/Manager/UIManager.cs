@@ -57,7 +57,7 @@ namespace Manager
             Instance.uiPrefabs.Add(key, gameObject);
 
         /// <summary>
-        /// Set screen transition animation to left
+        /// Set screen transition animation to <b>LeftScreenTransitionAnimation</b>
         /// </summary>
         public static void SetLeftScreenTransitionAnimation()
         {
@@ -69,7 +69,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Set screen transition animation to right
+        /// Set screen transition animation to <b>RightScreenTransitionAnimation</b>
         /// </summary>
         public static void SetRightScreenTransitionAnimation()
         {
