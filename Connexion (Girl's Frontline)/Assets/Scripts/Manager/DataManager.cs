@@ -1,4 +1,7 @@
-﻿using Manager.Data;
+﻿using System.Threading.Tasks;
+
+using Manager.Data;
+using Manager.Data.Category;
 
 namespace Manager
 {
@@ -22,7 +25,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager), 
                 $"LoadGameData()");
 
-            GameData = DataLoader<Data.Category.GameData>.OnLoadData(JsonLocalPath.GameDataPath);
+            GameData = DataLoader<GameData>.OnLoadData(JsonLocalPath.GameDataPath);
         }
 
         /// <summary>
@@ -31,10 +34,9 @@ namespace Manager
         private static void LoadSceneData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"LoadSceneInformationData()");
+                $"LoadSceneData()");
 
-            SceneData = DataLoader<Data.Category.SceneData>.OnLoadData(
-                JsonLocalPath.SceneDataPath);
+            SceneData = DataLoader<SceneData>.OnLoadData(JsonLocalPath.SceneDataPath);
         }
 
         /// <summary>
@@ -43,10 +45,9 @@ namespace Manager
         private static void LoadResourceData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"LoadResourceInformationData()");
+                $"LoadResourceData()");
 
-            ResourceData = DataLoader<Data.Category.ResourceData>.OnLoadData(
-                JsonLocalPath.ResourceDataPath);
+            ResourceData = DataLoader<ResourceData>.OnLoadData(JsonLocalPath.ResourceDataPath);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager), 
                 $"LoadAddressableLabelData()");
 
-            AddressableLabelData = DataLoader<Data.Category.AddressableLabelData>.OnLoadData(
+            AddressableLabelData = DataLoader<AddressableLabelData>.OnLoadData(
                 JsonLocalPath.AddressableLabelDataPath);
         }
 
@@ -66,22 +67,22 @@ namespace Manager
         /// <summary>
         /// Stored game data
         /// </summary>
-        public static Data.Category.GameData GameData { get; private set; }
+        public static GameData GameData { get; private set; }
         
         /// <summary>
         /// Scene information data needed for loading scene
         /// </summary>
-        public static Data.Category.SceneData SceneData { get; private set; }
+        public static SceneData SceneData { get; private set; }
         
         /// <summary>
         /// Resource information data needed for using key of resource
         /// </summary>
-        public static Data.Category.ResourceData ResourceData { get; private set; }
+        public static ResourceData ResourceData { get; private set; }
         
         /// <summary>
         /// Label data to load assets using <b>Addressable</b>
         /// </summary>
-        public static Data.Category.AddressableLabelData AddressableLabelData { get; private set; }
+        public static AddressableLabelData AddressableLabelData { get; private set; }
 
         /// <summary>
         /// Load all data related to running game application
