@@ -3,7 +3,7 @@
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire data used in the game
+    /// Manager that manages the entire data used in the game application
     /// </summary>
     public class DataManager : Singleton<DataManager>
     {
@@ -15,7 +15,7 @@ namespace Manager
         #region LOAD DATA API
 
         /// <summary>
-        /// Load previously saved game data with <b>DataLoader</b> class
+        /// Load stored game data with <b>DataLoader</b>
         /// </summary>
         private static void LoadGameData()
         {
@@ -26,7 +26,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load Scene information data with <b>DataLoader</b> class
+        /// Load Scene information data with <b>DataLoader</b>
         /// </summary>
         private static void LoadSceneData()
         {
@@ -38,7 +38,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load resource information data with <b>DataLoader</b> class
+        /// Load resource information data with <b>DataLoader</b>
         /// </summary>
         private static void LoadResourceData()
         {
@@ -50,7 +50,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load addressable asset label data with <b>DataLoader</b> class
+        /// Load addressable asset label data with <b>DataLoader</b>
         /// </summary>
         private static void LoadAddressableLabelData()
         {
@@ -64,7 +64,7 @@ namespace Manager
         #endregion
 
         /// <summary>
-        /// Previously stored game data
+        /// Stored game data
         /// </summary>
         public static Data.Category.GameData GameData { get; private set; }
         
@@ -84,12 +84,12 @@ namespace Manager
         public static Data.Category.AddressableLabelData AddressableLabelData { get; private set; }
 
         /// <summary>
-        /// Initialize all data related to running game programs
+        /// Load all data related to running game application
         /// </summary>
-        public static void OnInitializeAllData()
+        public static void OnLoadAllData()
         {
             LogManager.OnDebugLog(typeof(DataManager), 
-                $"OnInitializeAllData()");
+                $"OnLoadAllData()");
             
             LoadGameData();
             LoadAddressableLabelData();
