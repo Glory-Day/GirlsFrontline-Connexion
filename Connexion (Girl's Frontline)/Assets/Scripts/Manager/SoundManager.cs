@@ -88,7 +88,7 @@ namespace Manager
             Instance.backgroundAudioSource.Play();
         }
 
-        #region STATIC API
+        #region SOUND API
 
         /// <summary>
         /// Initialize background audio mixer to output audio mixer of background audio source
