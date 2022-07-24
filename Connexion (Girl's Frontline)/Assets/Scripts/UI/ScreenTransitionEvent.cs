@@ -17,12 +17,12 @@ namespace UI
         public void OnLoadSceneWhenSceneTransitionToLeft()
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(ScreenTransitionEvent), 
-                $"<b>Left Scene Transition Animation</b> event is activated");
+                $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Left</b>");
             
             switch (SceneManager.CurrentSceneName)
             {
                 case SceneManager.SceneName.MainScene:
-                    SceneManager.OnLoadScene(SceneManager.SceneName.SelectionScene);
+                    SceneManager.OnLoadSceneByName(SceneManager.SceneName.SelectionScene);
                     break;
                 case SceneManager.SceneName.SelectionScene:
                     break;
@@ -38,14 +38,14 @@ namespace UI
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(ScreenTransitionEvent), 
-                $"<b>Right Scene Transition Animation</b> event is activated");
+                $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Right</b>");
             
             switch (SceneManager.CurrentSceneName)
             {
                 case SceneManager.SceneName.MainScene:
                     break;
                 case SceneManager.SceneName.SelectionScene:
-                    SceneManager.OnLoadScene(SceneManager.SceneName.MainScene);
+                    SceneManager.OnLoadSceneByName(SceneManager.SceneName.MainScene);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
