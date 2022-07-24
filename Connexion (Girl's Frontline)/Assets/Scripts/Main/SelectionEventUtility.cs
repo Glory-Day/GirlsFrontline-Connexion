@@ -109,7 +109,7 @@ namespace Main
             nextButton.interactable = previewButton.interactable = false;
             chapters[currentChapterIndex].button.interactable = false;
             
-            UIManager.SetRightScreenTransitionAnimation();
+            UIManager.SetScreenTransitionDirectionToRight();
             UIManager.OnPlayScreenTransitionAnimation();
         }
 
@@ -119,7 +119,7 @@ namespace Main
         public void OnClickedNextButton()
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
-                $"<b>Next Button</b> is clicked.");
+                $"<b>Next Button</b> is clicked");
 
             // Play animation for select next chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[currentChapterIndex++]);
@@ -135,7 +135,7 @@ namespace Main
         public void OnClickedPreviewButton()
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
-                $"<b>Preview Button</b> is clicked.");
+                $"<b>Preview Button</b> is clicked");
 
             // Play animation for select preview chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--currentChapterIndex]);
