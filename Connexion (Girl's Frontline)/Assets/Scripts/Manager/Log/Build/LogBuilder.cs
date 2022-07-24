@@ -15,7 +15,7 @@ namespace Manager.Log.Build
         /// <returns> The string of the default log </returns>
         public static string OnBuild(Type classType, string contents)
         {
-            return $"{Label.DefaultLogLabel}|{classType.Name}|Called <i>{contents}</i>";
+            return $"{Label.DefaultLogLabel}|{classType.Name}|Called <i>{contents.Replace('_', ' ')}</i>";
         }
         
         /// <summary>
@@ -33,16 +33,16 @@ namespace Manager.Log.Build
             switch (type)
             {
                 case Label.LabelType.Event:
-                    log = $"{Label.EventLogLabel}|{classType.Name}|{contents}";
+                    log = $"{Label.EventLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
                     break;
                 case Label.LabelType.Error:
-                    log = $"{Label.ErrorLogLabel}|{classType.Name}|{contents}";
+                    log = $"{Label.ErrorLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
                     break;
                 case Label.LabelType.Warning:
-                    log = $"{Label.WarningLogLabel}|{classType.Name}|{contents}";
+                    log = $"{Label.WarningLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
                     break;
                 case Label.LabelType.Success:
-                    log = $"{Label.SuccessLogLabel}|{classType.Name}|{contents}";
+                    log = $"{Label.SuccessLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
