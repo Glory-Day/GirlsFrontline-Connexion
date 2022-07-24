@@ -24,6 +24,10 @@ namespace Main
             public GameObject title;
         }
         
+        [Header("# Undo Button")] 
+        [SerializeField]
+        public Button undoButton;
+        
         [Header("# Chapter Select Button")] 
         [SerializeField]
         public Button nextButton;
@@ -36,9 +40,9 @@ namespace Main
         #endregion
 
         /// <summary>
-        /// Number of chapter button index
+        /// Number of current selected chapter button index
         /// </summary>
-        private int chapterIndex;
+        private int currentChapterIndex;
         
         /// <summary>
         /// Chapter selection animation component
@@ -82,7 +86,7 @@ namespace Main
             }
 
             previewButton.interactable = false;
-            chapterIndex = 0;
+            currentChapterIndex = 0;
         }
 
         // Start is called before the first frame update
@@ -100,6 +104,10 @@ namespace Main
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
                 "<b>Undo Button</b> is clicked");
+
+            undoButton.interactable = false;
+            nextButton.interactable = previewButton.interactable = false;
+            chapters[currentChapterIndex].button.interactable = false;
             
             UIManager.SetRightScreenTransitionAnimation();
             UIManager.OnPlayScreenTransitionAnimation();
@@ -114,11 +122,11 @@ namespace Main
                 $"<b>Next Button</b> is clicked.");
 
             // Play animation for select next chapter button
-            selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[chapterIndex++]);
+            selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[currentChapterIndex++]);
             selectionAnimation.Play();
 
             LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
-                $"<b>Chapter 0{chapterIndex + 1}</b> is selected");
+                $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected");
         }
         
         /// <summary>
@@ -130,11 +138,11 @@ namespace Main
                 $"<b>Preview Button</b> is clicked.");
 
             // Play animation for select preview chapter button
-            selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--chapterIndex]);
+            selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--currentChapterIndex]);
             selectionAnimation.Play();
 
             LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
-                $"<b>Chapter 0{chapterIndex + 1}</b> is selected");
+                $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected");
         }
 
         #endregion
@@ -155,7 +163,7 @@ namespace Main
         public void OnEnableButtons()
         {
             // Enable next, preview button to context
-            switch (chapterIndex)
+            switch (currentChapterIndex)
             {
                 case 0:
                     nextButton.interactable = true;
@@ -171,7 +179,7 @@ namespace Main
             }
             
             // Enable chapter button to context
-            chapters[chapterIndex].button.interactable = !isChapterLock[chapterIndex];
+            chapters[currentChapterIndex].button.interactable = !isChapterLock[currentChapterIndex];
         }
 
         #endregion
