@@ -30,10 +30,10 @@ namespace Manager
         /// </summary>
         /// <param name="name"> Name of scene </param>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>SceneName</b> </exception>
-        public static void OnLoadScene(SceneName name)
+        public static void OnLoadSceneByName(SceneName name)
         {
             LogManager.OnDebugLog(typeof(SceneManager), 
-                $"OnLoadScene()");
+                $"OnLoadSceneByName()");
 
             switch (name)
             {
