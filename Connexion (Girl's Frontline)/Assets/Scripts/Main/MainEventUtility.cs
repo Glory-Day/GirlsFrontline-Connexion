@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
+using UnityEngine.UI;
 
 using Manager;
-using Manager.Log;
+using Label = Manager.Log.Label;
 
 namespace Main
 {
@@ -10,6 +13,14 @@ namespace Main
     /// </summary>
     public class MainEventUtility : MonoBehaviour
     {
+        #region SERIALIZABLE FIELD
+
+        [Header("# Game Start Button")]
+        [SerializeField]
+        public Button gameStartButton;
+
+        #endregion
+        
         #region BUTTON EVENT API
 
         /// <summary>
@@ -19,6 +30,8 @@ namespace Main
         {
             LogManager.OnDebugLog(Label.LabelType.Event, typeof(MainEventUtility), 
                 "<b>Game Start Button</b> is clicked");
+
+            gameStartButton.interactable = false;
             
             UIManager.SetLeftScreenTransitionAnimation();
             UIManager.OnPlayScreenTransitionAnimation();
