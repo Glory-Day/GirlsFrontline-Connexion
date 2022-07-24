@@ -15,7 +15,8 @@ namespace Manager.Log.Console
         /// <returns> The string of the default log </returns>
         public static string OnBuild(Type classType, string contents)
         {
-            return $"<color={Label.DefaultLogColor}><b>[{classType.Name}]</b> Called <i>{contents}</i></color>";
+            return $"<color={Label.DefaultLogColor}><b>[{classType.Name}]</b>" +
+                   $" Called <i>{contents.Replace('_', ' ')}</i></color>";
         }
         
         /// <summary>
@@ -34,19 +35,19 @@ namespace Manager.Log.Console
             {
                 case Label.LabelType.Event:
                     log = $"<color={Label.EventLogColor}><b>[{Label.EventLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                          $"{contents.Replace('_', ' ')}</color>";
                     break;
                 case Label.LabelType.Error:
                     log = $"<color={Label.ErrorLogColor}><b>[{Label.ErrorLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                          $"{contents.Replace('_', ' ')}</color>";
                     break;
                 case Label.LabelType.Warning:
                     log = $"<color={Label.WarningLogColor}><b>[{Label.WarningLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                          $"{contents.Replace('_', ' ')}</color>";
                     break;
                 case Label.LabelType.Success:
                     log = $"<color={Label.SuccessLogColor}><b>[{Label.SuccessLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                          $"{contents.Replace('_', ' ')}</color>";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
