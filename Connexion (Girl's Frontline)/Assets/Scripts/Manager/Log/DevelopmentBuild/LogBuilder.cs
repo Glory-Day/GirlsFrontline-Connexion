@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Manager.Log.Build
+namespace Manager.Log.DevelopmentBuild
 {
     /// <summary>
     /// Output log string builder by purpose in <b>Unity Application</b> after build
