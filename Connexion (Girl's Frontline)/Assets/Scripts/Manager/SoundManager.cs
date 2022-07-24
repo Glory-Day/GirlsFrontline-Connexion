@@ -40,6 +40,7 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
+        // Awake is called when the script instance is being loaded
         private void Awake()
         {
             backgroundAudioSource = gameObject.AddComponent<AudioSource>();
