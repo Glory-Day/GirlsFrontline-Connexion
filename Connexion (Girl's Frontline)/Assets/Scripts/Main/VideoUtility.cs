@@ -42,7 +42,7 @@ namespace Main
         /// </summary>
         private IEnumerator LoadAllDataAndResources()
         {
-            DataManager.OnInitializeAllData();
+            DataManager.OnLoadAllData();
             ResourceManager.OnLoadAllResources();
             
             while (!ResourceManager.IsAllResourceLoaded()) yield return null;
