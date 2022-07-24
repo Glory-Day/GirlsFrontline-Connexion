@@ -27,7 +27,7 @@ namespace Manager
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(UnityEditor)]
-        private static void EditorLog(Type classType, string contexts)
+        private static void UnityEditorLog(Type classType, string contexts)
         {
 #if UNITY_EDITOR
             Debug.Log(Log.Console.LogBuilder.OnBuild(classType, contexts));
@@ -42,7 +42,7 @@ namespace Manager
         /// <param name="contexts"> Contents of the log </param>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
         [System.Diagnostics.Conditional(UnityEditor)]
-        private static void EditorLog(Label.LabelType type, Type classType, string contexts)
+        private static void UnityEditorLog(Label.LabelType type, Type classType, string contexts)
         {
             var message = Log.Console.LogBuilder.OnBuild(type, classType, contexts);
             
@@ -77,7 +77,7 @@ namespace Manager
 
         #region DEVELOPMENT BUILD CONSOLE API
 
-        private const string BuildLogPath = @"/Build.log";
+        private const string DevelopmentBuildLogFilePath = @"/Build.log";
 
         /// <summary>
         /// Outputs a general log to the console in <b>Unity Application</b> after built
@@ -85,10 +85,11 @@ namespace Manager
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void BuildLog(Type classType, string contexts)
+        private static void DevelopmentBuildLog(Type classType, string contexts)
         {
 #if DEVELOPMENT_BUILD
-            using (var writer = new StreamWriter(Application.persistentDataPath + BuildLogPath, append: true))
+            using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
+                       append: true))
             {
                 writer.WriteLine(Log.Build.LogBuilder.OnBuild(classType, contexts));
             }
@@ -102,10 +103,10 @@ namespace Manager
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void BuildLog(Label.LabelType type, Type classType, string contexts)
+        private static void DevelopmentBuildLog(Label.LabelType type, Type classType, string contexts)
         {
 #if DEVELOPMENT_BUILD
-            using (var writer = new StreamWriter(Application.persistentDataPath + BuildLogPath, append: true))
+            using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath, append: true))
             {
                 writer.WriteLine(Log.Build.LogBuilder.OnBuild(type, classType, contexts));
             }
@@ -124,9 +125,9 @@ namespace Manager
         public static void OnDebugLog(Type classType, string contexts)
         {
 #if UNITY_EDITOR
-            EditorLog(classType, contexts);
+            UnityEditorLog(classType, contexts);
 #elif DEVELOPMENT_BUILD
-            BuildLog(classType, contexts);
+            DevelopmentBuildLog(classType, contexts);
 #endif
         }
 
@@ -141,9 +142,9 @@ namespace Manager
         public static void OnDebugLog(Label.LabelType type, Type classType, string contexts)
         {
 #if UNITY_EDITOR
-            EditorLog(type, classType, contexts);
+            UnityEditorLog(type, classType, contexts);
 #elif DEVELOPMENT_BUILD
-            BuildLog(type, classType, contexts);
+            DevelopmentBuildLog(type, classType, contexts);
 #endif
         }
     }
