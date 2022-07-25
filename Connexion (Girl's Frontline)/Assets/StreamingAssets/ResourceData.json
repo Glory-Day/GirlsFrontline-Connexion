@@ -23,7 +23,8 @@
   },
   "uiPrefab": {
     "names": [
-      "Screen_Transition"
+      "Transition_Screen",
+      "Pause_Screen"
     ]
   }
 }
