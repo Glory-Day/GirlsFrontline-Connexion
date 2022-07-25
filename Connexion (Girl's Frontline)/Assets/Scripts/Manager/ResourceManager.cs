@@ -1,4 +1,6 @@
-﻿namespace Manager
+﻿using LabelType = Manager.Log.Label.LabelType;
+
+namespace Manager
 {
     /// <summary>
     /// Manager that manages the entire resources used in the game
