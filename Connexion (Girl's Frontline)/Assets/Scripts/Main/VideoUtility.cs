@@ -54,7 +54,7 @@ namespace Main
             videoPlayer.isLooping = false;
             videoPlayer.loopPointReached += IsOver;
             
-            UIManager.OnInstantiateScreenTransition();
+            UIManager.OnInstantiateAllUIPrefabs();
             
             // Activate the skip button
             skipButton.gameObject.SetActive(true);
