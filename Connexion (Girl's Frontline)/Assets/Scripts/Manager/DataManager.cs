@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-using Manager.Data;
+﻿using Manager.Data;
 using Manager.Data.Category;
+
+using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager
 {
@@ -96,6 +96,9 @@ namespace Manager
             LoadAddressableLabelData();
             LoadResourceData();
             LoadSceneData();
+            
+            LogManager.OnDebugLog(LabelType.Success, typeof(DataManager), 
+                "<b>All data</b> is loaded");
         }
     }
 }
