@@ -28,20 +28,46 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
+        public static void OnInstantiateAllUIPrefabs()
+        {
+            LogManager.OnDebugLog(typeof(UIManager), 
+                $"OnInstantiateAllUIPrefabs()");
+            
+            InstantiateTransitionScreenPrefab();
+            InstantiatePauseScreenPrefabs();
+            
+            LogManager.OnDebugLog(Label.LabelType.Success, typeof(DataManager), 
+                "<b>All UI Prefabs</b> are instantiated");
+        }
+
         /// <summary>
-        /// Instantiate Screen transition UI object
+        /// Instantiate Transition Screen UI object
         /// </summary>
-        public static void OnInstantiateScreenTransition()
+        private static void InstantiateTransitionScreenPrefab()
         {
             LogManager.OnDebugLog(Label.LabelType.Event,typeof(UIManager), 
-                $"Instantiate <b>Screen Transition Prefab</b>");
+                $"Instantiate <b>Transition Screen Prefab</b>");
             
             var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[0]],
                 Instance.transform, true);
             Instance.screenTransitionAnimation = gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
             
             LogManager.OnDebugLog(Label.LabelType.Success,typeof(UIManager), 
-                $"Instantiate <b>Screen Transition Prefab</b> completely");
+                $"Instantiate <b>Transition Screen Prefab</b> completely");
+        }
+
+        private static void InstantiatePauseScreenPrefabs()
+        {
+            LogManager.OnDebugLog(Label.LabelType.Event,typeof(UIManager), 
+                    $"Instantiate <b>Pause Screen Prefab</b>");
+            
+            var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[1]], 
+                Instance.transform, true);
+            gameObject.SetActive(false);
+            Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[1]] = gameObject;
+
+            LogManager.OnDebugLog(Label.LabelType.Success,typeof(UIManager), 
+                $"Instantiate <b>Pause Screen Prefab</b> completely");
         }
 
         /// <summary>
@@ -97,5 +123,13 @@ namespace Manager
             
             Instance.screenTransitionAnimation.Play();
         }
+
+        public static void OnEnablePauseScreen() =>
+            Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[1]].SetActive(true);
+        
+        public static void OnDisablePauseScreen() =>
+            Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[1]].SetActive(false);
+
+        public static Transform GetTransform() => Instance.transform;
     }
 }
