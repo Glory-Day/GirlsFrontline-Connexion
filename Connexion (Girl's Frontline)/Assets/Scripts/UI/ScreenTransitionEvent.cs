@@ -1,7 +1,13 @@
-﻿using System;
-using Manager;
-using Manager.Log;
+﻿#region NAMESPACE API
+
+using System;
+
 using UnityEngine;
+
+using Manager;
+using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace UI
 {
@@ -10,13 +16,15 @@ namespace UI
     /// </summary>
     public class ScreenTransitionEvent : MonoBehaviour
     {
+        #region ANIMATION EVENT API
+
         /// <summary>
         /// When scene transition animation is left, load scene by <b>CurrentSceneName</b>
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
         public void OnLoadSceneWhenSceneTransitionToLeft()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(ScreenTransitionEvent), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent), 
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Left</b>");
             
             switch (SceneManager.CurrentSceneName)
@@ -37,7 +45,7 @@ namespace UI
         /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(ScreenTransitionEvent), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent), 
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Right</b>");
             
             switch (SceneManager.CurrentSceneName)
@@ -51,5 +59,7 @@ namespace UI
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        #endregion
     }
 }
