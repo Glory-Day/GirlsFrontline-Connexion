@@ -1,12 +1,15 @@
-﻿using Manager.Data;
-using Manager.Data.Category;
+﻿#region NAMESPACE API
 
+using Manager.Data;
+using Manager.Data.Category;
 using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire data used in the game application
+    /// Manager that manages the entire data used in <b>Game Application</b>
     /// </summary>
     public class DataManager : Singleton<DataManager>
     {
@@ -29,7 +32,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load Scene information data with <b>DataLoader</b>
+        /// Load scene data with <b>DataLoader</b>
         /// </summary>
         private static void LoadSceneData()
         {
@@ -40,7 +43,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load resource information data with <b>DataLoader</b>
+        /// Load resource data with <b>DataLoader</b>
         /// </summary>
         private static void LoadResourceData()
         {
@@ -51,7 +54,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load addressable asset label data with <b>DataLoader</b>
+        /// Load addressable label data with <b>DataLoader</b>
         /// </summary>
         private static void LoadAddressableLabelData()
         {
@@ -70,12 +73,12 @@ namespace Manager
         public static GameData GameData { get; private set; }
         
         /// <summary>
-        /// Scene information data needed for loading scene
+        /// Scene data needed for loading scene
         /// </summary>
         public static SceneData SceneData { get; private set; }
         
         /// <summary>
-        /// Resource information data needed for using key of resource
+        /// Resource data needed for using key of resource
         /// </summary>
         public static ResourceData ResourceData { get; private set; }
         
@@ -85,7 +88,7 @@ namespace Manager
         public static AddressableLabelData AddressableLabelData { get; private set; }
 
         /// <summary>
-        /// Load all data related to running game application
+        /// Load all data related to running <b>Game Application</b>
         /// </summary>
         public static void OnLoadAllData()
         {
