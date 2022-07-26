@@ -27,6 +27,14 @@ namespace Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Input"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5eaf18b-0e38-46e2-ba94-2dc836c31e7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -38,6 +46,17 @@ namespace Input
                     ""processors"": """",
                     ""groups"": ""Window Platform"",
                     ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c12e6dce-1b08-446b-9971-abe2dd7876c1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Window Platform"",
+                    ""action"": ""Input"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -61,6 +80,7 @@ namespace Input
             // Command Console
             m_CommandConsole = asset.FindActionMap("Command Console", throwIfNotFound: true);
             m_CommandConsole_Toggle = m_CommandConsole.FindAction("Toggle", throwIfNotFound: true);
+            m_CommandConsole_Input = m_CommandConsole.FindAction("Input", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -111,11 +131,13 @@ namespace Input
         private readonly InputActionMap m_CommandConsole;
         private ICommandConsoleActions m_CommandConsoleActionsCallbackInterface;
         private readonly InputAction m_CommandConsole_Toggle;
+        private readonly InputAction m_CommandConsole_Input;
         public struct CommandConsoleActions
         {
             private @GameAction m_Wrapper;
             public CommandConsoleActions(@GameAction wrapper) { m_Wrapper = wrapper; }
             public InputAction @Toggle => m_Wrapper.m_CommandConsole_Toggle;
+            public InputAction @Input => m_Wrapper.m_CommandConsole_Input;
             public InputActionMap Get() { return m_Wrapper.m_CommandConsole; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -128,6 +150,9 @@ namespace Input
                     @Toggle.started -= m_Wrapper.m_CommandConsoleActionsCallbackInterface.OnToggle;
                     @Toggle.performed -= m_Wrapper.m_CommandConsoleActionsCallbackInterface.OnToggle;
                     @Toggle.canceled -= m_Wrapper.m_CommandConsoleActionsCallbackInterface.OnToggle;
+                    @Input.started -= m_Wrapper.m_CommandConsoleActionsCallbackInterface.OnInput;
+                    @Input.performed -= m_Wrapper.m_CommandConsoleActionsCallbackInterface.OnInput;
+                    @Input.canceled -= m_Wrapper.m_CommandConsoleActionsCallbackInterface.OnInput;
                 }
                 m_Wrapper.m_CommandConsoleActionsCallbackInterface = instance;
                 if (instance != null)
@@ -135,6 +160,9 @@ namespace Input
                     @Toggle.started += instance.OnToggle;
                     @Toggle.performed += instance.OnToggle;
                     @Toggle.canceled += instance.OnToggle;
+                    @Input.started += instance.OnInput;
+                    @Input.performed += instance.OnInput;
+                    @Input.canceled += instance.OnInput;
                 }
             }
         }
@@ -151,6 +179,7 @@ namespace Input
         public interface ICommandConsoleActions
         {
             void OnToggle(InputAction.CallbackContext context);
+            void OnInput(InputAction.CallbackContext context);
         }
     }
 }
