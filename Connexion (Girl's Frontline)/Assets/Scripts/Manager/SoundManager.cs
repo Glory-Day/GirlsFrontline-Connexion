@@ -1,15 +1,19 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
-
-using Manager.Log;
 using UnityEngine.Audio;
+
+using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire sound used in the game
+    /// Manager that manages the entire sound used in <b>Game Application</b>
     /// </summary>
     public class SoundManager : Singleton<SoundManager>
     {
@@ -22,7 +26,7 @@ namespace Manager
         #endregion
 
         /// <summary>
-        /// Audio source playing background audio in <b>SoundManager</b> class
+        /// Audio source playing background audio in <b>SoundManager</b>
         /// </summary>
         private AudioSource backgroundAudioSource;
 
@@ -48,7 +52,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Initialize background, effect, voice audio clips
+        /// Initialize audio mixer and background, effect, voice audio clips
         /// </summary>
         public static void OnInitializeAudioClips()
         {
@@ -81,7 +85,7 @@ namespace Manager
             // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;
 
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SoundManager), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SoundManager), 
                 $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b>");
             
             Instance.backgroundAudioSource.clip = Instance.playingBackgroundAudioClip = audioClip;
