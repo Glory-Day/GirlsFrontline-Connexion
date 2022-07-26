@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
 
 using UnityEngine;
 using UnityEngine.UI;
 
 using Manager;
-using Manager.Log;
+using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Main
 {
@@ -102,7 +106,7 @@ namespace Main
         /// </summary>
         public void OnClickedUndoButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility), 
                 "<b>Undo Button</b> is clicked");
 
             undoButton.interactable = false;
@@ -118,14 +122,14 @@ namespace Main
         /// </summary>
         public void OnClickedNextButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility), 
                 $"<b>Next Button</b> is clicked");
 
             // Play animation for select next chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[currentChapterIndex++]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility), 
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected");
         }
         
@@ -134,14 +138,14 @@ namespace Main
         /// </summary>
         public void OnClickedPreviewButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility), 
                 $"<b>Preview Button</b> is clicked");
 
             // Play animation for select preview chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--currentChapterIndex]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(Label.LabelType.Success, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility), 
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected");
         }
 
@@ -158,7 +162,7 @@ namespace Main
         }
         
         /// <summary>
-        /// Enable <b>Next Button</b> and <b>Preview Button</b> and selected chapter button
+        /// Enable <b>Next Button</b> and <b>Preview Button</b> and <b>Selected Chapter Button</b>
         /// </summary>
         public void OnEnableButtons()
         {
