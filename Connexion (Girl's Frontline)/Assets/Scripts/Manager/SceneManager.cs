@@ -1,11 +1,15 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
 
 using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire scene used in the game
+    /// Manager that manages the entire scene used in <b>Game Application</b>
     /// </summary>
     public class SceneManager : Singleton<SceneManager>
     {
