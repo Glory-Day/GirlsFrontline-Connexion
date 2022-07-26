@@ -1,12 +1,15 @@
-﻿using System;
+﻿#region NAMESPACE API
+
 using UnityEngine;
 
-using Manager.Log;
+using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Manager
 {
     /// <summary>
-    /// Manager that manage the game applications
+    /// Manager that manages <b>Game Application</b>
     /// </summary>
     public class GameManager : Singleton<GameManager>
     {
@@ -16,7 +19,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Pause the game application
+        /// Pause <b>Game Application</b>
         /// </summary>
         public static void OnPause()
         {
@@ -25,8 +28,8 @@ namespace Manager
 
             if (Time.timeScale < 0.5f)
             {
-                LogManager.OnDebugLog(Label.LabelType.Warning, typeof(GameManager), 
-                    $"The game application has already been paused");
+                LogManager.OnDebugLog(LabelType.Warning, typeof(GameManager), 
+                    $"<b>Game Application</b> has already been paused");
 
                 return;
             }
@@ -35,12 +38,12 @@ namespace Manager
             
             Time.timeScale = 0f;
 
-            LogManager.OnDebugLog(Label.LabelType.Success, typeof(GameManager), 
-                $"The game application pauses completely");
+            LogManager.OnDebugLog(LabelType.Success, typeof(GameManager), 
+                $"<b>Game Application</b> pauses completely");
         }
 
         /// <summary>
-        /// Play the game application
+        /// Play <b>Game Application</b>
         /// </summary>
         public static void OnPlay()
         {
@@ -49,8 +52,8 @@ namespace Manager
 
             if (Time.timeScale > 0.5f)
             {
-                LogManager.OnDebugLog(Label.LabelType.Warning, typeof(GameManager), 
-                    $"The game application is currently running");
+                LogManager.OnDebugLog(LabelType.Warning, typeof(GameManager), 
+                    $"<b>Game Application</b> is currently running");
 
                 return;
             }
@@ -59,8 +62,26 @@ namespace Manager
             
             Time.timeScale = 1f;
 
-            LogManager.OnDebugLog(Label.LabelType.Success, typeof(GameManager), 
-                $"The game application plays completely");
+            LogManager.OnDebugLog(LabelType.Success, typeof(GameManager), 
+                $"<b>Game Application</b> plays completely");
+        }
+
+        /// <summary>
+        /// Quit <b>Game Application</b>
+        /// </summary>
+        public static void OnQuit()
+        {
+            LogManager.OnDebugLog(typeof(GameManager), 
+                $"OnQuit()");
+            
+            LogManager.OnDebugLog(LabelType.Success, typeof(GameManager), 
+                $"<b>Game Application</b> is quited completely");
+            
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }
