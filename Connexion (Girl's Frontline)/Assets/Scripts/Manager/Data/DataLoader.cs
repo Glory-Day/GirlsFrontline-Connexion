@@ -1,9 +1,12 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿#region NAMESPACE API
+
+using System.IO;
 
 using UnityEngine;
 
 using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Manager.Data
 {
