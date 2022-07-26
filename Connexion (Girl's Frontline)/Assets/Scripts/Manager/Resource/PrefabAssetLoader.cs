@@ -54,7 +54,7 @@ namespace Manager.Resource
             Addressables.Release(_uiPrefabAssetHandle);
             
             LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                $"<b>All UI prefabs</b> are unloaded");
+                $"<b>All UI Prefabs</b> are unloaded");
         }
 
         #endregion
