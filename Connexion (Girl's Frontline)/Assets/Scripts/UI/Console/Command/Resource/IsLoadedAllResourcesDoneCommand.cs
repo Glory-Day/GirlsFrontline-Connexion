@@ -17,13 +17,13 @@ namespace UI.Console.Command.Resource
             if (ResourceManager.IsLoadedAllResourcesDone())
             {
                 LogManager.OnDebugLog(LabelType.Success, typeof(ICommand), 
-                    $"<b>All resources</b> is loaded completely");
+                    $"<b>All Resources</b> is loaded completely");
 
                 return;
             }
             
             LogManager.OnDebugLog(LabelType.Error, typeof(ICommand), 
-                $"<b>All resources</b> is not loaded");
+                $"<b>All Resources</b> is not loaded");
         }
     }
 }
