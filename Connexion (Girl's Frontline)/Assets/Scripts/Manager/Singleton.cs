@@ -1,6 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#region NAMESPACE API
+
+using System.Diagnostics.CodeAnalysis;
+
 using UnityEngine;
 using Object = UnityEngine.Object;
+
+#endregion
 
 namespace Manager
 {
