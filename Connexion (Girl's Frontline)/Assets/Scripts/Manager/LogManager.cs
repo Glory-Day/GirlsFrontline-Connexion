@@ -1,8 +1,13 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
 using System.IO;
+
 using UnityEngine;
 
 using Manager.Log;
+
+#endregion
 
 namespace Manager
 {
