@@ -1,4 +1,8 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
+
+#endregion
 
 namespace Manager.Log.UnityEditor
 {
@@ -16,7 +20,7 @@ namespace Manager.Log.UnityEditor
         public static string OnBuild(Type classType, string contents)
         {
             return $"<color={Label.DefaultLogColor}><b>[{classType.Name}]</b>" +
-                   $" Called <i>{contents.Replace('_', ' ')}</i></color>";
+                   $" Called <b><i>{contents.Replace('_', ' ')}</i></b></color>";
         }
         
         /// <summary>
