@@ -1,10 +1,12 @@
-﻿using System;
+﻿#region NAMESPACE API
 
 using UnityEngine;
 using UnityEngine.UI;
 
 using Manager;
-using Label = Manager.Log.Label;
+using LabelType = Manager.Log.Label.LabelType;
+
+#endregion
 
 namespace Main
 {
@@ -28,7 +30,7 @@ namespace Main
         /// </summary>
         public void OnClickedGameStartButton()
         {
-            LogManager.OnDebugLog(Label.LabelType.Event, typeof(MainEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(MainEventUtility), 
                 "<b>Game Start Button</b> is clicked");
 
             gameStartButton.interactable = false;
