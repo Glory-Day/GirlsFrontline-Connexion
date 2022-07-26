@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
+
+#endregion
 
 namespace Manager.Log.DevelopmentBuild
 {
     /// <summary>
-    /// Output log string builder by purpose in <b>Unity Application</b> after build
+    /// Output log string builder by purpose in <b>Game Application</b> after build
     /// </summary>
     public static class LogBuilder
     {
