@@ -52,7 +52,7 @@ namespace Main
             while (!ResourceManager.IsLoadedAllResourcesDone()) yield return null;
             
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
-                "<b>All data and resources</b> are loaded");
+                "<b>All Data And Resources</b> are loaded");
 
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;
@@ -71,7 +71,7 @@ namespace Main
         private static void IsOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
-                "<b>Introduction video</b> is over");
+                "<b>Introduction Video</b> is over");
             
             SoundManager.OnInitializeBackgroundAudioMixer();
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
@@ -85,7 +85,7 @@ namespace Main
         public void OnClickedSkipButton()
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
-                "<b>Skip button</b> is clicked");
+                "<b>Skip Button</b> is clicked");
 
             SoundManager.OnInitializeBackgroundAudioMixer();
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
