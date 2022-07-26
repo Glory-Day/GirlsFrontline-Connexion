@@ -17,7 +17,7 @@ namespace UI.Console.Command.Resource
             ResourceManager.OnLoadAllResources();
             
             LogManager.OnDebugLog(LabelType.Success, typeof(ICommand), 
-                "<b>All resources</b> are loaded completely");
+                "<b>All Resources</b> are loaded completely");
         }
     }
 }
