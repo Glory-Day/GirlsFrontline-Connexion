@@ -17,7 +17,7 @@ namespace UI.Console.Command.Resource
             ResourceManager.OnUnloadAllResources();
             
             LogManager.OnDebugLog(LabelType.Success, typeof(ICommand), 
-                "<b>All resources</b> are unloaded completely");
+                "<b>All Resources</b> are unloaded completely");
         }
     }
 }
