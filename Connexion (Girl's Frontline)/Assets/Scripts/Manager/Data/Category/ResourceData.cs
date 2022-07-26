@@ -1,11 +1,15 @@
-﻿using System;
+﻿#region NAMESPACE API
+
+using System;
+
+#endregion
 
 namespace Manager.Data.Category
 {
     #region AUDIO DATA API
 
     /// <summary>
-    /// Audio mixer data in <b>ResourceData</b> Json file
+    /// Audio mixer data in <b>ResourceData.json</b>
     /// </summary>
     [Serializable]
     public class AudioMixer
@@ -14,7 +18,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Background audio clip data in <b>ResourceData</b> Json file
+    /// Background audio clip data in <b>ResourceData.json</b>
     /// </summary>
     [Serializable]
     public class BackgroundAudioClip
@@ -23,7 +27,7 @@ namespace Manager.Data.Category
     }
     
     /// <summary>
-    /// Effect audio clip data in <b>ResourceData</b> Json file
+    /// Effect audio clip data in <b>ResourceData.json</b>
     /// </summary>
     [Serializable]
     public class EffectAudioClip
@@ -32,7 +36,7 @@ namespace Manager.Data.Category
     }
     
     /// <summary>
-    /// Video audio clip data in <b>ResourceData</b> Json file
+    /// Video audio clip data in <b>ResourceData.json</b>
     /// </summary>
     [Serializable]
     public class VoiceAudioClip
@@ -45,7 +49,7 @@ namespace Manager.Data.Category
     #region PREFAB DATA API
 
     /// <summary>
-    /// UI prefab data in <b>ResourceData</b> Json file
+    /// UI prefab data in <b>ResourceData.json</b>
     /// </summary>
     [Serializable]
     public class UIPrefab
@@ -56,7 +60,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// Resource data in <b>ResourceData</b> Json file
+    /// Resource data in <b>ResourceData.json</b>
     /// </summary>
     [Serializable]
     public class ResourceData
