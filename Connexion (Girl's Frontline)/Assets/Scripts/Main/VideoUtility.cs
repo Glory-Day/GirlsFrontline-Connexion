@@ -1,17 +1,21 @@
-﻿using System.Collections;
+﻿#region NAMESPACE API
+
+using System.Collections;
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 using Manager;
-
 using LabelType = Manager.Log.Label.LabelType;
 using SceneName = Manager.SceneManager.SceneName;
+
+#endregion
 
 namespace Main
 {
     /// <summary>
-    /// Controls the video player in introduction video scene
+    /// Controls the video player in <b>Introduction Video Scene</b>
     /// </summary>
     public class VideoUtility : MonoBehaviour
     {
@@ -38,14 +42,14 @@ namespace Main
         }
 
         /// <summary>
-        /// Load all data and resources related running game application
+        /// Load all data and resources related running <b>Game Application</b>
         /// </summary>
         private IEnumerator LoadAllDataAndResources()
         {
             DataManager.OnLoadAllData();
             ResourceManager.OnLoadAllResources();
             
-            while (!ResourceManager.IsAllResourceLoaded()) yield return null;
+            while (!ResourceManager.IsLoadedAllResourcesDone()) yield return null;
             
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
                 "<b>All data and resources</b> are loaded");
@@ -63,7 +67,7 @@ namespace Main
         /// <summary>
         /// Callback event at the end of the video
         /// </summary>
-        /// <param name="player"> Video player in introduction video scene </param>
+        /// <param name="player"> Video player in <b>Introduction Video Scene</b> </param>
         private static void IsOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
