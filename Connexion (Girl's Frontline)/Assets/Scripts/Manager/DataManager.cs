@@ -101,7 +101,7 @@ namespace Manager
             LoadSceneData();
             
             LogManager.OnDebugLog(LabelType.Success, typeof(DataManager), 
-                "<b>All data</b> is loaded");
+                "<b>All Data</b> is loaded");
         }
     }
 }
