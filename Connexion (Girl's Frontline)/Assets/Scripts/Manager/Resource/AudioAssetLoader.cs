@@ -122,7 +122,7 @@ namespace Manager.Resource
             Addressables.Release(_audioMixerAssetHandle);
             
             LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                $"<b>All Audio mixers</b> are unloaded");
+                $"<b>All Audio Mixers</b> are unloaded");
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Manager.Resource
             Addressables.Release(_backgroundAudioClipAssetHandle);
             
             LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                $"<b>All background audio clips</b> are unloaded");
+                $"<b>All Background Audio Clips</b> are unloaded");
         }
         
         /// <summary>
@@ -150,7 +150,7 @@ namespace Manager.Resource
             Addressables.Release(_effectAudioClipAssetHandle);
             
             LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                $"<b>All effect audio clips</b> are unloaded");
+                $"<b>All Effect Audio Clips</b> are unloaded");
         }
         
         /// <summary>
@@ -164,7 +164,7 @@ namespace Manager.Resource
             Addressables.Release(_voiceAudioClipAssetHandle);
             
             LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                $"<b>All voice audio clips</b> are unloaded");
+                $"<b>All Voice Audio Clips</b> are unloaded");
         }
 
         #endregion
