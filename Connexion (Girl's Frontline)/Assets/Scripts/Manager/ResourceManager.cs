@@ -1,9 +1,7 @@
-﻿using LabelType = Manager.Log.Label.LabelType;
-
-namespace Manager
+﻿namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire resources used in the game
+    /// Manager that manages the entire resources used in <b>Game Application</b>
     /// </summary>
     public class ResourceManager : Singleton<ResourceManager>
     {
@@ -36,14 +34,14 @@ namespace Manager
         }
 
         /// <summary>
-        /// Unload all the audio related assets using <b>AudioAssetLoader</b>
+        /// Unload audio assets using <b>AudioAssetLoader</b>
         /// </summary>
         private static void UnloadAudioAssets()
         {
             LogManager.OnDebugLog(typeof(ResourceManager), 
                 $"UnloadAudioAssets()");
             
-            Resource.AudioAssetLoader.OnUnloadBackgroundAudioMixerAsset();
+            Resource.AudioAssetLoader.OnUnloadAudioMixerAssets();
             Resource.AudioAssetLoader.OnUnloadBackgroundAudioClipAssets();
             
             //DEBUG: This code is not working yet
@@ -55,11 +53,11 @@ namespace Manager
         }
 
         /// <summary>
-        /// Check audio asset load is done
+        /// Check audio assets loaded is done
         /// </summary>
-        private static bool IsAudioAssetsLoaded() =>
-            Resource.AudioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
-            Resource.AudioAssetLoader.IsBackgroundAudioClipAssetsLoaded();
+        private static bool IsLoadedAudioAssetsDone() =>
+            Resource.AudioAssetLoader.IsLoadedAudioMixerAssetsDone() &&
+            Resource.AudioAssetLoader.IsLoadedBackgroundAudioClipAssetsDone();
 
         //DEBUG: This code is not working yet
         // Resources with labels "effect" and "voice" are available after registration
@@ -89,7 +87,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Unload all the prefab related assets using <b>PrefabAssetLoader</b>
+        /// Unload prefab assets using <b>PrefabAssetLoader</b>
         /// </summary>
         private static void UnloadPrefabAssets()
         {
@@ -100,10 +98,10 @@ namespace Manager
         }
 
         /// <summary>
-        /// Check prefab asset load is done
+        /// Check prefab assets loaded is done
         /// </summary>
-        private static bool IsPrefabAssetsLoaded() =>
-            Resource.PrefabAssetLoader.IsUIPrefabAssetsLoaded();
+        private static bool IsLoadedPrefabAssetsDone() =>
+            Resource.PrefabAssetLoader.IsLoadedUIPrefabAssetsDone();
 
         #endregion
 
@@ -132,10 +130,10 @@ namespace Manager
         }
 
         /// <summary>
-        /// Check all asset resource load is done
+        /// Check all asset resources loaded is done
         /// </summary>
-        public static bool IsAllResourceLoaded() =>
-            IsAudioAssetsLoaded() &&
-            IsPrefabAssetsLoaded();
+        public static bool IsLoadedAllResourcesDone() =>
+            IsLoadedAudioAssetsDone() &&
+            IsLoadedPrefabAssetsDone();
     }
 }
