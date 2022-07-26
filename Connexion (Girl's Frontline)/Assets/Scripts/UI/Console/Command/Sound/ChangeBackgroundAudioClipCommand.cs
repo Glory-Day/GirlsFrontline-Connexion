@@ -12,7 +12,7 @@ namespace UI.Console.Command.Sound
         public void Execute()
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(ICommand), 
-                $"Execute as administrator <b><i>OnChangeBackgroundAudioClip()</i></b> for current scene");
+                $"Execute as administrator <b><i>OnChangeBackgroundAudioClip()</i></b> in <b>Current Scene</b>");
             
             SoundManager.OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName);
         }
