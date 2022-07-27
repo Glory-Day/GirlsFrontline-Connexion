@@ -12,6 +12,17 @@ namespace Manager.Log.UnityEditor
     public static class LogBuilder
     {
         /// <summary>
+        /// Build the string of the administrator permission log
+        /// </summary>
+        /// <param name="contents"> Contents of the log </param>
+        /// <returns> The string of the administrator permission log </returns>
+        public static string OnBuild(string contents)
+        {
+            return $"<color={Label.AdministratorLogColor}><b>{Label.AdministratorInUnityEditorLogLabel}</b> " +
+                   $"{contents.Replace('_', ' ')}</color>";
+        }
+        
+        /// <summary>
         /// Build the string of the default log
         /// </summary>
         /// <param name="classType"> The type of the class where the log was called </param>
@@ -22,7 +33,7 @@ namespace Manager.Log.UnityEditor
             return $"<color={Label.DefaultLogColor}><b>[{classType.Name}]</b>" +
                    $" Called <b><i>{contents.Replace('_', ' ')}</i></b></color>";
         }
-        
+
         /// <summary>
         /// Build the string of special log
         /// </summary>
@@ -43,10 +54,6 @@ namespace Manager.Log.UnityEditor
                     break;
                 case Label.LabelType.Error:
                     log = $"<color={Label.ErrorLogColor}><b>[{Label.ErrorLogLabel}][{classType.Name}]</b> " +
-                          $"{contents.Replace('_', ' ')}</color>";
-                    break;
-                case Label.LabelType.Warning:
-                    log = $"<color={Label.WarningLogColor}><b>[{Label.WarningLogLabel}][{classType.Name}]</b> " +
                           $"{contents.Replace('_', ' ')}</color>";
                     break;
                 case Label.LabelType.Success:
