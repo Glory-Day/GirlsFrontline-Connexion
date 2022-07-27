@@ -12,6 +12,16 @@ namespace Manager.Log.DevelopmentBuild
     public static class LogBuilder
     {
         /// <summary>
+        /// Build the string of the administrator permission log
+        /// </summary>
+        /// <param name="contents"> Contents of the log </param>
+        /// <returns> The string of the administrator permission log </returns>
+        public static string OnBuild(string contents)
+        {
+            return $"{Label.AdministratorInDevelopmentBuildLogLabel}|{contents.Replace('_', ' ')}";
+        }
+        
+        /// <summary>
         /// Build the string of the default log
         /// </summary>
         /// <param name="classType"> The type of the class where the log was called </param>
@@ -19,7 +29,8 @@ namespace Manager.Log.DevelopmentBuild
         /// <returns> The string of the default log </returns>
         public static string OnBuild(Type classType, string contents)
         {
-            return $"{Label.DefaultLogLabel}|{classType.Name}|Called <i>{contents.Replace('_', ' ')}</i>";
+            return $"{Label.DefaultLogLabel}|{classType.Name}|" +
+                   $"Called <b><i>{contents.Replace('_', ' ')}</i></b>";
         }
         
         /// <summary>
@@ -41,9 +52,6 @@ namespace Manager.Log.DevelopmentBuild
                     break;
                 case Label.LabelType.Error:
                     log = $"{Label.ErrorLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
-                    break;
-                case Label.LabelType.Warning:
-                    log = $"{Label.WarningLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
                     break;
                 case Label.LabelType.Success:
                     log = $"{Label.SuccessLogLabel}|{classType.Name}|{contents.Replace('_', ' ')}";
