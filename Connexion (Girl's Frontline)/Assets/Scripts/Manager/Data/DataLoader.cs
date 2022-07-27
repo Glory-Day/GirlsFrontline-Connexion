@@ -33,7 +33,7 @@ namespace Manager.Data
                 data = JsonUtility.FromJson<T>(File.ReadAllText(Application.streamingAssetsPath + path));
                 
                 LogManager.OnDebugLog(LabelType.Success, typeof(DataLoader<T>),
-                    $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b>");
+                    $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json successfully</b>");
             }
             catch (DirectoryNotFoundException error)
             {
