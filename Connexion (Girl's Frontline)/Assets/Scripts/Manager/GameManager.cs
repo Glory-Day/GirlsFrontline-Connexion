@@ -28,7 +28,7 @@ namespace Manager
 
             if (Time.timeScale < 0.5f)
             {
-                LogManager.OnDebugLog(LabelType.Warning, typeof(GameManager), 
+                LogManager.OnDebugLog(LabelType.Error, typeof(GameManager), 
                     $"<b>Game Application</b> has already been paused");
 
                 return;
@@ -39,7 +39,7 @@ namespace Manager
             Time.timeScale = 0f;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(GameManager), 
-                $"<b>Game Application</b> pauses completely");
+                $"<b>Game Application</b> pauses successfully");
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Manager
 
             if (Time.timeScale > 0.5f)
             {
-                LogManager.OnDebugLog(LabelType.Warning, typeof(GameManager), 
+                LogManager.OnDebugLog(LabelType.Error, typeof(GameManager), 
                     $"<b>Game Application</b> is currently running");
 
                 return;
@@ -63,7 +63,7 @@ namespace Manager
             Time.timeScale = 1f;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(GameManager), 
-                $"<b>Game Application</b> plays completely");
+                $"<b>Game Application</b> plays successfully");
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Manager
                 $"OnQuit()");
             
             LogManager.OnDebugLog(LabelType.Success, typeof(GameManager), 
-                $"<b>Game Application</b> is quited completely");
+                $"<b>Game Application</b> is quited successfully");
             
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
