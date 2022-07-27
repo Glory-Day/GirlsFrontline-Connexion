@@ -130,7 +130,7 @@ namespace Main
             selectionAnimation.Play();
 
             LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility), 
-                $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected");
+                $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
         
         /// <summary>
@@ -146,7 +146,7 @@ namespace Main
             selectionAnimation.Play();
 
             LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility), 
-                $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected");
+                $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
 
         #endregion
