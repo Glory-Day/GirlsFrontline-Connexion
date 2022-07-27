@@ -1,7 +1,6 @@
 ﻿#region NAMESPACE API
 
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
@@ -11,8 +10,8 @@ namespace UI.Console.Command.Sound
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ICommand), 
-                $"Execute as administrator <b><i>OnChangeBackgroundAudioClip()</i></b> in <b>Current Scene</b>");
+            LogManager.OnDebugLog(
+                "Execute <b><i>OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName)</i></b>");
             
             SoundManager.OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName);
         }
