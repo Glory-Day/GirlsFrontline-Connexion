@@ -44,7 +44,7 @@ namespace Manager
             InstantiatePauseScreenPrefabs();
             
             LogManager.OnDebugLog(LabelType.Success, typeof(DataManager), 
-                "<b>All UI Prefabs</b> are instantiated");
+                "<b>All UI Prefabs</b> are instantiated successfully");
         }
 
         /// <summary>
@@ -52,15 +52,15 @@ namespace Manager
         /// </summary>
         private static void InstantiateTransitionScreenPrefab()
         {
-            LogManager.OnDebugLog(LabelType.Event,typeof(UIManager), 
-                $"Instantiate <b>Transition Screen Prefab</b>");
+            LogManager.OnDebugLog(typeof(UIManager), 
+                $"OnInstantiateTransitionScreenPrefab()");
             
             var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[0]],
                 Instance.transform, true);
             Instance.screenTransitionAnimation = gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
             
             LogManager.OnDebugLog(LabelType.Success,typeof(UIManager), 
-                $"Instantiate <b>Transition Screen Prefab</b> completely");
+                $"Instantiate <b>Transition Screen Prefab</b> successfully");
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Manager
         /// </summary>
         private static void InstantiatePauseScreenPrefabs()
         {
-            LogManager.OnDebugLog(LabelType.Event,typeof(UIManager), 
-                    $"Instantiate <b>Pause Screen Prefab</b>");
+            LogManager.OnDebugLog(typeof(UIManager), 
+                    $"InstantiatePauseScreenPrefabs()");
             
             var gameObject = Instantiate(Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[1]], 
                 Instance.transform, true);
@@ -77,7 +77,7 @@ namespace Manager
             Instance.uiPrefabs[DataManager.ResourceData.uiPrefab.names[1]] = gameObject;
 
             LogManager.OnDebugLog(LabelType.Success,typeof(UIManager), 
-                $"Instantiate <b>Pause Screen Prefab</b> completely");
+                $"Instantiate <b>Pause Screen Prefab</b> successfully");
         }
 
         /// <summary>
@@ -128,10 +128,13 @@ namespace Manager
         /// </summary>
         public static void OnPlayScreenTransitionAnimation()
         {
-            LogManager.OnDebugLog(LabelType.Event,typeof(UIManager), 
-                $"Play <b>{Instance.screenTransitionAnimation.clip.name}</b>");
+            LogManager.OnDebugLog(typeof(UIManager), 
+                $"OnPlayScreenTransitionAnimation()</b>");
             
             Instance.screenTransitionAnimation.Play();
+            
+            LogManager.OnDebugLog(LabelType.Event,typeof(UIManager), 
+                $"Play <b>{Instance.screenTransitionAnimation.clip.name}</b>");
         }
 
         /// <summary>
