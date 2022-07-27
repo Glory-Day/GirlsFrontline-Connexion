@@ -49,10 +49,13 @@ namespace Main
             DataManager.OnLoadAllData();
             ResourceManager.OnLoadAllResources();
             
+            LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
+                $"<b>Waiting All Resources</b> is loaded");
+            
             while (!ResourceManager.IsLoadedAllResourcesDone()) yield return null;
             
             LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
-                "<b>All Data And Resources</b> are loaded");
+                "<b>All Data And Resources</b> are loaded successfully");
 
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;
