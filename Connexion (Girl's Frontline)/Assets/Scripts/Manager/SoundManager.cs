@@ -85,11 +85,11 @@ namespace Manager
             // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;
 
-            LogManager.OnDebugLog(LabelType.Event, typeof(SoundManager), 
-                $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b>");
-            
             Instance.backgroundAudioSource.clip = Instance.playingBackgroundAudioClip = audioClip;
             Instance.backgroundAudioSource.Play();
+            
+            LogManager.OnDebugLog(LabelType.Success, typeof(SoundManager), 
+                $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
         }
 
         #region SOUND API
