@@ -31,8 +31,8 @@ namespace Manager.Resource
             {
                 UIManager.AddUIPrefabs(loadedGameObject.name, loadedGameObject);
                 
-                LogManager.OnDebugLog(LabelType.Event, typeof(PrefabAssetLoader),
-                    $"<b>{loadedGameObject.name}</b> is loaded");
+                LogManager.OnDebugLog(LabelType.Success, typeof(PrefabAssetLoader),
+                    $"<b>{loadedGameObject.name}</b> is loaded successfully");
             }
             
             _uiPrefabAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.prefabs[0],
@@ -53,8 +53,8 @@ namespace Manager.Resource
             
             Addressables.Release(_uiPrefabAssetHandle);
             
-            LogManager.OnDebugLog(LabelType.Event, typeof(AudioAssetLoader),
-                $"<b>All UI Prefabs</b> are unloaded");
+            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                $"<b>All UI Prefabs</b> are unloaded successfully");
         }
 
         #endregion
