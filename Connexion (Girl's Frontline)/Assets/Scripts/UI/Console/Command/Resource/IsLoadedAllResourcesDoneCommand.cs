@@ -11,13 +11,12 @@ namespace UI.Console.Command.Resource
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ICommand), 
-                $"Execute as administrator <b><i>IsLoadedAllResourcesDone()</i></b>");
+            LogManager.OnDebugLog("Execute <b><i>IsLoadedAllResourcesDone()</i></b>");
             
             if (ResourceManager.IsLoadedAllResourcesDone())
             {
                 LogManager.OnDebugLog(LabelType.Success, typeof(ICommand), 
-                    $"<b>All Resources</b> is loaded completely");
+                    $"<b>All Resources</b> is loaded successfully");
 
                 return;
             }
