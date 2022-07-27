@@ -27,6 +27,18 @@ namespace Manager
         #region UNITY EDITOR CONSOLE API
 
         /// <summary>
+        /// Outputs a administrator permission log to the console in <b>Unity Editor</b>
+        /// </summary>
+        /// <param name="contexts"> Contents of the log </param>
+        [System.Diagnostics.Conditional(UnityEditor)]
+        private static void UnityEditorLog(string contexts)
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning(Log.UnityEditor.LogBuilder.OnBuild(contexts));
+#endif
+        }
+        
+        /// <summary>
         /// Outputs a general log to the console in <b>Unity Editor</b>
         /// </summary>
         /// <param name="classType"> Type of the class where the log was called </param>
@@ -63,11 +75,6 @@ namespace Manager
                     Debug.LogError(message);
 #endif
                     break;
-                case Label.LabelType.Warning:
-#if UNITY_EDITOR
-                    Debug.LogWarning(message);
-#endif
-                    break;
                 case Label.LabelType.Success:
 #if UNITY_EDITOR
                     Debug.Log(message);
@@ -84,6 +91,22 @@ namespace Manager
 
         private const string DevelopmentBuildLogFilePath = @"/Build.log";
 
+        /// <summary>
+        /// Outputs a administrator permission log to the console in <b>Unity Application</b> after built
+        /// </summary>
+        /// <param name="contexts"> Contents of the log </param>
+        [System.Diagnostics.Conditional(DevelopmentBuild)]
+        private static void DevelopmentBuildLog(string contexts)
+        {
+#if DEVELOPMENT_BUILD
+            using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
+                       append: true))
+            {
+                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(contexts));
+            }
+#endif
+        }
+        
         /// <summary>
         /// Outputs a general log to the console in <b>Unity Application</b> after built
         /// </summary>
@@ -120,6 +143,22 @@ namespace Manager
         }
 
         #endregion
+        
+        /// <summary>
+        /// Outputs a administrator permission log
+        /// </summary>
+        /// <param name="classType"> Type of the class where the log was called </param>
+        /// <param name="contexts"> Contents of the log </param>
+        [System.Diagnostics.Conditional(DevelopmentBuild), 
+         System.Diagnostics.Conditional(UnityEditor)]
+        public static void OnDebugLog(string contexts)
+        {
+#if UNITY_EDITOR
+            UnityEditorLog(contexts);
+#elif DEVELOPMENT_BUILD
+            DevelopmentBuildLog(contexts);
+#endif
+        }
         
         /// <summary>
         /// Outputs a general log
