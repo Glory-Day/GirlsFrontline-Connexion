@@ -11,13 +11,12 @@ namespace UI.Console.Command.Sound
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ICommand), 
-                $"Execute as administrator <b><i>OnInitializeBackgroundAudioMixer()</i></b>");
+            LogManager.OnDebugLog("Execute <b><i>OnInitializeBackgroundAudioMixer()</i></b>");
             
             SoundManager.OnInitializeBackgroundAudioMixer();
             
             LogManager.OnDebugLog(LabelType.Success, typeof(ICommand), 
-                $"<b>Background Audio Mixer</b> is initialized completely");
+                $"<b>Background Audio Mixer</b> is initialized successfully");
         }
     }
 }
