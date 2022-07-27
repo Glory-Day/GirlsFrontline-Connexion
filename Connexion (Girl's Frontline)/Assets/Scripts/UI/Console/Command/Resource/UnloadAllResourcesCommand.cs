@@ -7,17 +7,16 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace UI.Console.Command.Resource
 {
-    public class UnloadAllResourceCommand : ICommand
+    public class UnloadAllResourcesCommand : ICommand
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ICommand), 
-                $"Execute as administrator <b><i>OnUnloadAllResources()</i></b>");
+            LogManager.OnDebugLog("Execute <b><i>OnUnloadAllResources()</i></b>");
             
             ResourceManager.OnUnloadAllResources();
             
             LogManager.OnDebugLog(LabelType.Success, typeof(ICommand), 
-                "<b>All Resources</b> are unloaded completely");
+                "<b>All Resources</b> are unloaded successfully");
         }
     }
 }
