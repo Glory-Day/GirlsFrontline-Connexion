@@ -6,12 +6,25 @@ using System;
 
 namespace Manager.Data.Category
 {
+    #region SCENE DATA API
+
+    /// <summary>
+    /// Scene data in <b>SceneData.json</b>
+    /// </summary>
+    [Serializable]
+    public class Scene
+    {
+        public string name;
+    }
+
+    #endregion
+
     /// <summary>
     /// Scene data in <b>SceneData.json</b>
     /// </summary>
     [Serializable]
     public class SceneData
     {
-        public string[] names;
+        public Scene[] scenes;
     }
 }
