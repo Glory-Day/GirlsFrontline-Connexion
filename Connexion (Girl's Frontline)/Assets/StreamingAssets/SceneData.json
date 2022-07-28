@@ -1,6 +1,10 @@
 {
-  "names": [
-    "Main_Scene",
-    "Selection_Scene"
+  "scenes": [
+    {
+      "name": "Main_Scene"
+    },
+    {
+      "name": "Selection_Scene"
+    }
   ]
 }
