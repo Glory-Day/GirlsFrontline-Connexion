@@ -20,7 +20,7 @@ namespace Manager.Log.DevelopmentBuild
         {
             return $"{Label.AdministratorInDevelopmentBuildLogLabel}|{contents.Replace('_', ' ')}";
         }
-        
+
         /// <summary>
         /// Build the string of the default log
         /// </summary>
@@ -32,7 +32,7 @@ namespace Manager.Log.DevelopmentBuild
             return $"{Label.DefaultLogLabel}|{classType.Name}|" +
                    $"Called <b><i>{contents.Replace('_', ' ')}</i></b>";
         }
-        
+
         /// <summary>
         /// Build the string of special log
         /// </summary>
