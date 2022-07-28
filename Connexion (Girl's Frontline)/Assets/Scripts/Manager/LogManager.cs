@@ -2,9 +2,7 @@
 
 using System;
 using System.IO;
-
 using UnityEngine;
-
 using Manager.Log;
 
 #endregion
@@ -17,7 +15,7 @@ namespace Manager
     public class LogManager : Singleton<LogManager>
     {
         private const string DevelopmentBuild = "DEVELOPMENT_BUILD";
-        private const string UnityEditor = "UNITY_EDITOR";
+        private const string UnityEditor      = "UNITY_EDITOR";
 
         protected LogManager()
         {
@@ -37,7 +35,7 @@ namespace Manager
             Debug.LogWarning(Log.UnityEditor.LogBuilder.OnBuild(contexts));
 #endif
         }
-        
+
         /// <summary>
         /// Outputs a general log to the console in <b>Unity Editor</b>
         /// </summary>
@@ -62,7 +60,7 @@ namespace Manager
         private static void UnityEditorLog(Label.LabelType type, Type classType, string contexts)
         {
             var message = Log.UnityEditor.LogBuilder.OnBuild(type, classType, contexts);
-            
+
             switch (type)
             {
                 case Label.LabelType.Event:
@@ -100,13 +98,13 @@ namespace Manager
         {
 #if DEVELOPMENT_BUILD
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
-                       append: true))
+                       true))
             {
                 writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(contexts));
             }
 #endif
         }
-        
+
         /// <summary>
         /// Outputs a general log to the console in <b>Unity Application</b> after built
         /// </summary>
@@ -117,7 +115,7 @@ namespace Manager
         {
 #if DEVELOPMENT_BUILD
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
-                       append: true))
+                       true))
             {
                 writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(classType, contexts));
             }
@@ -135,7 +133,7 @@ namespace Manager
         {
 #if DEVELOPMENT_BUILD
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
-                       append: true))
+                       true))
             {
                 writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(type, classType, contexts));
             }
@@ -143,14 +141,13 @@ namespace Manager
         }
 
         #endregion
-        
+
         /// <summary>
         /// Outputs a administrator permission log
         /// </summary>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild), 
-         System.Diagnostics.Conditional(UnityEditor)]
+        [System.Diagnostics.Conditional(DevelopmentBuild)] [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(string contexts)
         {
 #if UNITY_EDITOR
@@ -159,14 +156,13 @@ namespace Manager
             DevelopmentBuildLog(contexts);
 #endif
         }
-        
+
         /// <summary>
         /// Outputs a general log
         /// </summary>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild), 
-         System.Diagnostics.Conditional(UnityEditor)]
+        [System.Diagnostics.Conditional(DevelopmentBuild)] [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Type classType, string contexts)
         {
 #if UNITY_EDITOR
@@ -182,8 +178,7 @@ namespace Manager
         /// <param name="type"> Type of Log </param>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild),
-         System.Diagnostics.Conditional(UnityEditor)]
+        [System.Diagnostics.Conditional(DevelopmentBuild)] [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Label.LabelType type, Type classType, string contexts)
         {
 #if UNITY_EDITOR
