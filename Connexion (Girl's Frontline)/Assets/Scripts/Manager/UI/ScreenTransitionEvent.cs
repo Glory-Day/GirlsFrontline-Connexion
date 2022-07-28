@@ -1,15 +1,12 @@
 ﻿#region NAMESPACE API
 
 using System;
-
 using UnityEngine;
-
-using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace UI
+namespace Manager.UI
 {
     /// <summary>
     /// Events for screen transition
@@ -24,9 +21,9 @@ namespace UI
         /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
         public void OnLoadSceneWhenSceneTransitionToLeft()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent),
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Left</b>");
-            
+
             switch (SceneManager.CurrentSceneName)
             {
                 case SceneManager.SceneName.MainScene:
@@ -38,16 +35,16 @@ namespace UI
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
+
         /// <summary>
         /// When scene transition animation is right, load scene by <b>CurrentSceneName</b>
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent),
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Right</b>");
-            
+
             switch (SceneManager.CurrentSceneName)
             {
                 case SceneManager.SceneName.MainScene:
