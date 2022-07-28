@@ -1,10 +1,9 @@
 ﻿#region NAMESPACE API
 
 using System;
-
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-
 using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
@@ -22,22 +21,22 @@ namespace Main
         [Serializable]
         public struct Chapter
         {
-            public Button button;
+            public Button     button;
             public GameObject block;
             public GameObject decorators;
             public GameObject title;
         }
-        
-        [Header("# Undo Button")] 
+
+        [Header("# Undo Button")]
         [SerializeField]
         public Button undoButton;
-        
-        [Header("# Chapter Select Button")] 
+
+        [Header("# Chapter Select Button")]
         [SerializeField]
         public Button nextButton;
         public Button previewButton;
 
-        [Header("# Chapter Buttons")] 
+        [Header("# Chapter Buttons")]
         [SerializeField]
         public Chapter[] chapters;
 
@@ -47,7 +46,7 @@ namespace Main
         /// Number of current selected chapter button index
         /// </summary>
         private int currentChapterIndex;
-        
+
         /// <summary>
         /// Chapter selection animation component
         /// </summary>
@@ -63,15 +62,15 @@ namespace Main
         // Animation names in Next Button
         private readonly string[] nextButtonAnimationNames =
         {
-            "Next_Button_Animation_01","Next_Button_Animation_02",
-            "Next_Button_Animation_03","Next_Button_Animation_04"
+            "Next_Button_Animation_01", "Next_Button_Animation_02",
+            "Next_Button_Animation_03", "Next_Button_Animation_04"
         };
-        
+
         // Animation names in Preview Button
         private readonly string[] previewButtonAnimationNames =
         {
-            "Preview_Button_Animation_01","Preview_Button_Animation_02", 
-            "Preview_Button_Animation_03","Preview_Button_Animation_04"
+            "Preview_Button_Animation_01", "Preview_Button_Animation_02",
+            "Preview_Button_Animation_03", "Preview_Button_Animation_04"
         };
 
         #endregion
@@ -79,8 +78,8 @@ namespace Main
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            isChapterLock = DataManager.GameData.isChapterLock;
-            
+            isChapterLock = Enumerable.Range(0, 5).Select(i => DataManager.GameData.chapters[i].isLock).ToArray();
+
             for (var i = 0; i < 5; i++)
             {
                 var isEnable = isChapterLock[i];
@@ -100,19 +99,19 @@ namespace Main
         }
 
         #region BUTTON EVENT API
-        
+
         /// <summary>
         /// Button event to click <b>Undo Button</b> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedUndoButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility),
                 "<b>Undo Button</b> is clicked");
 
             undoButton.interactable = false;
             nextButton.interactable = previewButton.interactable = false;
             chapters[currentChapterIndex].button.interactable = false;
-            
+
             UIManager.SetScreenTransitionDirectionToRight();
             UIManager.OnPlayScreenTransitionAnimation();
         }
@@ -122,30 +121,30 @@ namespace Main
         /// </summary>
         public void OnClickedNextButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility),
                 $"<b>Next Button</b> is clicked");
 
             // Play animation for select next chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[currentChapterIndex++]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
-        
+
         /// <summary>
         /// Button event to click <b>Preview Button</b> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedPreviewButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility),
                 $"<b>Preview Button</b> is clicked");
 
             // Play animation for select preview chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--currentChapterIndex]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility), 
+            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
 
@@ -160,7 +159,7 @@ namespace Main
         {
             nextButton.interactable = previewButton.interactable = false;
         }
-        
+
         /// <summary>
         /// Enable <b>Next Button</b> and <b>Preview Button</b> and <b>Selected Chapter Button</b>
         /// </summary>
@@ -176,16 +175,17 @@ namespace Main
                 case 4:
                     nextButton.interactable = false;
                     previewButton.interactable = true;
-                    break; 
-                default :
+                    break;
+                default:
                     nextButton.interactable = previewButton.interactable = true;
                     break;
             }
-            
+
             // Enable chapter button to context
             chapters[currentChapterIndex].button.interactable = !isChapterLock[currentChapterIndex];
         }
 
         #endregion
+
     }
 }
