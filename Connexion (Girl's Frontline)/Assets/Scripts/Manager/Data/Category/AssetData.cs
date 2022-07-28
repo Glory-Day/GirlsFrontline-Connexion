@@ -6,10 +6,10 @@ using System;
 
 namespace Manager.Data.Category
 {
-    #region AUDIO DATA API
+    #region AUDIO ASSET DATA API
 
     /// <summary>
-    /// Audio mixer data in <b>ResourceData.json</b>
+    /// Audio mixer asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
     public class AudioMixer
@@ -18,25 +18,25 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Background audio clip data in <b>ResourceData.json</b>
+    /// Background audio clip asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
     public class BackgroundAudioClip
     {
         public string[] names;
     }
-    
+
     /// <summary>
-    /// Effect audio clip data in <b>ResourceData.json</b>
+    /// Effect audio clip asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
     public class EffectAudioClip
     {
         public string[] names;
     }
-    
+
     /// <summary>
-    /// Video audio clip data in <b>ResourceData.json</b>
+    /// Video audio clip asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
     public class VoiceAudioClip
@@ -46,10 +46,10 @@ namespace Manager.Data.Category
 
     #endregion
 
-    #region PREFAB DATA API
+    #region PREFAB ASSET DATA API
 
     /// <summary>
-    /// UI prefab data in <b>ResourceData.json</b>
+    /// UI prefab asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
     public class UIPrefab
@@ -60,15 +60,15 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// Resource data in <b>ResourceData.json</b>
+    /// Asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
-    public class ResourceData
+    public class AssetData
     {
-        public AudioMixer audioMixer;
+        public AudioMixer          audioMixer;
         public BackgroundAudioClip backgroundAudioClip;
-        public EffectAudioClip effectAudioClip;
-        public VoiceAudioClip voiceAudioClip;
-        public UIPrefab uiPrefab;
+        public EffectAudioClip     effectAudioClip;
+        public VoiceAudioClip      voiceAudioClip;
+        public UIPrefab            uiPrefab;
     }
 }
