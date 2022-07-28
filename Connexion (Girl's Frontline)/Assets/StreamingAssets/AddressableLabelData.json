@@ -1,11 +1,15 @@
 ﻿{
-  "audios": [
-    "background",
-    "effect",
-    "voice",
-    "mixer"
-  ],
-  "prefabs": [
-    "UI"
-  ]
+  "audioAsset": {
+    "names": [
+      "background",
+      "effect",
+      "voice",
+      "mixer"
+    ]
+  },
+  "prefabAsset": {
+    "names": [
+      "UI"
+    ]
+  }
 }
