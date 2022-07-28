@@ -1,4 +1,4 @@
-﻿namespace UI.Console
+﻿namespace Manager.UI.Console
 {
     public static class CommandName
     {
