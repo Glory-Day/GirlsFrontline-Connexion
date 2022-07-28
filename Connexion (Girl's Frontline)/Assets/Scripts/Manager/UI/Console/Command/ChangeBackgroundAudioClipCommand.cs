@@ -1,10 +1,4 @@
-﻿#region NAMESPACE API
-
-using Manager;
-
-#endregion
-
-namespace UI.Console.Command.Sound
+﻿namespace Manager.UI.Console.Command
 {
     public class ChangeBackgroundAudioClipCommand : ICommand
     {
@@ -12,7 +6,7 @@ namespace UI.Console.Command.Sound
         {
             LogManager.OnDebugLog(
                 "Execute <b><i>OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName)</i></b>");
-            
+
             SoundManager.OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName);
         }
     }
