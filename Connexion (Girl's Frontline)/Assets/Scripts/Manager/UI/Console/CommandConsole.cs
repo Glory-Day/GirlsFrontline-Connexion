@@ -6,24 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
-
-using Manager;
-
-using UI.Console.Command;
-using UI.Console.Command.Data;
-using UI.Console.Command.Resource;
-using UI.Console.Command.Sound;
-using UI.Console.Command.UI;
-using UI.Console.Command.Util;
+using Manager.UI.Console.Command;
 
 #endregion
 
-namespace UI.Console
+namespace Manager.UI.Console
 {
     /// <summary>
     /// Command console for development <b>Game Application</b>
@@ -36,17 +27,17 @@ namespace UI.Console
         [Serializable]
         public struct CommandConsoleObject
         {
-            [SerializeField] 
+            [SerializeField]
             public GameObject recommendCommandListView;
-            [SerializeField] 
+            [SerializeField]
             public GameObject commandInputField;
         }
 
-        [Header("# Command Console Object")] 
+        [Header("# Command Console Object")]
         [SerializeField]
         public CommandConsoleObject commandConsoleObject;
 
-        [Header("# Command Input Field Component")] 
+        [Header("# Command Input Field Component")]
         [SerializeField]
         public TMP_InputField commandInputFieldComponent;
 
@@ -54,23 +45,23 @@ namespace UI.Console
         [SerializeField]
         public GameObject recommendCommandListViewportObject;
 
-        [Header("# Recommend Command Button Object")] 
+        [Header("# Recommend Command Button Object")]
         [SerializeField]
         public GameObject recommendCommendButtonObject;
 
         #endregion
 
         private Dictionary<string, ICommand> commands;
-        
+
         private List<GameObject> recommendCommandButtons;
-        private List<int> matchedRecommendCommandButtonIndexes;
+        private List<int>        matchedRecommendCommandButtonIndexes;
 
         private StringBuilder commandTextBuilder;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            transform.SetParent(UIManager.GetTransform());
+            transform.SetParent(UIManager.Transform);
         }
 
         // Start is called before the first frame update
@@ -79,23 +70,23 @@ namespace UI.Console
             recommendCommandButtons = new List<GameObject>();
             matchedRecommendCommandButtonIndexes = new List<int>();
             commandTextBuilder = new StringBuilder();
-            
+
             // Initialize command list with command name to key value
             commands = new Dictionary<string, ICommand>
-            {
-                { CommandName.LoadAllDataCommand,             new LoadAllDataCommand()                    },
-                { CommandName.LoadAllResourcesCommand,        new LoadAllResourcesCommand()               },
-                { CommandName.UnloadAllResourcesCommand,      new UnloadAllResourcesCommand()             },
-                { CommandName.IsAllResourcesLoadedCommand,    new IsLoadedAllResourcesDoneCommand()       },
-                { CommandName.InitializeBackgroundAudioMixer, new InitializeBackgroundAudioMixerCommand() },
-                { CommandName.ChangeBackgroundAudioClip,      new ChangeBackgroundAudioClipCommand()      },
-                { CommandName.InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand()        },
-                { CommandName.LoadMainScene,                  new LoadMainScene()                         },
-                { CommandName.LoadSelectionScene,             new LoadSelectionScene()                    },
-                { CommandName.ApplicationQuit,                new ApplicationQuitCommand()                },
-                { CommandName.ApplicationPlay,                new ApplicationPlayCommand()                },
-                { CommandName.ApplicationSetUp,               new ApplicationSetUpCommand()               }
-            };
+                       {
+                           {CommandName.LoadAllDataCommand, new LoadAllDataCommand()},
+                           {CommandName.LoadAllResourcesCommand, new LoadAllResourcesCommand()},
+                           {CommandName.UnloadAllResourcesCommand, new UnloadAllResourcesCommand()},
+                           {CommandName.IsAllResourcesLoadedCommand, new IsLoadedAllResourcesDoneCommand()},
+                           {CommandName.InitializeBackgroundAudioMixer, new InitializeBackgroundAudioMixerCommand()},
+                           {CommandName.ChangeBackgroundAudioClip, new ChangeBackgroundAudioClipCommand()},
+                           {CommandName.InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand()},
+                           {CommandName.LoadMainScene, new LoadMainScene()},
+                           {CommandName.LoadSelectionScene, new LoadSelectionScene()},
+                           {CommandName.ApplicationQuit, new ApplicationQuitCommand()},
+                           {CommandName.ApplicationPlay, new ApplicationPlayCommand()},
+                           {CommandName.ApplicationSetUp, new ApplicationSetUpCommand()}
+                       };
 
             // Instantiate recommend command button object to recommend command list view
             var commandsCount = commands.Count;
@@ -104,20 +95,22 @@ namespace UI.Console
             {
                 var recommendCommandButton = Instantiate(
                     recommendCommendButtonObject, recommendCommandListViewportObject.transform);
-                
+
                 var j = i;
                 recommendCommandButton.GetComponent<Button>().onClick.AddListener(
                     () => OnClickedRecommendCommandButton(commandNames[j]));
                 recommendCommandButton.GetComponentInChildren<TMP_Text>().text = commandNames[i];
                 recommendCommandButton.SetActive(false);
-               
+
                 recommendCommandButtons.Add(recommendCommandButton);
             }
         }
-        
+
         // Split and replace command text with a regular expression
-        private string[] GetInputCommands() => 
-            Regex.Split(Regex.Replace(commandInputFieldComponent.text, @"\n|\r", ""), @" & ");
+        private string[] GetInputCommands()
+        {
+            return Regex.Split(Regex.Replace(commandInputFieldComponent.text, @"\n|\r", ""), @" & ");
+        }
 
         #region BUTTON EVENT API
 
@@ -155,14 +148,14 @@ namespace UI.Console
             {
                 case false:
                     LogManager.OnDebugLog("Turn on <b>Command Console</b>");
-                    
+
                     GameManager.OnPause();
                     commandConsoleObject.commandInputField.SetActive(true);
                     StartCoroutine(EnableRecommendCommands());
                     break;
                 case true:
                     LogManager.OnDebugLog("Turn off <b>Command Console</b>");
-                    
+
                     GameManager.OnPlay();
                     commandInputFieldComponent.text = string.Empty;
                     commandConsoleObject.commandInputField.SetActive(false);
@@ -183,19 +176,15 @@ namespace UI.Console
 
             // Execute commands sequentially
             for (var i = 0; i < inputCommands.Length; i++)
-            {
                 if (commands.ContainsKey(inputCommands[i]))
-                {
                     commands[inputCommands[i]].Execute();
-                }
-            }
-            
+
             // Clear input field in command console 
             commandInputFieldComponent.text = string.Empty;
         }
 
         #endregion
-        
+
         /// <summary>
         /// Recommend command for administrator
         /// </summary>
@@ -205,7 +194,7 @@ namespace UI.Console
             var commandNames = commands.Keys.ToArray();
             var commandNamesLength = commandNames.Length;
 
-            while (true)
+            while(true)
             {
                 var inputCommands = GetInputCommands();
                 var inputCommand = inputCommands[inputCommands.Length - 1];
@@ -215,8 +204,9 @@ namespace UI.Console
                 if (inputCommandLength == 0)
                 {
                     commandConsoleObject.recommendCommandListView.SetActive(false);
-                    
+
                     yield return null;
+
                     continue;
                 }
 
@@ -229,24 +219,20 @@ namespace UI.Console
                     for (var i = 0; i < commandNamesLength; i++)
                     {
                         recommendCommandButtons[i].SetActive(false);
-                        
+
                         if (commandNames[i].Length >= inputCommandLength &&
                             commandNames[i].Substring(0, inputCommandLength).Equals(inputCommand))
-                        {
                             matchedRecommendCommandButtonIndexes.Add(i);
-                        }
                     }
-                    
+
                     // Matched command button is not empty. Enable matched command button
                     if (matchedRecommendCommandButtonIndexes.Count != 0)
                     {
                         commandConsoleObject.recommendCommandListView.SetActive(true);
-                        
+
                         var commandButtonIndexesCount = matchedRecommendCommandButtonIndexes.Count;
                         for (var i = 0; i < commandButtonIndexesCount; i++)
-                        {
                             recommendCommandButtons[matchedRecommendCommandButtonIndexes[i]].SetActive(true);
-                        }
                     }
                     // Matched command button is empty
                     else if (matchedRecommendCommandButtonIndexes.Count == commandNamesLength)
