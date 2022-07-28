@@ -1,7 +1,6 @@
 ﻿#region NAMESPACE API
 
 using System;
-
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
@@ -21,7 +20,7 @@ namespace Manager
             MainScene = 1,
             SelectionScene
         }
-        
+
         protected SceneManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
@@ -36,24 +35,24 @@ namespace Manager
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>SceneName</b> </exception>
         public static void OnLoadSceneByName(SceneName name)
         {
-            LogManager.OnDebugLog(typeof(SceneManager), 
+            LogManager.OnDebugLog(typeof(SceneManager),
                 $"OnLoadSceneByName()");
 
             switch (name)
             {
                 case SceneName.MainScene:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.names[0]);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[0].name);
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.MainScene);
-                    
+
                     LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
-                        $"<b>{DataManager.SceneData.names[0]}</b> is loaded successfully");
+                        $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded successfully");
                     break;
                 case SceneName.SelectionScene:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.names[1]);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.SelectionScene);
-                    
+
                     LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
-                        $"<b>{DataManager.SceneData.names[1]}</b> is loaded successfully");
+                        $"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded successfully");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
@@ -63,7 +62,7 @@ namespace Manager
         /// <summary>
         /// Get the currently active current scene name
         /// </summary>
-        public static SceneName CurrentSceneName => 
+        public static SceneName CurrentSceneName =>
             (SceneName)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
 
         #endregion
