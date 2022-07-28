@@ -1,11 +1,9 @@
 ﻿#region NAMESPACE API
 
 using System.Collections;
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
-
 using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 using SceneName = Manager.SceneManager.SceneName;
@@ -17,7 +15,7 @@ namespace Main
     /// <summary>
     /// Controls the video player in <b>Introduction Video Scene</b>
     /// </summary>
-    public class VideoUtility : MonoBehaviour
+    public class IntroductionVideoUtility : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
 
@@ -47,22 +45,22 @@ namespace Main
         private IEnumerator LoadAllDataAndResources()
         {
             DataManager.OnLoadAllData();
-            ResourceManager.OnLoadAllResources();
-            
-            LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
+            AssetManager.OnLoadAllResources();
+
+            LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
                 $"<b>Waiting All Resources</b> is loaded");
-            
-            while (!ResourceManager.IsLoadedAllResourcesDone()) yield return null;
-            
-            LogManager.OnDebugLog(LabelType.Success, typeof(VideoUtility), 
+
+            while(!AssetManager.IsLoadedAllAssetsDone()) yield return null;
+
+            LogManager.OnDebugLog(LabelType.Success, typeof(IntroductionVideoUtility),
                 "<b>All Data And Resources</b> are loaded successfully");
 
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;
             videoPlayer.loopPointReached += IsOver;
-            
+
             UIManager.OnInstantiateAllUIPrefabs();
-            
+
             // Activate the skip button
             skipButton.gameObject.SetActive(true);
         }
@@ -73,9 +71,9 @@ namespace Main
         /// <param name="player"> Video player in <b>Introduction Video Scene</b> </param>
         private static void IsOver(VideoPlayer player)
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
                 "<b>Introduction Video</b> is over");
-            
+
             SoundManager.OnInitializeBackgroundAudioMixer();
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
         }
@@ -87,7 +85,7 @@ namespace Main
         /// </summary>
         public void OnClickedSkipButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(VideoUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
                 "<b>Skip Button</b> is clicked");
 
             SoundManager.OnInitializeBackgroundAudioMixer();
@@ -95,5 +93,6 @@ namespace Main
         }
 
         #endregion
+
     }
 }
