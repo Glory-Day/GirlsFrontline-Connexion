@@ -2,7 +2,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-
 using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
@@ -22,7 +21,7 @@ namespace Main
         public Button gameStartButton;
 
         #endregion
-        
+
         #region BUTTON EVENT API
 
         /// <summary>
@@ -30,11 +29,11 @@ namespace Main
         /// </summary>
         public void OnClickedGameStartButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(MainEventUtility), 
+            LogManager.OnDebugLog(LabelType.Event, typeof(MainEventUtility),
                 "<b>Game Start Button</b> is clicked");
 
             gameStartButton.interactable = false;
-            
+
             UIManager.SetScreenTransitionDirectionToLeft();
             UIManager.OnPlayScreenTransitionAnimation();
         }
