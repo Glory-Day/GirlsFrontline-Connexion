@@ -18,50 +18,55 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
+        private AddressableLabelData addressableLabelData;
+        private AssetData            assetData;
+        private GameData             gameData;
+        private SceneData            sceneData;
+
         #region LOAD DATA API
 
         /// <summary>
         /// Load stored game data with <b>DataLoader</b>
         /// </summary>
-        private static void LoadGameData()
+        private void LoadGameData()
         {
-            LogManager.OnDebugLog(typeof(DataManager), 
+            LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadGameData()");
 
-            GameData = DataLoader<GameData>.OnLoadData(JsonLocalPath.GameDataPath);
+            gameData = DataLoader<GameData>.OnLoadData(JsonLocalPath.GameDataPath);
         }
 
         /// <summary>
         /// Load scene data with <b>DataLoader</b>
         /// </summary>
-        private static void LoadSceneData()
+        private void LoadSceneData()
         {
-            LogManager.OnDebugLog(typeof(DataManager), 
+            LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadSceneData()");
 
-            SceneData = DataLoader<SceneData>.OnLoadData(JsonLocalPath.SceneDataPath);
+            sceneData = DataLoader<SceneData>.OnLoadData(JsonLocalPath.SceneDataPath);
         }
 
         /// <summary>
-        /// Load resource data with <b>DataLoader</b>
+        /// Load asset data with <b>DataLoader</b>
         /// </summary>
-        private static void LoadResourceData()
+        private void LoadAssetData()
         {
-            LogManager.OnDebugLog(typeof(DataManager), 
-                $"LoadResourceData()");
+            LogManager.OnDebugLog(typeof(DataManager),
+                $"LoadAssetData()");
 
-            ResourceData = DataLoader<ResourceData>.OnLoadData(JsonLocalPath.ResourceDataPath);
+            assetData = DataLoader<AssetData>.OnLoadData(JsonLocalPath.AssetDataPath);
         }
 
         /// <summary>
         /// Load addressable label data with <b>DataLoader</b>
         /// </summary>
-        private static void LoadAddressableLabelData()
+        private void LoadAddressableLabelData()
         {
-            LogManager.OnDebugLog(typeof(DataManager), 
+            LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadAddressableLabelData()");
 
-            AddressableLabelData = DataLoader<AddressableLabelData>.OnLoadData(
+            addressableLabelData = DataLoader<AddressableLabelData>.OnLoadData(
                 JsonLocalPath.AddressableLabelDataPath);
         }
 
@@ -70,37 +75,37 @@ namespace Manager
         /// <summary>
         /// Stored game data
         /// </summary>
-        public static GameData GameData { get; private set; }
-        
+        public static GameData GameData => Instance.gameData;
+
         /// <summary>
         /// Scene data needed for loading scene
         /// </summary>
-        public static SceneData SceneData { get; private set; }
-        
+        public static SceneData SceneData => Instance.sceneData;
+
         /// <summary>
-        /// Resource data needed for using key of resource
+        /// Asset data needed for using key of resource
         /// </summary>
-        public static ResourceData ResourceData { get; private set; }
-        
+        public static AssetData AssetData => Instance.assetData;
+
         /// <summary>
         /// Label data to load assets using <b>Addressable</b>
         /// </summary>
-        public static AddressableLabelData AddressableLabelData { get; private set; }
+        public static AddressableLabelData AddressableLabelData => Instance.addressableLabelData;
 
         /// <summary>
         /// Load all data related to running <b>Game Application</b>
         /// </summary>
         public static void OnLoadAllData()
         {
-            LogManager.OnDebugLog(typeof(DataManager), 
+            LogManager.OnDebugLog(typeof(DataManager),
                 $"OnLoadAllData()");
-            
-            LoadGameData();
-            LoadAddressableLabelData();
-            LoadResourceData();
-            LoadSceneData();
-            
-            LogManager.OnDebugLog(LabelType.Success, typeof(DataManager), 
+
+            Instance.LoadGameData();
+            Instance.LoadAddressableLabelData();
+            Instance.LoadAssetData();
+            Instance.LoadSceneData();
+
+            LogManager.OnDebugLog(LabelType.Success, typeof(DataManager),
                 "<b>All Data</b> is loaded successfully");
         }
     }
