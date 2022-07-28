@@ -1,9 +1,19 @@
 ﻿{
-  "isChapterLock": [
-    false,
-    true,
-    true,
-    true,
-    true
+  "chapters": [
+    {
+      "isLock": false 
+    },
+    {
+      "isLock": true
+    },
+    {
+      "isLock": true
+    },
+    {
+      "isLock": true
+    },
+    {
+      "isLock": true
+    }
   ]
 }
