@@ -21,7 +21,7 @@ namespace Manager.Log.UnityEditor
             return $"<color={Label.AdministratorLogColor}><b>{Label.AdministratorInUnityEditorLogLabel}</b> " +
                    $"{contents.Replace('_', ' ')}</color>";
         }
-        
+
         /// <summary>
         /// Build the string of the default log
         /// </summary>
@@ -49,15 +49,15 @@ namespace Manager.Log.UnityEditor
             switch (type)
             {
                 case Label.LabelType.Event:
-                    log = $"<color={Label.EventLogColor}><b>[{Label.EventLogLabel}][{classType.Name}]</b> " +
+                    log = $"<color={Label.EventLogColor}><b>{Label.EventLogLabel}[{classType.Name}]</b> " +
                           $"{contents.Replace('_', ' ')}</color>";
                     break;
                 case Label.LabelType.Error:
-                    log = $"<color={Label.ErrorLogColor}><b>[{Label.ErrorLogLabel}][{classType.Name}]</b> " +
+                    log = $"<color={Label.ErrorLogColor}><b>{Label.ErrorLogLabel}[{classType.Name}]</b> " +
                           $"{contents.Replace('_', ' ')}</color>";
                     break;
                 case Label.LabelType.Success:
-                    log = $"<color={Label.SuccessLogColor}><b>[{Label.SuccessLogLabel}][{classType.Name}]</b> " +
+                    log = $"<color={Label.SuccessLogColor}><b>{Label.SuccessLogLabel}[{classType.Name}]</b> " +
                           $"{contents.Replace('_', ' ')}</color>";
                     break;
                 default:
