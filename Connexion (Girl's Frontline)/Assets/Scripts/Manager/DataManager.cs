@@ -18,10 +18,10 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        private AddressableLabelData addressableLabelData;
-        private AssetData            assetData;
         private GameData             gameData;
         private SceneData            sceneData;
+        private AssetData            assetData;
+        private AddressableLabelData addressableLabelData;
 
         #region LOAD DATA API
 
@@ -33,7 +33,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadGameData()");
 
-            gameData = DataLoader<GameData>.OnLoadData(JsonLocalPath.GameDataPath);
+            gameData = DataLoader.OnLoadData<GameData>(JsonLocalPath.GameDataPath);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadSceneData()");
 
-            sceneData = DataLoader<SceneData>.OnLoadData(JsonLocalPath.SceneDataPath);
+            sceneData = DataLoader.OnLoadData<SceneData>(JsonLocalPath.SceneDataPath);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadAssetData()");
 
-            assetData = DataLoader<AssetData>.OnLoadData(JsonLocalPath.AssetDataPath);
+            assetData = DataLoader.OnLoadData<AssetData>(JsonLocalPath.AssetDataPath);
         }
 
         /// <summary>
@@ -66,12 +66,29 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadAddressableLabelData()");
 
-            addressableLabelData = DataLoader<AddressableLabelData>.OnLoadData(
+            addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
                 JsonLocalPath.AddressableLabelDataPath);
         }
 
         #endregion
 
+        /// <summary>
+        /// Load all data related to running <b>Game Application</b>
+        /// </summary>
+        public static void OnLoadAllData()
+        {
+            LogManager.OnDebugLog(typeof(DataManager),
+                $"OnLoadAllData()");
+            
+            Instance.LoadGameData();
+            Instance.LoadAddressableLabelData();
+            Instance.LoadAssetData();
+            Instance.LoadSceneData();
+
+            LogManager.OnDebugLog(LabelType.Success, typeof(DataManager),
+                "<b>All Data</b> is loaded successfully");
+        }
+        
         /// <summary>
         /// Stored game data
         /// </summary>
@@ -91,22 +108,5 @@ namespace Manager
         /// Label data to load assets using <b>Addressable</b>
         /// </summary>
         public static AddressableLabelData AddressableLabelData => Instance.addressableLabelData;
-
-        /// <summary>
-        /// Load all data related to running <b>Game Application</b>
-        /// </summary>
-        public static void OnLoadAllData()
-        {
-            LogManager.OnDebugLog(typeof(DataManager),
-                $"OnLoadAllData()");
-
-            Instance.LoadGameData();
-            Instance.LoadAddressableLabelData();
-            Instance.LoadAssetData();
-            Instance.LoadSceneData();
-
-            LogManager.OnDebugLog(LabelType.Success, typeof(DataManager),
-                "<b>All Data</b> is loaded successfully");
-        }
     }
 }
