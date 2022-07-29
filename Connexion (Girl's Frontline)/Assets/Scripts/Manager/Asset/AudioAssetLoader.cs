@@ -17,41 +17,20 @@ namespace Manager.Asset
     /// </summary>
     public class AudioAssetLoader
     {
+        private AsyncOperationHandle<IList<AudioClip>>  backgroundAudioClipAssetHandle;
+        private AsyncOperationHandle<IList<AudioClip>>  effectAudioClipAssetHandle;
+        private AsyncOperationHandle<IList<AudioClip>>  voiceAudioClipAssetHandle;
         private AsyncOperationHandle<IList<AudioMixer>> audioMixerAssetHandle;
-
-        private AsyncOperationHandle<IList<AudioClip>> backgroundAudioClipAssetHandle;
-        private AsyncOperationHandle<IList<AudioClip>> effectAudioClipAssetHandle;
-        private AsyncOperationHandle<IList<AudioClip>> voiceAudioClipAssetHandle;
 
         public AudioAssetLoader()
         {
             audioMixerAssetHandle          = new AsyncOperationHandle<IList<AudioMixer>>();
             backgroundAudioClipAssetHandle = new AsyncOperationHandle<IList<AudioClip>>();
             effectAudioClipAssetHandle     = new AsyncOperationHandle<IList<AudioClip>>();
-            voiceAudioClipAssetHandle      = new AsyncOperationHandle<IList<AudioClip>>();
+            voiceAudioClipAssetHandle      = new AsyncOperationHandle<IList<AudioClip>>(); 
         }
 
         #region LOAD ASSET API
-
-        /// <summary>
-        /// Load all audio mixer assets using <b>DataManager.AddressableLabelData</b>
-        /// </summary>
-        public void LoadAudioMixerAssets()
-        {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
-                $"LoadAudioMixerAssets()");
-
-            void Loaded(AudioMixer loadedAudioMixer)
-            {
-                SoundManager.AddAudioMixer(loadedAudioMixer.name, loadedAudioMixer);
-
-                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
-                    $"<b>{loadedAudioMixer.name}</b> is loaded successfully");
-            }
-
-            audioMixerAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.audioAsset.names[3],
-                (Action<AudioMixer>)Loaded);
-        }
 
         /// <summary>
         /// Load all background audio clip assets using <b>DataManager.AddressableLabelData</b>
@@ -112,24 +91,30 @@ namespace Manager.Asset
             voiceAudioClipAssetHandle = Addressables.LoadAssetsAsync(
                 DataManager.AddressableLabelData.audioAsset.names[2], (Action<AudioClip>)Loaded);
         }
+        
+        /// <summary>
+        /// Load all audio mixer assets using <b>DataManager.AddressableLabelData</b>
+        /// </summary>
+        public void LoadAudioMixerAssets()
+        {
+            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+                $"LoadAudioMixerAssets()");
+
+            void Loaded(AudioMixer loadedAudioMixer)
+            {
+                SoundManager.AddAudioMixer(loadedAudioMixer.name, loadedAudioMixer);
+
+                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                    $"<b>{loadedAudioMixer.name}</b> is loaded successfully");
+            }
+
+            audioMixerAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.audioAsset.names[3],
+                (Action<AudioMixer>)Loaded);
+        }
 
         #endregion
 
         #region UNLOAD ASSET API
-
-        /// <summary>
-        /// Unload all audio mixer assets
-        /// </summary>
-        public void UnloadAudioMixerAssets()
-        {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
-                $"UnloadAudioMixerAssets()");
-
-            Addressables.Release(audioMixerAssetHandle);
-
-            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
-                $"<b>All Audio Mixers</b> are unloaded successfully");
-        }
 
         /// <summary>
         /// Unload all background audio clip assets
@@ -172,16 +157,22 @@ namespace Manager.Asset
             LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
                 $"<b>All Voice Audio Clips</b> are unloaded successfully");
         }
+        
+        /// <summary>
+        /// Unload all audio mixer assets
+        /// </summary>
+        public void UnloadAudioMixerAssets()
+        {
+            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+                $"UnloadAudioMixerAssets()");
+
+            Addressables.Release(audioMixerAssetHandle);
+
+            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                $"<b>All Audio Mixers</b> are unloaded successfully");
+        }
 
         #endregion
-
-        /// <summary>
-        /// Check all audio mixer assets loaded is done
-        /// </summary>
-        public bool IsLoadedAudioMixerAssetsDone()
-        {
-            return audioMixerAssetHandle.IsValid() && audioMixerAssetHandle.IsDone;
-        }
 
         /// <summary>
         /// Check all background audio clip assets loaded is done
@@ -205,6 +196,14 @@ namespace Manager.Asset
         public bool IsLoadedVoiceAudioClipAssetsDone()
         {
             return voiceAudioClipAssetHandle.IsValid() && voiceAudioClipAssetHandle.IsDone;
+        }
+        
+        /// <summary>
+        /// Check all audio mixer assets loaded is done
+        /// </summary>
+        public bool IsLoadedAudioMixerAssetsDone()
+        {
+            return audioMixerAssetHandle.IsValid() && audioMixerAssetHandle.IsDone;
         }
     }
 }
