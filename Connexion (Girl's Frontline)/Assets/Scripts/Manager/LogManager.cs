@@ -14,6 +14,9 @@ namespace Manager
     /// </summary>
     public class LogManager : Singleton<LogManager>
     {
+        private Log.UnityEditor.LogBuilder      unityEditorLogBuilder;
+        private Log.DevelopmentBuild.LogBuilder developmentBuildLogBuilder;
+        
         private const string DevelopmentBuild = "DEVELOPMENT_BUILD";
         private const string UnityEditor      = "UNITY_EDITOR";
 
@@ -29,10 +32,10 @@ namespace Manager
         /// </summary>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(UnityEditor)]
-        private static void UnityEditorLog(string contexts)
+        private void UnityEditorLog(string contexts)
         {
 #if UNITY_EDITOR
-            Debug.LogWarning(Log.UnityEditor.LogBuilder.OnBuild(contexts));
+            Debug.LogWarning(unityEditorLogBuilder.Build(contexts));
 #endif
         }
 
@@ -42,10 +45,10 @@ namespace Manager
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(UnityEditor)]
-        private static void UnityEditorLog(Type classType, string contexts)
+        private void UnityEditorLog(Type classType, string contexts)
         {
 #if UNITY_EDITOR
-            Debug.Log(Log.UnityEditor.LogBuilder.OnBuild(classType, contexts));
+            Debug.Log(unityEditorLogBuilder.Build(classType, contexts));
 #endif
         }
 
@@ -57,9 +60,9 @@ namespace Manager
         /// <param name="contexts"> Contents of the log </param>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
         [System.Diagnostics.Conditional(UnityEditor)]
-        private static void UnityEditorLog(Label.LabelType type, Type classType, string contexts)
+        private void UnityEditorLog(Label.LabelType type, Type classType, string contexts)
         {
-            var message = Log.UnityEditor.LogBuilder.OnBuild(type, classType, contexts);
+            var message = unityEditorLogBuilder.Build(type, classType, contexts);
 
             switch (type)
             {
@@ -94,13 +97,13 @@ namespace Manager
         /// </summary>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void DevelopmentBuildLog(string contexts)
+        private void DevelopmentBuildLog(string contexts)
         {
 #if DEVELOPMENT_BUILD
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
                        true))
             {
-                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(contexts));
+                writer.WriteLine(developmentBuildLogBuilder.Build(contexts));
             }
 #endif
         }
@@ -111,13 +114,13 @@ namespace Manager
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void DevelopmentBuildLog(Type classType, string contexts)
+        private void DevelopmentBuildLog(Type classType, string contexts)
         {
 #if DEVELOPMENT_BUILD
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
                        true))
             {
-                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(classType, contexts));
+                writer.WriteLine(developmentBuildLogBuilder.Build(classType, contexts));
             }
 #endif
         }
@@ -129,31 +132,39 @@ namespace Manager
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void DevelopmentBuildLog(Label.LabelType type, Type classType, string contexts)
+        private void DevelopmentBuildLog(Label.LabelType type, Type classType, string contexts)
         {
 #if DEVELOPMENT_BUILD
             using (var writer = new StreamWriter(Application.persistentDataPath + DevelopmentBuildLogFilePath,
                        true))
             {
-                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.OnBuild(type, classType, contexts));
+                writer.WriteLine(developmentBuildLogBuilder.Build(type, classType, contexts));
             }
 #endif
         }
 
         #endregion
 
+        [System.Diagnostics.Conditional(DevelopmentBuild)]
+        [System.Diagnostics.Conditional(UnityEditor)]
+        public static void OnInitializeLogBuilders()
+        {
+            Instance.unityEditorLogBuilder      = new Log.UnityEditor.LogBuilder();
+            Instance.developmentBuildLogBuilder = new Log.DevelopmentBuild.LogBuilder();
+        }
+
         /// <summary>
         /// Outputs a administrator permission log
         /// </summary>
-        /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)] [System.Diagnostics.Conditional(UnityEditor)]
+        [System.Diagnostics.Conditional(DevelopmentBuild)] 
+        [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(string contexts)
         {
 #if UNITY_EDITOR
-            UnityEditorLog(contexts);
+            Instance.UnityEditorLog(contexts);
 #elif DEVELOPMENT_BUILD
-            DevelopmentBuildLog(contexts);
+            Instance.DevelopmentBuildLog(contexts);
 #endif
         }
 
@@ -162,13 +173,14 @@ namespace Manager
         /// </summary>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)] [System.Diagnostics.Conditional(UnityEditor)]
+        [System.Diagnostics.Conditional(DevelopmentBuild)] 
+        [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Type classType, string contexts)
         {
 #if UNITY_EDITOR
-            UnityEditorLog(classType, contexts);
+            Instance.UnityEditorLog(classType, contexts);
 #elif DEVELOPMENT_BUILD
-            DevelopmentBuildLog(classType, contexts);
+            Instance.DevelopmentBuildLog(classType, contexts);
 #endif
         }
 
@@ -178,13 +190,14 @@ namespace Manager
         /// <param name="type"> Type of Log </param>
         /// <param name="classType"> Type of the class where the log was called </param>
         /// <param name="contexts"> Contents of the log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)] [System.Diagnostics.Conditional(UnityEditor)]
+        [System.Diagnostics.Conditional(DevelopmentBuild)] 
+        [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Label.LabelType type, Type classType, string contexts)
         {
 #if UNITY_EDITOR
-            UnityEditorLog(type, classType, contexts);
+            Instance.UnityEditorLog(type, classType, contexts);
 #elif DEVELOPMENT_BUILD
-            DevelopmentBuildLog(type, classType, contexts);
+            Instance.DevelopmentBuildLog(type, classType, contexts);
 #endif
         }
     }
