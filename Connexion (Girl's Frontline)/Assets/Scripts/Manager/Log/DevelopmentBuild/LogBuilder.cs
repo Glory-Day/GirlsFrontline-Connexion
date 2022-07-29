@@ -9,14 +9,14 @@ namespace Manager.Log.DevelopmentBuild
     /// <summary>
     /// Output log string builder by purpose in <b>Game Application</b> after build
     /// </summary>
-    public static class LogBuilder
+    public class LogBuilder
     {
         /// <summary>
         /// Build the string of the administrator permission log
         /// </summary>
         /// <param name="contents"> Contents of the log </param>
         /// <returns> The string of the administrator permission log </returns>
-        public static string OnBuild(string contents)
+        public string Build(string contents)
         {
             return $"{Label.AdministratorInDevelopmentBuildLogLabel}|{contents.Replace('_', ' ')}";
         }
@@ -27,7 +27,7 @@ namespace Manager.Log.DevelopmentBuild
         /// <param name="classType"> The type of the class where the log was called </param>
         /// <param name="contents"> Contents of the log </param>
         /// <returns> The string of the default log </returns>
-        public static string OnBuild(Type classType, string contents)
+        public string Build(Type classType, string contents)
         {
             return $"{Label.DefaultLogLabel}|{classType.Name}|" +
                    $"Called <b><i>{contents.Replace('_', ' ')}</i></b>";
@@ -41,7 +41,7 @@ namespace Manager.Log.DevelopmentBuild
         /// <param name="contents"> Contents of the log </param>
         /// <returns> The string of special log </returns>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
-        public static string OnBuild(Label.LabelType type, Type classType, string contents)
+        public string Build(Label.LabelType type, Type classType, string contents)
         {
             string log;
 
