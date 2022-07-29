@@ -35,6 +35,8 @@ namespace Main
         {
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
+            
+            LogManager.OnInitializeLogBuilders();
 
             StartCoroutine(LoadAllDataAndResources());
         }
@@ -93,6 +95,5 @@ namespace Main
         }
 
         #endregion
-
     }
 }
