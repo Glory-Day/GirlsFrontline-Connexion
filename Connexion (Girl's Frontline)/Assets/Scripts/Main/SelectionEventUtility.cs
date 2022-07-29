@@ -78,7 +78,9 @@ namespace Main
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            isChapterLock = Enumerable.Range(0, 5).Select(i => DataManager.GameData.chapters[i].isLock).ToArray();
+            isChapterLock = Enumerable.Range(0, 5)
+                                      .Select(i => DataManager.GameData.chapters[i].isLock)
+                                      .ToArray();
 
             for (var i = 0; i < 5; i++)
             {
@@ -186,6 +188,5 @@ namespace Main
         }
 
         #endregion
-
     }
 }
