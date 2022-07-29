@@ -27,7 +27,6 @@
         {
             Event = 0,
             Error,
-            Administrator,
             Success
         }
     }
