@@ -2,7 +2,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 #endregion
 
@@ -11,13 +10,17 @@ namespace Manager
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        // Check to see if we're about to be destroyed
+        /// <summary>
+        /// Check to see if we're about to be destroyed
+        /// </summary>
         private static bool _quited;
 
-        private static object Locked => new Object();
+        private static object Locked => new UnityEngine.Object();
         private static T _instance;
-
-        // Access singleton instance through this propriety
+        
+        /// <summary>
+        /// Access singleton instance through this propriety
+        /// </summary>
         protected static T Instance
         {
             get
