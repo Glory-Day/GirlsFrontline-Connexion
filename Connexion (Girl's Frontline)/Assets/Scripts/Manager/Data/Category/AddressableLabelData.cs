@@ -14,7 +14,7 @@ namespace Manager.Data.Category
     [Serializable]
     public class AudioAsset
     {
-        public string[] names;
+        public string[] labels;
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace Manager.Data.Category
     [Serializable]
     public class PrefabAsset
     {
-        public string[] names;
+        public string[] labels;
     }
 
     #endregion
