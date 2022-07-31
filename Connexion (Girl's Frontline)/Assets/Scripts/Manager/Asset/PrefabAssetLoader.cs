@@ -13,11 +13,11 @@ namespace Manager.Asset
 {
     public class PrefabAssetLoader
     {
-        private AsyncOperationHandle<IList<GameObject>> uiPrefabAssetHandle;
+        private AsyncOperationHandle<IList<GameObject>> uiPrefabAssetsHandle;
 
         public PrefabAssetLoader()
         {
-            uiPrefabAssetHandle = new AsyncOperationHandle<IList<GameObject>>();
+            uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
         }
 
         #region LOAD ASSET API
@@ -38,7 +38,7 @@ namespace Manager.Asset
                     $"<b>{loadedGameObject.name}</b> is loaded successfully");
             }
 
-            uiPrefabAssetHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.prefabAsset.names[0],
+            uiPrefabAssetsHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.prefabAsset.labels[0],
                 (Action<GameObject>)Loaded);
         }
 
@@ -54,7 +54,7 @@ namespace Manager.Asset
             LogManager.OnDebugLog(typeof(AudioAssetLoader),
                 $"UnloadUIPrefabAssets()");
 
-            Addressables.Release(uiPrefabAssetHandle);
+            Addressables.Release(uiPrefabAssetsHandle);
 
             LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
                 $"<b>All UI Prefabs</b> are unloaded successfully");
@@ -67,7 +67,7 @@ namespace Manager.Asset
         /// </summary>
         public bool IsLoadedUIPrefabAssetsDone()
         {
-            return uiPrefabAssetHandle.IsValid() && uiPrefabAssetHandle.IsDone;
+            return uiPrefabAssetsHandle.IsValid() && uiPrefabAssetsHandle.IsDone;
         }
     }
 }
