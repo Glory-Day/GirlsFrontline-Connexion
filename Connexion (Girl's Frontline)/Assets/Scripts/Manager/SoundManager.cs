@@ -27,15 +27,15 @@ namespace Manager
         /// Audio source playing background audio in <b>SoundManager</b>
         /// </summary>
         private AudioSource backgroundAudioSource;
-
-        private Dictionary<string, AudioMixer> audioMixers;
+        
+        private AudioMixer masterAudioMixer;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
         private Dictionary<string, AudioClip> voiceAudioClips;
 
-        private const string None   = "None";
-        private const string Master = "Master";
+        private const string None       = "None";
+        private const string Background = "Master/Background";
 
         protected SoundManager()
         {
@@ -45,6 +45,7 @@ namespace Manager
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
+            gameObject.AddComponent<AudioListener>();
             backgroundAudioSource = gameObject.AddComponent<AudioSource>();
             backgroundAudioSource.loop = true;
         }
@@ -56,8 +57,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(typeof(SoundManager),
                 $"OnInitializeAudioClips()");
-
-            Instance.audioMixers          = new Dictionary<string, AudioMixer>();
+            
             Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
             Instance.effectAudioClips     = new Dictionary<string, AudioClip>();
             Instance.voiceAudioClips      = new Dictionary<string, AudioClip>();
@@ -83,8 +83,8 @@ namespace Manager
             // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;
 
-            backgroundAudioSource.clip = playingBackgroundAudioClip = audioClip;
-            backgroundAudioSource.Play();
+            playingBackgroundAudioClip = audioClip;
+            backgroundAudioSource.PlayOneShot(playingBackgroundAudioClip);
 
             LogManager.OnDebugLog(LabelType.Success, typeof(SoundManager),
                 $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
@@ -101,8 +101,7 @@ namespace Manager
                 $"OnInitializeBackgroundAudioMixer()");
 
             Instance.backgroundAudioSource.outputAudioMixerGroup =
-                Instance.audioMixers[DataManager.AssetData.audioMixer.names[0]].FindMatchingGroups(
-                    Master)[0];
+                Instance.masterAudioMixer.FindMatchingGroups(Background)[0];
         }
 
         /// <summary>
@@ -126,16 +125,6 @@ namespace Manager
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
             }
-        }
-
-        /// <summary>
-        /// Set background audio mixer
-        /// </summary>
-        /// <param name="key"> <b>string</b> type key value </param>
-        /// <param name="audioMixer"> Background audio mixer </param>
-        public static void AddAudioMixer(string key, AudioMixer audioMixer)
-        {
-            Instance.audioMixers.Add(key, audioMixer);
         }
 
         /// <summary>
@@ -166,6 +155,12 @@ namespace Manager
         public static void AddVoiceAudioClip(string key, AudioClip audioClip)
         {
             Instance.voiceAudioClips.Add(key, audioClip);
+        }
+
+        public static AudioMixer MasterAudioMixer
+        {
+            get => Instance.masterAudioMixer; 
+            set => Instance.masterAudioMixer = value;
         }
 
         /// <summary>
