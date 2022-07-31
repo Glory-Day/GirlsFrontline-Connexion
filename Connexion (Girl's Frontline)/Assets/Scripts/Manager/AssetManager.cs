@@ -36,7 +36,7 @@ namespace Manager
 
             SoundManager.OnInitializeAudioClips();
 
-            audioAssetLoader.LoadAudioMixerAssets();
+            audioAssetLoader.LoadMasterAudioMixerAsset();
             audioAssetLoader.LoadBackgroundAudioClipAssets();
 
             //DEBUG: This code is not working yet
@@ -55,7 +55,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"UnloadAudioAssets()");
 
-            audioAssetLoader.UnloadAudioMixerAssets();
+            audioAssetLoader.UnloadMasterAudioMixerAsset();
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
 
             //DEBUG: This code is not working yet
@@ -71,7 +71,7 @@ namespace Manager
         /// </summary>
         private bool IsLoadedAudioAssetsDone()
         {
-            return audioAssetLoader.IsLoadedAudioMixerAssetsDone() &&
+            return audioAssetLoader.IsLoadedAudioMixerAssetDone() &&
                    audioAssetLoader.IsLoadedBackgroundAudioClipAssetsDone();
         }
 
