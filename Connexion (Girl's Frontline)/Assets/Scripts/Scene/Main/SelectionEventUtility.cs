@@ -9,7 +9,7 @@ using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Main
+namespace Scene.Main
 {
     /// <summary>
     /// Events in the <b>Selection Scene</b>
@@ -48,29 +48,33 @@ namespace Main
         private int currentChapterIndex;
 
         /// <summary>
-        /// Chapter selection animation component
+        /// Chapter selection <see cref="Animation"/> component
         /// </summary>
         private Animation selectionAnimation;
 
         /// <summary>
-        /// Whether chapter buttons stored in <b>GameData</b> are enabled
+        /// Whether chapter buttons stored in <see cref="Manager.Data.Category.GameData"/> are enabled
         /// </summary>
         private bool[] isChapterLock;
 
         #region ANIMATION NAME API
-
-        // Animation names in Next Button
+        
+        /// <summary>
+        /// Animation names in <see cref="nextButton"/>
+        /// </summary>
         private readonly string[] nextButtonAnimationNames =
         {
-            "Next_Button_Animation_01", "Next_Button_Animation_02",
-            "Next_Button_Animation_03", "Next_Button_Animation_04"
+            "Next Button Animation 01", "Next Button Animation 02",
+            "Next Button Animation 03", "Next Button Animation 04"
         };
-
-        // Animation names in Preview Button
+        
+        /// <summary>
+        /// Animation names in <see cref="previewButton"/>
+        /// </summary>
         private readonly string[] previewButtonAnimationNames =
         {
-            "Preview_Button_Animation_01", "Preview_Button_Animation_02",
-            "Preview_Button_Animation_03", "Preview_Button_Animation_04"
+            "Preview Button Animation 01", "Preview Button Animation 02",
+            "Preview Button Animation 03", "Preview Button Animation 04"
         };
 
         #endregion
@@ -103,7 +107,7 @@ namespace Main
         #region BUTTON EVENT API
 
         /// <summary>
-        /// Button event to click <b>Undo Button</b> in <b>Selection Scene</b>
+        /// Button event to click <see cref="undoButton"/> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedUndoButton()
         {
@@ -119,7 +123,7 @@ namespace Main
         }
 
         /// <summary>
-        /// Button event to click <b>Next Button</b> in <b>Selection Scene</b>
+        /// Button event to click <see cref="nextButton"/> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedNextButton()
         {
@@ -135,7 +139,7 @@ namespace Main
         }
 
         /// <summary>
-        /// Button event to click <b>Preview Button</b> in <b>Selection Scene</b>
+        /// Button event to click <see cref="previewButton"/> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedPreviewButton()
         {
@@ -155,7 +159,7 @@ namespace Main
         #region ANIMATION EVENT API
 
         /// <summary>
-        /// Disable <b>Next Button</b> and <b>Preview Button</b> for playing selection animation
+        /// Disable <see cref="nextButton"/> and <see cref="previewButton"/> for playing selection animation
         /// </summary>
         public void OnDisableButtons()
         {
@@ -163,7 +167,7 @@ namespace Main
         }
 
         /// <summary>
-        /// Enable <b>Next Button</b> and <b>Preview Button</b> and <b>Selected Chapter Button</b>
+        /// Enable <see cref="nextButton"/> and <see cref="previewButton"/> and <b>Selected Chapter Button</b>
         /// </summary>
         public void OnEnableButtons()
         {
