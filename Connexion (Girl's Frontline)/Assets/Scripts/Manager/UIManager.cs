@@ -20,8 +20,8 @@ namespace Manager
         #region ANIMATION NAME API
 
         // Screen transition animation names
-        private const string ScreenTransitionToLeftAnimation  = "Screen_Transition_To_Left_Animation";
-        private const string ScreenTransitionToRightAnimation = "Screen_Transition_To_Right_Animation";
+        private const string ScreenTransitionToLeftAnimation  = "Left Screen Transition Animation";
+        private const string ScreenTransitionToRightAnimation = "Right Screen Transition Animation";
 
         #endregion
 
