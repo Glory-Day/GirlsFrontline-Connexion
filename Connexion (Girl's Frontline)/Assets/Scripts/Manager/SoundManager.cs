@@ -30,12 +30,18 @@ namespace Manager
         
         private AudioMixer masterAudioMixer;
 
+        private AudioMixerGroup[] backgroundAudioMixerGroup;
+        private AudioMixerGroup[] effectAudioMixerGroup;
+        private AudioMixerGroup[] voiceAudioMixerGroup;
+
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
         private Dictionary<string, AudioClip> voiceAudioClips;
 
         private const string None       = "None";
         private const string Background = "Master/Background";
+        private const string Effect     = "Master/Effect";
+        private const string Voice      = "Master/Voice";
 
         protected SoundManager()
         {
@@ -43,11 +49,15 @@ namespace Manager
         }
 
         // Awake is called when the script instance is being loaded
-        private void Awake()
+        public static void OnInitializeComponents()
         {
-            gameObject.AddComponent<AudioListener>();
-            backgroundAudioSource = gameObject.AddComponent<AudioSource>();
-            backgroundAudioSource.loop = true;
+            LogManager.OnDebugLog(typeof(SoundManager),
+                $"OnInitializeComponents()");
+            
+            Instance.gameObject.AddComponent<AudioListener>();
+            Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
+            Instance.backgroundAudioSource.playOnAwake = false;
+            Instance.backgroundAudioSource.loop = true;
         }
 
         /// <summary>
@@ -100,8 +110,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(SoundManager),
                 $"OnInitializeBackgroundAudioMixer()");
 
-            Instance.backgroundAudioSource.outputAudioMixerGroup =
-                Instance.masterAudioMixer.FindMatchingGroups(Background)[0];
+            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.backgroundAudioMixerGroup[0];
         }
 
         /// <summary>
@@ -159,8 +168,14 @@ namespace Manager
 
         public static AudioMixer MasterAudioMixer
         {
-            get => Instance.masterAudioMixer; 
-            set => Instance.masterAudioMixer = value;
+            get => Instance.masterAudioMixer;
+            set
+            {
+                Instance.masterAudioMixer = value;
+                Instance.backgroundAudioMixerGroup = value.FindMatchingGroups(Background);
+                Instance.effectAudioMixerGroup = value.FindMatchingGroups(Effect);
+                Instance.voiceAudioMixerGroup = value.FindMatchingGroups(Voice);
+            }
         }
 
         /// <summary>
