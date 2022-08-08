@@ -75,9 +75,9 @@ namespace Manager.UI.Console
             commands = new Dictionary<string, ICommand>
                        {
                            {CommandName.LoadAllDataCommand, new LoadAllDataCommand()},
-                           {CommandName.LoadAllResourcesCommand, new LoadAllResourcesCommand()},
-                           {CommandName.UnloadAllResourcesCommand, new UnloadAllResourcesCommand()},
-                           {CommandName.IsAllResourcesLoadedCommand, new IsLoadedAllResourcesDoneCommand()},
+                           {CommandName.LoadAllAssetsCommand, new LoadAllAssetsCommand()},
+                           {CommandName.UnloadAllAssetsCommand, new UnloadAllAssetsCommand()},
+                           {CommandName.IsAllAssetsLoadedCommand, new IsLoadedAllResourcesDoneCommand()},
                            {CommandName.InitializeBackgroundAudioMixer, new InitializeBackgroundAudioMixerCommand()},
                            {CommandName.ChangeBackgroundAudioClip, new ChangeBackgroundAudioClipCommand()},
                            {CommandName.InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand()},
