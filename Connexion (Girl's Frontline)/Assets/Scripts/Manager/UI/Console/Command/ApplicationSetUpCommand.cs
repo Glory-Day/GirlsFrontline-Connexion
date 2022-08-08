@@ -18,7 +18,7 @@ namespace Manager.UI.Console.Command
             loadCommands = new ICommand[]
                            {
                                new LoadAllDataCommand(),
-                               new LoadAllResourcesCommand()
+                               new LoadAllAssetsCommand()
                            };
 
             initializeCommands = new ICommand[]
@@ -32,7 +32,7 @@ namespace Manager.UI.Console.Command
         private static bool IsLoadedAllResourcesDone()
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(ICommand),
-                $"<b>Waiting All Resources</b> is loaded");
+                $"<b>Waiting All Assets</b> is loaded");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) { }
 
@@ -48,7 +48,7 @@ namespace Manager.UI.Console.Command
             await Task.Run(() => Task.FromResult(IsLoadedAllResourcesDone()));
 
             LogManager.OnDebugLog(LabelType.Success, typeof(ICommand),
-                "<b>All Resources</b> are loaded successfully");
+                "<b>All Assets</b> are loaded successfully");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) { }
 
