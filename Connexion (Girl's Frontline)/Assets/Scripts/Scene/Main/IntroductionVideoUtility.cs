@@ -10,7 +10,7 @@ using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
 
-namespace Main
+namespace Scene.Main
 {
     /// <summary>
     /// Controls the video player in <b>Introduction Video Scene</b>
@@ -26,7 +26,7 @@ namespace Main
         #endregion
 
         /// <summary>
-        /// Video player playing introduction video
+        /// <see cref="VideoPlayer"/> playing introduction video
         /// </summary>
         private VideoPlayer videoPlayer;
 
@@ -35,19 +35,17 @@ namespace Main
         {
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
-            
-            LogManager.OnInitializeLogBuilders();
 
-            StartCoroutine(LoadAllDataAndResources());
+            StartCoroutine(LoadAllDataAndAssets());
         }
 
         /// <summary>
-        /// Load all data and resources related running <b>Game Application</b>
+        /// Load <b>All Data And Assets</b> related running <b>Game Application</b>
         /// </summary>
-        private IEnumerator LoadAllDataAndResources()
+        private IEnumerator LoadAllDataAndAssets()
         {
             DataManager.OnLoadAllData();
-            AssetManager.OnLoadAllResources();
+            AssetManager.OnLoadAllAssets();
 
             LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
                 $"<b>Waiting All Resources</b> is loaded");
@@ -68,9 +66,9 @@ namespace Main
         }
 
         /// <summary>
-        /// Callback event at the end of the video
+        /// <see cref="VideoPlayer"/> event at the end of the video
         /// </summary>
-        /// <param name="player"> Video player in <b>Introduction Video Scene</b> </param>
+        /// <param name="player"> <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b> </param>
         private static void IsOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
@@ -83,7 +81,8 @@ namespace Main
         #region BUTTON EVENT API
 
         /// <summary>
-        /// Button event to skip video when clicked in <b>Introduction Video Scene</b>
+        /// <see cref="Button"/> event to skip video
+        /// when clicked <see cref="skipButton"/> in <b>Introduction Video Scene</b>
         /// </summary>
         public void OnClickedSkipButton()
         {
