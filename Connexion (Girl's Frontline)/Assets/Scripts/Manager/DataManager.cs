@@ -33,7 +33,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadGameData()");
 
-            gameData = DataLoader.OnLoadData<GameData>(JsonLocalPath.GameDataPath);
+            gameData = DataLoader.OnLoadData<GameData>(JsonPath.GameDataPath);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadSceneData()");
 
-            sceneData = DataLoader.OnLoadData<SceneData>(JsonLocalPath.SceneDataPath);
+            sceneData = DataLoader.OnLoadData<SceneData>(JsonPath.SceneDataPath);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadAssetData()");
 
-            assetData = DataLoader.OnLoadData<AssetData>(JsonLocalPath.AssetDataPath);
+            assetData = DataLoader.OnLoadData<AssetData>(JsonPath.AssetDataPath);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Manager
                 $"LoadAddressableLabelData()");
 
             addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
-                JsonLocalPath.AddressableLabelDataPath);
+                JsonPath.AddressableLabelDataPath);
         }
 
         #endregion
