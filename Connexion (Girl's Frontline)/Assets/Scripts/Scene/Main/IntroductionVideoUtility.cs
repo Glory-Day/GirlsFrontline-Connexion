@@ -48,12 +48,12 @@ namespace Scene.Main
             AssetManager.OnLoadAllAssets();
 
             LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
-                $"<b>Waiting All Resources</b> is loaded");
+                $"<b>Waiting All Assets</b> is loaded");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) yield return null;
 
             LogManager.OnDebugLog(LabelType.Success, typeof(IntroductionVideoUtility),
-                "<b>All Data And Resources</b> are loaded successfully");
+                "<b>All Data And Assets</b> are loaded successfully");
 
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;
