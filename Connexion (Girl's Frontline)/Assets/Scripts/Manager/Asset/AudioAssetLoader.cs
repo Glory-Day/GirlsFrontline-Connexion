@@ -13,7 +13,7 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager.Asset
 {
     /// <summary>
-    /// Audio asset loader with <b>Addressable</b>
+    /// Audio asset loader with <see cref="Addressables"/>
     /// </summary>
     public class AudioAssetLoader
     {
@@ -21,10 +21,13 @@ namespace Manager.Asset
         private AsyncOperationHandle<IList<AudioClip>> backgroundAudioClipAssetsHandle;
         private AsyncOperationHandle<IList<AudioClip>> effectAudioClipAssetsHandle;
         private AsyncOperationHandle<IList<AudioClip>> voiceAudioClipAssetsHandle;
-
+        
+        /// <summary>
+        /// <see cref="AudioAssetLoader"/> constructor
+        /// </summary>
         public AudioAssetLoader()
         {
-            masterAudioMixerAssetHandle    = new AsyncOperationHandle<AudioMixer>();
+            masterAudioMixerAssetHandle     = new AsyncOperationHandle<AudioMixer>();
             backgroundAudioClipAssetsHandle = new AsyncOperationHandle<IList<AudioClip>>();
             effectAudioClipAssetsHandle     = new AsyncOperationHandle<IList<AudioClip>>();
             voiceAudioClipAssetsHandle      = new AsyncOperationHandle<IList<AudioClip>>(); 
@@ -33,7 +36,8 @@ namespace Manager.Asset
         #region LOAD ASSET API
 
         /// <summary>
-        /// Load all background audio clip assets using <b>DataManager.AddressableLabelData</b>
+        /// Load all background <see cref="AudioClip"/> assets
+        /// using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void LoadBackgroundAudioClipAssets()
         {
@@ -53,7 +57,8 @@ namespace Manager.Asset
         }
 
         /// <summary>
-        /// Load all effect audio clip assets using <b>DataManager.AddressableLabelData</b>
+        /// Load all effect <see cref="AudioClip"/> assets
+        /// using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void LoadEffectAudioClipAssets()
         {
@@ -73,7 +78,8 @@ namespace Manager.Asset
         }
 
         /// <summary>
-        /// Load all voice audio clip assets using <b>DataManager.AddressableLabelData</b>
+        /// Load all voice <see cref="AudioClip"/> assets
+        /// using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void LoadVoiceAudioClipAssets()
         {
@@ -93,7 +99,8 @@ namespace Manager.Asset
         }
         
         /// <summary>
-        /// Load master audio mixer asset using <b>DataManager.AddressableLabelData</b>
+        /// Load master <see cref="AudioMixer"/> asset
+        /// using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void LoadMasterAudioMixerAsset()
         {
@@ -134,7 +141,7 @@ namespace Manager.Asset
         #region UNLOAD ASSET API
 
         /// <summary>
-        /// Unload all background audio clip assets
+        /// Unload all background <see cref="AudioClip"/> assets
         /// </summary>
         public void UnloadBackgroundAudioClipAssets()
         {
@@ -148,7 +155,7 @@ namespace Manager.Asset
         }
 
         /// <summary>
-        /// Unload all effect audio clip assets
+        /// Unload all effect <see cref="AudioClip"/> assets
         /// </summary>
         public void UnloadEffectAudioClipAssets()
         {
@@ -162,7 +169,7 @@ namespace Manager.Asset
         }
 
         /// <summary>
-        /// Unload all voice audio clip assets
+        /// Unload all voice <see cref="AudioClip"/> assets
         /// </summary>
         public void UnloadVoiceAudioClipAssets()
         {
@@ -176,7 +183,7 @@ namespace Manager.Asset
         }
         
         /// <summary>
-        /// Unload master audio mixer asset
+        /// Unload master <see cref="AudioMixer"/> asset
         /// </summary>
         public void UnloadMasterAudioMixerAsset()
         {
@@ -192,7 +199,7 @@ namespace Manager.Asset
         #endregion
 
         /// <summary>
-        /// Check all background audio clip assets loaded is done
+        /// Check all background <see cref="AudioClip"/> assets loaded is done
         /// </summary>
         public bool IsLoadedBackgroundAudioClipAssetsDone()
         {
@@ -200,7 +207,7 @@ namespace Manager.Asset
         }
 
         /// <summary>
-        /// Check all effect audio clip assets loaded is done
+        /// Check all effect <see cref="AudioClip"/> assets loaded is done
         /// </summary>
         public bool IsLoadedEffectAudioClipAssetsDone()
         {
@@ -208,7 +215,7 @@ namespace Manager.Asset
         }
 
         /// <summary>
-        /// Check all voice audio clip assets loaded is done
+        /// Check all voice <see cref="AudioClip"/> assets loaded is done
         /// </summary>
         public bool IsLoadedVoiceAudioClipAssetsDone()
         {
@@ -216,7 +223,7 @@ namespace Manager.Asset
         }
         
         /// <summary>
-        /// Check master audio mixer asset loaded is done
+        /// Check master <see cref="AudioMixer"/> asset loaded is done
         /// </summary>
         public bool IsLoadedAudioMixerAssetDone()
         {
