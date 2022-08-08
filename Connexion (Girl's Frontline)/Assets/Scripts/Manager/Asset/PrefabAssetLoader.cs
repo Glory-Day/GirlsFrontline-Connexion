@@ -11,10 +11,16 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager.Asset
 {
+    /// <summary>
+    /// Prefab asset loader with <see cref="Addressables"/>
+    /// </summary>
     public class PrefabAssetLoader
     {
         private AsyncOperationHandle<IList<GameObject>> uiPrefabAssetsHandle;
 
+        /// <summary>
+        /// <see cref="PrefabAssetLoader"/> constructor
+        /// </summary>
         public PrefabAssetLoader()
         {
             uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
@@ -23,7 +29,7 @@ namespace Manager.Asset
         #region LOAD ASSET API
 
         /// <summary>
-        /// Load UI prefab assets using <b>DataManager.AddressableLabelData</b>
+        /// Load UI prefab assets using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void LoadUIPrefabAssets()
         {
@@ -47,7 +53,7 @@ namespace Manager.Asset
         #region UNLOAD ASSET API
 
         /// <summary>
-        /// Unload UI prefab assets using <b>DataManager.AddressableLabelData</b>
+        /// Unload UI prefab assets using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void UnloadUIPrefabAssets()
         {
