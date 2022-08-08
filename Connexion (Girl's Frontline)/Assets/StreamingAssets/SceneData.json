@@ -1,10 +1,10 @@
 {
   "scenes": [
     {
-      "name": "Main_Scene"
+      "name": "Main Scene"
     },
     {
-      "name": "Selection_Scene"
+      "name": "Selection Scene"
     }
   ]
 }
