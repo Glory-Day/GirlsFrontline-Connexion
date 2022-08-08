@@ -1,14 +1,14 @@
 ﻿{
   "audioMixer": {
     "names": [
-      "Background_Audio_Mixer",
-      "Effect_Audio_Mixer",
-      "Voice_Audio_Mixer"
+      "Background Audio Mixer",
+      "Effect Audio Mixer",
+      "Voice Audio Mixer"
     ]
   },
   "backgroundAudioClip": {
     "names": [
-      "Main_Screen_Audio_Source"
+      "Main Screen Audio Source"
     ]
   },
   "effectAudioClip": {
@@ -23,8 +23,8 @@
   },
   "uiPrefab": {
     "names": [
-      "Transition_Screen",
-      "Pause_Screen"
+      "Transition Screen",
+      "Pause Screen"
     ]
   }
 }
