@@ -6,7 +6,7 @@
         /// Current state of object
         /// </summary>
         public IState CurrentState { get; private set; }
-
+        
         public StateMachine(IState state)
         {
             CurrentState = state;
