@@ -9,7 +9,7 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager.Data
 {
     /// <summary>
-    /// Management Loading data according to the Json file format
+    /// Json file format data loader
     /// </summary>
     public class DataLoader
     {
@@ -17,7 +17,7 @@ namespace Manager.Data
         /// Load data according to the Json file format
         /// </summary>
         /// <param name="path"> Json file local path </param>
-        /// <typeparam name="T"> Type of Json file format in namespace <b>Data.Category</b> </typeparam>
+        /// <typeparam name="T"> Type of Json file format in <see cref="Data.Category"/> </typeparam>
         /// <returns> Loaded data in Json file </returns>
         public static T OnLoadData<T>(string path) where T : class
         {
