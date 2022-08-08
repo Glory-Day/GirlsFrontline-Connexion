@@ -6,16 +6,16 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager.UI.Console.Command
 {
-    public class UnloadAllResourcesCommand : ICommand
+    public class UnloadAllAssetsCommand : ICommand
     {
         public void Execute()
         {
-            LogManager.OnDebugLog("Execute <b><i>OnUnloadAllResources()</i></b>");
+            LogManager.OnDebugLog("Execute <b><i>OnUnloadAllAssets()</i></b>");
 
-            AssetManager.OnUnloadAllResources();
+            AssetManager.OnUnloadAllAssets();
 
             LogManager.OnDebugLog(LabelType.Success, typeof(ICommand),
-                "<b>All Resources</b> are unloaded successfully");
+                "<b>All Assets</b> are unloaded successfully");
         }
     }
 }
