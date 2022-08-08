@@ -1,9 +1,9 @@
 ﻿namespace Manager.Data
 {
     /// <summary>
-    /// Local paths in the Json file
+    /// Path to load Json file
     /// </summary>
-    public static class JsonLocalPath
+    public static class JsonPath
     {
         public const string AddressableLabelDataPath = "/AddressableLabelData.json";
         public const string GameDataPath             = "/GameData.json";
