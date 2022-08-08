@@ -7,7 +7,7 @@ using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Main
+namespace Scene.Main
 {
     /// <summary>
     /// Events in the <b>Main Scene</b>
@@ -25,7 +25,7 @@ namespace Main
         #region BUTTON EVENT API
 
         /// <summary>
-        /// Button event to click <b>Game Start Button</b> in <b>Main Scene</b>
+        /// <see cref="Button"/> event to click <see cref="gameStartButton"/> in <b>Main Scene</b>
         /// </summary>
         public void OnClickedGameStartButton()
         {
