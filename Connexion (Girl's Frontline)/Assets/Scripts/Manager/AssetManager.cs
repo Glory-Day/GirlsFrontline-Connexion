@@ -3,7 +3,7 @@
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire resources used in <b>Game Application</b>
+    /// Manager that manages <b>Asset</b> used in <b>Game Application</b>
     /// </summary>
     public class AssetManager : Singleton<AssetManager>
     {
@@ -15,6 +15,9 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
+        /// <summary>
+        /// Initialize <see cref="AudioAssetLoader"/> and <see cref="PrefabAssetLoader"/>
+        /// </summary>
         private void InitializeAssetLoaders()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
@@ -27,28 +30,40 @@ namespace Manager
         #region AUDIO ASSET API
 
         /// <summary>
-        /// Load audio assets using <b>AudioAssetLoader</b>
+        /// Load audio assets using <see cref="AudioAssetLoader"/>
         /// </summary>
         private void LoadAudioAssets()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"LoadAudioAssets()");
 
+            SoundManager.OnInitializeComponents();
             SoundManager.OnInitializeAudioClips();
 
             audioAssetLoader.LoadMasterAudioMixerAsset();
             audioAssetLoader.LoadBackgroundAudioClipAssets();
+        }
+        
+        //DEBUG: This code is not working yet
+        // Resources with labels "effect" and "voice" are available after registration
+        /*
+        private void LoadAudioAssets()
+        {
+            LogManager.OnDebugLog(typeof(AssetManager),
+                $"LoadAudioAssets()");
 
-            //DEBUG: This code is not working yet
-            // Resources with labels "effect" and "voice" are available after registration
-            /*
+            SoundManager.OnInitializeComponents();
+            SoundManager.OnInitializeAudioClips();
+
+            audioAssetLoader.LoadMasterAudioMixerAsset();
+            audioAssetLoader.LoadBackgroundAudioClipAssets();
             audioAssetLoader.LoadEffectAudioAssets();
             audioAssetLoader.LoadVoiceAudioAssets();
-            */
         }
-
+        */
+        
         /// <summary>
-        /// Unload audio assets using <b>AudioAssetLoader</b>
+        /// Unload audio assets using <see cref="AudioAssetLoader"/>
         /// </summary>
         private void UnloadAudioAssets()
         {
@@ -57,15 +72,23 @@ namespace Manager
 
             audioAssetLoader.UnloadMasterAudioMixerAsset();
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
+        }
+        
+        //DEBUG: This code is not working yet
+        // Resources with labels "effect" and "voice" are available after registration
+        /*
+        private void UnloadAudioAssets()
+        {
+            LogManager.OnDebugLog(typeof(AssetManager),
+                $"UnloadAudioAssets()");
 
-            //DEBUG: This code is not working yet
-            // Resources with labels "effect" and "voice" are available after registration
-            /*
+            audioAssetLoader.UnloadMasterAudioMixerAsset();
+            audioAssetLoader.UnloadBackgroundAudioClipAssets();
             audioAssetLoader.UnloadEffectAudioClipAssets();
             audioAssetLoader.UnloadVoiceAudioClipAssets();
-            */
         }
-
+        */
+        
         /// <summary>
         /// Check audio assets loaded is done
         /// </summary>
@@ -78,11 +101,13 @@ namespace Manager
         //DEBUG: This code is not working yet
         // Resources with labels "effect" and "voice" are available after registration
         /*
-        private bool IsAudioAssetsLoaded() =>
-            audioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
-            audioAssetLoader.IsBackgroundAudioClipAssetsLoaded() &&
-            audioAssetLoader.IsEffectAudioClipAssetsLoaded() &&
-            audioAssetLoader.IsVoiceAudioClipAssetsLoaded();
+        private bool IsAudioAssetsLoaded()
+        {
+            return audioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
+                   audioAssetLoader.IsBackgroundAudioClipAssetsLoaded() &&
+                   audioAssetLoader.IsEffectAudioClipAssetsLoaded() &&
+                   audioAssetLoader.IsVoiceAudioClipAssetsLoaded();
+        }
         */
 
         #endregion
@@ -90,7 +115,7 @@ namespace Manager
         #region PREFAB ASSET API
 
         /// <summary>
-        /// Load prefab assets using <b>PrefabAssetLoader</b>
+        /// Load prefab assets using <see cref="PrefabAssetLoader"/>
         /// </summary>
         private void LoadPrefabAssets()
         {
@@ -103,7 +128,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Unload prefab assets using <b>PrefabAssetLoader</b>
+        /// Unload prefab assets using <see cref="PrefabAssetLoader"/>
         /// </summary>
         private void UnloadPrefabAssets()
         {
@@ -126,10 +151,10 @@ namespace Manager
         /// <summary>
         /// Load all asset resources
         /// </summary>
-        public static void OnLoadAllResources()
+        public static void OnLoadAllAssets()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
-                $"OnLoadAllResources()");
+                $"OnLoadAllAssets()");
 
             if (Instance.audioAssetLoader == null || Instance.prefabAssetLoader == null)
                 Instance.InitializeAssetLoaders();
@@ -141,10 +166,10 @@ namespace Manager
         /// <summary>
         /// Unload all asset resources
         /// </summary>
-        public static void OnUnloadAllResources()
+        public static void OnUnloadAllAssets()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
-                $"OnUnloadAllResources()");
+                $"OnUnloadAllAssets()");
 
             Instance.UnloadAudioAssets();
             Instance.UnloadPrefabAssets();
@@ -155,8 +180,7 @@ namespace Manager
         /// </summary>
         public static bool IsLoadedAllAssetsDone()
         {
-            return Instance.IsLoadedAudioAssetsDone() &&
-                   Instance.IsLoadedPrefabAssetsDone();
+            return Instance.IsLoadedAudioAssetsDone() && Instance.IsLoadedPrefabAssetsDone();
         }
     }
 }
