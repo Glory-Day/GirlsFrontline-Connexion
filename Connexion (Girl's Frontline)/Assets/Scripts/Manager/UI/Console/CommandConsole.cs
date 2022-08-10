@@ -78,7 +78,6 @@ namespace Manager.UI.Console
                            {CommandName.LoadAllAssetsCommand, new LoadAllAssetsCommand()},
                            {CommandName.UnloadAllAssetsCommand, new UnloadAllAssetsCommand()},
                            {CommandName.IsAllAssetsLoadedCommand, new IsLoadedAllResourcesDoneCommand()},
-                           {CommandName.InitializeBackgroundAudioMixer, new InitializeBackgroundAudioMixerCommand()},
                            {CommandName.ChangeBackgroundAudioClip, new ChangeBackgroundAudioClipCommand()},
                            {CommandName.InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand()},
                            {CommandName.LoadMainScene, new LoadMainScene()},
