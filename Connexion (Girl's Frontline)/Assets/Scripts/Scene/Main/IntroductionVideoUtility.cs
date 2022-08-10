@@ -35,6 +35,8 @@ namespace Scene.Main
         {
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
+            
+            SoundManager.OnInitialize();
 
             StartCoroutine(LoadAllDataAndAssets());
         }
@@ -73,8 +75,7 @@ namespace Scene.Main
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
                 "<b>Introduction Video</b> is over");
-
-            SoundManager.OnInitializeBackgroundAudioMixer();
+            
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
         }
 
@@ -88,8 +89,7 @@ namespace Scene.Main
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
                 "<b>Skip Button</b> is clicked");
-
-            SoundManager.OnInitializeBackgroundAudioMixer();
+            
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
         }
 
