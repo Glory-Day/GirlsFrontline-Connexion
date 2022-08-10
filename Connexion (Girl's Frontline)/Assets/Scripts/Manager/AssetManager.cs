@@ -36,11 +36,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"LoadAudioAssets()");
-
-            SoundManager.OnInitializeComponents();
-            SoundManager.OnInitializeAudioClips();
-
-            audioAssetLoader.LoadMasterAudioMixerAsset();
+            
             audioAssetLoader.LoadBackgroundAudioClipAssets();
         }
         
@@ -52,10 +48,6 @@ namespace Manager
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"LoadAudioAssets()");
 
-            SoundManager.OnInitializeComponents();
-            SoundManager.OnInitializeAudioClips();
-
-            audioAssetLoader.LoadMasterAudioMixerAsset();
             audioAssetLoader.LoadBackgroundAudioClipAssets();
             audioAssetLoader.LoadEffectAudioAssets();
             audioAssetLoader.LoadVoiceAudioAssets();
@@ -69,8 +61,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"UnloadAudioAssets()");
-
-            audioAssetLoader.UnloadMasterAudioMixerAsset();
+            
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
         }
         
@@ -82,7 +73,6 @@ namespace Manager
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"UnloadAudioAssets()");
 
-            audioAssetLoader.UnloadMasterAudioMixerAsset();
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
             audioAssetLoader.UnloadEffectAudioClipAssets();
             audioAssetLoader.UnloadVoiceAudioClipAssets();
@@ -94,8 +84,7 @@ namespace Manager
         /// </summary>
         private bool IsLoadedAudioAssetsDone()
         {
-            return audioAssetLoader.IsLoadedAudioMixerAssetDone() &&
-                   audioAssetLoader.IsLoadedBackgroundAudioClipAssetsDone();
+            return audioAssetLoader.IsLoadedBackgroundAudioClipAssetsDone();
         }
 
         //DEBUG: This code is not working yet
@@ -103,8 +92,7 @@ namespace Manager
         /*
         private bool IsAudioAssetsLoaded()
         {
-            return audioAssetLoader.IsBackgroundAudioMixerAssetLoaded() &&
-                   audioAssetLoader.IsBackgroundAudioClipAssetsLoaded() &&
+            return audioAssetLoader.IsBackgroundAudioClipAssetsLoaded() &&
                    audioAssetLoader.IsEffectAudioClipAssetsLoaded() &&
                    audioAssetLoader.IsVoiceAudioClipAssetsLoaded();
         }
