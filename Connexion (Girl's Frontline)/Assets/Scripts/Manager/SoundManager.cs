@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Manager.Sound;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
@@ -30,48 +31,60 @@ namespace Manager
         
         private AudioMixer masterAudioMixer;
 
-        private AudioMixerGroup[] backgroundAudioMixerGroup;
-        private AudioMixerGroup[] effectAudioMixerGroup;
-        private AudioMixerGroup[] voiceAudioMixerGroup;
+        private AudioMixerGroup backgroundAudioMixerGroup;
+        private AudioMixerGroup effectAudioMixerGroup;
+        private AudioMixerGroup voiceAudioMixerGroup;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
         private Dictionary<string, AudioClip> voiceAudioClips;
 
-        private const string None       = "None";
-        private const string Background = "Master/Background";
-        private const string Effect     = "Master/Effect";
-        private const string Voice      = "Master/Voice";
+        #region CONSTANT FIELD
+        
+        // Audio clip name if audio clip of background audio source is none
+        private const string None = "None";
+
+        // Audio mixer object name
+        private const string AudioMixerName = "Audio Mixer";
+
+        #endregion
 
         protected SoundManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        // Awake is called when the script instance is being loaded
-        public static void OnInitializeComponents()
+        /// <summary>
+        /// Initialize <see cref="SoundManager"/> components and fields
+        /// </summary>
+        public static void OnInitialize()
         {
             LogManager.OnDebugLog(typeof(SoundManager),
-                $"OnInitializeComponents()");
+                $"OnInitialize()");
             
+            // Initialize audio mixer group
+            var audioMixerData = GameObject.Find(AudioMixerName).GetComponent<AudioMixerData>();
+            Instance.masterAudioMixer = audioMixerData.masterAudioMixer;
+            Instance.backgroundAudioMixerGroup = audioMixerData.backgroundAudioMixerGroup;
+            Instance.effectAudioMixerGroup = audioMixerData.effectAudioMixerGroup;
+            Instance.voiceAudioMixerGroup = audioMixerData.voiceAudioMixerGroup;
+            
+            // Initialize audio source component and setting
             Instance.gameObject.AddComponent<AudioListener>();
             Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
             Instance.backgroundAudioSource.playOnAwake = false;
             Instance.backgroundAudioSource.loop = true;
+            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.backgroundAudioMixerGroup;
+            
+            // Initialize list of audio clips
+            Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
+            Instance.effectAudioClips = new Dictionary<string, AudioClip>();
+            Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
         }
 
         /// <summary>
         /// Initialize audio mixer and background, effect, voice audio clips
         /// </summary>
-        public static void OnInitializeAudioClips()
-        {
-            LogManager.OnDebugLog(typeof(SoundManager),
-                $"OnInitializeAudioClips()");
-            
-            Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
-            Instance.effectAudioClips     = new Dictionary<string, AudioClip>();
-            Instance.voiceAudioClips      = new Dictionary<string, AudioClip>();
-        }
 
         /// <summary>
         /// Play background audio source select by key value
@@ -101,17 +114,6 @@ namespace Manager
         }
 
         #region SOUND API
-
-        /// <summary>
-        /// Initialize background audio mixer to output audio mixer of background audio source
-        /// </summary>
-        public static void OnInitializeBackgroundAudioMixer()
-        {
-            LogManager.OnDebugLog(typeof(SoundManager),
-                $"OnInitializeBackgroundAudioMixer()");
-
-            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.backgroundAudioMixerGroup[0];
-        }
 
         /// <summary>
         /// Change the background audio clip when the scene changes
@@ -169,13 +171,7 @@ namespace Manager
         public static AudioMixer MasterAudioMixer
         {
             get => Instance.masterAudioMixer;
-            set
-            {
-                Instance.masterAudioMixer = value;
-                Instance.backgroundAudioMixerGroup = value.FindMatchingGroups(Background);
-                Instance.effectAudioMixerGroup = value.FindMatchingGroups(Effect);
-                Instance.voiceAudioMixerGroup = value.FindMatchingGroups(Voice);
-            }
+            set => Instance.masterAudioMixer = value;
         }
 
         /// <summary>
