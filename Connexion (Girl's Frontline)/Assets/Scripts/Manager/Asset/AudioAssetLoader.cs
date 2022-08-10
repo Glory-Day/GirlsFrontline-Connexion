@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Audio;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using LabelType = Manager.Log.Label.LabelType;
 
@@ -17,7 +16,6 @@ namespace Manager.Asset
     /// </summary>
     public class AudioAssetLoader
     {
-        private AsyncOperationHandle<AudioMixer>       masterAudioMixerAssetHandle;
         private AsyncOperationHandle<IList<AudioClip>> backgroundAudioClipAssetsHandle;
         private AsyncOperationHandle<IList<AudioClip>> effectAudioClipAssetsHandle;
         private AsyncOperationHandle<IList<AudioClip>> voiceAudioClipAssetsHandle;
@@ -27,7 +25,6 @@ namespace Manager.Asset
         /// </summary>
         public AudioAssetLoader()
         {
-            masterAudioMixerAssetHandle     = new AsyncOperationHandle<AudioMixer>();
             backgroundAudioClipAssetsHandle = new AsyncOperationHandle<IList<AudioClip>>();
             effectAudioClipAssetsHandle     = new AsyncOperationHandle<IList<AudioClip>>();
             voiceAudioClipAssetsHandle      = new AsyncOperationHandle<IList<AudioClip>>(); 
@@ -97,44 +94,6 @@ namespace Manager.Asset
             voiceAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
                 DataManager.AddressableLabelData.audioAsset.labels[2], (Action<AudioClip>)Loaded);
         }
-        
-        /// <summary>
-        /// Load master <see cref="AudioMixer"/> asset
-        /// using label in <see cref="DataManager.AddressableLabelData"/>
-        /// </summary>
-        public void LoadMasterAudioMixerAsset()
-        {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
-                $"LoadMasterAudioMixerAsset()");
-
-            void Loaded(AsyncOperationHandle<AudioMixer> handle)
-            {
-                switch (handle.Status)
-                {
-                    case AsyncOperationStatus.Succeeded:
-                        var masterAudioMixer = handle.Result;
-                        
-                        SoundManager.MasterAudioMixer = masterAudioMixer;
-
-                        LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
-                            $"<b>{masterAudioMixer.name}</b> is loaded successfully");
-                        
-                        break;
-                    case AsyncOperationStatus.Failed:
-                        LogManager.OnDebugLog(LabelType.Error, typeof(AudioAssetLoader),
-                            $"<b>Loaded Asset</b> is failed");
-                        
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            masterAudioMixerAssetHandle =
-                Addressables.LoadAssetAsync<AudioMixer>(DataManager.AddressableLabelData.audioAsset.labels[3]);
-
-            masterAudioMixerAssetHandle.Completed += Loaded;
-        }
 
         #endregion
 
@@ -181,20 +140,6 @@ namespace Manager.Asset
             LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
                 $"<b>All Voice Audio Clips</b> are unloaded successfully");
         }
-        
-        /// <summary>
-        /// Unload master <see cref="AudioMixer"/> asset
-        /// </summary>
-        public void UnloadMasterAudioMixerAsset()
-        {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
-                $"UnloadMasterAudioMixerAsset()");
-
-            Addressables.Release(masterAudioMixerAssetHandle);
-
-            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
-                $"<b>Master Audio Mixers</b> is unloaded successfully");
-        }
 
         #endregion
 
@@ -220,14 +165,6 @@ namespace Manager.Asset
         public bool IsLoadedVoiceAudioClipAssetsDone()
         {
             return voiceAudioClipAssetsHandle.IsValid() && voiceAudioClipAssetsHandle.IsDone;
-        }
-        
-        /// <summary>
-        /// Check master <see cref="AudioMixer"/> asset loaded is done
-        /// </summary>
-        public bool IsLoadedAudioMixerAssetDone()
-        {
-            return masterAudioMixerAssetHandle.IsValid() && masterAudioMixerAssetHandle.IsDone;
         }
     }
 }
