@@ -24,7 +24,6 @@ namespace Manager.UI.Console.Command
             initializeCommands = new ICommand[]
                                  {
                                      new InstantiateAllUIPrefabsCommand(),
-                                     new InitializeBackgroundAudioMixerCommand(),
                                      new ChangeBackgroundAudioClipCommand()
                                  };
         }
