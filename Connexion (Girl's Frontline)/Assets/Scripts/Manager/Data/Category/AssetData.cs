@@ -9,15 +9,6 @@ namespace Manager.Data.Category
     #region AUDIO ASSET DATA API
 
     /// <summary>
-    /// Audio mixer asset data in <b>AssetData.json</b>
-    /// </summary>
-    [Serializable]
-    public class AudioMixer
-    {
-        public string[] names;
-    }
-
-    /// <summary>
     /// Background audio clip asset data in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
@@ -65,7 +56,6 @@ namespace Manager.Data.Category
     [Serializable]
     public class AssetData
     {
-        public AudioMixer          audioMixer;
         public BackgroundAudioClip backgroundAudioClip;
         public EffectAudioClip     effectAudioClip;
         public VoiceAudioClip      voiceAudioClip;
