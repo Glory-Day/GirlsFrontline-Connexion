@@ -1,11 +1,4 @@
 ﻿{
-  "audioMixer": {
-    "names": [
-      "Background Audio Mixer",
-      "Effect Audio Mixer",
-      "Voice Audio Mixer"
-    ]
-  },
   "backgroundAudioClip": {
     "names": [
       "Main Screen Audio Source"
