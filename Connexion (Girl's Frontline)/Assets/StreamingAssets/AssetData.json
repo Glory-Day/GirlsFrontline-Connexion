@@ -17,7 +17,8 @@
   "uiPrefab": {
     "names": [
       "Transition Screen",
-      "Pause Screen"
+      "Pause Screen",
+      "Command Console"
     ]
   }
 }
