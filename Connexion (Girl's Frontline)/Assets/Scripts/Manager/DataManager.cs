@@ -9,24 +9,24 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire data used in <b>Game Application</b>
+    /// Manager that manages <b>Data</b> used in <b>Game Application</b>
     /// </summary>
     public class DataManager : Singleton<DataManager>
     {
+        private GameData             gameData;
+        private SceneData            sceneData;
+        private AssetData            assetData;
+        private AddressableLabelData addressableLabelData;
+        
         protected DataManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        private GameData             gameData;
-        private SceneData            sceneData;
-        private AssetData            assetData;
-        private AddressableLabelData addressableLabelData;
-
         #region LOAD DATA API
 
         /// <summary>
-        /// Load stored game data with <b>DataLoader</b>
+        /// Load stored game data with <see cref="DataLoader"/>
         /// </summary>
         private void LoadGameData()
         {
@@ -37,7 +37,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load scene data with <b>DataLoader</b>
+        /// Load scene data with <see cref="DataLoader"/>
         /// </summary>
         private void LoadSceneData()
         {
@@ -48,7 +48,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load asset data with <b>DataLoader</b>
+        /// Load asset data with <see cref="DataLoader"/>
         /// </summary>
         private void LoadAssetData()
         {
@@ -59,7 +59,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Load addressable label data with <b>DataLoader</b>
+        /// Load addressable label data with <see cref="DataLoader"/>
         /// </summary>
         private void LoadAddressableLabelData()
         {
