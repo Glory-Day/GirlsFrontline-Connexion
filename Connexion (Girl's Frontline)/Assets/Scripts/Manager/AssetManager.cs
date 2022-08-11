@@ -1,4 +1,8 @@
-﻿using Manager.Asset;
+﻿#region NAMESPACE API
+
+using Manager.Asset;
+
+#endregion
 
 namespace Manager
 {
@@ -7,6 +11,7 @@ namespace Manager
     /// </summary>
     public class AssetManager : Singleton<AssetManager>
     {
+
         private AudioAssetLoader  audioAssetLoader;
         private PrefabAssetLoader prefabAssetLoader;
 
@@ -15,16 +20,13 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        /// <summary>
-        /// Initialize <see cref="AudioAssetLoader"/> and <see cref="PrefabAssetLoader"/>
-        /// </summary>
-        private void InitializeAssetLoaders()
+        public static void OnInitialize()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
-                $"InitializeAssetLoaders()");
+                $"OnInitialize()");
 
-            audioAssetLoader  = new AudioAssetLoader();
-            prefabAssetLoader = new PrefabAssetLoader();
+            Instance.audioAssetLoader  = new AudioAssetLoader();
+            Instance.prefabAssetLoader = new PrefabAssetLoader();
         }
 
         #region AUDIO ASSET API
@@ -110,8 +112,6 @@ namespace Manager
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"LoadPrefabAssets()");
 
-            UIManager.OnInitializeUIPrefabs();
-
             prefabAssetLoader.LoadUIPrefabAssets();
         }
 
@@ -137,22 +137,19 @@ namespace Manager
         #endregion
 
         /// <summary>
-        /// Load all asset resources
+        /// Load all assets
         /// </summary>
         public static void OnLoadAllAssets()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
                 $"OnLoadAllAssets()");
 
-            if (Instance.audioAssetLoader == null || Instance.prefabAssetLoader == null)
-                Instance.InitializeAssetLoaders();
-
             Instance.LoadAudioAssets();
             Instance.LoadPrefabAssets();
         }
 
         /// <summary>
-        /// Unload all asset resources
+        /// Unload all assets
         /// </summary>
         public static void OnUnloadAllAssets()
         {
@@ -164,7 +161,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Check all asset resources loaded is done
+        /// Check all assets loaded is done
         /// </summary>
         public static bool IsLoadedAllAssetsDone()
         {
