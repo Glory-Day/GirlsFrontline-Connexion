@@ -16,9 +16,12 @@ namespace Manager.UI
         #region ANIMATION EVENT API
 
         /// <summary>
-        /// When scene transition animation is left, load scene by <b>CurrentSceneName</b>
+        /// When scene transition <see cref="Animation"/> is left,
+        /// load scene by <see cref="SceneManager.CurrentSceneName"/>
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Out of range exception in <see cref="SceneManager.SceneName"/>
+        /// </exception>
         public void OnLoadSceneWhenSceneTransitionToLeft()
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent),
@@ -37,9 +40,12 @@ namespace Manager.UI
         }
 
         /// <summary>
-        /// When scene transition animation is right, load scene by <b>CurrentSceneName</b>
+        /// When scene transition <see cref="Animation"/> is right,
+        /// load scene by <see cref="SceneManager.CurrentSceneName"/>
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>SceneName</b> </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Out of range exception in <see cref="SceneManager.SceneName"/>
+        /// </exception>
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
             LogManager.OnDebugLog(LabelType.Event, typeof(ScreenTransitionEvent),
