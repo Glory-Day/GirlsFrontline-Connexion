@@ -9,7 +9,7 @@ namespace Manager.Data.Category
     #region CHAPTER DATA API
 
     /// <summary>
-    /// Chapter data in <b>GameData.json</b>
+    /// Chapter lock data format in <see cref="GameData"/>
     /// </summary>
     [Serializable]
     public class Chapter
@@ -20,7 +20,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// Game data in <b>GameData.json</b>
+    /// <b>Data Format</b> in <b>GameData.json</b>
     /// </summary>
     [Serializable]
     public class GameData
