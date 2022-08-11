@@ -7,39 +7,39 @@ using System;
 namespace Manager.Log.UnityEditor
 {
     /// <summary>
-    /// Output log string builder by purpose in <b>Unity Editor Console</b>
+    /// <b>Output Log</b> string builder by purpose in <b>Unity Editor Console</b>
     /// </summary>
     public static class LogBuilder
     {
         /// <summary>
-        /// Build the string of the administrator permission log
+        /// Build the string of <b>Administrator Permission Log</b>
         /// </summary>
         /// <param name="contents"> Contents of the log </param>
-        /// <returns> The string of the administrator permission log </returns>
+        /// <returns> The string of <b>Administrator Permission Log</b> </returns>
         public static string Build(string contents)
         {
-            return $"<color={Label.AdministratorLogColor}><b>{Label.AdministratorInUnityEditorLogLabel}</b>" +
+            return $"<color={Label.AdministratorLogColor}><b>[{Label.AdministratorInUnityEditorLogLabel}]</b>" +
                    $"{contents}</color>";
         }
 
         /// <summary>
-        /// Build the string of the default log
+        /// Build the string of <b>Default Log</b>
         /// </summary>
         /// <param name="classType"> The type of the class where the log was called </param>
         /// <param name="contents"> Contents of the log </param>
-        /// <returns> The string of the default log </returns>
+        /// <returns> The string of <b>Default Log</b> </returns>
         public static string Build(Type classType, string contents)
         {
             return $"<color={Label.DefaultLogColor}><b>[{classType.Name}]</b>Called <b><i>{contents}</i></b></color>";
         }
 
         /// <summary>
-        /// Build the string of special log
+        /// Build the string of <b>Spacial Log</b>
         /// </summary>
         /// <param name="type"> Type of Log </param>
         /// <param name="classType"> The type of the class where the log was called </param>
         /// <param name="contents"> Contents of the log </param>
-        /// <returns> The string of special log </returns>
+        /// <returns> The string of <b>Spacial Log</b> </returns>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range exception in <b>LabelType</b> </exception>
         public static string Build(Label.LabelType type, Type classType, string contents)
         {
@@ -48,15 +48,15 @@ namespace Manager.Log.UnityEditor
             switch (type)
             {
                 case Label.LabelType.Event:
-                    log = $"<color={Label.EventLogColor}><b>{Label.EventLogLabel}[{classType.Name}]</b> " +
+                    log = $"<color={Label.EventLogColor}><b>[{Label.EventLogLabel}][{classType.Name}]</b> " +
                           $"{contents}</color>";
                     break;
                 case Label.LabelType.Error:
-                    log = $"<color={Label.ErrorLogColor}><b>{Label.ErrorLogLabel}[{classType.Name}]</b> " +
+                    log = $"<color={Label.ErrorLogColor}><b>[{Label.ErrorLogLabel}][{classType.Name}]</b> " +
                           $"{contents}</color>";
                     break;
                 case Label.LabelType.Success:
-                    log = $"<color={Label.SuccessLogColor}><b>{Label.SuccessLogLabel}[{classType.Name}]</b> " +
+                    log = $"<color={Label.SuccessLogColor}><b>[{Label.SuccessLogLabel}][{classType.Name}]</b> " +
                           $"{contents}</color>";
                     break;
                 default:
