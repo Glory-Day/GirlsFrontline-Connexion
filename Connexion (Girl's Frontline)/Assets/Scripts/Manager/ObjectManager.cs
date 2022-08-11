@@ -18,7 +18,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Object pool instance
+        /// <see cref="ObjectPool"/> instance
         /// </summary>
         private ObjectPool objectPool;
 
@@ -27,19 +27,23 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        // Start is called before the first frame update
-        private void Start()
+        public static void OnInitialize()
         {
-            objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
-            objectPool.clones = new Dictionary<GameObject, Pool<GameObject>>();
+            LogManager.OnDebugLog(typeof(ObjectManager),
+                $"OnInitialize()");
+            
+            Instance.objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
+            Instance.objectPool.clones = new Dictionary<GameObject, Pool<GameObject>>();
         }
 
         /// <summary>
-        /// Instantiate object and set object to disable
+        /// Instantiate <see cref="GameObject"/> and set <see cref="GameObject"/> to disable
         /// </summary>
-        /// <param name="prefab"> Object to instantiate </param>
-        /// <param name="parentTransform"> Parent transform of instantiated object </param>
-        /// <returns> Instantiated object </returns>
+        /// <param name="prefab"> <see cref="GameObject"/> to instantiate </param>
+        /// <param name="parentTransform">
+        /// Parent <see cref="Transform"/> of instantiated <see cref="GameObject"/>
+        /// </param>
+        /// <returns> Instantiated <see cref="GameObject"/> </returns>
         private static GameObject InstantiateObject(GameObject prefab, Transform parentTransform)
         {
             var instantiatedObject = Instantiate(prefab);
@@ -55,11 +59,13 @@ namespace Manager
         }
 
         /// <summary>
-        /// Create new object and put to <b>Object Pool</b>
+        /// Create new <see cref="GameObject"/> and put to <see cref="ObjectPool"/>
         /// </summary>
-        /// <param name="prefab"> Object to instantiate </param>
-        /// <param name="capacity"> Capacity of pool </param>
-        /// <param name="parentTransform"> Parent transform of instantiated object </param>
+        /// <param name="prefab"> <see cref="GameObject"/> to instantiate </param>
+        /// <param name="capacity"> Capacity of <see cref="Pool{T}"/> </param>
+        /// <param name="parentTransform">
+        /// Parent <see cref="Transform"/> of instantiated <see cref="GameObject"/>
+        /// </param>
         private void Create(GameObject prefab, int capacity, Transform parentTransform)
         {
             if (objectPool.originals.ContainsKey(prefab))
@@ -73,9 +79,9 @@ namespace Manager
         }
 
         /// <summary>
-        /// Release object in <b>Object Pool</b>
+        /// Release <see cref="GameObject"/> in <see cref="ObjectPool"/>
         /// </summary>
-        /// <param name="clone"> Object to release </param>
+        /// <param name="clone"> <see cref="GameObject"/> to release </param>
         private void Release(GameObject clone)
         {
             // Object deactivate
@@ -94,12 +100,12 @@ namespace Manager
         }
 
         /// <summary>
-        /// Spawn object has position and rotation
+        /// Spawn <see cref="GameObject"/> has position and rotation
         /// </summary>
-        /// <param name="prefab"> Object to spawn </param>
-        /// <param name="parentTransform"> Parent transform of spawned object </param>
-        /// <param name="position"> Position of spawned object </param>
-        /// <param name="rotation"> Rotation of spawned object </param>
+        /// <param name="prefab"> <see cref="GameObject"/> to spawn </param>
+        /// <param name="parentTransform"> Parent <see cref="Transform"/> of spawned <see cref="GameObject"/> </param>
+        /// <param name="position"> Position of spawned <see cref="GameObject"/> </param>
+        /// <param name="rotation"> Rotation of spawned <see cref="GameObject"/> </param>
         /// <returns> Spawned object </returns>
         private GameObject Spawn(GameObject prefab, Transform parentTransform, Vector3? position, Quaternion? rotation)
         {
@@ -124,32 +130,34 @@ namespace Manager
         }
 
         /// <summary>
-        /// Create new object and put to <b>Object Pool</b>
+        /// Create new <see cref="GameObject"/> and put to <see cref="ObjectPool"/>
         /// </summary>
-        /// <param name="prefab"> Object to instantiate </param>
-        /// <param name="capacity"> Capacity of pool </param>
-        /// <param name="parentTransform"> Parent transform of instantiated object </param>
+        /// <param name="prefab"> <see cref="GameObject"/> to instantiate </param>
+        /// <param name="capacity"> Capacity of <see cref="Pool{T}"/> </param>
+        /// <param name="parentTransform">
+        /// Parent <see cref="Transform"/> of instantiated <see cref="GameObject"/>
+        /// </param>
         public static void OnCreate(GameObject prefab, int capacity, Transform parentTransform = null)
         {
             Instance.Create(prefab, capacity, parentTransform);
         }
 
         /// <summary>
-        /// Release object in <b>Object Pool</b>
+        /// Release <see cref="GameObject"/> in <see cref="ObjectPool"/>
         /// </summary>
-        /// <param name="clone"> Object to release </param>
+        /// <param name="clone"> <see cref="GameObject"/> to release </param>
         public static void OnRelease(GameObject clone)
         {
             Instance.Release(clone);
         }
 
         /// <summary>
-        /// Spawn object has position and rotation
+        /// Spawn <see cref="GameObject"/> has position and rotation
         /// </summary>
-        /// <param name="prefab"> Object to spawn </param>
-        /// <param name="parentTransform"> Parent transform of spawned object </param>
-        /// <param name="position"> Position of spawned object </param>
-        /// <param name="rotation"> Rotation of spawned object </param>
+        /// <param name="prefab"> <see cref="GameObject"/> to spawn </param>
+        /// <param name="parentTransform"> Parent <see cref="Transform"/> of spawned <see cref="GameObject"/> </param>
+        /// <param name="position"> Position of spawned <see cref="GameObject"/> </param>
+        /// <param name="rotation"> Rotation of spawned <see cref="GameObject"/> </param>
         public GameObject OnSpawn(GameObject prefab, Transform parentTransform = null, Vector3? position = null,
                                   Quaternion? rotation = null)
         {
