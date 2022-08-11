@@ -30,6 +30,14 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
+        public static void OnInitialize()
+        {
+            LogManager.OnDebugLog(typeof(UIManager),
+                $"OnInitialize()");
+
+            Instance.uiPrefabs = new Dictionary<string, GameObject>();
+        }
+
         /// <summary>
         /// Instantiate all UI prefabs
         /// </summary>
@@ -39,7 +47,8 @@ namespace Manager
                 $"OnInstantiateAllUIPrefabs()");
 
             Instance.InstantiateTransitionScreenPrefab();
-            Instance.InstantiatePauseScreenPrefabs();
+            Instance.InstantiatePauseScreenPrefab();
+            Instance.InstantiateCommandConsolePrefab();
 
             LogManager.OnDebugLog(LabelType.Success, typeof(DataManager),
                 "<b>All UI Prefabs</b> are instantiated successfully");
@@ -65,10 +74,10 @@ namespace Manager
         /// <summary>
         /// Instantiate <b>Pause Screen</b>
         /// </summary>
-        private void InstantiatePauseScreenPrefabs()
+        private void InstantiatePauseScreenPrefab()
         {
             LogManager.OnDebugLog(typeof(UIManager),
-                $"InstantiatePauseScreenPrefabs()");
+                $"InstantiatePauseScreenPrefab()");
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[1]],
                 transform, true);
@@ -80,14 +89,19 @@ namespace Manager
         }
 
         /// <summary>
-        /// Initialize UI prefabs
+        /// Instantiate <b>Command Console</b>
         /// </summary>
-        public static void OnInitializeUIPrefabs()
+        private void InstantiateCommandConsolePrefab()
         {
             LogManager.OnDebugLog(typeof(UIManager),
-                $"OnInitializeUIPrefabs()");
-
-            Instance.uiPrefabs = new Dictionary<string, GameObject>();
+                $"InstantiateCommandConsolePrefab()");
+            
+            var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[2]],
+                transform, true);
+            uiPrefabs[DataManager.AssetData.uiPrefab.names[2]] = instantiatedObject;
+            
+            LogManager.OnDebugLog(LabelType.Success, typeof(UIManager),
+                $"Instantiate <b>Command Console Prefab</b> successfully");
         }
 
         /// <summary>
@@ -153,11 +167,5 @@ namespace Manager
         {
             Instance.uiPrefabs?[DataManager.AssetData.uiPrefab.names[1]].SetActive(false);
         }
-
-        /// <summary>
-        /// Get Transform of <b>UIManager</b>
-        /// </summary>
-        /// <returns> Transform of <b>UIManager</b> </returns>
-        public static Transform Transform => Instance.transform;
     }
 }
