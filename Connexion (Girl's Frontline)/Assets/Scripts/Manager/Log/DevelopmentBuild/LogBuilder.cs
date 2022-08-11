@@ -7,38 +7,38 @@ using System;
 namespace Manager.Log.DevelopmentBuild
 {
     /// <summary>
-    /// Output log string builder by purpose in <b>Game Application</b> after build
+    /// <b>Output Log</b> builder by purpose in <b>Game Application</b> after build
     /// </summary>
     public static class LogBuilder
     {
         /// <summary>
-        /// Build the string of the administrator permission log
+        /// Build the string of <b>Administrator Permission Log</b>
         /// </summary>
         /// <param name="contents"> Contents of the log </param>
-        /// <returns> The string of the administrator permission log </returns>
+        /// <returns> The string of <b>Administrator Permission Log</b> </returns>
         public static string Build(string contents)
         {
             return $"{Label.AdministratorInDevelopmentBuildLogLabel}|{contents}";
         }
 
         /// <summary>
-        /// Build the string of the default log
+        /// Build the string of <b>Default Log</b>
         /// </summary>
         /// <param name="classType"> The type of the class where the log was called </param>
         /// <param name="contents"> Contents of the log </param>
-        /// <returns> The string of the default log </returns>
+        /// <returns> The string of <b>Default Log</b> </returns>
         public static string Build(Type classType, string contents)
         {
-            return $"{Label.DefaultLogLabel}|{classType.Name}|Called <b ><i >{contents}</i ></b >";
+            return $"{Label.DefaultLogLabel}|{classType.Name}|Called <b><i>{contents}</i></b>";
         }
 
         /// <summary>
-        /// Build the string of special log
+        /// Build the string of <b>Spacial Log</b>
         /// </summary>
         /// <param name="type"> Type of Log </param>
         /// <param name="classType"> The type of the class where the log was called </param>
         /// <param name="contents"> Contents of the log </param>
-        /// <returns> The string of special log </returns>
+        /// <returns> The string of <b>Spacial Log</b> </returns>
         /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
         public static string Build(Label.LabelType type, Type classType, string contents)
         {
