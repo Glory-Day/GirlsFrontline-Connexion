@@ -8,7 +8,7 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire scene used in <b>Game Application</b>
+    /// Manager that manages <b>Scene</b> used in <b>Game Application</b>
     /// </summary>
     public class SceneManager : Singleton<SceneManager>
     {
@@ -29,10 +29,10 @@ namespace Manager
         #region LOAD API
 
         /// <summary>
-        /// Load scene by scene name
+        /// Load scene by <see cref="SceneName"/>
         /// </summary>
         /// <param name="name"> Name of scene </param>
-        /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>SceneName</b> </exception>
+        /// <exception cref="ArgumentOutOfRangeException"> Out of range in <see cref="SceneName"/> </exception>
         public static void OnLoadSceneByName(SceneName name)
         {
             LogManager.OnDebugLog(typeof(SceneManager),
@@ -60,7 +60,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Get the currently active current scene name
+        /// Get the currently active current <see cref="SceneName"/>
         /// </summary>
         public static SceneName CurrentSceneName =>
             (SceneName)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
