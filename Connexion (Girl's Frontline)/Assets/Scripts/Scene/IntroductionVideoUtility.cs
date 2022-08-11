@@ -10,7 +10,7 @@ using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
 
-namespace Scene.Main
+namespace Scene
 {
     /// <summary>
     /// Controls the video player in <b>Introduction Video Scene</b>
@@ -35,8 +35,6 @@ namespace Scene.Main
         {
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
-            
-            SoundManager.OnInitialize();
 
             StartCoroutine(LoadAllDataAndAssets());
         }
