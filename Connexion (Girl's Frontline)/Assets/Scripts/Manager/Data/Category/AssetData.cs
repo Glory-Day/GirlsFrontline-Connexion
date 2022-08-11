@@ -9,7 +9,7 @@ namespace Manager.Data.Category
     #region AUDIO ASSET DATA API
 
     /// <summary>
-    /// Background audio clip asset data in <b>AssetData.json</b>
+    /// Background audio clip asset data format in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class BackgroundAudioClip
@@ -18,7 +18,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Effect audio clip asset data in <b>AssetData.json</b>
+    /// Effect audio clip asset data format in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class EffectAudioClip
@@ -27,7 +27,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Video audio clip asset data in <b>AssetData.json</b>
+    /// Video audio clip asset data format in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class VoiceAudioClip
@@ -40,7 +40,7 @@ namespace Manager.Data.Category
     #region PREFAB ASSET DATA API
 
     /// <summary>
-    /// UI prefab asset data in <b>AssetData.json</b>
+    /// UI prefab asset data format in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class UIPrefab
@@ -51,7 +51,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// Asset data in <b>AssetData.json</b>
+    /// <b>Data Format</b> in <b>AssetData.json</b>
     /// </summary>
     [Serializable]
     public class AssetData
