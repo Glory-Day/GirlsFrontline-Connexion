@@ -25,7 +25,7 @@ namespace Manager
         #endregion
 
         /// <summary>
-        /// Audio source playing background audio in <b>SoundManager</b>
+        /// <see cref="AudioSource"/> playing background <see cref="AudioClip"/>
         /// </summary>
         private AudioSource backgroundAudioSource;
         
@@ -83,10 +83,6 @@ namespace Manager
         }
 
         /// <summary>
-        /// Initialize audio mixer and background, effect, voice audio clips
-        /// </summary>
-
-        /// <summary>
         /// Play background audio source select by key value
         /// </summary>
         /// <param name="key"> Key value of background audio clips </param>
@@ -141,7 +137,7 @@ namespace Manager
         /// <summary>
         /// Add background audio clip in <b>List&lt;AudioClip&gt; backgroundAudioClips</b>
         /// </summary>
-        /// <param name="key"> <b>string</b> type key value </param>
+        /// <param name="key"> Key value of background audio clips </param>
         /// <param name="audioClip"> Background audio clip </param>
         public static void AddBackgroundAudioClip(string key, AudioClip audioClip)
         {
@@ -151,7 +147,7 @@ namespace Manager
         /// <summary>
         /// Add effect audio clip in <b>List&lt;AudioClip&gt; effectAudioClips</b>
         /// </summary>
-        /// <param name="key"> <b>string</b> type key value </param>
+        /// <param name="key"> Key value of effect audio clips </param>
         /// <param name="audioClip"> Effect audio clip </param>
         public static void AddEffectAudioClip(string key, AudioClip audioClip)
         {
@@ -161,7 +157,7 @@ namespace Manager
         /// <summary>
         /// Add voice audio clip in <b>List&lt;AudioClip&gt; voiceAudioClips</b>
         /// </summary>
-        /// <param name="key"> <b>string</b> type key value </param>
+        /// <param name="key"> Key value of voice audio clips </param>
         /// <param name="audioClip"> Voice audio clip </param>
         public static void AddVoiceAudioClip(string key, AudioClip audioClip)
         {
