@@ -9,7 +9,7 @@ namespace Manager.Data.Category
     #region ASSET LABEL DATA API
 
     /// <summary>
-    /// Audio asset label data in <b>AddressableLabel.json</b>
+    /// Audio asset label data format in <see cref="AddressableLabelData"/>
     /// </summary>
     [Serializable]
     public class AudioAsset
@@ -18,7 +18,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Prefab asset label data in <b>AddressableLabel.json</b>
+    /// Prefab asset label data format in <see cref="AddressableLabelData"/>
     /// </summary>
     [Serializable]
     public class PrefabAsset
@@ -29,7 +29,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// Addressable label data in <b>AddressableLabel.json</b>
+    /// <b>Data Format</b> in <b>AddressableLabel.json</b>
     /// </summary>
     [Serializable]
     public class AddressableLabelData
