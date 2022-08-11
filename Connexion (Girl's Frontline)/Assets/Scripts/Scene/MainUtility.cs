@@ -7,12 +7,12 @@ using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Scene.Main
+namespace Scene
 {
     /// <summary>
     /// Events in the <b>Main Scene</b>
     /// </summary>
-    public class MainEventUtility : MonoBehaviour
+    public class MainUtility : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
 
@@ -29,7 +29,7 @@ namespace Scene.Main
         /// </summary>
         public void OnClickedGameStartButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(MainEventUtility),
+            LogManager.OnDebugLog(LabelType.Event, typeof(MainUtility),
                 "<b>Game Start Button</b> is clicked");
 
             gameStartButton.interactable = false;
