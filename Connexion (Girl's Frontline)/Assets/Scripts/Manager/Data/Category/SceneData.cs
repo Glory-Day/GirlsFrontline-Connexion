@@ -9,7 +9,7 @@ namespace Manager.Data.Category
     #region SCENE DATA API
 
     /// <summary>
-    /// Scene data in <b>SceneData.json</b>
+    /// Scene data format in <see cref="SceneData"/>
     /// </summary>
     [Serializable]
     public class Scene
@@ -20,7 +20,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// Scene data in <b>SceneData.json</b>
+    /// <b>Data Format</b> in <b>SceneData.json</b>
     /// </summary>
     [Serializable]
     public class SceneData
