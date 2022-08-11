@@ -9,12 +9,12 @@ using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Scene.Main
+namespace Scene
 {
     /// <summary>
     /// Events in the <b>Selection Scene</b>
     /// </summary>
-    public class SelectionEventUtility : MonoBehaviour
+    public class SelectionUtility : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
 
@@ -111,7 +111,7 @@ namespace Scene.Main
         /// </summary>
         public void OnClickedUndoButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility),
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionUtility),
                 "<b>Undo Button</b> is clicked");
 
             undoButton.interactable = false;
@@ -127,14 +127,14 @@ namespace Scene.Main
         /// </summary>
         public void OnClickedNextButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility),
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionUtility),
                 $"<b>Next Button</b> is clicked");
 
             // Play animation for select next chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[currentChapterIndex++]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility),
+            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionUtility),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
 
@@ -143,14 +143,14 @@ namespace Scene.Main
         /// </summary>
         public void OnClickedPreviewButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionEventUtility),
+            LogManager.OnDebugLog(LabelType.Event, typeof(SelectionUtility),
                 $"<b>Preview Button</b> is clicked");
 
             // Play animation for select preview chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--currentChapterIndex]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionEventUtility),
+            LogManager.OnDebugLog(LabelType.Success, typeof(SelectionUtility),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
 
