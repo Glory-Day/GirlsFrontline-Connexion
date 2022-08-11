@@ -58,12 +58,6 @@ namespace Manager.UI.Console
 
         private StringBuilder commandTextBuilder;
 
-        // Awake is called when the script instance is being loaded
-        private void Awake()
-        {
-            transform.SetParent(UIManager.Transform);
-        }
-
         // Start is called before the first frame update
         private void Start()
         {
