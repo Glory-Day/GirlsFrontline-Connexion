@@ -1,19 +1,17 @@
 ﻿namespace Manager.Log
 {
     /// <summary>
-    /// Label or label-related data in the output log
+    /// Label or label-related data in output log
     /// </summary>
     public static class Label
     {
-        // Log label text for unity editor
-        public const string DefaultLogLabel                    = "[DEFAULT]";
-        public const string EventLogLabel                      = "[EVENT]";
-        public const string ErrorLogLabel                      = "[ERROR]";
-        public const string AdministratorInUnityEditorLogLabel = "[PERMISSON][ADMINISTRATOR]";
-        public const string SuccessLogLabel                    = "[SUCCESS]";
-
-        // Log label text for development build
+        // Log label text
+        public const string DefaultLogLabel                         = "DEFAULT";
+        public const string EventLogLabel                           = "EVENT";
+        public const string ErrorLogLabel                           = "ERROR";
+        public const string AdministratorInUnityEditorLogLabel      = "PERMISSON][ADMINISTRATOR";
         public const string AdministratorInDevelopmentBuildLogLabel = "PERMISSION|ADMINISTRATOR";
+        public const string SuccessLogLabel                         = "SUCCESS";
 
         // Log label color
         public const string DefaultLogColor       = "#C0C0C0";
