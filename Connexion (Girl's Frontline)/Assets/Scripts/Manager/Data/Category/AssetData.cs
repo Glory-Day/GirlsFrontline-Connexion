@@ -1,15 +1,16 @@
 ﻿#region NAMESPACE API
 
 using System;
+using UnityEngine;
 
 #endregion
 
 namespace Manager.Data.Category
 {
-    #region AUDIO ASSET DATA API
+    #region DATA API
 
     /// <summary>
-    /// Background audio clip asset data format in <see cref="AssetData"/>
+    /// Data format of background <see cref="AudioClip"/> asset in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class BackgroundAudioClip
@@ -18,7 +19,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Effect audio clip asset data format in <see cref="AssetData"/>
+    /// Data format of effect <see cref="AudioClip"/> asset in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class EffectAudioClip
@@ -27,7 +28,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Video audio clip asset data format in <see cref="AssetData"/>
+    /// Data format of voice <see cref="AudioClip"/> asset in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class VoiceAudioClip
@@ -35,12 +36,8 @@ namespace Manager.Data.Category
         public string[] names;
     }
 
-    #endregion
-
-    #region PREFAB ASSET DATA API
-
     /// <summary>
-    /// UI prefab asset data format in <see cref="AssetData"/>
+    /// Data Format of UI prefab asset in <see cref="AssetData"/>
     /// </summary>
     [Serializable]
     public class UIPrefab
@@ -51,7 +48,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// <b>Data Format</b> in <b>AssetData.json</b>
+    /// Data format in <see cref="AssetData"/> Json file
     /// </summary>
     [Serializable]
     public class AssetData
