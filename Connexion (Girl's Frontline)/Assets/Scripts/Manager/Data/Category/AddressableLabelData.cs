@@ -6,10 +6,10 @@ using System;
 
 namespace Manager.Data.Category
 {
-    #region ASSET LABEL DATA API
+    #region DATA API
 
     /// <summary>
-    /// Audio asset label data format in <see cref="AddressableLabelData"/>
+    /// Data format of audio asset label in <see cref="AddressableLabelData"/>
     /// </summary>
     [Serializable]
     public class AudioAsset
@@ -18,7 +18,7 @@ namespace Manager.Data.Category
     }
 
     /// <summary>
-    /// Prefab asset label data format in <see cref="AddressableLabelData"/>
+    /// Data format of prefab asset label in <see cref="AddressableLabelData"/>
     /// </summary>
     [Serializable]
     public class PrefabAsset
@@ -29,7 +29,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// <b>Data Format</b> in <b>AddressableLabel.json</b>
+    /// Data format in <see cref="AddressableLabelData"/> Json file
     /// </summary>
     [Serializable]
     public class AddressableLabelData
