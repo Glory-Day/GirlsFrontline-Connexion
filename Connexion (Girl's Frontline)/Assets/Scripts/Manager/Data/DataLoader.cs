@@ -14,9 +14,9 @@ namespace Manager.Data
     public class DataLoader
     {
         /// <summary>
-        /// Load data according to the Json file format
+        /// Load data according to Json file format
         /// </summary>
-        /// <param name="path"> Json file local path </param>
+        /// <param name="path"> Json file local path in <see cref="JsonFilePath"/> </param>
         /// <typeparam name="T"> Type of Json file format in <see cref="Data.Category"/> </typeparam>
         /// <returns> Loaded data in Json file </returns>
         public static T OnLoadData<T>(string path) where T : class
