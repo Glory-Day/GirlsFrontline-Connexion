@@ -7,7 +7,7 @@ using Manager.Asset;
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages <b>Asset</b> used in <b>Game Application</b>
+    /// Manager that manages asset used in <b>Game Application</b>
     /// </summary>
     public class AssetManager : Singleton<AssetManager>
     {
@@ -19,7 +19,10 @@ namespace Manager
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
-
+        
+        /// <summary>
+        /// Initialize <see cref="AssetManager"/> fields
+        /// </summary>
         public static void OnInitialize()
         {
             LogManager.OnDebugLog(typeof(AssetManager),
