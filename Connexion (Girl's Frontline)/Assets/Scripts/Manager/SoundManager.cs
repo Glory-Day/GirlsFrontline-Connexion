@@ -12,7 +12,7 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages the entire sound used in <b>Game Application</b>
+    /// Manager that manages sound used in <b>Game Application</b>
     /// </summary>
     public class SoundManager : Singleton<SoundManager>
     {
@@ -135,7 +135,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Add background audio clip in <b>List&lt;AudioClip&gt; backgroundAudioClips</b>
+        /// Add background audio clip in List&lt;AudioClip&gt; backgroundAudioClips
         /// </summary>
         /// <param name="key"> Key value of background audio clips </param>
         /// <param name="audioClip"> Background audio clip </param>
@@ -145,7 +145,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Add effect audio clip in <b>List&lt;AudioClip&gt; effectAudioClips</b>
+        /// Add effect audio clip in List&lt;AudioClip&gt; effectAudioClips
         /// </summary>
         /// <param name="key"> Key value of effect audio clips </param>
         /// <param name="audioClip"> Effect audio clip </param>
@@ -155,7 +155,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Add voice audio clip in <b>List&lt;AudioClip&gt; voiceAudioClips</b>
+        /// Add voice audio clip in List&lt;AudioClip&gt; voiceAudioClips
         /// </summary>
         /// <param name="key"> Key value of voice audio clips </param>
         /// <param name="audioClip"> Voice audio clip </param>
@@ -171,7 +171,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Returns effect audio clip search by key value
+        /// Get effect audio clip search by key value
         /// </summary>
         /// <param name="key"> Key value of effect audio clips </param>
         /// <returns> Effect audio clip </returns>
@@ -181,7 +181,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Returns voice audio clip search by key value
+        /// Get voice audio clip search by key value
         /// </summary>
         /// <param name="key"> Key value of voice audio clips </param>
         /// <returns> Voice audio clip </returns>
