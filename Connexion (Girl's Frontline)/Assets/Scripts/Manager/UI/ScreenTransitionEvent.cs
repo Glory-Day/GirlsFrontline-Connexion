@@ -9,15 +9,15 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager.UI
 {
     /// <summary>
-    /// Events for screen transition
+    /// <see cref="Animation"/> events for <b>Screen Transition</b>
     /// </summary>
     public class ScreenTransitionEvent : MonoBehaviour
     {
         #region ANIMATION EVENT API
 
         /// <summary>
-        /// When scene transition <see cref="Animation"/> is left,
-        /// load scene by <see cref="SceneManager.CurrentSceneName"/>
+        /// When <b>Scene Transition <see cref="Animation"/></b> is <b>Left</b>,
+        /// load <b>Scene</b> by <see cref="SceneManager.CurrentSceneName"/>
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Out of range exception in <see cref="SceneManager.SceneName"/>
@@ -40,8 +40,8 @@ namespace Manager.UI
         }
 
         /// <summary>
-        /// When scene transition <see cref="Animation"/> is right,
-        /// load scene by <see cref="SceneManager.CurrentSceneName"/>
+        /// When <b>Scene Transition <see cref="Animation"/></b> is <b>Right</b>,
+        /// load <b>Scene</b> by <see cref="SceneManager.CurrentSceneName"/>
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Out of range exception in <see cref="SceneManager.SceneName"/>
