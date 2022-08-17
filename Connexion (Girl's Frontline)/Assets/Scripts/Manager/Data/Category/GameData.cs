@@ -6,10 +6,10 @@ using System;
 
 namespace Manager.Data.Category
 {
-    #region CHAPTER DATA API
+    #region DATA API
 
     /// <summary>
-    /// Chapter lock data format in <see cref="GameData"/>
+    /// Data format of chapter lock in <see cref="GameData"/>
     /// </summary>
     [Serializable]
     public class Chapter
@@ -20,7 +20,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// <b>Data Format</b> in <b>GameData.json</b>
+    /// Data format in <see cref="GameData"/> Json file
     /// </summary>
     [Serializable]
     public class GameData
