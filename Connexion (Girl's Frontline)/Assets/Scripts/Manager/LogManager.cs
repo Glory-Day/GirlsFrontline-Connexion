@@ -10,7 +10,7 @@ using Manager.Log;
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages <b>Log</b> for debugging
+    /// Manager that manages log for debugging
     /// </summary>
     public class LogManager : Singleton<LogManager>
     {
@@ -25,9 +25,9 @@ namespace Manager
         #region UNITY EDITOR CONSOLE API
 
         /// <summary>
-        /// Outputs a administrator permission log to the console in <b>Unity Editor</b>
+        /// Outputs a administrator permission log to the console in <b>Unity Editor Console</b>
         /// </summary>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(UnityEditor)]
         private static void UnityEditorLog(string contexts)
         {
@@ -37,10 +37,10 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a general log to the console in <b>Unity Editor</b>
+        /// Outputs a default log to the console in <b>Unity Editor Console</b>
         /// </summary>
-        /// <param name="classType"> Type of the class where the log was called </param>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(UnityEditor)]
         private static void UnityEditorLog(Type classType, string contexts)
         {
@@ -50,12 +50,14 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a specific log to the console in <b>Unity Editor</b>
+        /// Outputs a specific log to the console in <b>Unity Editor Console</b>
         /// </summary>
-        /// <param name="type"> Type of Log </param>
-        /// <param name="classType"> Type of the class where the log was called </param>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
-        /// <exception cref="ArgumentOutOfRangeException"> Out of range in <b>LabelType</b> </exception>
+        /// <param name="type"> <see cref="Label.LabelType"/> of log </param>
+        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="contexts"> Contents of output log </param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Out of range exception in <see cref="Label.LabelType"/>
+        /// </exception>
         [System.Diagnostics.Conditional(UnityEditor)]
         private static void UnityEditorLog(Label.LabelType type, Type classType, string contexts)
         {
@@ -90,9 +92,9 @@ namespace Manager
         private const string DevelopmentBuildLogFilePath = @"/Build.log";
 
         /// <summary>
-        /// Outputs a administrator permission log to the console in <b>Unity Application</b> after built
+        /// Outputs a administrator permission log to the console in <b>Development Build</b>
         /// </summary>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
         private static void DevelopmentBuildLog(string contexts)
         {
@@ -106,10 +108,10 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a general log to the console in <b>Unity Application</b> after built
+        /// Outputs a default log to the console in <b>Development Build</b>
         /// </summary>
-        /// <param name="classType"> Type of the class where the log was called </param>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
         private static void DevelopmentBuildLog(Type classType, string contexts)
         {
@@ -123,11 +125,11 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a specific log to the console in <b>Unity Application</b> after built
+        /// Outputs a specific log to the console in <b>Development Build</b>
         /// </summary>
-        /// <param name="type"> Type of Log </param>
-        /// <param name="classType"> Type of the class where the log was called </param>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="type"> <see cref="Label.LabelType"/> of log </param>
+        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
         private static void DevelopmentBuildLog(Label.LabelType type, Type classType, string contexts)
         {
@@ -145,7 +147,7 @@ namespace Manager
         /// <summary>
         /// Outputs a administrator permission log
         /// </summary>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)] 
         [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(string contexts)
@@ -158,10 +160,10 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a general log
+        /// Outputs a default log
         /// </summary>
-        /// <param name="classType"> Type of the class where the log was called </param>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)] 
         [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Type classType, string contexts)
@@ -176,9 +178,9 @@ namespace Manager
         /// <summary>
         /// Outputs a specific log
         /// </summary>
-        /// <param name="type"> Type of Log </param>
-        /// <param name="classType"> Type of the class where the log was called </param>
-        /// <param name="contexts"> Contents of the <b>Log</b> </param>
+        /// <param name="type"> <see cref="Label.LabelType"/> of log </param>
+        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="contexts"> Contents of output <b>Log</b> </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)] 
         [System.Diagnostics.Conditional(UnityEditor)]
         public static void OnDebugLog(Label.LabelType type, Type classType, string contexts)
