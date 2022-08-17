@@ -9,7 +9,7 @@ using LabelType = Manager.Log.Label.LabelType;
 namespace Manager
 {
     /// <summary>
-    /// Manager that manages <b>Data</b> used in <b>Game Application</b>
+    /// Manager that manages data used in <b>Game Application</b>
     /// </summary>
     public class DataManager : Singleton<DataManager>
     {
@@ -33,7 +33,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadGameData()");
 
-            gameData = DataLoader.OnLoadData<GameData>(JsonPath.GameDataPath);
+            gameData = DataLoader.OnLoadData<GameData>(JsonFilePath.GameDataPath);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadSceneData()");
 
-            sceneData = DataLoader.OnLoadData<SceneData>(JsonPath.SceneDataPath);
+            sceneData = DataLoader.OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Manager
             LogManager.OnDebugLog(typeof(DataManager),
                 $"LoadAssetData()");
 
-            assetData = DataLoader.OnLoadData<AssetData>(JsonPath.AssetDataPath);
+            assetData = DataLoader.OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Manager
                 $"LoadAddressableLabelData()");
 
             addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
-                JsonPath.AddressableLabelDataPath);
+                JsonFilePath.AddressableLabelDataPath);
         }
 
         #endregion
