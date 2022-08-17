@@ -29,7 +29,7 @@ namespace Manager.Asset
         #region LOAD ASSET API
 
         /// <summary>
-        /// Load UI prefab assets using label in <see cref="DataManager.AddressableLabelData"/>
+        /// Load all UI prefab assets using label in <see cref="DataManager.AddressableLabelData"/>
         /// </summary>
         public void LoadUIPrefabAssets()
         {
@@ -53,7 +53,7 @@ namespace Manager.Asset
         #region UNLOAD ASSET API
 
         /// <summary>
-        /// Unload UI prefab assets using label in <see cref="DataManager.AddressableLabelData"/>
+        /// Unload all UI prefab assets
         /// </summary>
         public void UnloadUIPrefabAssets()
         {
