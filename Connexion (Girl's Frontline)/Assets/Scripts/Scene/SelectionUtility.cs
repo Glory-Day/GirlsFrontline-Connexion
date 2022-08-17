@@ -43,17 +43,17 @@ namespace Scene
         #endregion
 
         /// <summary>
-        /// Number of current selected chapter button index
+        /// Number of current selected <see cref="chapters"/> index
         /// </summary>
         private int currentChapterIndex;
 
         /// <summary>
-        /// Chapter selection <see cref="Animation"/> component
+        /// <see cref="Chapter"/> selection <see cref="Animation"/> component
         /// </summary>
         private Animation selectionAnimation;
 
         /// <summary>
-        /// Whether chapter buttons stored in <see cref="Manager.Data.Category.GameData"/> are enabled
+        /// Whether <see cref="chapters"/> stored in <see cref="Manager.Data.Category.GameData"/> are enabled
         /// </summary>
         private bool[] isChapterLock;
 
@@ -107,7 +107,7 @@ namespace Scene
         #region BUTTON EVENT API
 
         /// <summary>
-        /// Button event to click <see cref="undoButton"/> in <b>Selection Scene</b>
+        /// <see cref="Button"/> event to click <see cref="undoButton"/> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedUndoButton()
         {
@@ -123,7 +123,7 @@ namespace Scene
         }
 
         /// <summary>
-        /// Button event to click <see cref="nextButton"/> in <b>Selection Scene</b>
+        /// <see cref="Button"/> event to click <see cref="nextButton"/> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedNextButton()
         {
@@ -139,7 +139,7 @@ namespace Scene
         }
 
         /// <summary>
-        /// Button event to click <see cref="previewButton"/> in <b>Selection Scene</b>
+        /// <see cref="Button"/> event to click <see cref="previewButton"/> in <b>Selection Scene</b>
         /// </summary>
         public void OnClickedPreviewButton()
         {
