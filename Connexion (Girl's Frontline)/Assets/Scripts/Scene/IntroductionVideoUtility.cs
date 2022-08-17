@@ -13,7 +13,7 @@ using SceneName = Manager.SceneManager.SceneName;
 namespace Scene
 {
     /// <summary>
-    /// Controls the video player in <b>Introduction Video Scene</b>
+    /// Controls the <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b>
     /// </summary>
     public class IntroductionVideoUtility : MonoBehaviour
     {
@@ -33,6 +33,9 @@ namespace Scene
         // Start is called before the first frame update
         private void Start()
         {
+            LogManager.OnDebugLog(typeof(IntroductionVideoUtility),
+                $"Start()");
+            
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
 
@@ -40,7 +43,7 @@ namespace Scene
         }
 
         /// <summary>
-        /// Load <b>All Data And Assets</b> related running <b>Game Application</b>
+        /// Load all data and assets related running <b>Game Application</b>
         /// </summary>
         private IEnumerator LoadAllDataAndAssets()
         {
