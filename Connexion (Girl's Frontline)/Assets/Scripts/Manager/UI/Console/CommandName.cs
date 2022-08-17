@@ -1,5 +1,8 @@
 ﻿namespace Manager.UI.Console
 {
+    /// <summary>
+    /// <b>Command</b> name
+    /// </summary>
     public static class CommandName
     {
         public const string LoadAllDataCommand             = "OnLoadAllData";
