@@ -3,7 +3,7 @@
     /// <summary>
     /// Path to load Json file
     /// </summary>
-    public static class JsonPath
+    public static class JsonFilePath
     {
         public const string AddressableLabelDataPath = "/AddressableLabelData.json";
         public const string GameDataPath             = "/GameData.json";
