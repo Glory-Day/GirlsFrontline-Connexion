@@ -6,10 +6,10 @@ using System;
 
 namespace Manager.Data.Category
 {
-    #region SCENE DATA API
+    #region DATA API
 
     /// <summary>
-    /// Scene data format in <see cref="SceneData"/>
+    /// Data format of scene in <see cref="SceneData"/>
     /// </summary>
     [Serializable]
     public class Scene
@@ -20,7 +20,7 @@ namespace Manager.Data.Category
     #endregion
 
     /// <summary>
-    /// <b>Data Format</b> in <b>SceneData.json</b>
+    /// Data format in <see cref="SceneData"/> Json file
     /// </summary>
     [Serializable]
     public class SceneData
