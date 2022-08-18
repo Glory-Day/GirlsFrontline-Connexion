@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using Manager.Sound;
 using LabelType = Manager.Log.Label.LabelType;
 
@@ -28,12 +27,8 @@ namespace Manager
         /// <see cref="AudioSource"/> playing background <see cref="AudioClip"/>
         /// </summary>
         private AudioSource backgroundAudioSource;
-        
-        private AudioMixer masterAudioMixer;
 
-        private AudioMixerGroup backgroundAudioMixerGroup;
-        private AudioMixerGroup effectAudioMixerGroup;
-        private AudioMixerGroup voiceAudioMixerGroup;
+        private AudioMixerGroupData audioMixerGroups;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
@@ -57,26 +52,20 @@ namespace Manager
         /// <summary>
         /// Initialize <see cref="SoundManager"/> components and fields
         /// </summary>
-        public static void OnInitialize()
+        public static void OnInitialize(AudioMixerGroupData audioMixerGroupData)
         {
             LogManager.OnDebugLog(typeof(SoundManager),
                 $"OnInitialize()");
-            
-            // Initialize audio mixer group
-            var audioMixerData = GameObject.Find(AudioMixerName).GetComponent<AudioMixerData>();
-            Instance.masterAudioMixer = audioMixerData.masterAudioMixer;
-            Instance.backgroundAudioMixerGroup = audioMixerData.backgroundAudioMixerGroup;
-            Instance.effectAudioMixerGroup = audioMixerData.effectAudioMixerGroup;
-            Instance.voiceAudioMixerGroup = audioMixerData.voiceAudioMixerGroup;
+
+            Instance.audioMixerGroups = audioMixerGroupData;
             
             // Initialize audio source component and setting
             Instance.gameObject.AddComponent<AudioListener>();
             Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
             Instance.backgroundAudioSource.playOnAwake = false;
             Instance.backgroundAudioSource.loop = true;
-            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.backgroundAudioMixerGroup;
+            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.audioMixerGroups.Background;
             
-            // Initialize list of audio clips
             Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
             Instance.effectAudioClips = new Dictionary<string, AudioClip>();
             Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
@@ -162,12 +151,6 @@ namespace Manager
         public static void AddVoiceAudioClip(string key, AudioClip audioClip)
         {
             Instance.voiceAudioClips.Add(key, audioClip);
-        }
-
-        public static AudioMixer MasterAudioMixer
-        {
-            get => Instance.masterAudioMixer;
-            set => Instance.masterAudioMixer = value;
         }
 
         /// <summary>
