@@ -9,6 +9,9 @@ using Label = Manager.Log.Label;
 
 namespace Manager
 {
+    /// <summary>
+    /// Manager that manages object used in <b>Game Application</b>
+    /// </summary>
     public class ObjectManager : Singleton<ObjectManager>
     {
         private struct ObjectPool
