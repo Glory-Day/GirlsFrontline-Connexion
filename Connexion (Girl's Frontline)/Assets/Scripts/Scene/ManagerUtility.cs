@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using Manager;
+using Manager.Sound;
 
 #endregion
 
@@ -12,6 +13,8 @@ namespace Scene
     /// </summary>
     public class ManagerUtility : MonoBehaviour
     {
+        private const string AudioMixerGroupsName = "Audio Mixer Groups";
+        
         // Start is called before the first frame update
         private void Start()
         {
@@ -19,7 +22,8 @@ namespace Scene
                 "Start()");
             
             AssetManager.OnInitialize();
-            SoundManager.OnInitialize();
+            SoundManager.OnInitialize(
+                GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroupData>());
             ObjectManager.OnInitialize();
             UIManager.OnInitialize();
         }
