@@ -61,7 +61,7 @@ namespace Scene
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;
             videoPlayer.loopPointReached += IsOver;
-
+            
             UIManager.OnInstantiateAllUIPrefabs();
 
             // Activate the skip button
