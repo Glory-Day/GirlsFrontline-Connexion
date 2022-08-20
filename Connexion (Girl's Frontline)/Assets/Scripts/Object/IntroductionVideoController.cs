@@ -10,12 +10,12 @@ using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
 
-namespace Scene
+namespace Object
 {
     /// <summary>
     /// Controls the <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b>
     /// </summary>
-    public class IntroductionVideoUtility : MonoBehaviour
+    public class IntroductionVideoController : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
 
@@ -33,7 +33,8 @@ namespace Scene
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(typeof(IntroductionVideoUtility),
+            LogManager.OnDebugLog(
+                typeof(IntroductionVideoController),
                 $"Start()");
             
             videoPlayer = GetComponent<VideoPlayer>();
@@ -50,12 +51,16 @@ namespace Scene
             DataManager.OnLoadAllData();
             AssetManager.OnLoadAllAssets();
 
-            LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(IntroductionVideoController),
                 $"<b>Waiting All Assets</b> is loaded");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) yield return null;
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(IntroductionVideoUtility),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(IntroductionVideoController),
                 "<b>All Data And Assets</b> are loaded successfully");
 
             // Unset the loop of the video and set the event called at the end of the video
@@ -74,26 +79,12 @@ namespace Scene
         /// <param name="player"> <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b> </param>
         private static void IsOver(VideoPlayer player)
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(IntroductionVideoController),
                 "<b>Introduction Video</b> is over");
             
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
         }
-
-        #region BUTTON EVENT API
-
-        /// <summary>
-        /// <see cref="Button"/> event to skip video
-        /// when clicked <see cref="skipButton"/> in <b>Introduction Video Scene</b>
-        /// </summary>
-        public void OnClickedSkipButton()
-        {
-            LogManager.OnDebugLog(LabelType.Event, typeof(IntroductionVideoUtility),
-                "<b>Skip Button</b> is clicked");
-            
-            SceneManager.OnLoadSceneByName(SceneName.MainScene);
-        }
-
-        #endregion
     }
 }
