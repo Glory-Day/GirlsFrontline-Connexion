@@ -6,7 +6,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Manager.Util.ObjectPool
+namespace Manager.Object
 {
     /// <summary>
     /// Pool for using objects while saving memory
