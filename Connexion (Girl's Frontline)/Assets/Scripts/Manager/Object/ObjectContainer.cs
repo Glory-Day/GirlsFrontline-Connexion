@@ -1,4 +1,4 @@
-﻿namespace Manager.Util.ObjectPool
+﻿namespace Manager.Object
 {
     /// <summary>
     /// Container to contain object
