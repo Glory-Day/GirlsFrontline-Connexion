@@ -21,7 +21,8 @@ namespace Manager.Data
         /// <returns> Loaded data in Json file </returns>
         public static T OnLoadData<T>(string path) where T : class
         {
-            LogManager.OnDebugLog(typeof(DataLoader),
+            LogManager.OnDebugLog(
+                typeof(DataLoader),
                 $"OnLoadData<{typeof(T).Name}>()");
 
             T data;
@@ -30,12 +31,16 @@ namespace Manager.Data
             {
                 data = JsonUtility.FromJson<T>(File.ReadAllText(Application.streamingAssetsPath + path));
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(DataLoader),
+                LogManager.OnDebugLog(
+                    LabelType.Success, 
+                    typeof(DataLoader),
                     $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b> successfully");
             }
             catch (DirectoryNotFoundException error)
             {
-                LogManager.OnDebugLog(LabelType.Error, typeof(DataLoader),
+                LogManager.OnDebugLog(
+                    LabelType.Error, 
+                    typeof(DataLoader),
                     error.Message);
 
                 // Directory not found exception error
