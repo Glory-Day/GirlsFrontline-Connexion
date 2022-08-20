@@ -30,7 +30,8 @@ namespace Manager
         /// </summary>
         private void LoadGameData()
         {
-            LogManager.OnDebugLog(typeof(DataManager),
+            LogManager.OnDebugLog(
+                typeof(DataManager),
                 $"LoadGameData()");
 
             gameData = DataLoader.OnLoadData<GameData>(JsonFilePath.GameDataPath);
@@ -41,7 +42,8 @@ namespace Manager
         /// </summary>
         private void LoadSceneData()
         {
-            LogManager.OnDebugLog(typeof(DataManager),
+            LogManager.OnDebugLog(
+                typeof(DataManager),
                 $"LoadSceneData()");
 
             sceneData = DataLoader.OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
@@ -52,7 +54,8 @@ namespace Manager
         /// </summary>
         private void LoadAssetData()
         {
-            LogManager.OnDebugLog(typeof(DataManager),
+            LogManager.OnDebugLog(
+                typeof(DataManager),
                 $"LoadAssetData()");
 
             assetData = DataLoader.OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
@@ -63,7 +66,8 @@ namespace Manager
         /// </summary>
         private void LoadAddressableLabelData()
         {
-            LogManager.OnDebugLog(typeof(DataManager),
+            LogManager.OnDebugLog(
+                typeof(DataManager),
                 $"LoadAddressableLabelData()");
 
             addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
@@ -77,7 +81,8 @@ namespace Manager
         /// </summary>
         public static void OnLoadAllData()
         {
-            LogManager.OnDebugLog(typeof(DataManager),
+            LogManager.OnDebugLog(
+                typeof(DataManager),
                 $"OnLoadAllData()");
             
             Instance.LoadGameData();
@@ -85,7 +90,9 @@ namespace Manager
             Instance.LoadAssetData();
             Instance.LoadSceneData();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(DataManager),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(DataManager),
                 "<b>All Data</b> is loaded successfully");
         }
         
