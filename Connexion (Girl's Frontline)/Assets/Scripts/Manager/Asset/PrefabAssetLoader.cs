@@ -33,14 +33,17 @@ namespace Manager.Asset
         /// </summary>
         public void LoadUIPrefabAssets()
         {
-            LogManager.OnDebugLog(typeof(PrefabAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(PrefabAssetLoader),
                 $"LoadUIPrefabAssets()");
 
             void Loaded(GameObject loadedGameObject)
             {
                 UIManager.AddUIPrefabs(loadedGameObject.name, loadedGameObject);
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(PrefabAssetLoader),
+                LogManager.OnDebugLog(
+                    LabelType.Success, 
+                    typeof(PrefabAssetLoader),
                     $"<b>{loadedGameObject.name}</b> is loaded successfully");
             }
 
@@ -57,12 +60,15 @@ namespace Manager.Asset
         /// </summary>
         public void UnloadUIPrefabAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"UnloadUIPrefabAssets()");
 
             Addressables.Release(uiPrefabAssetsHandle);
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(AudioAssetLoader),
                 $"<b>All UI Prefabs</b> are unloaded successfully");
         }
 
