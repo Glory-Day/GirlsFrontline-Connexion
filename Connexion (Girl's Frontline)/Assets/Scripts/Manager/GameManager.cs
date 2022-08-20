@@ -27,7 +27,9 @@ namespace Manager
 
             if (Time.timeScale < 0.5f)
             {
-                LogManager.OnDebugLog(LabelType.Error, typeof(GameManager),
+                LogManager.OnDebugLog(
+                    LabelType.Error, 
+                    typeof(GameManager),
                     $"<b>Game Application</b> has already been paused");
 
                 return;
@@ -37,7 +39,9 @@ namespace Manager
 
             Time.timeScale = 0f;
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(GameManager),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(GameManager),
                 $"<b>Game Application</b> pauses successfully");
         }
 
@@ -51,7 +55,9 @@ namespace Manager
 
             if (Time.timeScale > 0.5f)
             {
-                LogManager.OnDebugLog(LabelType.Error, typeof(GameManager),
+                LogManager.OnDebugLog(
+                    LabelType.Error, 
+                    typeof(GameManager),
                     $"<b>Game Application</b> is currently running");
 
                 return;
@@ -61,7 +67,9 @@ namespace Manager
 
             Time.timeScale = 1f;
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(GameManager),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(GameManager),
                 $"<b>Game Application</b> plays successfully");
         }
 
@@ -73,7 +81,9 @@ namespace Manager
             LogManager.OnDebugLog(typeof(GameManager),
                 $"OnQuit()");
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(GameManager),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(GameManager),
                 $"<b>Game Application</b> is quited successfully");
 
 #if UNITY_EDITOR
