@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Manager.Sound;
+using Object;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
@@ -28,7 +28,7 @@ namespace Manager
         /// </summary>
         private AudioSource backgroundAudioSource;
 
-        private AudioMixerGroupData audioMixerGroups;
+        private AudioMixerGroups audioMixerGroups;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
@@ -52,12 +52,13 @@ namespace Manager
         /// <summary>
         /// Initialize <see cref="SoundManager"/> components and fields
         /// </summary>
-        public static void OnInitialize(AudioMixerGroupData audioMixerGroupData)
+        public static void OnInitialize(AudioMixerGroups audioMixerGroups)
         {
-            LogManager.OnDebugLog(typeof(SoundManager),
+            LogManager.OnDebugLog(
+                typeof(SoundManager),
                 $"OnInitialize()");
 
-            Instance.audioMixerGroups = audioMixerGroupData;
+            Instance.audioMixerGroups = audioMixerGroups;
             
             // Initialize audio source component and setting
             Instance.gameObject.AddComponent<AudioListener>();
@@ -77,7 +78,8 @@ namespace Manager
         /// <param name="key"> Key value of background audio clips </param>
         private void PlayBackgroundAudioSource(string key)
         {
-            LogManager.OnDebugLog(typeof(SoundManager),
+            LogManager.OnDebugLog(
+                typeof(SoundManager),
                 $"PlayBackgroundAudioSource()");
 
             // If there is no audio clip, set the name as 'None', set it as the name of the audio clip
@@ -94,7 +96,9 @@ namespace Manager
             playingBackgroundAudioClip = audioClip;
             backgroundAudioSource.PlayOneShot(playingBackgroundAudioClip);
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(SoundManager),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(SoundManager),
                 $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
         }
 
@@ -107,7 +111,8 @@ namespace Manager
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static void OnChangeBackgroundAudioClip(SceneManager.SceneName name)
         {
-            LogManager.OnDebugLog(typeof(SoundManager),
+            LogManager.OnDebugLog(
+                typeof(SoundManager),
                 $"OnChangeBackgroundAudioClip()");
 
             switch (name)
