@@ -37,7 +37,8 @@ namespace Manager
         /// </exception>
         public static void OnLoadSceneByName(SceneName name)
         {
-            LogManager.OnDebugLog(typeof(SceneManager),
+            LogManager.OnDebugLog(
+                typeof(SceneManager),
                 $"OnLoadSceneByName()");
 
             switch (name)
@@ -46,14 +47,18 @@ namespace Manager
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[0].name);
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.MainScene);
 
-                    LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
+                    LogManager.OnDebugLog(
+                        LabelType.Success, 
+                        typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded successfully");
                     break;
                 case SceneName.SelectionScene:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.SelectionScene);
 
-                    LogManager.OnDebugLog(LabelType.Success, typeof(SceneManager),
+                    LogManager.OnDebugLog(
+                        LabelType.Success, 
+                        typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded successfully");
                     break;
                 default:
