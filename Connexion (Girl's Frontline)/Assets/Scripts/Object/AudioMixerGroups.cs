@@ -1,14 +1,13 @@
 ﻿#region NAMESPACE API
 
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
 #endregion
 
-namespace Manager.Sound
+namespace Object
 {
-    public class AudioMixerGroupData : MonoBehaviour
+    public class AudioMixerGroups : MonoBehaviour
     {
         [Header("Master Audio Mixer Group")]
         [SerializeField]
