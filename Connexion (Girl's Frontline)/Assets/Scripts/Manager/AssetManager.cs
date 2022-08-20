@@ -25,7 +25,8 @@ namespace Manager
         /// </summary>
         public static void OnInitialize()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"OnInitialize()");
 
             Instance.audioAssetLoader  = new AudioAssetLoader();
@@ -39,7 +40,8 @@ namespace Manager
         /// </summary>
         private void LoadAudioAssets()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"LoadAudioAssets()");
             
             audioAssetLoader.LoadBackgroundAudioClipAssets();
@@ -64,7 +66,8 @@ namespace Manager
         /// </summary>
         private void UnloadAudioAssets()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"UnloadAudioAssets()");
             
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
@@ -112,7 +115,8 @@ namespace Manager
         /// </summary>
         private void LoadPrefabAssets()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"LoadPrefabAssets()");
 
             prefabAssetLoader.LoadUIPrefabAssets();
@@ -123,7 +127,8 @@ namespace Manager
         /// </summary>
         private void UnloadPrefabAssets()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"UnloadPrefabAssets()");
 
             prefabAssetLoader.UnloadUIPrefabAssets();
@@ -144,7 +149,8 @@ namespace Manager
         /// </summary>
         public static void OnLoadAllAssets()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"OnLoadAllAssets()");
 
             Instance.LoadAudioAssets();
@@ -156,7 +162,8 @@ namespace Manager
         /// </summary>
         public static void OnUnloadAllAssets()
         {
-            LogManager.OnDebugLog(typeof(AssetManager),
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
                 $"OnUnloadAllAssets()");
 
             Instance.UnloadAudioAssets();
