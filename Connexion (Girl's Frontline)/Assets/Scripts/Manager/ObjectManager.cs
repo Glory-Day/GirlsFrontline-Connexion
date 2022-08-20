@@ -2,8 +2,8 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using Manager.Util.ObjectPool;
-using Label = Manager.Log.Label;
+using Manager.Object;
+using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
@@ -32,7 +32,8 @@ namespace Manager
 
         public static void OnInitialize()
         {
-            LogManager.OnDebugLog(typeof(ObjectManager),
+            LogManager.OnDebugLog(
+                typeof(ObjectManager),
                 $"OnInitialize()");
             
             Instance.objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
@@ -72,7 +73,9 @@ namespace Manager
         private void Create(GameObject prefab, int capacity, Transform parentTransform)
         {
             if (objectPool.originals.ContainsKey(prefab))
-                LogManager.OnDebugLog(Label.LabelType.Error, typeof(ObjectManager),
+                LogManager.OnDebugLog(
+                    LabelType.Error, 
+                    typeof(ObjectManager),
                     $"Pool for object type {prefab.name} has already been created");
 
             // Instantiate new object to use
@@ -98,7 +101,9 @@ namespace Manager
                 return;
             }
 
-            LogManager.OnDebugLog(Label.LabelType.Error, typeof(ObjectManager),
+            LogManager.OnDebugLog(
+                LabelType.Error, 
+                typeof(ObjectManager),
                 $"No pool contains the object {clone.name}");
         }
 
