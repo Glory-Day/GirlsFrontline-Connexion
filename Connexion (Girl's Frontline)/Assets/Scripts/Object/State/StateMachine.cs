@@ -1,4 +1,4 @@
-﻿namespace Object.Util.State
+﻿namespace Object.State
 {
     public class StateMachine
     {
