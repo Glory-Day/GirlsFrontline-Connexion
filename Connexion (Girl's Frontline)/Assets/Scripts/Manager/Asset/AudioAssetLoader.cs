@@ -38,14 +38,17 @@ namespace Manager.Asset
         /// </summary>
         public void LoadBackgroundAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"LoadBackgroundAudioClipAssets()");
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.AddBackgroundAudioClip(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                LogManager.OnDebugLog(
+                    LabelType.Success, 
+                    typeof(AudioAssetLoader),
                     $"<b>{loadedAudioClipAsset.name}</b> is loaded successfully");
             }
 
@@ -59,14 +62,17 @@ namespace Manager.Asset
         /// </summary>
         public void LoadEffectAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"LoadEffectAudioClipAssets()");
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.AddEffectAudioClip(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                LogManager.OnDebugLog(
+                    LabelType.Success, 
+                    typeof(AudioAssetLoader),
                     $"<b>{loadedAudioClipAsset.name}</b> is loaded successfully");
             }
 
@@ -80,14 +86,17 @@ namespace Manager.Asset
         /// </summary>
         public void LoadVoiceAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"LoadVoiceAudioClipAssets()");
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.AddVoiceAudioClip(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
-                LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+                LogManager.OnDebugLog(
+                    LabelType.Success, 
+                    typeof(AudioAssetLoader),
                     $"<b>{loadedAudioClipAsset.name}</b> is loaded successfully");
             }
 
@@ -104,12 +113,15 @@ namespace Manager.Asset
         /// </summary>
         public void UnloadBackgroundAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"UnloadBackgroundAudioClipAssets()");
 
             Addressables.Release(backgroundAudioClipAssetsHandle);
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(AudioAssetLoader),
                 $"<b>All Background Audio Clips</b> are unloaded successfully");
         }
 
@@ -118,12 +130,15 @@ namespace Manager.Asset
         /// </summary>
         public void UnloadEffectAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"UnloadEffectAudioClipAssets()");
 
             Addressables.Release(effectAudioClipAssetsHandle);
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(AudioAssetLoader),
                 $"<b>All Effect Audio Clips</b> are unloaded successfully");
         }
 
@@ -132,12 +147,15 @@ namespace Manager.Asset
         /// </summary>
         public void UnloadVoiceAudioClipAssets()
         {
-            LogManager.OnDebugLog(typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
                 $"UnloadVoiceAudioClipAssets()");
 
             Addressables.Release(voiceAudioClipAssetsHandle);
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(AudioAssetLoader),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(AudioAssetLoader),
                 $"<b>All Voice Audio Clips</b> are unloaded successfully");
         }
 
