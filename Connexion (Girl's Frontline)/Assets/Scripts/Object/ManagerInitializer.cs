@@ -2,28 +2,28 @@
 
 using UnityEngine;
 using Manager;
-using Manager.Sound;
 
 #endregion
 
-namespace Scene
+namespace Object
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ManagerUtility : MonoBehaviour
+    public class ManagerInitializer : MonoBehaviour
     {
         private const string AudioMixerGroupsName = "Audio Mixer Groups";
         
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(typeof(ManagerUtility),
+            LogManager.OnDebugLog(
+                typeof(ManagerInitializer),
                 "Start()");
-            
+
+            var audioMixerGroupData = GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroups>();
             AssetManager.OnInitialize();
-            SoundManager.OnInitialize(
-                GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroupData>());
+            SoundManager.OnInitialize(audioMixerGroupData);
             ObjectManager.OnInitialize();
             UIManager.OnInitialize();
         }
