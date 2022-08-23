@@ -25,6 +25,10 @@ namespace Manager.Asset
         /// </summary>
         public AudioAssetLoader()
         {
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
+                "AudioAssetLoader()");
+            
             backgroundAudioClipAssetsHandle = new AsyncOperationHandle<IList<AudioClip>>();
             effectAudioClipAssetsHandle     = new AsyncOperationHandle<IList<AudioClip>>();
             voiceAudioClipAssetsHandle      = new AsyncOperationHandle<IList<AudioClip>>(); 
