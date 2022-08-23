@@ -1,4 +1,11 @@
-﻿namespace Manager.UI.Console.Command
+﻿#region NAMESPACE API
+
+using Interface;
+using Manager;
+
+#endregion
+
+namespace Object.Console.Command
 {
     public class ApplicationQuitCommand : ICommand
     {
