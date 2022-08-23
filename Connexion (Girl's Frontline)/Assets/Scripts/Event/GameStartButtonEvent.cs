@@ -33,7 +33,9 @@ namespace Event.Button
         /// </summary>
         public void OnClicked()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(GameStartButtonEvent),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(GameStartButtonEvent),
                 "<b>Game Start Button</b> is clicked");
 
             gameStartButton.interactable = false;
