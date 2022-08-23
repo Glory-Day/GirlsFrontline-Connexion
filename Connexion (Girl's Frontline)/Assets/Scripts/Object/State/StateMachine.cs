@@ -1,4 +1,10 @@
-﻿namespace Object.State
+﻿#region NAMESPACE API
+
+using Interface;
+
+#endregion
+
+namespace Object.State
 {
     public class StateMachine
     {
