@@ -1,10 +1,12 @@
 ﻿#region NAMESPACE API
 
+using Interface;
+using Manager;
 using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
 
-namespace Manager.UI.Console.Command
+namespace Object.Console.Command
 {
     public class LoadMainScene : ICommand
     {
