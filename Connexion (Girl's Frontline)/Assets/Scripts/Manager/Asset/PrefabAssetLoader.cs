@@ -23,6 +23,10 @@ namespace Manager.Asset
         /// </summary>
         public PrefabAssetLoader()
         {
+            LogManager.OnDebugLog(
+                typeof(AudioAssetLoader),
+                "PrefabAssetLoader()");
+            
             uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
         }
 
