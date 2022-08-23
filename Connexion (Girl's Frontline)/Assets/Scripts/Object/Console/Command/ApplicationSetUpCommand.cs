@@ -1,12 +1,13 @@
 ﻿#region NAMESPACE API
 
 using System.Threading.Tasks;
-using Manager.UI.Console.Command;
+using Interface;
+using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Manager.UI.Console.Command
+namespace Object.Console.Command
 {
     public class ApplicationSetUpCommand : ICommand
     {
