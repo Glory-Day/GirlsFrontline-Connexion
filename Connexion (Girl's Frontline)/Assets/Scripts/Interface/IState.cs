@@ -1,4 +1,4 @@
-﻿namespace Object.State
+﻿namespace Interface
 {
     public interface IState
     {
