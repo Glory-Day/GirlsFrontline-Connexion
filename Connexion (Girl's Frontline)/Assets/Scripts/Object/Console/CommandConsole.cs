@@ -66,7 +66,7 @@ namespace Object.Console
             var commandList = new ICommand[]
                               {
                                   new LoadAllDataCommand(),               new LoadAllAssetsCommand(),
-                                  new UnloadAllAssetsCommand(),           new IsLoadedAllResourcesDoneCommand(),
+                                  new UnloadAllAssetsCommand(),           new IsLoadedAllAssetsDoneCommand(),
                                   new ChangeBackgroundAudioClipCommand(), new InstantiateAllUIPrefabsCommand(),
                                   new LoadMainScene(),                    new LoadSelectionScene(),
                                   new ApplicationQuitCommand(),           new ApplicationPlayCommand(),
