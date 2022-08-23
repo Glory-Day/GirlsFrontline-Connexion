@@ -15,7 +15,7 @@ namespace Object
     /// <summary>
     /// Controls the <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b>
     /// </summary>
-    public class IntroductionVideoController : MonoBehaviour
+    public class IntroductionVideoPlayer : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
 
@@ -34,7 +34,7 @@ namespace Object
         private void Start()
         {
             LogManager.OnDebugLog(
-                typeof(IntroductionVideoController),
+                typeof(IntroductionVideoPlayer),
                 $"Start()");
             
             videoPlayer = GetComponent<VideoPlayer>();
@@ -53,14 +53,14 @@ namespace Object
 
             LogManager.OnDebugLog(
                 LabelType.Event, 
-                typeof(IntroductionVideoController),
+                typeof(IntroductionVideoPlayer),
                 $"<b>Waiting All Assets</b> is loaded");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) yield return null;
 
             LogManager.OnDebugLog(
                 LabelType.Success, 
-                typeof(IntroductionVideoController),
+                typeof(IntroductionVideoPlayer),
                 "<b>All Data And Assets</b> are loaded successfully");
 
             // Unset the loop of the video and set the event called at the end of the video
@@ -81,7 +81,7 @@ namespace Object
         {
             LogManager.OnDebugLog(
                 LabelType.Event, 
-                typeof(IntroductionVideoController),
+                typeof(IntroductionVideoPlayer),
                 "<b>Introduction Video</b> is over");
             
             SceneManager.OnLoadSceneByName(SceneName.MainScene);
