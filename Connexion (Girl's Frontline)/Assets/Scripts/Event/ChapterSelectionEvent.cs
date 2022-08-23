@@ -82,6 +82,10 @@ namespace Scene
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
+            LogManager.OnDebugLog(
+                typeof(ChapterSelectionEvent),
+                "Awake()");
+            
             isChapterLock = Enumerable.Range(0, 5)
                                       .Select(i => DataManager.GameData.chapters[i].isLock)
                                       .ToArray();
@@ -101,6 +105,10 @@ namespace Scene
         // Start is called before the first frame update
         private void Start()
         {
+            LogManager.OnDebugLog(
+                typeof(ChapterSelectionEvent),
+                "Start()");
+            
             selectionAnimation = GetComponent<Animation>();
         }
 
@@ -111,7 +119,9 @@ namespace Scene
         /// </summary>
         public void OnClickedUndoButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ChapterSelectionEvent),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(ChapterSelectionEvent),
                 "<b>Undo Button</b> is clicked");
 
             undoButton.interactable = false;
@@ -127,14 +137,18 @@ namespace Scene
         /// </summary>
         public void OnClickedNextButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ChapterSelectionEvent),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(ChapterSelectionEvent),
                 $"<b>Next Button</b> is clicked");
 
             // Play animation for select next chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(nextButtonAnimationNames[currentChapterIndex++]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(ChapterSelectionEvent),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(ChapterSelectionEvent),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
 
@@ -143,14 +157,18 @@ namespace Scene
         /// </summary>
         public void OnClickedPreviewButton()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ChapterSelectionEvent),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(ChapterSelectionEvent),
                 $"<b>Preview Button</b> is clicked");
 
             // Play animation for select preview chapter button
             selectionAnimation.clip = selectionAnimation.GetClip(previewButtonAnimationNames[--currentChapterIndex]);
             selectionAnimation.Play();
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(ChapterSelectionEvent),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(ChapterSelectionEvent),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
 
