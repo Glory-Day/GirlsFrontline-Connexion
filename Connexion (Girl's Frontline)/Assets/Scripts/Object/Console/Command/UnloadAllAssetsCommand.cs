@@ -1,10 +1,12 @@
 ﻿#region NAMESPACE API
 
+using Interface;
+using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Manager.UI.Console.Command
+namespace Object.Console.Command
 {
     public class UnloadAllAssetsCommand : ICommand
     {
