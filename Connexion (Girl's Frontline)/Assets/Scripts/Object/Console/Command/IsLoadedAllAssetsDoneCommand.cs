@@ -1,16 +1,18 @@
 ﻿#region NAMESPACE API
 
+using Interface;
+using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Manager.UI.Console.Command
+namespace Object.Console.Command
 {
-    public class IsLoadedAllResourcesDoneCommand : ICommand
+    public class IsLoadedAllAssetsDoneCommand : ICommand
     {
         public void Execute()
         {
-            LogManager.OnDebugLog("Execute <b><i>IsLoadedAllResourcesDone()</i></b>");
+            LogManager.OnDebugLog("Execute <b><i>IsLoadedAllAssetsDoneCommand()</i></b>");
 
             if (AssetManager.IsLoadedAllAssetsDone())
             {
