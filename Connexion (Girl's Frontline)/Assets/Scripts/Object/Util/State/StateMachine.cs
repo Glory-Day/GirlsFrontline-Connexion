@@ -1,16 +1,7 @@
-﻿#region NAMESPACE API
-
-using Interface;
-
-#endregion
-
-namespace Object.State
+﻿namespace Object.Util.State
 {
     public class StateMachine
     {
-        /// <summary>
-        /// Current state of object
-        /// </summary>
         public IState CurrentState { get; private set; }
         
         public StateMachine(IState state)
