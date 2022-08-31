@@ -6,39 +6,36 @@ using System;
 
 namespace Manager.Log.DevelopmentBuild
 {
-    /// <summary>
-    /// Output log builder by purpose in <b>Development Build</b>
-    /// </summary>
     public static class LogBuilder
     {
         /// <summary>
-        /// Build the string of administrator permission log
+        /// Build string of administrator permission log
         /// </summary>
         /// <param name="contents"> Contents of output log </param>
-        /// <returns> The string of administrator permission log </returns>
+        /// <returns> String of administrator permission log </returns>
         public static string Build(string contents)
         {
             return $"{Label.AdministratorInDevelopmentBuildLogLabel}|{contents}";
         }
 
         /// <summary>
-        /// Build the string of default log
+        /// Build string of default log
         /// </summary>
-        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="classType"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
-        /// <returns> The string of default log </returns>
+        /// <returns> String of default log </returns>
         public static string Build(Type classType, string contents)
         {
             return $"{Label.DefaultLogLabel}|{classType.Name}|Called <b><i>{contents}</i></b>";
         }
 
         /// <summary>
-        /// Build the string of spacial log
+        /// Build string of spacial log
         /// </summary>
         /// <param name="type"> <see cref="Label.LabelType"/> of log </param>
-        /// <param name="classType"> <see cref="Type"/> of the class where the log was called </param>
+        /// <param name="classType"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
-        /// <returns> The string of spacial log </returns>
+        /// <returns> String of spacial log </returns>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Out of range exception in <see cref="Label.LabelType"/>
         /// </exception>
