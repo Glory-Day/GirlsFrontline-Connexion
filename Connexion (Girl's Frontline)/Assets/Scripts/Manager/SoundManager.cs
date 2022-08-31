@@ -10,9 +10,6 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager
 {
-    /// <summary>
-    /// Manager that manages sound used in <b>Game Application</b>
-    /// </summary>
     public class SoundManager : Singleton<SoundManager>
     {
         #region SERIALIZABLE FIELD
@@ -23,11 +20,7 @@ namespace Manager
 
         #endregion
 
-        /// <summary>
-        /// <see cref="AudioSource"/> playing background <see cref="AudioClip"/>
-        /// </summary>
-        private AudioSource backgroundAudioSource;
-
+        private AudioSource      backgroundAudioSource;
         private AudioMixerGroups audioMixerGroups;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
@@ -60,7 +53,6 @@ namespace Manager
 
             Instance.audioMixerGroups = audioMixerGroups;
             
-            // Initialize audio source component and setting
             Instance.gameObject.AddComponent<AudioListener>();
             Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
             Instance.backgroundAudioSource.playOnAwake = false;
@@ -72,10 +64,6 @@ namespace Manager
             Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
         }
 
-        /// <summary>
-        /// Play background audio source select by key value
-        /// </summary>
-        /// <param name="key"> Key value of background audio clips </param>
         private void PlayBackgroundAudioSource(string key)
         {
             LogManager.OnDebugLog(
@@ -86,8 +74,6 @@ namespace Manager
             var audioClipName = playingBackgroundAudioClip != null
                                     ? playingBackgroundAudioClip.name
                                     : None;
-
-            // Audio clip to change
             var audioClip = backgroundAudioClips[key];
 
             // If the audio clip is playing, do not change it
@@ -104,11 +90,6 @@ namespace Manager
 
         #region SOUND API
 
-        /// <summary>
-        /// Change the background audio clip when the scene changes
-        /// </summary>
-        /// <param name="name"> Name of the scene that changes </param>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static void OnChangeBackgroundAudioClip(SceneManager.SceneName name)
         {
             LogManager.OnDebugLog(
@@ -128,55 +109,11 @@ namespace Manager
             }
         }
 
-        /// <summary>
-        /// Add background audio clip in List&lt;AudioClip&gt; backgroundAudioClips
-        /// </summary>
-        /// <param name="key"> Key value of background audio clips </param>
-        /// <param name="audioClip"> Background audio clip </param>
-        public static void AddBackgroundAudioClip(string key, AudioClip audioClip)
-        {
-            Instance.backgroundAudioClips.Add(key, audioClip);
-        }
+        public static Dictionary<string, AudioClip> BackgroundAudioClip => Instance.backgroundAudioClips;
 
-        /// <summary>
-        /// Add effect audio clip in List&lt;AudioClip&gt; effectAudioClips
-        /// </summary>
-        /// <param name="key"> Key value of effect audio clips </param>
-        /// <param name="audioClip"> Effect audio clip </param>
-        public static void AddEffectAudioClip(string key, AudioClip audioClip)
-        {
-            Instance.effectAudioClips.Add(key, audioClip);
-        }
+        public static Dictionary<string, AudioClip> EffectAudioClip => Instance.effectAudioClips;
 
-        /// <summary>
-        /// Add voice audio clip in List&lt;AudioClip&gt; voiceAudioClips
-        /// </summary>
-        /// <param name="key"> Key value of voice audio clips </param>
-        /// <param name="audioClip"> Voice audio clip </param>
-        public static void AddVoiceAudioClip(string key, AudioClip audioClip)
-        {
-            Instance.voiceAudioClips.Add(key, audioClip);
-        }
-
-        /// <summary>
-        /// Get effect audio clip search by key value
-        /// </summary>
-        /// <param name="key"> Key value of effect audio clips </param>
-        /// <returns> Effect audio clip </returns>
-        public static AudioClip GetEffectAudioClip(string key)
-        {
-            return Instance.effectAudioClips[key];
-        }
-
-        /// <summary>
-        /// Get voice audio clip search by key value
-        /// </summary>
-        /// <param name="key"> Key value of voice audio clips </param>
-        /// <returns> Voice audio clip </returns>
-        public static AudioClip GetVoiceAudioClip(string key)
-        {
-            return Instance.voiceAudioClips[key];
-        }
+        public static Dictionary<string, AudioClip> VoiceAudioClip => Instance.voiceAudioClips;
 
         #endregion
     }
