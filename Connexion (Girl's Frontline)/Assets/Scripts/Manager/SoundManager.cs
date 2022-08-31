@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -42,9 +42,6 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        /// <summary>
-        /// Initialize <see cref="SoundManager"/> components and fields
-        /// </summary>
         public static void OnInitialize(AudioMixerGroups audioMixerGroups)
         {
             LogManager.OnDebugLog(
@@ -83,7 +80,7 @@ namespace Manager
             backgroundAudioSource.PlayOneShot(playingBackgroundAudioClip);
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(SoundManager),
                 $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
         }
