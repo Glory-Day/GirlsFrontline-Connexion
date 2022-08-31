@@ -1,7 +1,7 @@
 ﻿#region NAMESPACE API
 
 using UnityEngine;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -22,7 +22,7 @@ namespace Manager
             if (Time.timeScale < 0.5f)
             {
                 LogManager.OnDebugLog(
-                    LabelType.Error, 
+                    Label.Error, 
                     typeof(GameManager),
                     $"<b>Game Application</b> has already been paused");
 
@@ -34,7 +34,7 @@ namespace Manager
             Time.timeScale = 0f;
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(GameManager),
                 $"<b>Game Application</b> pauses successfully");
         }
@@ -47,7 +47,7 @@ namespace Manager
             if (Time.timeScale > 0.5f)
             {
                 LogManager.OnDebugLog(
-                    LabelType.Error, 
+                    Label.Error, 
                     typeof(GameManager),
                     $"<b>Game Application</b> is currently running");
 
@@ -59,7 +59,7 @@ namespace Manager
             Time.timeScale = 1f;
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(GameManager),
                 $"<b>Game Application</b> plays successfully");
         }
@@ -70,7 +70,7 @@ namespace Manager
                 $"OnQuit()");
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(GameManager),
                 $"<b>Game Application</b> is quited successfully");
 
