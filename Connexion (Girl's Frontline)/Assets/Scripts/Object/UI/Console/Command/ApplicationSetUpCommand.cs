@@ -2,7 +2,7 @@
 
 using System.Threading.Tasks;
 using Manager;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
