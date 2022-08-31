@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
@@ -41,7 +41,6 @@ namespace Manager.Object
         /// <param name="capacity"> Initial capacity </param>
         public Pool(Func<T> instantiateObjectMethod, int capacity)
         {
-            // Initialize object containers and pool
             objectContainers = new List<ObjectContainer<T>>(capacity);
             pool = new Dictionary<T, ObjectContainer<T>>(capacity);
 
