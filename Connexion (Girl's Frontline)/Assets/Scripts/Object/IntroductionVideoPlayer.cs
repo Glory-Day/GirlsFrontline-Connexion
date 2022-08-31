@@ -12,9 +12,6 @@ using SceneName = Manager.SceneManager.SceneName;
 
 namespace Object
 {
-    /// <summary>
-    /// Controls the <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b>
-    /// </summary>
     public class IntroductionVideoPlayer : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
@@ -25,9 +22,6 @@ namespace Object
 
         #endregion
 
-        /// <summary>
-        /// <see cref="VideoPlayer"/> playing introduction video
-        /// </summary>
         private VideoPlayer videoPlayer;
 
         // Start is called before the first frame update
@@ -42,10 +36,7 @@ namespace Object
 
             StartCoroutine(LoadAllDataAndAssets());
         }
-
-        /// <summary>
-        /// Load all data and assets related running <b>Game Application</b>
-        /// </summary>
+        
         private IEnumerator LoadAllDataAndAssets()
         {
             DataManager.OnLoadAllData();
@@ -74,13 +65,13 @@ namespace Object
         }
 
         /// <summary>
-        /// <see cref="VideoPlayer"/> event at the end of the video
+        /// <see cref="VideoPlayer"/> event called at the end of the video
         /// </summary>
         /// <param name="player"> <see cref="VideoPlayer"/> in <b>Introduction Video Scene</b> </param>
         private static void IsOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                LabelType.Event,
                 typeof(IntroductionVideoPlayer),
                 "<b>Introduction Video</b> is over");
             
