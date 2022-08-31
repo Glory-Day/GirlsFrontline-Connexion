@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using Label = Manager.Log.Label;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -116,7 +116,7 @@ namespace Manager.Object
                 return;
             }
 
-            LogManager.OnDebugLog(Label.LabelType.Error, typeof(Pool<T>),
+            LogManager.OnDebugLog(Label.Error, typeof(Pool<T>),
                 $"This object pool does not contain the object provided: {key}");
         }
 
