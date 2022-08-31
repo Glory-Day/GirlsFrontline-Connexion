@@ -10,17 +10,11 @@ namespace Manager
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        /// <summary>
-        /// Check to see if we're about to be destroyed
-        /// </summary>
         private static bool _quited;
-
-        private static object Locked => new UnityEngine.Object();
-        private static T _instance;
+        private static T    _instance;
         
-        /// <summary>
-        /// Access singleton instance through this propriety
-        /// </summary>
+        private static object Locked => new UnityEngine.Object();
+        
         protected static T Instance
         {
             get
