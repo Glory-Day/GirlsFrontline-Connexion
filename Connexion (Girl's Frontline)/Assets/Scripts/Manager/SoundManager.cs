@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
@@ -87,22 +87,22 @@ namespace Manager
 
         #region SOUND API
 
-        public static void OnChangeBackgroundAudioClip(SceneManager.SceneName name)
+        public static void OnChangeBackgroundAudioClip(Scene.Label label)
         {
             LogManager.OnDebugLog(
                 typeof(SoundManager),
                 $"OnChangeBackgroundAudioClip()");
 
-            switch (name)
+            switch (label)
             {
-                case SceneManager.SceneName.MainScene:
+                case Scene.Label.Main:
                     Instance.PlayBackgroundAudioSource(DataManager.AssetData.backgroundAudioClip.names[0]);
                     break;
-                case SceneManager.SceneName.SelectionScene:
+                case Scene.Label.Selection:
                     Instance.PlayBackgroundAudioSource(DataManager.AssetData.backgroundAudioClip.names[0]);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(name), name, null);
+                    throw new ArgumentOutOfRangeException(nameof(label), label, null);
             }
         }
 
