@@ -2,40 +2,33 @@
 
 using UnityEngine;
 using Manager;
-using UI = UnityEngine.UI;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Event.Button
+namespace Object.UI.Button
 {
-    /// <summary>
-    /// Events in the <b>Main Scene</b>
-    /// </summary>
-    public class GameStartButtonEvent : MonoBehaviour
+    public class GameStartButton : MonoBehaviour
     {
-        private UI.Button gameStartButton;
+        private UnityEngine.UI.Button gameStartButton;
 
         // Start is called before the first frame update
         private void Start()
         {
             LogManager.OnDebugLog(
-                typeof(GameStartButtonEvent),
+                typeof(GameStartButton),
                 "Start()");
             
-            gameStartButton = GetComponent<UI.Button>();
+            gameStartButton = GetComponent<UnityEngine.UI.Button>();
         }
 
         #region BUTTON EVENT API
 
-        /// <summary>
-        /// <see cref="UI.Button"/> event to click <see cref="gameStartButton"/> in <b>Main Scene</b>
-        /// </summary>
         public void OnClicked()
         {
             LogManager.OnDebugLog(
                 LabelType.Event, 
-                typeof(GameStartButtonEvent),
+                typeof(GameStartButton),
                 "<b>Game Start Button</b> is clicked");
 
             gameStartButton.interactable = false;
