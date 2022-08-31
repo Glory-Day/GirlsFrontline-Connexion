@@ -9,9 +9,6 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager
 {
-    /// <summary>
-    /// Manager that manages object used in <b>Game Application</b>
-    /// </summary>
     public class ObjectManager : Singleton<ObjectManager>
     {
         private struct ObjectPool
@@ -20,9 +17,6 @@ namespace Manager
             public Dictionary<GameObject, Pool<GameObject>> clones;
         }
 
-        /// <summary>
-        /// <see cref="ObjectPool"/> instance
-        /// </summary>
         private ObjectPool objectPool;
 
         protected ObjectManager()
@@ -127,7 +121,7 @@ namespace Manager
             var original = objectPool.originals[prefab];
 
             // Duplicate original object and set position, rotation and set duplicated object to enable
-            var clone = original.GetObject();
+            var clone = original.Object;
             clone.transform.SetPositionAndRotation(position ?? Vector3.zero, rotation ?? Quaternion.identity);
             clone.SetActive(true);
 
