@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Manager.Object;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
