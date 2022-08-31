@@ -1,7 +1,7 @@
 ﻿#region NAMESPACE API
 
 using System;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -35,7 +35,7 @@ namespace Manager
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.MainScene);
 
                     LogManager.OnDebugLog(
-                        LabelType.Success, 
+                        Label.Success, 
                         typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded successfully");
                     break;
@@ -44,7 +44,7 @@ namespace Manager
                     SoundManager.OnChangeBackgroundAudioClip(SceneName.SelectionScene);
 
                     LogManager.OnDebugLog(
-                        LabelType.Success, 
+                        Label.Success, 
                         typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded successfully");
                     break;
