@@ -1,7 +1,7 @@
 ﻿#region NAMESPACE API
 
 using UnityEngine;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
