@@ -1,7 +1,6 @@
 ﻿#region NAMESPACE API
 
 using System;
-using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -33,12 +32,12 @@ namespace Manager.Log.UnityEditor
         /// <summary>
         /// Build string of spacial log
         /// </summary>
-        /// <param name="label"> <see cref="Manager.Log.LogLabel.Label"/> of log </param>
+        /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
         /// <returns> String of spacial log </returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Out of range exception in <see cref="Manager.Log.LogLabel.Label"/>
+        /// Out of range exception in <see cref="Manager.Log.Label"/>
         /// </exception>
         public static string Build(Label label, Type type, string contents)
         {
