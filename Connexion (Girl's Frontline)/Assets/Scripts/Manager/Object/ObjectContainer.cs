@@ -1,9 +1,5 @@
 ﻿namespace Manager.Object
 {
-    /// <summary>
-    /// Container to contain object
-    /// </summary>
-    /// <typeparam name="T"> Type of contained object </typeparam>
     public class ObjectContainer<T>
     {
         public ObjectContainer(T instantiatedObject)
