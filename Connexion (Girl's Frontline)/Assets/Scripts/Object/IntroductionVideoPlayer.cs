@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using Manager;
-using Label = Manager.Log.LogLabel.Label;
-using SceneName = Manager.SceneManager.SceneName;
+using Label = Manager.Log.Label;
 
 #endregion
 
@@ -75,7 +74,7 @@ namespace Object
                 typeof(IntroductionVideoPlayer),
                 "<b>Introduction Video</b> is over");
             
-            SceneManager.OnLoadSceneByName(SceneName.MainScene);
+            SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
         }
     }
 }
