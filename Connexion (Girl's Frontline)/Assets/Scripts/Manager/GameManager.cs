@@ -7,9 +7,6 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager
 {
-    /// <summary>
-    /// Manager that manages <b>Game Application</b>
-    /// </summary>
     public class GameManager : Singleton<GameManager>
     {
         protected GameManager()
@@ -17,9 +14,6 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        /// <summary>
-        /// Pause <b>Game Application</b>
-        /// </summary>
         public static void OnPause()
         {
             LogManager.OnDebugLog(typeof(GameManager),
@@ -45,9 +39,6 @@ namespace Manager
                 $"<b>Game Application</b> pauses successfully");
         }
 
-        /// <summary>
-        /// Play <b>Game Application</b>
-        /// </summary>
         public static void OnPlay()
         {
             LogManager.OnDebugLog(typeof(GameManager),
@@ -73,9 +64,6 @@ namespace Manager
                 $"<b>Game Application</b> plays successfully");
         }
 
-        /// <summary>
-        /// Quit <b>Game Application</b>
-        /// </summary>
         public static void OnQuit()
         {
             LogManager.OnDebugLog(typeof(GameManager),
