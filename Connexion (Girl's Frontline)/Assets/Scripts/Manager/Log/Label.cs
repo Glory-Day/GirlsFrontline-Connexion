@@ -1,8 +1,5 @@
 ﻿namespace Manager.Log
 {
-    /// <summary>
-    /// Label data to determine the type of output log
-    /// </summary>
     public static class Label
     {
         // Log label text
