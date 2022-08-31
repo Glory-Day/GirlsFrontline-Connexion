@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Manager;
 using Object.UI.Console.Command;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -168,7 +168,7 @@ namespace Object.UI.Console
                 else
                 {
                     LogManager.OnDebugLog(
-                        LabelType.Error,
+                        Label.Error,
                         typeof(CommandConsole),
                         "<b>Input Command</b> is wrong");
                 }
