@@ -2,7 +2,7 @@
 
 using Manager.Data;
 using Manager.Data.Category;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
