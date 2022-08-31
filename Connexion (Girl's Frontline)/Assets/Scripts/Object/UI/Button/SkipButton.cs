@@ -2,8 +2,7 @@
 
 using UnityEngine;
 using Manager;
-using Label = Manager.Log.LogLabel.Label;
-using SceneName = Manager.SceneManager.SceneName;
+using Label = Manager.Log.Label;
 
 #endregion
 
@@ -20,7 +19,7 @@ namespace Object.UI.Button
                 typeof(SkipButton),
                 "<b>Skip Button</b> is clicked");
             
-            SceneManager.OnLoadSceneByName(SceneName.MainScene);
+            SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
         }
 
         #endregion
