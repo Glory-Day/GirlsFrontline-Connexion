@@ -1,7 +1,6 @@
 ﻿#region NAMESPACE API
 
 using Manager;
-using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
 
@@ -14,7 +13,7 @@ namespace Object.UI.Console.Command
             LogManager.OnDebugLog(
                 "Execute <b><i>OnLoadSceneByName(SceneName.SelectionScene)</i></b>");
 
-            SceneManager.OnLoadSceneByName(SceneName.SelectionScene);
+            SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Selection);
         }
     }
 }
