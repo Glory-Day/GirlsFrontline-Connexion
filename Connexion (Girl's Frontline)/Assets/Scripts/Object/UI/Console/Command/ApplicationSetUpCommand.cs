@@ -1,13 +1,12 @@
 ﻿#region NAMESPACE API
 
 using System.Threading.Tasks;
-using Interface;
 using Manager;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Object.Console.Command
+namespace Object.UI.Console.Command
 {
     public class ApplicationSetUpCommand : ICommand
     {
@@ -31,7 +30,9 @@ namespace Object.Console.Command
 
         private static bool IsLoadedAllResourcesDone()
         {
-            LogManager.OnDebugLog(LabelType.Event, typeof(ICommand),
+            LogManager.OnDebugLog(
+                LabelType.Event, 
+                typeof(ICommand),
                 $"<b>Waiting All Assets</b> is loaded");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) { }
@@ -41,13 +42,16 @@ namespace Object.Console.Command
 
         public async void Execute()
         {
-            LogManager.OnDebugLog("Execute <b><i>OnApplicationSetUp()</i></b>");
+            LogManager.OnDebugLog(
+                "Execute <b><i>OnApplicationSetUp()</i></b>");
 
             for (var i = 0; i < loadCommands.Length; i++) loadCommands[i].Execute();
 
             await Task.Run(() => Task.FromResult(IsLoadedAllResourcesDone()));
 
-            LogManager.OnDebugLog(LabelType.Success, typeof(ICommand),
+            LogManager.OnDebugLog(
+                LabelType.Success, 
+                typeof(ICommand),
                 "<b>All Assets</b> are loaded successfully");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) { }
