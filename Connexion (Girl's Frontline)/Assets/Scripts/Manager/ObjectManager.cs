@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Manager.Object;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -68,7 +68,7 @@ namespace Manager
         {
             if (objectPool.originals.ContainsKey(prefab))
                 LogManager.OnDebugLog(
-                    LabelType.Error, 
+                    Label.Error, 
                     typeof(ObjectManager),
                     $"Pool for object type {prefab.name} has already been created");
 
@@ -96,7 +96,7 @@ namespace Manager
             }
 
             LogManager.OnDebugLog(
-                LabelType.Error, 
+                Label.Error, 
                 typeof(ObjectManager),
                 $"No pool contains the object {clone.name}");
         }
