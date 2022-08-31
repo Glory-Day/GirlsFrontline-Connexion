@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
@@ -16,7 +16,7 @@ namespace Object.UI.Button
         public void OnClicked()
         {
             LogManager.OnDebugLog(
-                LabelType.Event,
+                Label.Event,
                 typeof(SkipButton),
                 "<b>Skip Button</b> is clicked");
             
