@@ -11,16 +11,10 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager.Asset
 {
-    /// <summary>
-    /// Prefab asset loader with <see cref="Addressables"/>
-    /// </summary>
     public class PrefabAssetLoader
     {
         private AsyncOperationHandle<IList<GameObject>> uiPrefabAssetsHandle;
-
-        /// <summary>
-        /// <see cref="PrefabAssetLoader"/> constructor
-        /// </summary>
+        
         public PrefabAssetLoader()
         {
             LogManager.OnDebugLog(
@@ -31,10 +25,7 @@ namespace Manager.Asset
         }
 
         #region LOAD ASSET API
-
-        /// <summary>
-        /// Load all UI prefab assets using label in <see cref="DataManager.AddressableLabelData"/>
-        /// </summary>
+        
         public void LoadUIPrefabAssets()
         {
             LogManager.OnDebugLog(
@@ -43,7 +34,7 @@ namespace Manager.Asset
 
             void Loaded(GameObject loadedGameObject)
             {
-                UIManager.AddUIPrefabs(loadedGameObject.name, loadedGameObject);
+                UIManager.UIPrefabs.Add(loadedGameObject.name, loadedGameObject);
 
                 LogManager.OnDebugLog(
                     LabelType.Success, 
@@ -58,10 +49,7 @@ namespace Manager.Asset
         #endregion
 
         #region UNLOAD ASSET API
-
-        /// <summary>
-        /// Unload all UI prefab assets
-        /// </summary>
+        
         public void UnloadUIPrefabAssets()
         {
             LogManager.OnDebugLog(
@@ -78,12 +66,13 @@ namespace Manager.Asset
 
         #endregion
 
-        /// <summary>
-        /// Check all UI prefab assets loaded is done
-        /// </summary>
+        #region CHECK ASSET API
+
         public bool IsLoadedUIPrefabAssetsDone()
         {
             return uiPrefabAssetsHandle.IsValid() && uiPrefabAssetsHandle.IsDone;
         }
+
+        #endregion
     }
 }
