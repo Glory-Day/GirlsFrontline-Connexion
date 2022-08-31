@@ -8,9 +8,6 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager
 {
-    /// <summary>
-    /// Manager that manages data used in <b>Game Application</b>
-    /// </summary>
     public class DataManager : Singleton<DataManager>
     {
         private GameData             gameData;
@@ -25,9 +22,6 @@ namespace Manager
 
         #region LOAD DATA API
 
-        /// <summary>
-        /// Load stored game data with <see cref="DataLoader"/>
-        /// </summary>
         private void LoadGameData()
         {
             LogManager.OnDebugLog(
@@ -37,9 +31,6 @@ namespace Manager
             gameData = DataLoader.OnLoadData<GameData>(JsonFilePath.GameDataPath);
         }
 
-        /// <summary>
-        /// Load scene data with <see cref="DataLoader"/>
-        /// </summary>
         private void LoadSceneData()
         {
             LogManager.OnDebugLog(
@@ -49,9 +40,6 @@ namespace Manager
             sceneData = DataLoader.OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
         }
 
-        /// <summary>
-        /// Load asset data with <see cref="DataLoader"/>
-        /// </summary>
         private void LoadAssetData()
         {
             LogManager.OnDebugLog(
@@ -61,9 +49,6 @@ namespace Manager
             assetData = DataLoader.OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
         }
 
-        /// <summary>
-        /// Load addressable label data with <see cref="DataLoader"/>
-        /// </summary>
         private void LoadAddressableLabelData()
         {
             LogManager.OnDebugLog(
@@ -76,9 +61,6 @@ namespace Manager
 
         #endregion
 
-        /// <summary>
-        /// Load all data related to running <b>Game Application</b>
-        /// </summary>
         public static void OnLoadAllData()
         {
             LogManager.OnDebugLog(
@@ -96,24 +78,12 @@ namespace Manager
                 "<b>All Data</b> is loaded successfully");
         }
         
-        /// <summary>
-        /// Stored game data
-        /// </summary>
         public static GameData GameData => Instance.gameData;
 
-        /// <summary>
-        /// Scene data needed for loading scene
-        /// </summary>
         public static SceneData SceneData => Instance.sceneData;
 
-        /// <summary>
-        /// Asset data needed for using key of resource
-        /// </summary>
         public static AssetData AssetData => Instance.assetData;
 
-        /// <summary>
-        /// Label data to load assets using <b>Addressable</b>
-        /// </summary>
         public static AddressableLabelData AddressableLabelData => Instance.addressableLabelData;
     }
 }
