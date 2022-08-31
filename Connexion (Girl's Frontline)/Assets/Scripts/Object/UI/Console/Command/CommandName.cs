@@ -1,4 +1,4 @@
-﻿namespace Object.Console.Command
+﻿namespace Object.UI.Console.Command
 {
     /// <summary>
     /// <b>Command</b> name
