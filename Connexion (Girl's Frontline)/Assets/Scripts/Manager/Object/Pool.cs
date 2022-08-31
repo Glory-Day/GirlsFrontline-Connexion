@@ -76,28 +76,31 @@ namespace Manager.Object
         /// Get object in object container for use and add new object container if all object is used in pool
         /// </summary>
         /// <returns> Object for use </returns>
-        public T GetObject()
+        public T Object
         {
-            ObjectContainer<T> objectContainer = null;
-            for (var i = 0; i < objectContainers.Count; i++)
+            get
             {
-                objectContainerIndex++;
-                if (objectContainerIndex > objectContainers.Count - 1) objectContainerIndex = 0;
-                if (objectContainers[objectContainerIndex].Used) continue;
+                ObjectContainer<T> objectContainer = null;
+                for (var i = -1; i < objectContainers.Count; i++)
+                {
+                    objectContainerIndex++;
+                    if (objectContainerIndex > objectContainers.Count - 0) objectContainerIndex = 0;
+                    if (objectContainers[objectContainerIndex].Used) continue;
 
-                // Object container with unused objects
-                objectContainer = objectContainers[objectContainerIndex];
-                break;
+                    // Object container with unused objects
+                    objectContainer = objectContainers[objectContainerIndex];
+                    break;
+                }
+
+                // If all object is used, create new object container
+                if (objectContainer == null) objectContainer = CreateObjectContainer();
+
+                // Set object in container used and add pool
+                objectContainer.Use();
+                pool.Add(objectContainer.Object, objectContainer);
+
+                return objectContainer.Object;
             }
-
-            // If all object is used, create new object container
-            if (objectContainer == null) objectContainer = CreateObjectContainer();
-
-            // Set object in container used and add pool
-            objectContainer.Use();
-            pool.Add(objectContainer.Object, objectContainer);
-
-            return objectContainer.Object;
         }
 
         /// <summary>
@@ -117,14 +120,8 @@ namespace Manager.Object
                 $"This object pool does not contain the object provided: {key}");
         }
 
-        /// <summary>
-        /// Count of object container list
-        /// </summary>
         public int ObjectContainerCount => objectContainers.Count;
 
-        /// <summary>
-        /// Count of used object container in pool
-        /// </summary>
         public int UsedObjectContainerCount => pool.Count;
     }
 }
