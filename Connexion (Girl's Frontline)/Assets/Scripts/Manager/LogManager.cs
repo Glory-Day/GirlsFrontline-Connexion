@@ -9,9 +9,6 @@ using Manager.Log;
 
 namespace Manager
 {
-    /// <summary>
-    /// Manager that manages log for debugging
-    /// </summary>
     public class LogManager : Singleton<LogManager>
     {
         private const string DevelopmentBuild = "DEVELOPMENT_BUILD";
