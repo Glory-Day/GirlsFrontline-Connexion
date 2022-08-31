@@ -2,7 +2,7 @@
 
 using Manager.Data;
 using Manager.Data.Category;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -73,7 +73,7 @@ namespace Manager
             Instance.LoadSceneData();
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(DataManager),
                 "<b>All Data</b> is loaded successfully");
         }
