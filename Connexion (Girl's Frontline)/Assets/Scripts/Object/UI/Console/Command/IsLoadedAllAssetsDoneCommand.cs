@@ -1,7 +1,7 @@
 ﻿#region NAMESPACE API
 
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -17,7 +17,7 @@ namespace Object.UI.Console.Command
             if (AssetManager.IsLoadedAllAssetsDone())
             {
                 LogManager.OnDebugLog(
-                    LabelType.Success, 
+                    Label.Success, 
                     typeof(ICommand),
                     $"<b>All Resources</b> is loaded successfully");
 
@@ -25,7 +25,7 @@ namespace Object.UI.Console.Command
             }
 
             LogManager.OnDebugLog(
-                LabelType.Error, 
+                Label.Error, 
                 typeof(ICommand),
                 $"<b>All Resources</b> is not loaded");
         }
