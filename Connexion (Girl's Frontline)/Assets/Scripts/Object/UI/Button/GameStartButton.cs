@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using Manager;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
