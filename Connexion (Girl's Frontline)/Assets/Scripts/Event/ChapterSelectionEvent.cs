@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -120,7 +120,7 @@ namespace Scene
         public void OnClickedUndoButton()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(ChapterSelectionEvent),
                 "<b>Undo Button</b> is clicked");
 
@@ -138,7 +138,7 @@ namespace Scene
         public void OnClickedNextButton()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(ChapterSelectionEvent),
                 $"<b>Next Button</b> is clicked");
 
@@ -147,7 +147,7 @@ namespace Scene
             selectionAnimation.Play();
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(ChapterSelectionEvent),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
@@ -158,7 +158,7 @@ namespace Scene
         public void OnClickedPreviewButton()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(ChapterSelectionEvent),
                 $"<b>Preview Button</b> is clicked");
 
@@ -167,7 +167,7 @@ namespace Scene
             selectionAnimation.Play();
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(ChapterSelectionEvent),
                 $"<b>Chapter 0{currentChapterIndex + 1}</b> is selected successfully");
         }
