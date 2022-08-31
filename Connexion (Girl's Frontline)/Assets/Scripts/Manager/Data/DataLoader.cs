@@ -2,7 +2,7 @@
 
 using System.IO;
 using UnityEngine;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -23,14 +23,14 @@ namespace Manager.Data
                 data = JsonUtility.FromJson<T>(File.ReadAllText(Application.streamingAssetsPath + path));
 
                 LogManager.OnDebugLog(
-                    LabelType.Success, 
+                    Label.Success, 
                     typeof(DataLoader),
                     $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b> successfully");
             }
             catch (DirectoryNotFoundException error)
             {
                 LogManager.OnDebugLog(
-                    LabelType.Error, 
+                    Label.Error, 
                     typeof(DataLoader),
                     error.Message);
 
