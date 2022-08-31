@@ -1,7 +1,7 @@
 ﻿#region NAMESPACE API
 
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -17,7 +17,7 @@ namespace Object.UI.Console.Command
             AssetManager.OnUnloadAllAssets();
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(ICommand),
                 "<b>All Assets</b> are unloaded successfully");
         }
