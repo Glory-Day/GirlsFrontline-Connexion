@@ -1,7 +1,7 @@
 ﻿#region NAMESPACE API
 
 using System;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
@@ -9,12 +9,6 @@ namespace Manager
 {
     public class SceneManager : Singleton<SceneManager>
     {
-        public enum SceneName
-        {
-            MainScene = 1,
-            SelectionScene
-        }
-
         protected SceneManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
@@ -22,26 +16,26 @@ namespace Manager
 
         #region LOAD API
 
-        public static void OnLoadSceneByName(SceneName name)
+        public static void OnLoadSceneByLabel(Scene.Label label)
         {
             LogManager.OnDebugLog(
                 typeof(SceneManager),
                 $"OnLoadSceneByName()");
 
-            switch (name)
+            switch (label)
             {
-                case SceneName.MainScene:
+                case Scene.Label.Main:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[0].name);
-                    SoundManager.OnChangeBackgroundAudioClip(SceneName.MainScene);
+                    SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Main);
 
                     LogManager.OnDebugLog(
                         Label.Success, 
                         typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded successfully");
                     break;
-                case SceneName.SelectionScene:
+                case Scene.Label.Selection:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
-                    SoundManager.OnChangeBackgroundAudioClip(SceneName.SelectionScene);
+                    SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Selection);
 
                     LogManager.OnDebugLog(
                         Label.Success, 
@@ -49,12 +43,12 @@ namespace Manager
                         $"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded successfully");
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(name), name, null);
+                    throw new ArgumentOutOfRangeException(nameof(label), label, null);
             }
         }
 
-        public static SceneName CurrentSceneName =>
-            (SceneName)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        public static Scene.Label CurrentSceneName =>
+            (Scene.Label)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
 
         #endregion
 
