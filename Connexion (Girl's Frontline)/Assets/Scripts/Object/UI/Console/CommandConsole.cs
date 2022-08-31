@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Manager;
 using Object.UI.Console.Command;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
