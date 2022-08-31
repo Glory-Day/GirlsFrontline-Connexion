@@ -1,6 +1,7 @@
 ﻿#region NAMESPACE API
 
 using System;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -15,47 +16,47 @@ namespace Manager.Log.DevelopmentBuild
         /// <returns> String of administrator permission log </returns>
         public static string Build(string contents)
         {
-            return $"{Label.AdministratorInDevelopmentBuildLogLabel}|{contents}";
+            return $"{Tag.Administrator.DevelopmentBuild}|{contents}";
         }
 
         /// <summary>
         /// Build string of default log
         /// </summary>
-        /// <param name="classType"> <see cref="Type"/> of class where the log was called </param>
+        /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
         /// <returns> String of default log </returns>
-        public static string Build(Type classType, string contents)
+        public static string Build(Type type, string contents)
         {
-            return $"{Label.DefaultLogLabel}|{classType.Name}|Called <b><i>{contents}</i></b>";
+            return $"{Tag.Default}|{type.Name}|Called <b><i>{contents}</i></b>";
         }
 
         /// <summary>
         /// Build string of spacial log
         /// </summary>
-        /// <param name="type"> <see cref="Label.LabelType"/> of log </param>
-        /// <param name="classType"> <see cref="Type"/> of class where the log was called </param>
+        /// <param name="label"> <see cref="Manager.Log.LogLabel.Label"/> of log </param>
+        /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
         /// <returns> String of spacial log </returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Out of range exception in <see cref="Label.LabelType"/>
+        /// Out of range exception in <see cref="Manager.Log.LogLabel.Label"/>
         /// </exception>
-        public static string Build(Label.LabelType type, Type classType, string contents)
+        public static string Build(Label label, Type type, string contents)
         {
             string log;
 
-            switch (type)
+            switch (label)
             {
-                case Label.LabelType.Event:
-                    log = $"{Label.EventLogLabel}|{classType.Name}|{contents}";
+                case Label.Event:
+                    log = $"{Tag.Event}|{type.Name}|{contents}";
                     break;
-                case Label.LabelType.Error:
-                    log = $"{Label.ErrorLogLabel}|{classType.Name}|{contents}";
+                case Label.Error:
+                    log = $"{Tag.Error}|{type.Name}|{contents}";
                     break;
-                case Label.LabelType.Success:
-                    log = $"{Label.SuccessLogLabel}|{classType.Name}|{contents}";
+                case Label.Success:
+                    log = $"{Tag.Success}|{type.Name}|{contents}";
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    throw new ArgumentOutOfRangeException(nameof(label), label, null);
             }
 
             return log;
