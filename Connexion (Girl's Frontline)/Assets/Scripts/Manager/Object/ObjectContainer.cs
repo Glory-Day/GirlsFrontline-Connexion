@@ -16,7 +16,7 @@
         /// <summary>
         /// Contained object
         /// </summary>
-        public T Object { get; set; }
+        public T Object { get; }
 
         /// <summary>
         /// Set contained object to use
