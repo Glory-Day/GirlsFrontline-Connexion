@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using UnityEngine;
-using Label = Manager.Log.LogLabel.Label;
+using Label = Manager.Log.Label;
 
 #endregion
 
@@ -49,11 +49,11 @@ namespace Manager
         /// <summary>
         /// Outputs a specific log to the console in <b>Unity Editor Console</b>
         /// </summary>
-        /// <param name="label"> <see cref="Manager.Log.LogLabel.Label"/> of log </param>
+        /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
         /// <param name="contexts"> Contents of output log </param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Out of range exception in <see cref="Manager.Log.LogLabel.Label"/>
+        /// Out of range exception in <see cref="Manager.Log.Label"/>
         /// </exception>
         [System.Diagnostics.Conditional(UnityEditor)]
         private static void UnityEditorLog(Label label, Type type, string contexts)
@@ -124,7 +124,7 @@ namespace Manager
         /// <summary>
         /// Outputs a specific log to the console in <b>Development Build</b>
         /// </summary>
-        /// <param name="label"> <see cref="Manager.Log.LogLabel.Label"/> of log </param>
+        /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
         /// <param name="contexts"> Contents of output log </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)]
@@ -175,7 +175,7 @@ namespace Manager
         /// <summary>
         /// Outputs a specific log
         /// </summary>
-        /// <param name="label"> <see cref="Manager.Log.LogLabel.Label"/> of log </param>
+        /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
         /// <param name="contexts"> Contents of output <b>Log</b> </param>
         [System.Diagnostics.Conditional(DevelopmentBuild)] 
