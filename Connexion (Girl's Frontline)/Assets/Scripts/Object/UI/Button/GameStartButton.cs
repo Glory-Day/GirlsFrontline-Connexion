@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -27,7 +27,7 @@ namespace Object.UI.Button
         public void OnClicked()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(GameStartButton),
                 "<b>Game Start Button</b> is clicked");
 
