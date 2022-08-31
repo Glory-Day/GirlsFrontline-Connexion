@@ -2,7 +2,7 @@
 
 using System.Threading.Tasks;
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -31,7 +31,7 @@ namespace Object.UI.Console.Command
         private static bool IsLoadedAllResourcesDone()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(ICommand),
                 $"<b>Waiting All Assets</b> is loaded");
 
@@ -50,7 +50,7 @@ namespace Object.UI.Console.Command
             await Task.Run(() => Task.FromResult(IsLoadedAllResourcesDone()));
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(ICommand),
                 "<b>All Assets</b> are loaded successfully");
 
