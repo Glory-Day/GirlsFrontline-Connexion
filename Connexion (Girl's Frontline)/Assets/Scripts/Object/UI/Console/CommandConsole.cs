@@ -6,17 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
-using Interface;
 using Manager;
-using Object.Console.Command;
+using Object.UI.Console.Command;
 using LabelType = Manager.Log.Label.LabelType;
 
 #endregion
 
-namespace Object.Console
+namespace Object.UI.Console
 {
     public class CommandConsole : MonoBehaviour
     {
@@ -79,7 +77,7 @@ namespace Object.Console
                 var instantiated = Instantiate(recommendButton, recommendListView.group.transform);
 
                 var j = i;
-                instantiated.GetComponent<Button>().onClick.AddListener(() => OnClicked(commandNames[j]));
+                instantiated.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnClicked(commandNames[j]));
                 instantiated.GetComponentInChildren<TMP_Text>().text = commandNames[i];
                 instantiated.SetActive(false);
                 
