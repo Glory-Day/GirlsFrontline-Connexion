@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 using SceneName = Manager.SceneManager.SceneName;
 
 #endregion
@@ -43,14 +43,14 @@ namespace Object
             AssetManager.OnLoadAllAssets();
 
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(IntroductionVideoPlayer),
                 $"<b>Waiting All Assets</b> is loaded");
 
             while(!AssetManager.IsLoadedAllAssetsDone()) yield return null;
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(IntroductionVideoPlayer),
                 "<b>All Data And Assets</b> are loaded successfully");
 
@@ -71,7 +71,7 @@ namespace Object
         private static void IsOver(VideoPlayer player)
         {
             LogManager.OnDebugLog(
-                LabelType.Event,
+                Label.Event,
                 typeof(IntroductionVideoPlayer),
                 "<b>Introduction Video</b> is over");
             
