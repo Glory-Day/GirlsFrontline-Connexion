@@ -7,9 +7,6 @@ using Manager;
 
 namespace Object
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class ManagerInitializer : MonoBehaviour
     {
         private const string AudioMixerGroupsName = "Audio Mixer Groups";
