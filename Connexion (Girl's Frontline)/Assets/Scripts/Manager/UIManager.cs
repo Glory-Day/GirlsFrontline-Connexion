@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -47,7 +47,7 @@ namespace Manager
             Instance.InstantiateCommandConsolePrefab();
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(DataManager),
                 "<b>All UI Prefabs</b> are instantiated successfully");
         }
@@ -64,7 +64,7 @@ namespace Manager
                                                           .gameObject.GetComponent<Animation>();
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(UIManager),
                 $"Instantiate <b>Transition Screen Prefab</b> successfully");
         }
@@ -81,7 +81,7 @@ namespace Manager
             uiPrefabs[DataManager.AssetData.uiPrefab.names[1]] = instantiatedObject;
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(UIManager),
                 $"Instantiate <b>Pause Screen Prefab</b> successfully");
         }
@@ -97,7 +97,7 @@ namespace Manager
             uiPrefabs[DataManager.AssetData.uiPrefab.names[2]] = instantiatedObject;
             
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(UIManager),
                 $"Instantiate <b>Command Console Prefab</b> successfully");
         }
@@ -131,7 +131,7 @@ namespace Manager
             Instance.screenTransitionAnimation.Play();
 
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(UIManager),
                 $"Play <b>{Instance.screenTransitionAnimation.clip.name}</b>");
         }
