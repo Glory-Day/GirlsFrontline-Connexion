@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -37,7 +37,7 @@ namespace Manager.Asset
                 UIManager.UIPrefabs.Add(loadedGameObject.name, loadedGameObject);
 
                 LogManager.OnDebugLog(
-                    LabelType.Success, 
+                    Label.Success, 
                     typeof(PrefabAssetLoader),
                     $"<b>{loadedGameObject.name}</b> is loaded successfully");
             }
@@ -59,7 +59,7 @@ namespace Manager.Asset
             Addressables.Release(uiPrefabAssetsHandle);
 
             LogManager.OnDebugLog(
-                LabelType.Success, 
+                Label.Success, 
                 typeof(AudioAssetLoader),
                 $"<b>All UI Prefabs</b> are unloaded successfully");
         }
