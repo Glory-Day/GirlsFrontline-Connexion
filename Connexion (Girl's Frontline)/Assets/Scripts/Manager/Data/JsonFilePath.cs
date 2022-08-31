@@ -1,8 +1,5 @@
 ﻿namespace Manager.Data
 {
-    /// <summary>
-    /// Path to load Json file
-    /// </summary>
     public static class JsonFilePath
     {
         public const string AddressableLabelDataPath = "/AddressableLabelData.json";
