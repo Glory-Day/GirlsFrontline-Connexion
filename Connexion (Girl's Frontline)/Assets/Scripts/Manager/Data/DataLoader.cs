@@ -8,17 +8,8 @@ using LabelType = Manager.Log.Label.LabelType;
 
 namespace Manager.Data
 {
-    /// <summary>
-    /// Json file format data loader
-    /// </summary>
     public class DataLoader
     {
-        /// <summary>
-        /// Load data according to Json file format
-        /// </summary>
-        /// <param name="path"> Json file local path in <see cref="JsonFilePath"/> </param>
-        /// <typeparam name="T"> Type of Json file format in <see cref="Data.Category"/> </typeparam>
-        /// <returns> Loaded data in Json file </returns>
         public static T OnLoadData<T>(string path) where T : class
         {
             LogManager.OnDebugLog(
