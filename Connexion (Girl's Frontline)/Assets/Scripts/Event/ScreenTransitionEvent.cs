@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 using Manager;
-using LabelType = Manager.Log.Label.LabelType;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -26,7 +26,7 @@ namespace Event
         public void OnLoadSceneWhenSceneTransitionToLeft()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(ScreenTransitionEvent),
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Left</b>");
 
@@ -52,7 +52,7 @@ namespace Event
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
             LogManager.OnDebugLog(
-                LabelType.Event, 
+                Label.Event, 
                 typeof(ScreenTransitionEvent),
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Right</b>");
 
