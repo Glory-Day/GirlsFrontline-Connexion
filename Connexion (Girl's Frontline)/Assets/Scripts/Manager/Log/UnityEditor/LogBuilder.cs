@@ -1,6 +1,7 @@
 ﻿#region NAMESPACE API
 
 using System;
+using Label = Manager.Log.LogLabel.Label;
 
 #endregion
 
@@ -15,51 +16,47 @@ namespace Manager.Log.UnityEditor
         /// <returns> String of administrator permission log </returns>
         public static string Build(string contents)
         {
-            return $"<color={Label.AdministratorLogColor}><b>[{Label.AdministratorInUnityEditorLogLabel}]</b> " +
-                   $"{contents}</color>";
+            return $"<color={Color.Administrator}><b>[{Tag.Administrator.UnityEditor}]</b> {contents}</color>";
         }
 
         /// <summary>
         /// Build string of default log
         /// </summary>
-        /// <param name="classType"> <see cref="Type"/> of class where the log was called </param>
+        /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
         /// <returns> String of default log </returns>
-        public static string Build(Type classType, string contents)
+        public static string Build(Type type, string contents)
         {
-            return $"<color={Label.DefaultLogColor}><b>[{classType.Name}] </b>Called <b><i>{contents}</i></b></color>";
+            return $"<color={Color.Default}><b>[{type.Name}] </b>Called <b><i>{contents}</i></b></color>";
         }
 
         /// <summary>
         /// Build string of spacial log
         /// </summary>
-        /// <param name="type"> <see cref="Label.LabelType"/> of log </param>
-        /// <param name="classType"> <see cref="Type"/> of class where the log was called </param>
+        /// <param name="label"> <see cref="Manager.Log.LogLabel.Label"/> of log </param>
+        /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
         /// <returns> String of spacial log </returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Out of range exception in <see cref="Label.LabelType"/>
+        /// Out of range exception in <see cref="Manager.Log.LogLabel.Label"/>
         /// </exception>
-        public static string Build(Label.LabelType type, Type classType, string contents)
+        public static string Build(Label label, Type type, string contents)
         {
             string log;
 
-            switch (type)
+            switch (label)
             {
-                case Label.LabelType.Event:
-                    log = $"<color={Label.EventLogColor}><b>[{Label.EventLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                case Label.Event:
+                    log = $"<color={Color.Event}><b>[{Label.Event}][{type.Name}]</b> {contents}</color>";
                     break;
-                case Label.LabelType.Error:
-                    log = $"<color={Label.ErrorLogColor}><b>[{Label.ErrorLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                case Label.Error:
+                    log = $"<color={Color.Error}><b>[{Label.Error}][{type.Name}]</b> {contents}</color>";
                     break;
-                case Label.LabelType.Success:
-                    log = $"<color={Label.SuccessLogColor}><b>[{Label.SuccessLogLabel}][{classType.Name}]</b> " +
-                          $"{contents}</color>";
+                case Label.Success:
+                    log = $"<color={Color.Success}><b>[{Label.Success}][{type.Name}]</b> {contents}</color>";
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    throw new ArgumentOutOfRangeException(nameof(label), label, null);
             }
 
             return log;
