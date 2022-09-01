@@ -24,7 +24,7 @@ namespace Manager.Asset
             uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
         }
 
-        #region LOAD ASSET API
+        #region LOAD METHOD API
         
         public void LoadUIPrefabAssets()
         {
@@ -48,7 +48,7 @@ namespace Manager.Asset
 
         #endregion
 
-        #region UNLOAD ASSET API
+        #region UNLOAD METHOD API
         
         public void UnloadUIPrefabAssets()
         {
@@ -66,7 +66,7 @@ namespace Manager.Asset
 
         #endregion
 
-        #region CHECK ASSET API
+        #region CHECK METHOD API
 
         public bool IsLoadedUIPrefabAssetsDone()
         {
