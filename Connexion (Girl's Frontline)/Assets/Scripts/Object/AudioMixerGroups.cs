@@ -9,6 +9,8 @@ namespace Object
 {
     public class AudioMixerGroups : MonoBehaviour
     {
+        #region SERIALIZABLE FIELD 
+        
         [Header("Master Audio Mixer Group")]
         [SerializeField]
         private AudioMixerGroup master;
@@ -25,6 +27,8 @@ namespace Object
         [SerializeField]
         private AudioMixerGroup voice;
 
+        #endregion
+        
         public AudioMixerGroup Master => master;
 
         public AudioMixerGroup Background => background;
