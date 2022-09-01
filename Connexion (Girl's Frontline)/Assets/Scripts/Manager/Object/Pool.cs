@@ -8,21 +8,17 @@ using Label = Manager.Log.Label;
 
 namespace Manager.Object
 {
-    /// <summary>
-    /// Pool for using objects while saving memory
-    /// </summary>
-    /// <typeparam name="T"> Type of contained object </typeparam>
     public class Pool<T>
     {
         /// <summary>
         /// List to save object container
         /// </summary>
-        private readonly List<ObjectContainer<T>> objectContainers;
+        private readonly List<Container<T>> containers;
 
         /// <summary>
         /// Pool to contain object
         /// </summary>
-        private readonly Dictionary<T, ObjectContainer<T>> pool;
+        private readonly Dictionary<T, Container<T>> pool;
 
         /// <summary>
         /// <b>UnityEngine.Instantiate</b> Method
@@ -41,8 +37,8 @@ namespace Manager.Object
         /// <param name="capacity"> Initial capacity </param>
         public Pool(Func<T> instantiateObjectMethod, int capacity)
         {
-            objectContainers = new List<ObjectContainer<T>>(capacity);
-            pool = new Dictionary<T, ObjectContainer<T>>(capacity);
+            containers = new List<Container<T>>(capacity);
+            pool = new Dictionary<T, Container<T>>(capacity);
 
             // Initialize object containers
             InitializeObjectContainers(capacity);
@@ -63,10 +59,10 @@ namespace Manager.Object
         /// Create object container
         /// </summary>
         /// <returns> Created object container instance </returns>
-        private ObjectContainer<T> CreateObjectContainer()
+        private Container<T> CreateObjectContainer()
         {
-            var objectContainer = new ObjectContainer<T>(instantiateObjectMethod());
-            objectContainers.Add(objectContainer);
+            var objectContainer = new Container<T>(instantiateObjectMethod());
+            containers.Add(objectContainer);
 
             return objectContainer;
         }
@@ -79,26 +75,26 @@ namespace Manager.Object
         {
             get
             {
-                ObjectContainer<T> objectContainer = null;
-                for (var i = -1; i < objectContainers.Count; i++)
+                Container<T> container = null;
+                for (var i = -1; i < containers.Count; i++)
                 {
                     objectContainerIndex++;
-                    if (objectContainerIndex > objectContainers.Count - 0) objectContainerIndex = 0;
-                    if (objectContainers[objectContainerIndex].Used) continue;
+                    if (objectContainerIndex > containers.Count - 0) objectContainerIndex = 0;
+                    if (containers[objectContainerIndex].Used) continue;
 
                     // Object container with unused objects
-                    objectContainer = objectContainers[objectContainerIndex];
+                    container = containers[objectContainerIndex];
                     break;
                 }
 
                 // If all object is used, create new object container
-                if (objectContainer == null) objectContainer = CreateObjectContainer();
+                if (container == null) container = CreateObjectContainer();
 
                 // Set object in container used and add pool
-                objectContainer.Use();
-                pool.Add(objectContainer.Object, objectContainer);
+                container.Use();
+                pool.Add(container.Object, container);
 
-                return objectContainer.Object;
+                return container.Object;
             }
         }
 
@@ -119,7 +115,7 @@ namespace Manager.Object
                 $"This object pool does not contain the object provided: {key}");
         }
 
-        public int ObjectContainerCount => objectContainers.Count;
+        public int ObjectContainerCount => containers.Count;
 
         public int UsedObjectContainerCount => pool.Count;
     }
