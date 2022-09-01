@@ -20,7 +20,7 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region LOAD DATA API
+        #region LOAD DATA METHOD API
 
         private void LoadGameData()
         {
