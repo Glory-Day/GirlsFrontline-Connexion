@@ -20,7 +20,7 @@ namespace Object.UI
                 typeof(TransitionScreen),
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Left</b>");
 
-            switch (SceneManager.CurrentSceneName)
+            switch (SceneManager.CurrentSceneLabel)
             {
                 case Manager.Scene.Label.Main:
                     SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Selection);
@@ -39,7 +39,7 @@ namespace Object.UI
                 typeof(TransitionScreen),
                 $"<b>Scene Transition Animation Event</b> is activated. Transition direction is <b>Right</b>");
 
-            switch (SceneManager.CurrentSceneName)
+            switch (SceneManager.CurrentSceneLabel)
             {
                 case Manager.Scene.Label.Main:
                     break;
