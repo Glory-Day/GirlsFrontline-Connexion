@@ -14,8 +14,6 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region LOAD API
-
         public static void OnLoadSceneByLabel(Scene.Label label)
         {
             LogManager.OnDebugLog(
@@ -47,10 +45,7 @@ namespace Manager
             }
         }
 
-        public static Scene.Label CurrentSceneName =>
+        public static Scene.Label CurrentSceneLabel =>
             (Scene.Label)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-
-        #endregion
-
     }
 }
