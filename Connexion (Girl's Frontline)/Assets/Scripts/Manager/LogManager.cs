@@ -19,7 +19,7 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        #region UNITY EDITOR CONSOLE API
+        #region UNITY EDITOR CONSOLE LOG METHOD API
 
         /// <summary>
         /// Outputs a administrator permission log to the console in <b>Unity Editor Console</b>
@@ -84,7 +84,7 @@ namespace Manager
 
         #endregion
 
-        #region DEVELOPMENT BUILD CONSOLE API
+        #region DEVELOPMENT BUILD CONSOLE LOG METHOD API
 
         private const string DevelopmentBuildLogFilePath = @"/Build.log";
 
