@@ -85,8 +85,6 @@ namespace Manager
                 $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
         }
 
-        #region SOUND API
-
         public static void OnChangeBackgroundAudioClip(Scene.Label label)
         {
             LogManager.OnDebugLog(
@@ -111,7 +109,5 @@ namespace Manager
         public static Dictionary<string, AudioClip> EffectAudioClip => Instance.effectAudioClips;
 
         public static Dictionary<string, AudioClip> VoiceAudioClip => Instance.voiceAudioClips;
-
-        #endregion
     }
 }
