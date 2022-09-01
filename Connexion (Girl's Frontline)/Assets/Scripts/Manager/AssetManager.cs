@@ -26,7 +26,7 @@ namespace Manager
             Instance.prefabAssetLoader = new PrefabAssetLoader();
         }
 
-        #region AUDIO ASSET API
+        #region AUDIO ASSET METHOD API
 
         private void LoadAudioAssets()
         {
@@ -89,7 +89,7 @@ namespace Manager
 
         #endregion
 
-        #region PREFAB ASSET API
+        #region PREFAB ASSET METHOD API
 
         private void LoadPrefabAssets()
         {
