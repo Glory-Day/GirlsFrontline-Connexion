@@ -1,8 +1,8 @@
 ﻿namespace Manager.Object
 {
-    public class ObjectContainer<T>
+    public class Container<T>
     {
-        public ObjectContainer(T instantiatedObject)
+        public Container(T instantiatedObject)
         {
             Used = true;
             Object = instantiatedObject;
