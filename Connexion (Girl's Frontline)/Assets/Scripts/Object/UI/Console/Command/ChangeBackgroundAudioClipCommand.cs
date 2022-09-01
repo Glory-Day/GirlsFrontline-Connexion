@@ -13,7 +13,7 @@ namespace Object.UI.Console.Command
             LogManager.OnDebugLog(
                 "Execute <b><i>OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName)</i></b>");
 
-            SoundManager.OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName);
+            SoundManager.OnChangeBackgroundAudioClip(SceneManager.CurrentSceneLabel);
         }
     }
 }
