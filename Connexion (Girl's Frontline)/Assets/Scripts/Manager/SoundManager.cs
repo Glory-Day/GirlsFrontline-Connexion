@@ -19,14 +19,7 @@ namespace Manager
         public AudioClip playingBackgroundAudioClip;
 
         #endregion
-
-        private AudioSource      backgroundAudioSource;
-        private AudioMixerGroups audioMixerGroups;
-
-        private Dictionary<string, AudioClip> backgroundAudioClips;
-        private Dictionary<string, AudioClip> effectAudioClips;
-        private Dictionary<string, AudioClip> voiceAudioClips;
-
+        
         #region CONSTANT FIELD
         
         // Audio clip name if audio clip of background audio source is none
@@ -36,6 +29,13 @@ namespace Manager
         private const string AudioMixerName = "Audio Mixer";
 
         #endregion
+        
+        private AudioSource      backgroundAudioSource;
+        private AudioMixerGroups audioMixerGroups;
+
+        private Dictionary<string, AudioClip> backgroundAudioClips;
+        private Dictionary<string, AudioClip> effectAudioClips;
+        private Dictionary<string, AudioClip> voiceAudioClips;
 
         protected SoundManager()
         {
