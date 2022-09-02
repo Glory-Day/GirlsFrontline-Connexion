@@ -11,9 +11,13 @@ namespace Manager
 {
     public class LogManager : Singleton<LogManager>
     {
+        #region CONSTANT FIELD
+
         private const string DevelopmentBuild = "DEVELOPMENT_BUILD";
         private const string UnityEditor      = "UNITY_EDITOR";
 
+        #endregion
+        
         protected LogManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
