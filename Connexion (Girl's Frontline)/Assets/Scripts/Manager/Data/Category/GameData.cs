@@ -11,7 +11,7 @@ namespace Manager.Data.Category
     [Serializable]
     public class Chapter
     {
-        public bool isLock;
+        public bool isBlock;
     }
 
     #endregion
