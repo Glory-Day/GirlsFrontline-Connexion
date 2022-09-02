@@ -5,10 +5,10 @@ using UnityEditor;
 
 #endregion
 
-namespace View.Drawer
+namespace View.Editor
 {
-    [CustomPropertyDrawer(typeof(SubjectArrayAttribute))]
-    public class SubjectArrayDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(NamedArrayAttribute))]
+    public class NamedArrayDrawer : PropertyDrawer
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -21,7 +21,7 @@ namespace View.Drawer
             {
                 var index = int.Parse(property.propertyPath.Split('[', ']')[1]);
                 EditorGUI.PropertyField(
-                    position, property, new GUIContent($"{Subject} {Start + index}"), property.isExpanded);
+                    position, property, new GUIContent($"{Name} {Start + index}"), property.isExpanded);
             }
             catch
             {
@@ -29,8 +29,8 @@ namespace View.Drawer
             }
         }
         
-        private string Subject => ((SubjectArrayAttribute)attribute).Subject;
+        private string Name => ((NamedArrayAttribute)attribute).Name;
 
-        private int Start => ((SubjectArrayAttribute)attribute).Start;
+        private int Start => ((NamedArrayAttribute)attribute).Start;
     }
 }
