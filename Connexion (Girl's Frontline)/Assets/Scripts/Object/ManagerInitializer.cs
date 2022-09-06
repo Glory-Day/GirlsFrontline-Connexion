@@ -9,7 +9,11 @@ namespace Object
 {
     public class ManagerInitializer : MonoBehaviour
     {
+        #region CONSTANT FIELD
+
         private const string AudioMixerGroupsName = "Audio Mixer Groups";
+
+        #endregion
         
         // Start is called before the first frame update
         private void Start()
