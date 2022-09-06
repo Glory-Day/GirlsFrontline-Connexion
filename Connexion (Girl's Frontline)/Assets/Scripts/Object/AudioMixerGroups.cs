@@ -28,7 +28,9 @@ namespace Object
         private AudioMixerGroup voice;
 
         #endregion
-        
+
+        #region PROPERTIES API
+
         public AudioMixerGroup Master => master;
 
         public AudioMixerGroup Background => background;
@@ -36,5 +38,7 @@ namespace Object
         public AudioMixerGroup Effect => effect;
 
         public AudioMixerGroup Voice => voice;
+
+        #endregion
     }
 }
