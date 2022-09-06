@@ -1,12 +1,13 @@
 ﻿#region NAMESPACE API
 
+using System;
 using UnityEngine;
 using Manager;
 using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Chapter.Component
+namespace Object.UI.Selection.Component
 {
     public class PreviewButton : MonoBehaviour
     {
@@ -20,7 +21,14 @@ namespace Object.UI.Chapter.Component
 
         #endregion
 
-        private ChapterController controller;
+        #region CALLBACK API
+
+        private event Action DecreaseChapterIndexCallBack;
+        private event Func<int> GetCurrentChapterIndexCallBack; 
+
+        #endregion
+
+        private Animation selectionAnimation;
 
         // Start is called before the first frame update
         private void Start()
@@ -29,7 +37,10 @@ namespace Object.UI.Chapter.Component
                 typeof(PreviewButton),
                 "Start()");
             
-            controller = GetComponentInParent<ChapterController>();
+            var component = GetComponentInParent<SelectionController>();
+            selectionAnimation = component.SelectionAnimation;
+            DecreaseChapterIndexCallBack = component.DecreaseChapterIndex;
+            GetCurrentChapterIndexCallBack = component.GetCurrentChapterIndex;
         }
 
         #region BUTTON EVENT API
@@ -40,15 +51,19 @@ namespace Object.UI.Chapter.Component
                 Label.Event, 
                 typeof(PreviewButton),
                 $"<b>Preview Button</b> is clicked");
+
+            if (GetCurrentChapterIndexCallBack == null) return;
             
-            controller.SelectionAnimation.clip = controller.SelectionAnimation.GetClip(
-                animationNames[--controller.CurrentChapterIndex]);
-            controller.SelectionAnimation.Play();
+            DecreaseChapterIndexCallBack?.Invoke();
+            
+            selectionAnimation.clip = 
+                selectionAnimation.GetClip(animationNames[GetCurrentChapterIndexCallBack.Invoke()]);
+            selectionAnimation.Play();
             
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(NextButton),
-                $"<b>Chapter 0{controller.CurrentChapterIndex + 1}</b> is selected successfully");
+                $"<b>Chapter 0{GetCurrentChapterIndexCallBack.Invoke() + 1}</b> is selected successfully");
         }
 
         #endregion
