@@ -9,9 +9,9 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Chapter
+namespace Object.UI.Selection
 {
-    public class ChapterController : MonoBehaviour
+    public class SelectionController : MonoBehaviour
     {
         #region SERIALIZABLE FIELD
 
@@ -34,34 +34,28 @@ namespace Object.UI.Chapter
         private UnityEngine.UI.Button nextButton;
         [SerializeField]
         private UnityEngine.UI.Button previewButton;
-
-        [Header("# Undo Button")]
-        [SerializeField]
-        private UnityEngine.UI.Button undoButton;
         
         #endregion
 
+        private int    currentChapterIndex;
         private bool[] isChapterBlock;
 
         // Start is called before the first frame update
         private void Start()
         {
             LogManager.OnDebugLog(
-                typeof(ChapterController),
+                typeof(SelectionController),
                 "Start()");
             
             Initialize();
 
             SelectionAnimation = GetComponent<Animation>();
-
-            CurrentChapterIndex = 0;
-            previewButton.interactable = false;
         }
 
         private void Initialize()
         {
             LogManager.OnDebugLog(
-                typeof(ChapterController),
+                typeof(SelectionController),
                 "Initialize()");
 
             isChapterBlock = Enumerable.Range(0, 5)
@@ -75,6 +69,29 @@ namespace Object.UI.Chapter
                 chapters[i].decorators.SetActive(!isBlock);
                 chapters[i].title.SetActive(!isBlock);
             }
+
+            currentChapterIndex = 0;
+            previewButton.interactable = false;
+        }
+
+        public void IncreaseChapterIndex()
+        {
+            currentChapterIndex++;
+        }
+
+        public void DecreaseChapterIndex()
+        {
+            currentChapterIndex--;
+        }
+
+        public int GetCurrentChapterIndex()
+        {
+            return currentChapterIndex;
+        }
+
+        public UnityEngine.UI.Button GetCurrentChapterButton()
+        {
+            return chapters[currentChapterIndex].button;
         }
 
         #region ANIMATION EVENT API
@@ -83,11 +100,11 @@ namespace Object.UI.Chapter
         {
             LogManager.OnDebugLog(
                 Label.Event, 
-                typeof(ChapterController), 
+                typeof(SelectionController), 
                 "<b>Chapter Controller Animation Event</b> is activated. " +
                 "Next, preview, Undo Buttons is <b>Enabled</b>");
             
-            switch (CurrentChapterIndex)
+            switch (currentChapterIndex)
             {
                 case 0:
                     nextButton.interactable = true;
@@ -103,14 +120,14 @@ namespace Object.UI.Chapter
                     break;
             }
 
-            CurrentChapter.button.interactable = !isChapterBlock[CurrentChapterIndex];
+            chapters[currentChapterIndex].button.interactable = !isChapterBlock[currentChapterIndex];
         }
         
         public void OnDisableButtons()
         {
             LogManager.OnDebugLog(
                 Label.Event, 
-                typeof(ChapterController), 
+                typeof(SelectionController), 
                 "<b>Chapter Controller Animation Event</b> is activated. " +
                 "Next, preview, Undo Buttons is <b>Disabled</b>");
             
@@ -120,21 +137,17 @@ namespace Object.UI.Chapter
 
         #endregion
 
+        #region PROPERTIES API
+
         public UnityEngine.UI.Button NextButton => nextButton;
 
         public UnityEngine.UI.Button PreviewButton => previewButton;
-
-        public UnityEngine.UI.Button UndoButton => undoButton;
-        
-        public Chapter[] Chapters => chapters;
         
         /// <summary>
         /// Animation to select <see cref="chapters"/>
         /// </summary>
         public Animation SelectionAnimation { get; private set; }
-        
-        public int CurrentChapterIndex { get; set; }
 
-        public Chapter CurrentChapter => chapters[CurrentChapterIndex];
+        #endregion
     }
 }
