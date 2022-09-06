@@ -5,7 +5,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Console.Command
+namespace Util.Console.Command
 {
     public class IsLoadedAllAssetsDoneCommand : ICommand
     {
