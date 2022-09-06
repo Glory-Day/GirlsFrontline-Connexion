@@ -104,10 +104,14 @@ namespace Manager
             }
         }
 
+        #region PROPERTIES API
+
         public static Dictionary<string, AudioClip> BackgroundAudioClip => Instance.backgroundAudioClips;
 
         public static Dictionary<string, AudioClip> EffectAudioClip => Instance.effectAudioClips;
 
         public static Dictionary<string, AudioClip> VoiceAudioClip => Instance.voiceAudioClips;
+
+        #endregion
     }
 }
