@@ -52,6 +52,8 @@ namespace Manager
                 "<b>All UI Prefabs</b> are instantiated successfully");
         }
 
+        #region INSTANTIATE METHOD API
+
         private void InstantiateTransitionScreenPrefab()
         {
             LogManager.OnDebugLog(
@@ -101,6 +103,8 @@ namespace Manager
                 typeof(UIManager),
                 $"Instantiate <b>Command Console Prefab</b> successfully");
         }
+
+        #endregion
         
         public static void SetScreenTransitionDirectionToLeft()
         {
