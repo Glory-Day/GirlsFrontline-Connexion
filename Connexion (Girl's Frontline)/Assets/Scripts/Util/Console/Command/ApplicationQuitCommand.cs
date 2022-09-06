@@ -4,7 +4,7 @@ using Manager;
 
 #endregion
 
-namespace Object.UI.Console.Command
+namespace Util.Console.Command
 {
     public class ApplicationQuitCommand : ICommand
     {
