@@ -2,8 +2,6 @@
 {
     public class StateMachine
     {
-        public IState CurrentState { get; private set; }
-        
         public StateMachine(IState state)
         {
             CurrentState = state;
@@ -39,5 +37,11 @@
         {
             CurrentState.Update();
         }
+
+        #region PROPERTIES API
+
+        public IState CurrentState { get; private set; }
+
+        #endregion
     }
 }
