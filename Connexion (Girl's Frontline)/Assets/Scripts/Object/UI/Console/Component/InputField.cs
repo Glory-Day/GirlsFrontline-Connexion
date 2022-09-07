@@ -25,6 +25,7 @@ namespace Object.UI.Console.Component
         private Dictionary<string, ICommand> commands;
         private StringBuilder                commandLineBuilder;
 
+        // Awake is called when the script instance is being loaded
         private void Awake()
         {
             LogManager.OnDebugLog(
