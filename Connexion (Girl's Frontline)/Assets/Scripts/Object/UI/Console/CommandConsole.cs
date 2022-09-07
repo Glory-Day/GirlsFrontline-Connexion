@@ -39,6 +39,7 @@ namespace Object.UI.Console
 
         #endregion
 
+        // Awake is called when the script instance is being loaded 
         private void Awake()
         {
             LogManager.OnDebugLog(
