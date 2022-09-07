@@ -11,7 +11,7 @@ namespace Object.UI.Selection.Component
 {
     public class PreviewButton : MonoBehaviour
     {
-        #region CONSTANT FIELD
+        #region CONSTANT FIELD API
 
         private readonly string[] animationNames =
         {
@@ -21,15 +21,8 @@ namespace Object.UI.Selection.Component
 
         #endregion
 
-        #region CALLBACK API
-
-        private event Action DecreaseChapterIndexCallBack;
-        private event Func<int> GetCurrentChapterIndexCallBack; 
-
-        #endregion
-
         private Animation selectionAnimation;
-
+        
         // Start is called before the first frame update
         private void Start()
         {
@@ -65,6 +58,13 @@ namespace Object.UI.Selection.Component
                 typeof(NextButton),
                 $"<b>Chapter 0{GetCurrentChapterIndexCallBack.Invoke() + 1}</b> is selected successfully");
         }
+
+        #endregion
+        
+        #region CALLBACK API
+
+        private event Action DecreaseChapterIndexCallBack;
+        private event Func<int> GetCurrentChapterIndexCallBack; 
 
         #endregion
     }
