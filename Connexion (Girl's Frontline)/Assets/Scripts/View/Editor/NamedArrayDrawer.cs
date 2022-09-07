@@ -10,6 +10,8 @@ namespace View.Editor
     [CustomPropertyDrawer(typeof(NamedArrayAttribute))]
     public class NamedArrayDrawer : PropertyDrawer
     {
+        #region OVERRIDE METHOD API
+
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return EditorGUI.GetPropertyHeight(property, label, property.isExpanded);
@@ -28,9 +30,15 @@ namespace View.Editor
                 EditorGUI.PropertyField(position, property, label, property.isExpanded);
             }
         }
-        
+
+        #endregion
+
+        #region PROPERTIES API
+
         private string Name => ((NamedArrayAttribute)attribute).Name;
 
         private int Start => ((NamedArrayAttribute)attribute).Start;
+
+        #endregion
     }
 }
