@@ -4,7 +4,7 @@ using Manager;
 
 #endregion
 
-namespace Util.Console.Command
+namespace Util.Command
 {
     public class LoadSelectionScene : ICommand
     {
