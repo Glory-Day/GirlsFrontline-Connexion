@@ -1,4 +1,4 @@
-﻿namespace Util.Console.Command
+﻿namespace Util.Command
 {
     public interface ICommand
     {
