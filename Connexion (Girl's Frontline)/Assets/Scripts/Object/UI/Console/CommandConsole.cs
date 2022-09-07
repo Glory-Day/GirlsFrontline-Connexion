@@ -3,13 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 using Manager;
-using Object.UI.Console.Command;
+using Util.Command;
 using Label = Manager.Log.Label;
 
 #endregion
@@ -18,109 +15,51 @@ namespace Object.UI.Console
 {
     public class CommandConsole : MonoBehaviour
     {
-        #region SERIALIZABLE FIELD
+        #region SERIALIZABLE FIELD API
 
-        [Serializable]
-        public struct RecommendListView
-        {
-            public GameObject viewportLayoutGroup;
-            public GameObject group;
-        }
+        [Header("# Input Field Layout Group Object")]
+        [SerializeField]
+        private GameObject inputFieldLayoutGroup;
+
+        #endregion
         
-        [Serializable]
-        public struct InputField
-        {
-            public TMP_InputField component;
-            public GameObject     inputFieldLayoutGroup;
-        }
+        #region CONSTANT FIELD API
 
-        [Header("# Recommend List View Object")]
-        [SerializeField]
-        public RecommendListView recommendListView;
-
-        [Header("# Recommend Button Object")]
-        [SerializeField]
-        public GameObject recommendButton;
-
-        [Header("# Input Field")]
-        [SerializeField]
-        public InputField inputField;
+        private const string LoadAllDataCommand             = "OnLoadAllData";
+        private const string LoadAllAssetsCommand           = "OnLoadAllAssets";
+        private const string UnloadAllAssetsCommand         = "OnUnloadAllAssets";
+        private const string IsAllAssetsLoadedCommand       = "IsLoadedAllAssetsDone";
+        private const string ChangeBackgroundAudioClip      = "OnChangeBackgroundAudioClip --CurrentScene";
+        private const string InstantiateAllUIPrefabsCommand = "OnInstantiateAllUIPrefabs";
+        private const string LoadMainScene                  = "OnLoadScene --Name Main";
+        private const string LoadSelectionScene             = "OnLoadScene --Name Selection";
+        private const string ApplicationQuit                = "OnApplicationQuit";
+        private const string ApplicationSetUp               = "OnApplicationSetUp";
+        private const string ApplicationPlay                = "OnApplicationPlay";
 
         #endregion
 
-        private Dictionary<string, ICommand> commands;
-        private string[]                     commandNames;
-        private List<GameObject>             recommendButtons;
-        private List<int>                    matchedCommandNameIndexes;
-        private StringBuilder                commandLineBuilder;
-
-        private void Start()
+        private void Awake()
         {
-            recommendButtons = new List<GameObject>();
-            matchedCommandNameIndexes = new List<int>();
-            commandLineBuilder = new StringBuilder();
-
-            commandNames = CommandName.Names;
-            var commandList = new ICommand[]
-                              {
-                                  new LoadAllDataCommand(),               new LoadAllAssetsCommand(),
-                                  new UnloadAllAssetsCommand(),           new IsLoadedAllAssetsDoneCommand(),
-                                  new ChangeBackgroundAudioClipCommand(), new InstantiateAllUIPrefabsCommand(),
-                                  new LoadMainScene(),                    new LoadSelectionScene(),
-                                  new ApplicationQuitCommand(),           new ApplicationPlayCommand(),
-                                  new ApplicationSetUpCommand()
-                              };
-
-            commands = new Dictionary<string, ICommand>();
-            for (var i = 0; i < CommandNamesLength; i++)
-            {
-                var instantiated = Instantiate(recommendButton, recommendListView.group.transform);
-
-                var j = i;
-                instantiated.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnClicked(commandNames[j]));
-                instantiated.GetComponentInChildren<TMP_Text>().text = commandNames[i];
-                instantiated.SetActive(false);
-                
-                recommendButtons.Add(instantiated);
-                commands.Add(commandNames[i], commandList[i]);
-            }
-        }
-
-        private void ResetMatchedCommandNameIndexes()
-        {
-            matchedCommandNameIndexes.Clear();
+            LogManager.OnDebugLog(
+                typeof(CommandConsole), 
+                "Awake()");
             
-            var lastInputCommand = InputCommands.Last();
-            var lastInputCommandLength = lastInputCommand.Length;
-            for (var i = 0; i < CommandNamesLength; i++)
-            {
-                if (lastInputCommandLength != 0 &&
-                    commandNames[i].Length >= lastInputCommandLength &&
-                    commandNames[i].Substring(0, lastInputCommandLength).Equals(lastInputCommand))
-                {
-                    matchedCommandNameIndexes.Add(i);
-                }
-            }
+            Commands = new Dictionary<string, ICommand>
+                       {
+                           { LoadAllAssetsCommand,           new LoadAllAssetsCommand() },
+                           { LoadAllDataCommand,             new LoadAllDataCommand() },
+                           { UnloadAllAssetsCommand,         new UnloadAllAssetsCommand() },
+                           { IsAllAssetsLoadedCommand,       new IsLoadedAllAssetsDoneCommand() },
+                           { ChangeBackgroundAudioClip,      new ChangeBackgroundAudioClipCommand() },
+                           { InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand() },
+                           { LoadMainScene,                  new LoadMainScene() },
+                           { LoadSelectionScene,             new LoadSelectionScene() },
+                           { ApplicationQuit,                new ApplicationQuitCommand() },
+                           { ApplicationPlay,                new ApplicationPlayCommand() },
+                           { ApplicationSetUp,               new ApplicationSetUpCommand() }
+                       };
         }
-
-        #region BUTTON EVENT API
-
-        private void OnClicked(string commandName)
-        {
-            commandLineBuilder.Append(inputField.component.text);
-            
-            var index = InputCommands.Last().Length;
-            var commandNameLength = commandName.Length;
-            for (var i = index; i < commandNameLength; i++)
-            {
-                commandLineBuilder.Append(commandName[i]);
-            }
-
-            inputField.component.text = commandLineBuilder.ToString();
-            commandLineBuilder.Clear();
-        }
-
-        #endregion
 
         #region INPUT EVENT API
 
@@ -131,76 +70,33 @@ namespace Object.UI.Console
                 return;
             }
 
-            switch (inputField.inputFieldLayoutGroup.activeInHierarchy)
+            switch (inputFieldLayoutGroup.activeInHierarchy)
             {
                 case true:
                     LogManager.OnDebugLog(
                         "Turn off <b>Command Console</b>");
                     
-                    GameManager.OnPlay();
-                    inputField.inputFieldLayoutGroup.SetActive(false);
+                    GameManager.OnPlay(); 
+                    inputFieldLayoutGroup.SetActive(false);
                     break;
                 case false:
                     LogManager.OnDebugLog(
                         "Turn on <b>Command Console</b>");
                     
                     GameManager.OnPause();
-                    inputField.inputFieldLayoutGroup.SetActive(true);
+                    inputFieldLayoutGroup.SetActive(true);
                     break;
             }
         }
 
-        public void OnInput(InputAction.CallbackContext context)
-        {
-            if (!context.performed)
-            {
-                return;
-            }
+        #endregion
+        
+        #region PROPERTIES API
 
-            var inputCommands = InputCommands;
-            var inputCommandsLength = inputCommands.Length;
-            for (var i = 0; i < inputCommandsLength; i++)
-            {
-                if (commands.ContainsKey(inputCommands[i]))
-                {
-                    commands[inputCommands[i]].Execute();
-                }
-                else
-                {
-                    LogManager.OnDebugLog(
-                        Label.Error,
-                        typeof(CommandConsole),
-                        "<b>Input Command</b> is wrong");
-                }
-            }
+        public Dictionary<string, ICommand> Commands { get; private set; }
 
-            inputField.component.text = string.Empty;
-        }
-
-        public void OnValueChanged()
-        {
-            ResetMatchedCommandNameIndexes();
-
-            var matchedCommandNameIndexesCount = matchedCommandNameIndexes.Count;
-            if (matchedCommandNameIndexesCount == 0)
-            {
-                recommendListView.viewportLayoutGroup.SetActive(false);
-            }
-            else
-            {
-                recommendListView.viewportLayoutGroup.SetActive(true);
-                for (var i = 0; i < CommandNamesLength; i++)
-                {
-                    recommendButtons[i].SetActive(matchedCommandNameIndexes.Contains(i));
-                }
-            }
-        }
+        public string[] CommandNames => Commands.Keys.ToArray();
 
         #endregion
-
-        private int CommandNamesLength => commandNames.Length;
-        
-        private string[] InputCommands => 
-            Regex.Split(Regex.Replace(inputField.component.text, @"\n|\r", ""), @" & ");
     }
 }
