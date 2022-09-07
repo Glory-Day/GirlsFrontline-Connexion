@@ -14,6 +14,8 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
+        #region STATIC METHOD API
+
         public static void OnPause()
         {
             LogManager.OnDebugLog(typeof(GameManager),
@@ -80,5 +82,7 @@ namespace Manager
             Application.Quit();
 #endif
         }
+
+        #endregion
     }
 }
