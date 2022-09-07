@@ -145,6 +145,8 @@ namespace Manager
 
         #endregion
 
+        #region STATIC METHOD API
+
         /// <summary>
         /// Outputs a administrator permission log
         /// </summary>
@@ -192,5 +194,7 @@ namespace Manager
             DevelopmentBuildLog(label, type, contexts);
 #endif
         }
+
+        #endregion
     }
 }
