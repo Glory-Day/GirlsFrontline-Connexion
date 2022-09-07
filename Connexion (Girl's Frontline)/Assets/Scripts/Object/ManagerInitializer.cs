@@ -9,12 +9,6 @@ namespace Object
 {
     public class ManagerInitializer : MonoBehaviour
     {
-        #region CONSTANT FIELD API
-
-        private const string AudioMixerGroupsName = "Audio Mixer Groups";
-
-        #endregion
-        
         // Start is called before the first frame update
         private void Start()
         {
@@ -22,9 +16,9 @@ namespace Object
                 typeof(ManagerInitializer),
                 "Start()");
 
-            var audioMixerGroupData = GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroups>();
+            
             AssetManager.OnInitialize();
-            SoundManager.OnInitialize(audioMixerGroupData);
+            SoundManager.OnInitialize();
             ObjectManager.OnInitialize();
             UIManager.OnInitialize();
         }
