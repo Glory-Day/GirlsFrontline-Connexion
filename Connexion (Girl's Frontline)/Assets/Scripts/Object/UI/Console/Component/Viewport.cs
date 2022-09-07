@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Manager;
-using Label = Manager.Log.Label;
 
 #endregion
 
@@ -19,12 +18,19 @@ namespace Object.UI.Console.Component
         [SerializeField]
         private GameObject recommendButton;
 
+        [Header("# Recommend Layout Group Transform")]
+        [SerializeField]
+        private Transform recommendLayoutGroupTransform;
+
         #endregion
+
+        private GameObject screen;
         
         private string[]      commandNames;
         private GameObject[]  recommendButtons;
         private List<int>     matchedRecommendButtonIndexes;
 
+        // Awake is called when the script instance is being loaded
         private void Awake()
         {
             LogManager.OnDebugLog(
@@ -32,14 +38,15 @@ namespace Object.UI.Console.Component
                 "Awake()");
             
             Initialize();
-
-            var root = transform.parent.parent;
+            
+            var root = transform.parent;
             var component1 = root.GetComponentInChildren<InputField>();
             GetInputCommandsCallBack = component1.GetInputCommands;
             
+            // Initialize recommend buttons
             for (var i = 0; i < commandNames.Length; i++)
             {
-                var instantiatedRecommendButton = Instantiate(recommendButton, transform.GetChild(0));
+                var instantiatedRecommendButton = Instantiate(recommendButton, recommendLayoutGroupTransform);
                 var component2 = instantiatedRecommendButton.GetComponent<RecommendButton>();
                 component2.CommandName = commandNames[i];
                 component2.GetInputCommandsCallBack += component1.GetInputCommands;
@@ -49,8 +56,9 @@ namespace Object.UI.Console.Component
                 recommendButtons[i] = instantiatedRecommendButton;
             }
             
+            screen = transform.GetChild(0).gameObject;
+            screen.SetActive(false);
             component1.transform.parent.gameObject.SetActive(false);
-            gameObject.SetActive(false);
         }
 
         private void Initialize()
@@ -94,11 +102,11 @@ namespace Object.UI.Console.Component
 
             if (matchedRecommendButtonIndexes.Count == 0)
             {
-                gameObject.SetActive(false);
+                screen.SetActive(false);
             }
             else
             {
-                gameObject.SetActive(true);
+                screen.SetActive(true);
 
                 for (var i = 0; i < commandNames.Length; i++)
                 {
@@ -106,12 +114,6 @@ namespace Object.UI.Console.Component
                 }
             }
         }
-        
-        #region CALLBACK API
-
-        private event Func<IEnumerable<string>> GetInputCommandsCallBack;
-
-        #endregion
 
         #region INPUT EVENT API
 
@@ -119,6 +121,12 @@ namespace Object.UI.Console.Component
         {
             UpdateViewport();
         }
+
+        #endregion
+        
+        #region CALLBACK API
+
+        private event Func<IEnumerable<string>> GetInputCommandsCallBack;
 
         #endregion
     }
