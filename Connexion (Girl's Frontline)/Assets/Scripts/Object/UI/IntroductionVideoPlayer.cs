@@ -13,7 +13,7 @@ namespace Object
 {
     public class IntroductionVideoPlayer : MonoBehaviour
     {
-        #region SERIALIZABLE FIELD
+        #region SERIALIZABLE FIELD API
 
         [Header("# Skip Button")]
         [SerializeField]
@@ -21,7 +21,11 @@ namespace Object
 
         #endregion
 
+        #region COMPONENT FIELD API
+
         private VideoPlayer videoPlayer;
+
+        #endregion
 
         // Start is called before the first frame update
         private void Start()
