@@ -16,15 +16,7 @@ namespace Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
         
-        public static void OnInitialize()
-        {
-            LogManager.OnDebugLog(
-                typeof(AssetManager),
-                $"OnInitialize()");
-
-            Instance.audioAssetLoader  = new AudioAssetLoader();
-            Instance.prefabAssetLoader = new PrefabAssetLoader();
-        }
+        
 
         #region AUDIO ASSET METHOD API
 
@@ -116,6 +108,18 @@ namespace Manager
 
         #endregion
 
+        #region STATIC METHOD API
+
+        public static void OnInitialize()
+        {
+            LogManager.OnDebugLog(
+                typeof(AssetManager),
+                $"OnInitialize()");
+
+            Instance.audioAssetLoader  = new AudioAssetLoader();
+            Instance.prefabAssetLoader = new PrefabAssetLoader();
+        }
+        
         public static void OnLoadAllAssets()
         {
             LogManager.OnDebugLog(
@@ -140,5 +144,7 @@ namespace Manager
         {
             return Instance.IsLoadedAudioAssetsDone() && Instance.IsLoadedPrefabAssetsDone();
         }
+
+        #endregion
     }
 }
