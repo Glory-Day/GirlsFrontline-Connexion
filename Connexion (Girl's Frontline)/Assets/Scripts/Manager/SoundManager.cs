@@ -20,17 +20,22 @@ namespace Manager
 
         #endregion
         
+        #region COMPONENT FIELD API
+
+        private AudioSource backgroundAudioSource;
+
+        #endregion
+        
         #region CONSTANT FIELD API
         
         // Audio clip name if audio clip of background audio source is none
         private const string None = "None";
 
-        // Audio mixer object name
-        private const string AudioMixerName = "Audio Mixer";
+        // Audio mixer group object name
+        private const string AudioMixerGroupsName = "Audio Mixer Groups";
 
         #endregion
         
-        private AudioSource      backgroundAudioSource;
         private AudioMixerGroups audioMixerGroups;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
@@ -68,20 +73,23 @@ namespace Manager
 
         #region STATIC METHOD API
 
-        public static void OnInitialize(AudioMixerGroups audioMixerGroups)
+        public static void OnInitialize()
         {
             LogManager.OnDebugLog(
                 typeof(SoundManager),
                 $"OnInitialize()");
-
-            Instance.audioMixerGroups = audioMixerGroups;
             
+            // Initialize audio mixer groups
+            Instance.audioMixerGroups = GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroups>();
+            
+            // Initialize audio source component
             Instance.gameObject.AddComponent<AudioListener>();
             Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
             Instance.backgroundAudioSource.playOnAwake = false;
             Instance.backgroundAudioSource.loop = true;
             Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.audioMixerGroups.Background;
             
+            // Initialize audio clips
             Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
             Instance.effectAudioClips = new Dictionary<string, AudioClip>();
             Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
