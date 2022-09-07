@@ -10,7 +10,11 @@ namespace Object.UI.Component
 {
     public class GameStartButton : MonoBehaviour
     {
+        #region COMPONENT API
+
         private UnityEngine.UI.Button gameStartButton;
+
+        #endregion
 
         // Start is called before the first frame update
         private void Start()
