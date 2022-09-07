@@ -2,7 +2,7 @@
 {
     public static class JsonFilePath
     {
-        #region CONSTANT FIELD
+        #region CONSTANT FIELD API
 
         public const string AddressableLabelDataPath = "/AddressableLabelData.json";
         public const string GameDataPath             = "/GameData.json";
