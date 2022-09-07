@@ -12,7 +12,7 @@ namespace Manager
 {
     public class SoundManager : Singleton<SoundManager>
     {
-        #region SERIALIZABLE FIELD
+        #region SERIALIZABLE FIELD API
 
         [Header("# Playing Background Audio Clip")]
         [SerializeField]
@@ -20,7 +20,7 @@ namespace Manager
 
         #endregion
         
-        #region CONSTANT FIELD
+        #region CONSTANT FIELD API
         
         // Audio clip name if audio clip of background audio source is none
         private const string None = "None";
@@ -40,25 +40,6 @@ namespace Manager
         protected SoundManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
-
-        public static void OnInitialize(AudioMixerGroups audioMixerGroups)
-        {
-            LogManager.OnDebugLog(
-                typeof(SoundManager),
-                $"OnInitialize()");
-
-            Instance.audioMixerGroups = audioMixerGroups;
-            
-            Instance.gameObject.AddComponent<AudioListener>();
-            Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
-            Instance.backgroundAudioSource.playOnAwake = false;
-            Instance.backgroundAudioSource.loop = true;
-            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.audioMixerGroups.Background;
-            
-            Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
-            Instance.effectAudioClips = new Dictionary<string, AudioClip>();
-            Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
         }
 
         private void PlayBackgroundAudioSource(string key)
@@ -85,6 +66,27 @@ namespace Manager
                 $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
         }
 
+        #region STATIC METHOD API
+
+        public static void OnInitialize(AudioMixerGroups audioMixerGroups)
+        {
+            LogManager.OnDebugLog(
+                typeof(SoundManager),
+                $"OnInitialize()");
+
+            Instance.audioMixerGroups = audioMixerGroups;
+            
+            Instance.gameObject.AddComponent<AudioListener>();
+            Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
+            Instance.backgroundAudioSource.playOnAwake = false;
+            Instance.backgroundAudioSource.loop = true;
+            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.audioMixerGroups.Background;
+            
+            Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
+            Instance.effectAudioClips = new Dictionary<string, AudioClip>();
+            Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
+        }
+
         public static void OnChangeBackgroundAudioClip(Scene.Label label)
         {
             LogManager.OnDebugLog(
@@ -104,7 +106,9 @@ namespace Manager
             }
         }
 
-        #region PROPERTIES API
+        #endregion
+
+        #region STATIC PROPERTIES API
 
         public static Dictionary<string, AudioClip> BackgroundAudioClip => Instance.backgroundAudioClips;
 
