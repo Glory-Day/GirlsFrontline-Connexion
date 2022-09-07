@@ -2,7 +2,7 @@
 {
     public static class Color
     {
-        #region CONSTANT FIELD
+        #region CONSTANT FIELD API
 
         public const string Default       = "#C0C0C0";
         public const string Event         = "#F8F8FF";
