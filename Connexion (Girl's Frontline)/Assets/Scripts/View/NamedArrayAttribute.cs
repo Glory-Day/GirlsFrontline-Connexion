@@ -19,9 +19,13 @@ namespace View
             Name = name;
             Start = start;
         }
-        
+
+        #region PROPERTIES API
+
         public string Name { get; }
         
         public int Start { get; }
+
+        #endregion
     }
 }
