@@ -2,7 +2,7 @@
 {
     public static class Tag
     {
-        #region CONSTANT FIELD
+        #region CONSTANT FIELD API
 
         public const string Default = "DEFAULT";
         public const string Event   = "EVENT";
