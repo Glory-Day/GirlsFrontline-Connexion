@@ -61,6 +61,8 @@ namespace Manager
 
         #endregion
 
+        #region STATIC METHOD API
+
         public static void OnLoadAllData()
         {
             LogManager.OnDebugLog(
@@ -77,7 +79,11 @@ namespace Manager
                 typeof(DataManager),
                 "<b>All Data</b> is loaded successfully");
         }
-        
+
+        #endregion
+
+        #region STATIC PROPERTIES API
+
         public static GameData GameData => Instance.gameData;
 
         public static SceneData SceneData => Instance.sceneData;
@@ -85,5 +91,7 @@ namespace Manager
         public static AssetData AssetData => Instance.assetData;
 
         public static AddressableLabelData AddressableLabelData => Instance.addressableLabelData;
+
+        #endregion
     }
 }
