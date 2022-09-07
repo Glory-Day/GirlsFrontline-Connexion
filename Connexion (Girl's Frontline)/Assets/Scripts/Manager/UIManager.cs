@@ -10,11 +10,7 @@ namespace Manager
 {
     public class UIManager : Singleton<UIManager>
     {
-        private Dictionary<string, GameObject> uiPrefabs;
-
-        private Animation screenTransitionAnimation;
-
-        #region ANIMATION NAME API
+        #region CONSTANT FIELD API
 
         // Screen transition animation names
         private const string ScreenTransitionToLeftAnimation  = "Left Screen Transition Animation";
@@ -22,34 +18,12 @@ namespace Manager
 
         #endregion
 
+        private Dictionary<string, GameObject> uiPrefabs;
+        private Animation                      screenTransitionAnimation;
+        
         protected UIManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
-
-        public static void OnInitialize()
-        {
-            LogManager.OnDebugLog(
-                typeof(UIManager),
-                $"OnInitialize()");
-
-            Instance.uiPrefabs = new Dictionary<string, GameObject>();
-        }
-
-        public static void OnInstantiateAllUIPrefabs()
-        {
-            LogManager.OnDebugLog(
-                typeof(UIManager),
-                $"OnInstantiateAllUIPrefabs()");
-
-            Instance.InstantiateTransitionScreenPrefab();
-            Instance.InstantiatePauseScreenPrefab();
-            Instance.InstantiateCommandConsolePrefab();
-
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(DataManager),
-                "<b>All UI Prefabs</b> are instantiated successfully");
         }
 
         #region INSTANTIATE METHOD API
@@ -105,6 +79,33 @@ namespace Manager
         }
 
         #endregion
+
+        #region STATIC METHOD API
+
+        public static void OnInitialize()
+        {
+            LogManager.OnDebugLog(
+                typeof(UIManager),
+                $"OnInitialize()");
+
+            Instance.uiPrefabs = new Dictionary<string, GameObject>();
+        }
+
+        public static void OnInstantiateAllUIPrefabs()
+        {
+            LogManager.OnDebugLog(
+                typeof(UIManager),
+                $"OnInstantiateAllUIPrefabs()");
+
+            Instance.InstantiateTransitionScreenPrefab();
+            Instance.InstantiatePauseScreenPrefab();
+            Instance.InstantiateCommandConsolePrefab();
+
+            LogManager.OnDebugLog(
+                Label.Success, 
+                typeof(DataManager),
+                "<b>All UI Prefabs</b> are instantiated successfully");
+        }
         
         public static void SetScreenTransitionDirectionToLeft()
         {
@@ -149,7 +150,13 @@ namespace Manager
         {
             Instance.uiPrefabs?[DataManager.AssetData.uiPrefab.names[1]].SetActive(false);
         }
-        
+
+        #endregion
+
+        #region STATIC PROPERTIES API
+
         public static Dictionary<string, GameObject> UIPrefabs => Instance.uiPrefabs;
+
+        #endregion
     }
 }
