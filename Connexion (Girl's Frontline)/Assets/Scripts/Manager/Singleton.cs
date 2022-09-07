@@ -13,8 +13,6 @@ namespace Manager
         private static bool _quited;
         private static T    _instance;
         
-        private static object Locked => new UnityEngine.Object();
-        
         protected static T Instance
         {
             get
@@ -61,5 +59,7 @@ namespace Manager
         {
             _quited = true;
         }
+        
+        private static object Locked => new UnityEngine.Object();
     }
 }
