@@ -11,15 +11,14 @@ namespace Object.UI.Selection.Component
 {
     public class UndoButton : MonoBehaviour
     {
-        #region CALLBACK API
+        #region COMPONENT FIELD API
 
-        private event Func<UnityEngine.UI.Button> GetCurrentChapterButtonCallBack; 
+        private UnityEngine.UI.Button undoButton;
 
         #endregion
-
+        
         private UnityEngine.UI.Button nextButton;
         private UnityEngine.UI.Button previewButton;
-        private UnityEngine.UI.Button undoButton;
         
         // Start is called before the first frame update
         private void Start()
@@ -55,6 +54,12 @@ namespace Object.UI.Selection.Component
             UIManager.SetScreenTransitionDirectionToRight();
             UIManager.OnPlayScreenTransitionAnimation();
         }
+
+        #endregion
+        
+        #region CALLBACK API
+
+        private event Func<UnityEngine.UI.Button> GetCurrentChapterButtonCallBack; 
 
         #endregion
     }
