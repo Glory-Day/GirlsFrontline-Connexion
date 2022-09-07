@@ -6,7 +6,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Util.Console.Command
+namespace Util.Command
 {
     public class ApplicationSetUpCommand : ICommand
     {
