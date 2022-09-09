@@ -25,6 +25,7 @@ namespace Manager
         private void LoadGameData()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(DataManager),
                 $"LoadGameData()");
 
@@ -34,6 +35,7 @@ namespace Manager
         private void LoadSceneData()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(DataManager),
                 $"LoadSceneData()");
 
@@ -43,6 +45,7 @@ namespace Manager
         private void LoadAssetData()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(DataManager),
                 $"LoadAssetData()");
 
@@ -52,6 +55,7 @@ namespace Manager
         private void LoadAddressableLabelData()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(DataManager),
                 $"LoadAddressableLabelData()");
 
@@ -66,6 +70,7 @@ namespace Manager
         public static void OnLoadAllData()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(DataManager),
                 $"OnLoadAllData()");
             
@@ -77,7 +82,7 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(DataManager),
-                "<b>All Data</b> is loaded successfully");
+                "<b>All Data</b> is loaded");
         }
 
         #endregion
