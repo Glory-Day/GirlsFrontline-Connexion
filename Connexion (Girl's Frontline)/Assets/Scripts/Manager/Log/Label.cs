@@ -2,8 +2,9 @@
 {
     public enum Label
     {
-       Event,
-       Error,
-       Success
+        Called,
+        Event,
+        Error,
+        Success
     }
 }
