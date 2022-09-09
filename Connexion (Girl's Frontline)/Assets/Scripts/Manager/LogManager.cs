@@ -38,20 +38,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a default log to the console in <b>Unity Editor Console</b>
-        /// </summary>
-        /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(UnityEditor)]
-        private static void UnityEditorLog(Type type, string contexts)
-        {
-#if UNITY_EDITOR
-            Debug.Log(Log.UnityEditor.LogBuilder.Build(type, contexts));
-#endif
-        }
-
-        /// <summary>
-        /// Outputs a specific log to the console in <b>Unity Editor Console</b>
+        /// Outputs a log by <see cref="Manager.Log.Label"/> to the console in <b>Unity Editor Console</b>
         /// </summary>
         /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
@@ -66,6 +53,11 @@ namespace Manager
 
             switch (label)
             {
+                case Label.Called:
+#if UNITY_EDITOR
+                    Debug.Log(message);                
+#endif
+                    break;
                 case Label.Event:
 #if UNITY_EDITOR
                     Debug.Log(message);
@@ -109,24 +101,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a default log to the console in <b>Development Build</b>
-        /// </summary>
-        /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void DevelopmentBuildLog(Type type, string contexts)
-        {
-#if DEVELOPMENT_BUILD
-            using (var writer = new StreamWriter(
-                       Application.persistentDataPath + DevelopmentBuildLogFilePath, true))
-            {
-                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.Build(type, contexts));
-            }
-#endif
-        }
-
-        /// <summary>
-        /// Outputs a specific log to the console in <b>Development Build</b>
+        /// Outputs a log by <see cref="Manager.Log.Label"/> to the console in <b>Development Build</b>
         /// </summary>
         /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
@@ -163,23 +138,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// Outputs a default log
-        /// </summary>
-        /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)] 
-        [System.Diagnostics.Conditional(UnityEditor)]
-        public static void OnDebugLog(Type type, string contexts)
-        {
-#if UNITY_EDITOR
-            UnityEditorLog(type, contexts);
-#elif DEVELOPMENT_BUILD
-            DevelopmentBuildLog(type, contexts);
-#endif
-        }
-
-        /// <summary>
-        /// Outputs a specific log
+        /// Outputs a log by <see cref="Manager.Log.Label"/>
         /// </summary>
         /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
