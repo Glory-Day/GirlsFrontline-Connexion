@@ -43,6 +43,7 @@ namespace Object.UI.Console
         private void Awake()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(CommandConsole), 
                 "Awake()");
             
