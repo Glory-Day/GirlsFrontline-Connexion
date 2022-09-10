@@ -27,6 +27,7 @@ namespace Object.UI.Selection.Component
         private void Start()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(PreviewButton),
                 "Start()");
             
@@ -56,7 +57,7 @@ namespace Object.UI.Selection.Component
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(NextButton),
-                $"<b>Chapter 0{GetCurrentChapterIndexCallBack.Invoke() + 1}</b> is selected successfully");
+                $"<b>Chapter 0{GetCurrentChapterIndexCallBack.Invoke() + 1}</b> is selected");
         }
 
         #endregion

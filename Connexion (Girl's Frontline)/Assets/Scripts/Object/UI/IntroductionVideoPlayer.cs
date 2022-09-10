@@ -31,6 +31,7 @@ namespace Object.UI
         private void Start()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(IntroductionVideoPlayer),
                 $"Start()");
             
@@ -55,7 +56,7 @@ namespace Object.UI
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(IntroductionVideoPlayer),
-                "<b>All Data And Assets</b> are loaded successfully");
+                "<b>All Data And Assets</b> are loaded");
 
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;

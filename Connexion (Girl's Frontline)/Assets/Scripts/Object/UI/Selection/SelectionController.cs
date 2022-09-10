@@ -44,6 +44,7 @@ namespace Object.UI.Selection
         private void Start()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(SelectionController),
                 "Start()");
             
@@ -55,6 +56,7 @@ namespace Object.UI.Selection
         private void Initialize()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(SelectionController),
                 "Initialize()");
 
