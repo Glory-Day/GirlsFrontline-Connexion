@@ -29,6 +29,7 @@ namespace Object.UI.Console.Component
         private void Awake()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(InputField),
                 "Awake()");
             
@@ -40,6 +41,7 @@ namespace Object.UI.Console.Component
         private void Start()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(InputField),
                 "Start()");
 
