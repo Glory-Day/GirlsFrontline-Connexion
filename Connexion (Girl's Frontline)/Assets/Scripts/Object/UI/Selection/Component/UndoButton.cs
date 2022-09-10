@@ -24,6 +24,7 @@ namespace Object.UI.Selection.Component
         private void Start()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UndoButton),
                 "Start()");
 
