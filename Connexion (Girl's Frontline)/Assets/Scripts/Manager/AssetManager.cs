@@ -1,6 +1,7 @@
 ﻿#region NAMESPACE API
 
 using Manager.Asset;
+using Manager.Log;
 
 #endregion
 
@@ -15,14 +16,13 @@ namespace Manager
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
-        
-        
 
         #region AUDIO ASSET METHOD API
 
         private void LoadAudioAssets()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"LoadAudioAssets()");
             
@@ -45,6 +45,7 @@ namespace Manager
         private void UnloadAudioAssets()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"UnloadAudioAssets()");
             
@@ -86,6 +87,7 @@ namespace Manager
         private void LoadPrefabAssets()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"LoadPrefabAssets()");
 
@@ -95,6 +97,7 @@ namespace Manager
         private void UnloadPrefabAssets()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"UnloadPrefabAssets()");
 
@@ -113,6 +116,7 @@ namespace Manager
         public static void OnInitialize()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"OnInitialize()");
 
@@ -123,6 +127,7 @@ namespace Manager
         public static void OnLoadAllAssets()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"OnLoadAllAssets()");
 
@@ -133,6 +138,7 @@ namespace Manager
         public static void OnUnloadAllAssets()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(AssetManager),
                 $"OnUnloadAllAssets()");
 
