@@ -19,18 +19,7 @@ namespace Manager.Log.UnityEditor
         }
 
         /// <summary>
-        /// Build string of default log
-        /// </summary>
-        /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
-        /// <param name="contents"> Contents of output log </param>
-        /// <returns> String of default log </returns>
-        public static string Build(Type type, string contents)
-        {
-            return $"<color={Color.Default}><b>[{type.Name}] </b>Called <b><i>{contents}</i></b></color>";
-        }
-
-        /// <summary>
-        /// Build string of spacial log
+        /// Build string of log by <see cref="Manager.Log.Label"/>
         /// </summary>
         /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
@@ -45,14 +34,18 @@ namespace Manager.Log.UnityEditor
 
             switch (label)
             {
+                case Label.Called:
+                    log = $"<color={Color.Bold}><b>[{Tag.Called}][{type.Name}]</b></color>" +
+                          $"<color={Color.Default}> <i>{contents}</i></color>";
+                    break;
                 case Label.Event:
-                    log = $"<color={Color.Event}><b>[{Label.Event}][{type.Name}]</b> {contents}</color>";
+                    log = $"<color={Color.Bold}><b>[{Tag.Event}][{type.Name}]</b> {contents}</color>";
                     break;
                 case Label.Error:
-                    log = $"<color={Color.Error}><b>[{Label.Error}][{type.Name}]</b> {contents}</color>";
+                    log = $"<color={Color.Error}><b>[{Tag.Error}][{type.Name}]</b> {contents}</color>";
                     break;
                 case Label.Success:
-                    log = $"<color={Color.Success}><b>[{Label.Success}][{type.Name}]</b> {contents}</color>";
+                    log = $"<color={Color.Success}><b>[{Tag.Success}][{type.Name}]</b> {contents}</color>";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(label), label, null);

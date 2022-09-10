@@ -31,6 +31,7 @@ namespace Manager
         private void InstantiateTransitionScreenPrefab()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"OnInstantiateTransitionScreenPrefab()");
 
@@ -42,12 +43,13 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(UIManager),
-                $"Instantiate <b>Transition Screen Prefab</b> successfully");
+                $"<b>Transition Screen Prefab</b> is instantiated");
         }
 
         private void InstantiatePauseScreenPrefab()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"InstantiatePauseScreenPrefab()");
 
@@ -59,12 +61,13 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(UIManager),
-                $"Instantiate <b>Pause Screen Prefab</b> successfully");
+                $"<b>Pause Screen Prefab</b> is instantiated");
         }
 
         private void InstantiateCommandConsolePrefab()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"InstantiateCommandConsolePrefab()");
             
@@ -75,7 +78,7 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(UIManager),
-                $"Instantiate <b>Command Console Prefab</b> successfully");
+                $"<b>Command Console Prefab</b> is instantiated");
         }
 
         #endregion
@@ -85,6 +88,7 @@ namespace Manager
         public static void OnInitialize()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"OnInitialize()");
 
@@ -94,6 +98,7 @@ namespace Manager
         public static void OnInstantiateAllUIPrefabs()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"OnInstantiateAllUIPrefabs()");
 
@@ -104,12 +109,13 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(DataManager),
-                "<b>All UI Prefabs</b> are instantiated successfully");
+                "<b>All UI Prefabs</b> are instantiated");
         }
         
         public static void SetScreenTransitionDirectionToLeft()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"SetScreenTransitionDirectionToLeft()");
 
@@ -120,6 +126,7 @@ namespace Manager
         public static void SetScreenTransitionDirectionToRight()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"SetScreenTransitionDirectionToRight()");
 
@@ -130,6 +137,7 @@ namespace Manager
         public static void OnPlayScreenTransitionAnimation()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(UIManager),
                 $"OnPlayScreenTransitionAnimation()");
 
