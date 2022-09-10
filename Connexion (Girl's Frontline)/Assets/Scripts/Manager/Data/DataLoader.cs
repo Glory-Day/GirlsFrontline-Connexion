@@ -13,6 +13,7 @@ namespace Manager.Data
         public static T OnLoadData<T>(string path) where T : class
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(DataLoader),
                 $"OnLoadData<{typeof(T).Name}>()");
 
@@ -25,7 +26,7 @@ namespace Manager.Data
                 LogManager.OnDebugLog(
                     Label.Success, 
                     typeof(DataLoader),
-                    $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b> successfully");
+                    $"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b>");
             }
             catch (DirectoryNotFoundException error)
             {
