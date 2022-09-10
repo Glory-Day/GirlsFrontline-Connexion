@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Manager;
+using Manager.Log;
 
 #endregion
 
@@ -34,6 +35,7 @@ namespace Object.UI.Console.Component
         private void Awake()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(Viewport),
                 "Awake()");
             
@@ -64,6 +66,7 @@ namespace Object.UI.Console.Component
         private void Initialize()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(Viewport),
                 "Initialize()");
 
