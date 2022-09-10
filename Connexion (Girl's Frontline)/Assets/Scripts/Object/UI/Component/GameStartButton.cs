@@ -20,6 +20,7 @@ namespace Object.UI.Component
         private void Start()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(GameStartButton),
                 "Start()");
             
