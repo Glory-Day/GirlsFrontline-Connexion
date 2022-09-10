@@ -27,6 +27,7 @@ namespace Manager
         public static void OnInitialize()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(ObjectManager),
                 $"OnInitialize()");
             

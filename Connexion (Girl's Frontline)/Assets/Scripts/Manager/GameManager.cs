@@ -18,7 +18,9 @@ namespace Manager
 
         public static void OnPause()
         {
-            LogManager.OnDebugLog(typeof(GameManager),
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(GameManager),
                 $"OnPause()");
 
             if (Time.timeScale < 0.5f)
@@ -38,12 +40,14 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(GameManager),
-                $"<b>Game Application</b> pauses successfully");
+                $"<b>Game Application</b> is paused");
         }
 
         public static void OnPlay()
         {
-            LogManager.OnDebugLog(typeof(GameManager),
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(GameManager),
                 $"OnPlay()");
 
             if (Time.timeScale > 0.5f)
@@ -63,18 +67,20 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(GameManager),
-                $"<b>Game Application</b> plays successfully");
+                $"<b>Game Application</b> is played");
         }
 
         public static void OnQuit()
         {
-            LogManager.OnDebugLog(typeof(GameManager),
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(GameManager),
                 $"OnQuit()");
 
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(GameManager),
-                $"<b>Game Application</b> is quited successfully");
+                $"<b>Game Application</b> is quited");
 
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;

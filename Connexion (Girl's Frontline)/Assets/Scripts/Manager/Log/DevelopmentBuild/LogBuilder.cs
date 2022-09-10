@@ -19,17 +19,6 @@ namespace Manager.Log.DevelopmentBuild
         }
 
         /// <summary>
-        /// Build string of default log
-        /// </summary>
-        /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
-        /// <param name="contents"> Contents of output log </param>
-        /// <returns> String of default log </returns>
-        public static string Build(Type type, string contents)
-        {
-            return $"{Tag.Default}|{type.Name}|Called <b><i>{contents}</i></b>";
-        }
-
-        /// <summary>
         /// Build string of spacial log
         /// </summary>
         /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
@@ -45,6 +34,9 @@ namespace Manager.Log.DevelopmentBuild
 
             switch (label)
             {
+                case Label.Called:
+                    log = $"{Tag.Called}|{type.Name}|<b><i>{contents}</i></b>";
+                    break;
                 case Label.Event:
                     log = $"{Tag.Event}|{type.Name}|{contents}";
                     break;

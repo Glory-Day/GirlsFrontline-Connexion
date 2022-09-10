@@ -19,6 +19,7 @@ namespace Manager
         public static void OnLoadSceneByLabel(Scene.Label label)
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(SceneManager),
                 $"OnLoadSceneByName()");
 
@@ -31,7 +32,7 @@ namespace Manager
                     LogManager.OnDebugLog(
                         Label.Success, 
                         typeof(SceneManager),
-                        $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded successfully");
+                        $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded");
                     break;
                 case Scene.Label.Selection:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
@@ -40,7 +41,7 @@ namespace Manager
                     LogManager.OnDebugLog(
                         Label.Success, 
                         typeof(SceneManager),
-                        $"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded successfully");
+                        $"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(label), label, null);
