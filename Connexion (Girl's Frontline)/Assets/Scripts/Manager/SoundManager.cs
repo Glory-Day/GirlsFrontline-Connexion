@@ -50,6 +50,7 @@ namespace Manager
         private void PlayBackgroundAudioSource(string key)
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(SoundManager),
                 $"PlayBackgroundAudioSource()");
 
@@ -68,7 +69,7 @@ namespace Manager
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(SoundManager),
-                $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b> successfully");
+                $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b>");
         }
 
         #region STATIC METHOD API
@@ -76,6 +77,7 @@ namespace Manager
         public static void OnInitialize()
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(SoundManager),
                 $"OnInitialize()");
             
@@ -98,6 +100,7 @@ namespace Manager
         public static void OnChangeBackgroundAudioClip(Scene.Label label)
         {
             LogManager.OnDebugLog(
+                Label.Called,
                 typeof(SoundManager),
                 $"OnChangeBackgroundAudioClip()");
 
