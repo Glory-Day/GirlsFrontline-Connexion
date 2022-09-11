@@ -57,7 +57,7 @@ namespace Object.UI.Selection.Component
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(NextButton),
-                $"<b>Chapter 0{GetCurrentChapterIndexCallBack.Invoke() + 1}</b> is selected");
+                $"<b>Chapter 0{(GetCurrentChapterIndexCallBack.Invoke() + 1).ToString()}</b> is selected");
         }
 
         #endregion
