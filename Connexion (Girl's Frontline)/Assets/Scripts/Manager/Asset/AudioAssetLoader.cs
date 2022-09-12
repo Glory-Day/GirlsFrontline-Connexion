@@ -29,7 +29,7 @@ namespace Manager.Asset
             voiceAudioClipAssetsHandle      = new AsyncOperationHandle<IList<AudioClip>>(); 
         }
 
-        #region LOAD METHOD API
+        #region LOAD ASSET METHOD API
         
         public void LoadBackgroundAudioClipAssets()
         {
@@ -96,7 +96,7 @@ namespace Manager.Asset
 
         #endregion
 
-        #region UNLOAD METHOD API
+        #region UNLOAD ASSET METHOD API
         
         public void UnloadBackgroundAudioClipAssets()
         {
@@ -140,7 +140,7 @@ namespace Manager.Asset
 
         #endregion
 
-        #region CHECK METHOD API
+        #region CHECK ASSET METHOD API
 
         public bool IsLoadedBackgroundAudioClipAssetsDone()
         {
