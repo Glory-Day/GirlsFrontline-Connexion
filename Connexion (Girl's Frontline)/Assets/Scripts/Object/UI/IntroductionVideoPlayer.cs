@@ -51,7 +51,10 @@ namespace Object.UI
                 typeof(IntroductionVideoPlayer),
                 $"<b>Waiting All Assets</b> is loaded");
 
-            while(!AssetManager.IsLoadedAllAssetsDone()) yield return null;
+            while(!AssetManager.IsLoadedAllAssetsDone())
+            {
+                yield return null;
+            }
 
             LogManager.OnDebugLog(
                 Label.Success, 

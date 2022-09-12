@@ -1,7 +1,9 @@
 ﻿#region NAMESPACE API
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object.UI;
 using Label = Manager.Log.Label;
 
 #endregion
@@ -10,16 +12,7 @@ namespace Manager
 {
     public class UIManager : Singleton<UIManager>
     {
-        #region CONSTANT FIELD API
-
-        // Screen transition animation names
-        private const string ScreenTransitionToLeftAnimation  = "Left Screen Transition Animation";
-        private const string ScreenTransitionToRightAnimation = "Right Screen Transition Animation";
-
-        #endregion
-
         private Dictionary<string, GameObject> uiPrefabs;
-        private Animation                      screenTransitionAnimation;
         
         protected UIManager()
         {
@@ -37,9 +30,12 @@ namespace Manager
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[0]],
                 transform, true);
-            screenTransitionAnimation = instantiatedObject.transform.GetChild(0)
-                                                          .gameObject.GetComponent<Animation>();
-
+            
+            var component = instantiatedObject.GetComponent<TransitionScreen>();
+            SetTransitionDirectionToLeft = component.SetTransitionDirectionToLeft;
+            SetTransitionDirectionToRight = component.SetTransitionDirectionToRight;
+            PlayScreenTransition = component.PlayScreenTransition;
+            
             LogManager.OnDebugLog(
                 Label.Success, 
                 typeof(UIManager),
@@ -111,43 +107,6 @@ namespace Manager
                 typeof(DataManager),
                 "<b>All UI Prefabs</b> are instantiated");
         }
-        
-        public static void SetScreenTransitionDirectionToLeft()
-        {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"SetScreenTransitionDirectionToLeft()");
-
-            Instance.screenTransitionAnimation.clip =
-                Instance.screenTransitionAnimation.GetClip(ScreenTransitionToLeftAnimation);
-        }
-
-        public static void SetScreenTransitionDirectionToRight()
-        {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"SetScreenTransitionDirectionToRight()");
-
-            Instance.screenTransitionAnimation.clip =
-                Instance.screenTransitionAnimation.GetClip(ScreenTransitionToRightAnimation);
-        }
-
-        public static void OnPlayScreenTransitionAnimation()
-        {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"OnPlayScreenTransitionAnimation()");
-
-            Instance.screenTransitionAnimation.Play();
-
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(UIManager),
-                $"Play <b>{Instance.screenTransitionAnimation.clip.name}</b>");
-        }
 
         public static void OnEnablePauseScreen()
         {
@@ -161,9 +120,49 @@ namespace Manager
 
         #endregion
 
+        #region CALLBACK API
+
+        private event Action SetTransitionDirectionToLeft;
+        private event Action SetTransitionDirectionToRight;
+        private event Action PlayScreenTransition;
+
+        #endregion
+
+        #region STATIC METHOD API
+
+        public static void OnPlayScreenTransitionToLeft()
+        {
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(UIManager),
+                "OnPlayScreenTransitionToLeft()");
+            
+            Instance.SetTransitionDirectionToLeft.Invoke();
+            Instance.PlayScreenTransition.Invoke();
+        }
+
+        public static void OnPlayScreenTransitionToRight()
+        {
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(UIManager),
+                "OnPlayScreenTransitionToRight()");
+            
+            Instance.SetTransitionDirectionToRight.Invoke();
+            Instance.PlayScreenTransition.Invoke();
+        }
+
+        #endregion
+
         #region STATIC PROPERTIES API
 
         public static Dictionary<string, GameObject> UIPrefabs => Instance.uiPrefabs;
+
+        public static GameObject PauseScreen
+        {
+            get => Instance.uiPrefabs[DataManager.AssetData.uiPrefab.names[1]];
+            set => Instance.uiPrefabs[DataManager.AssetData.uiPrefab.names[1]] = value;
+        }
 
         #endregion
     }

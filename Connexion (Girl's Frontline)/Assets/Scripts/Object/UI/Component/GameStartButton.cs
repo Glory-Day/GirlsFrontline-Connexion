@@ -38,8 +38,7 @@ namespace Object.UI.Component
 
             gameStartButton.interactable = false;
 
-            UIManager.SetScreenTransitionDirectionToLeft();
-            UIManager.OnPlayScreenTransitionAnimation();
+            UIManager.OnPlayScreenTransitionToLeft();
         }
         
         #endregion
