@@ -52,8 +52,7 @@ namespace Object.UI.Selection.Component
             previewButton.interactable = false;
             GetCurrentChapterButtonCallBack.Invoke().interactable = false;
             
-            UIManager.SetScreenTransitionDirectionToRight();
-            UIManager.OnPlayScreenTransitionAnimation();
+            UIManager.OnPlayScreenTransitionToRight();
         }
 
         #endregion
