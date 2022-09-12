@@ -9,7 +9,7 @@ using Manager.Log;
 
 #endregion
 
-namespace Object.UI.Console.Component
+namespace Object.UI.Console.View
 {
     public class Viewport : MonoBehaviour
     {
@@ -42,14 +42,14 @@ namespace Object.UI.Console.Component
             Initialize();
             
             var root = transform.parent;
-            var component1 = root.GetComponentInChildren<InputField>();
+            var component1 = root.GetComponentInChildren<Controller.InputField>();
             GetInputCommandsCallBack = component1.GetInputCommands;
             
             // Initialize recommend buttons
             for (var i = 0; i < commandNames.Length; i++)
             {
                 var instantiatedRecommendButton = Instantiate(recommendButton, recommendLayoutGroupTransform);
-                var component2 = instantiatedRecommendButton.GetComponent<RecommendButton>();
+                var component2 = instantiatedRecommendButton.GetComponent<Controller.RecommendButton>();
                 component2.CommandName = commandNames[i];
                 component2.GetInputCommandsCallBack += component1.GetInputCommands;
                 component2.SetInputFieldTextCallBack += component1.SetInputFieldText;
