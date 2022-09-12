@@ -8,7 +8,7 @@ using TMPro;
 
 #endregion
 
-namespace Object.UI.Console.Component
+namespace Object.UI.Console.Controller
 {
     public class RecommendButton : MonoBehaviour
     {
