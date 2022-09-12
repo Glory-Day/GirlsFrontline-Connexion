@@ -7,7 +7,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Selection.Component
+namespace Object.UI.Selection.Controller
 {
     public class UndoButton : MonoBehaviour
     {
@@ -30,7 +30,7 @@ namespace Object.UI.Selection.Component
 
             undoButton = GetComponent<UnityEngine.UI.Button>();
             
-            var component = GetComponentInParent<SelectionController>();
+            var component = GetComponentInParent<ChapterSelector>();
             nextButton = component.NextButton;
             previewButton = component.PreviewButton;
             GetCurrentChapterButtonCallBack = component.GetCurrentChapterButton;
