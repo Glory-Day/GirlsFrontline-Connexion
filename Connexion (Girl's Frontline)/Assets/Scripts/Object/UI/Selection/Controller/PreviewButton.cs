@@ -7,7 +7,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Selection.Component
+namespace Object.UI.Selection.Controller
 {
     public class PreviewButton : MonoBehaviour
     {
@@ -31,7 +31,7 @@ namespace Object.UI.Selection.Component
                 typeof(PreviewButton),
                 "Start()");
             
-            var component = GetComponentInParent<SelectionController>();
+            var component = GetComponentInParent<ChapterSelector>();
             selectionAnimation = component.SelectionAnimation;
             DecreaseChapterIndexCallBack = component.DecreaseChapterIndex;
             GetCurrentChapterIndexCallBack = component.GetCurrentChapterIndex;
