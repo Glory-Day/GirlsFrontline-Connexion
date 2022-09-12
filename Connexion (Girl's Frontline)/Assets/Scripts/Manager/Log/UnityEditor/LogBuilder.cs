@@ -35,8 +35,7 @@ namespace Manager.Log.UnityEditor
             switch (label)
             {
                 case Label.Called:
-                    log = $"<color={Color.Bold}><b>[{Tag.Called}][{type.Name}]</b></color>" +
-                          $"<color={Color.Default}> <i>{contents}</i></color>";
+                    log = $"<color={Color.Default}><b>[{Tag.Called}][{type.Name}]</b> <i>{contents}</i></color>";
                     break;
                 case Label.Event:
                     log = $"<color={Color.Bold}><b>[{Tag.Event}][{type.Name}]</b> {contents}</color>";

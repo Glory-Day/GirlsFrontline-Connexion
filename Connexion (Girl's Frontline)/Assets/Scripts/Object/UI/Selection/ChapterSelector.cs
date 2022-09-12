@@ -11,7 +11,7 @@ using Label = Manager.Log.Label;
 
 namespace Object.UI.Selection
 {
-    public class SelectionController : MonoBehaviour
+    public class ChapterSelector : MonoBehaviour
     {
         #region SERIALIZABLE FIELD API
 
@@ -45,7 +45,7 @@ namespace Object.UI.Selection
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(SelectionController),
+                typeof(ChapterSelector),
                 "Start()");
             
             Initialize();
@@ -57,7 +57,7 @@ namespace Object.UI.Selection
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(SelectionController),
+                typeof(ChapterSelector),
                 "Initialize()");
 
             isChapterBlock = Enumerable.Range(0, 5)
@@ -102,7 +102,7 @@ namespace Object.UI.Selection
         {
             LogManager.OnDebugLog(
                 Label.Event, 
-                typeof(SelectionController), 
+                typeof(ChapterSelector), 
                 "<b>Chapter Controller Animation Event</b> is activated. " +
                 "Next, preview, Undo Buttons is <b>Enabled</b>");
             
@@ -129,7 +129,7 @@ namespace Object.UI.Selection
         {
             LogManager.OnDebugLog(
                 Label.Event, 
-                typeof(SelectionController), 
+                typeof(ChapterSelector), 
                 "<b>Chapter Controller Animation Event</b> is activated. " +
                 "Next, preview, Undo Buttons is <b>Disabled</b>");
             
@@ -145,9 +145,6 @@ namespace Object.UI.Selection
 
         public UnityEngine.UI.Button PreviewButton => previewButton;
         
-        /// <summary>
-        /// Animation to select <see cref="chapters"/>
-        /// </summary>
         public Animation SelectionAnimation { get; private set; }
 
         #endregion

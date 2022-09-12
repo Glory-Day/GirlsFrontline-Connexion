@@ -6,7 +6,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Component
+namespace Object.UI.Controller
 {
     public class GameStartButton : MonoBehaviour
     {

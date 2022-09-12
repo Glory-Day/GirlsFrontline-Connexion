@@ -12,7 +12,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Console.Component
+namespace Object.UI.Console.Controller
 {
     public class InputField : MonoBehaviour
     {
