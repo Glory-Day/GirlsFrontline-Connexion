@@ -9,7 +9,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI
+namespace Object.UI.IntroductionVideo
 {
     public class IntroductionVideoPlayer : MonoBehaviour
     {
