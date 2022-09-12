@@ -6,7 +6,7 @@ using Label = Manager.Log.Label;
 
 #endregion
 
-namespace Object.UI.Component
+namespace Object.UI.IntroductionVideo.Controller
 {
     public class SkipButton : MonoBehaviour
     {
