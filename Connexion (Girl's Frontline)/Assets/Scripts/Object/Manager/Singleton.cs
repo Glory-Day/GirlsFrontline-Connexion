@@ -5,7 +5,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Manager
+namespace Object.Manager
 {
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
