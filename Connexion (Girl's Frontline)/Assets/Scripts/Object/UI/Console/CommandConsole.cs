@@ -3,10 +3,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Manager;
 using Util.Command;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
@@ -25,15 +24,10 @@ namespace Object.UI.Console
         #region CONSTANT FIELD API
 
         private const string LoadAllDataCommand             = "OnLoadAllData";
-        private const string LoadAllAssetsCommand           = "OnLoadAllAssets";
-        private const string UnloadAllAssetsCommand         = "OnUnloadAllAssets";
-        private const string IsAllAssetsLoadedCommand       = "IsLoadedAllAssetsDone";
         private const string ChangeBackgroundAudioClip      = "OnChangeBackgroundAudioClip --CurrentScene";
         private const string InstantiateAllUIPrefabsCommand = "OnInstantiateAllUIPrefabs";
         private const string LoadMainScene                  = "OnLoadScene --Name Main";
-        private const string LoadSelectionScene             = "OnLoadScene --Name Selection";
         private const string ApplicationQuit                = "OnApplicationQuit";
-        private const string ApplicationSetUp               = "OnApplicationSetUp";
         private const string ApplicationPlay                = "OnApplicationPlay";
 
         #endregion
@@ -48,29 +42,19 @@ namespace Object.UI.Console
             
             Commands = new Dictionary<string, ICommand>
                        {
-                           { LoadAllAssetsCommand,           new LoadAllAssetsCommand() },
                            { LoadAllDataCommand,             new LoadAllDataCommand() },
-                           { UnloadAllAssetsCommand,         new UnloadAllAssetsCommand() },
-                           { IsAllAssetsLoadedCommand,       new IsLoadedAllAssetsDoneCommand() },
                            { ChangeBackgroundAudioClip,      new ChangeBackgroundAudioClipCommand() },
                            { InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand() },
                            { LoadMainScene,                  new LoadMainScene() },
-                           { LoadSelectionScene,             new LoadSelectionScene() },
                            { ApplicationQuit,                new ApplicationQuitCommand() },
-                           { ApplicationPlay,                new ApplicationPlayCommand() },
-                           { ApplicationSetUp,               new ApplicationSetUpCommand() }
+                           { ApplicationPlay,                new ApplicationPlayCommand() }
                        };
         }
 
         #region INPUT EVENT API
 
-        public void OnToggle(InputAction.CallbackContext context)
+        public void OnToggle()
         {
-            if (!context.performed)
-            {
-                return;
-            }
-
             switch (inputFieldLayoutGroup.activeInHierarchy)
             {
                 case true:
