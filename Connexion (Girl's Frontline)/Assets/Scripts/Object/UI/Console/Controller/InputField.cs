@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using TMPro;
-using Manager;
 using Util.Command;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
@@ -64,13 +63,8 @@ namespace Object.UI.Console.Controller
 
         #region INPUT EVENT API
         
-        public void OnExecute(InputAction.CallbackContext context)
+        public void OnExecute()
         {
-            if (!context.performed)
-            {
-                return;
-            }
-
             var inputCommands = GetInputCommands();
             for (var i = 0; i < inputCommands.Length; i++)
             {
