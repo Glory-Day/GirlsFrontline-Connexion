@@ -1,4 +1,4 @@
-﻿namespace Manager.Data
+﻿namespace Util.Manager.Data
 {
     public static class JsonFilePath
     {
