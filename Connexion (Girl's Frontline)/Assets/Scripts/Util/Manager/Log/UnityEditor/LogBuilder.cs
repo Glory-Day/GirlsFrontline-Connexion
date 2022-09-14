@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Manager.Log.UnityEditor
+namespace Util.Manager.Log.UnityEditor
 {
     public static class LogBuilder
     {
