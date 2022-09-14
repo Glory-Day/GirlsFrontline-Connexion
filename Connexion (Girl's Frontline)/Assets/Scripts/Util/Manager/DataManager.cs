@@ -1,12 +1,12 @@
 ﻿#region NAMESPACE API
 
-using Manager.Data;
-using Manager.Data.Category;
-using Label = Manager.Log.Label;
+using Util.Manager.Data;
+using Util.Manager.Data.Json;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Util.Manager
 {
     public class DataManager : Singleton<DataManager>
     {
@@ -15,11 +15,6 @@ namespace Manager
         private AssetData            assetData;
         private AddressableLabelData addressableLabelData;
         
-        protected DataManager()
-        {
-            // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
-
         #region LOAD DATA METHOD API
 
         private void LoadGameData()
