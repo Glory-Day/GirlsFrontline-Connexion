@@ -2,11 +2,12 @@
 
 using System;
 using System.Collections.Generic;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager.Object
+namespace Util.Manager.Object
 {
     public class Pool<T>
     {
