@@ -1,4 +1,4 @@
-﻿namespace Manager.Scene
+﻿namespace Util.Manager.Scene
 {
     public enum Label
     {
