@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Manager.Data.Category
+namespace Util.Manager.Data.Json
 {
     #region DATA CLASS API
 
@@ -12,12 +12,24 @@ namespace Manager.Data.Category
     public class AudioAsset
     {
         public string[] labels;
+
+        #region PROPERTIES API
+
+        public string[] Labels => labels;
+
+        #endregion
     }
 
     [Serializable]
     public class PrefabAsset
     {
         public string[] labels;
+
+        #region PROPERTIES API
+
+        public string[] Labels => labels;
+
+        #endregion
     }
 
     #endregion
@@ -27,5 +39,13 @@ namespace Manager.Data.Category
     {
         public AudioAsset  audioAsset;
         public PrefabAsset prefabAsset;
+
+        #region PROPERTIES API
+
+        public AudioAsset AudioAsset => audioAsset;
+
+        public PrefabAsset PrefabAsset => prefabAsset;
+
+        #endregion
     }
 }
