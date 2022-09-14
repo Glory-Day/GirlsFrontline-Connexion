@@ -1,6 +1,7 @@
 ﻿#region NAMESPACE API
 
-using Manager;
+using Object.Manager;
+using Util.Manager;
 
 #endregion
 
