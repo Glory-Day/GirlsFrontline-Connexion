@@ -1,4 +1,4 @@
-﻿namespace Manager.Log
+﻿namespace Util.Manager.Log
 {
     public enum Label
     {
