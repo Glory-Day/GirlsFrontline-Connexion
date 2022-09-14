@@ -1,19 +1,15 @@
 ﻿#region NAMESPACE API
 
 using UnityEngine;
-using Label = Manager.Log.Label;
+using Object.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Util.Manager
 {
-    public class GameManager : Singleton<GameManager>
+    public static class GameManager
     {
-        protected GameManager()
-        {
-            // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
-
         #region STATIC METHOD API
 
         public static void OnPause()
