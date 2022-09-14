@@ -1,20 +1,26 @@
 ﻿#region NAMESPACE API
 
-using Manager.Asset;
-using Manager.Log;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Util.Asset
 {
-    public class AssetManager : Singleton<AssetManager>
+    public class AssetLoader
     {
-        private AudioAssetLoader  audioAssetLoader;
-        private PrefabAssetLoader prefabAssetLoader;
+        private readonly AudioAssetLoader  audioAssetLoader;
+        private readonly PrefabAssetLoader prefabAssetLoader;
 
-        protected AssetManager()
+        public AssetLoader()
         {
-            // Guarantee this object will be always a singleton only - Can not use the constructor
+            LogManager.OnDebugLog(
+                Label.Called, 
+                typeof(AssetLoader), 
+                "AssetLoader()");
+            
+            audioAssetLoader = new AudioAssetLoader();
+            prefabAssetLoader = new PrefabAssetLoader();
         }
 
         #region AUDIO ASSET METHOD API
@@ -23,7 +29,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(AssetManager),
+                typeof(AssetLoader),
                 $"LoadAudioAssets()");
             
             audioAssetLoader.LoadBackgroundAudioClipAssets();
@@ -46,7 +52,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(AssetManager),
+                typeof(AssetLoader),
                 $"UnloadAudioAssets()");
             
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
@@ -88,7 +94,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(AssetManager),
+                typeof(AssetLoader),
                 $"LoadPrefabAssets()");
 
             prefabAssetLoader.LoadUIPrefabAssets();
@@ -98,7 +104,7 @@ namespace Manager
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(AssetManager),
+                typeof(AssetLoader),
                 $"UnloadPrefabAssets()");
 
             prefabAssetLoader.UnloadUIPrefabAssets();
@@ -112,43 +118,32 @@ namespace Manager
         #endregion
 
         #region STATIC METHOD API
-
-        public static void OnInitialize()
-        {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetManager),
-                $"OnInitialize()");
-
-            Instance.audioAssetLoader  = new AudioAssetLoader();
-            Instance.prefabAssetLoader = new PrefabAssetLoader();
-        }
         
-        public static void OnLoadAllAssets()
+        public void LoadAllAssets()
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(AssetManager),
+                typeof(AssetLoader),
                 $"OnLoadAllAssets()");
 
-            Instance.LoadAudioAssets();
-            Instance.LoadPrefabAssets();
+            LoadAudioAssets();
+            LoadPrefabAssets();
         }
 
-        public static void OnUnloadAllAssets()
+        public void UnloadAllAssets()
         {
             LogManager.OnDebugLog(
                 Label.Called,
-                typeof(AssetManager),
+                typeof(AssetLoader),
                 $"OnUnloadAllAssets()");
 
-            Instance.UnloadAudioAssets();
-            Instance.UnloadPrefabAssets();
+            UnloadAudioAssets();
+            UnloadPrefabAssets();
         }
 
-        public static bool IsLoadedAllAssetsDone()
+        public bool IsLoadedAllAssetsDone()
         {
-            return Instance.IsLoadedAudioAssetsDone() && Instance.IsLoadedPrefabAssetsDone();
+            return IsLoadedAudioAssetsDone() && IsLoadedPrefabAssetsDone();
         }
 
         #endregion
