@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Manager.Data.Category
+namespace Util.Manager.Data.Json
 {
     #region DATA CLASS API
 
@@ -12,6 +12,12 @@ namespace Manager.Data.Category
     public class Chapter
     {
         public bool isBlock;
+
+        #region PROPERTIES API
+
+        public bool IsBlock => isBlock;
+
+        #endregion
     }
 
     #endregion
@@ -20,5 +26,11 @@ namespace Manager.Data.Category
     public class GameData
     {
         public Chapter[] chapters;
+
+        #region PROPERTIES API
+
+        public Chapter[] Chapters => chapters;
+
+        #endregion
     }
 }
