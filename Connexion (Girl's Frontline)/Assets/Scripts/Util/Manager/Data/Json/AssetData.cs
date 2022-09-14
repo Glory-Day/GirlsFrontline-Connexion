@@ -1,11 +1,10 @@
 ﻿#region NAMESPACE API
 
 using System;
-using UnityEngine;
 
 #endregion
 
-namespace Manager.Data.Category
+namespace Util.Manager.Data.Json
 {
     #region DATA CLASS API
 
@@ -13,24 +12,48 @@ namespace Manager.Data.Category
     public class BackgroundAudioClip
     {
         public string[] names;
+
+        #region PROPERTIES API
+
+        public string[] Names => names;
+
+        #endregion
     }
 
     [Serializable]
     public class EffectAudioClip
     {
         public string[] names;
+
+        #region PROPERTIES API
+
+        public string[] Names => names;
+
+        #endregion
     }
 
     [Serializable]
     public class VoiceAudioClip
     {
         public string[] names;
+
+        #region PROPERTIES API
+
+        public string[] Names => names;
+
+        #endregion
     }
 
     [Serializable]
     public class UIPrefab
     {
         public string[] names;
+
+        #region PROPERTIES API
+
+        public string[] Names => names;
+
+        #endregion
     }
 
     #endregion
@@ -42,5 +65,17 @@ namespace Manager.Data.Category
         public EffectAudioClip     effectAudioClip;
         public VoiceAudioClip      voiceAudioClip;
         public UIPrefab            uiPrefab;
+
+        #region PROPERTIES API
+
+        public BackgroundAudioClip BackgroundAudioClip => backgroundAudioClip;
+
+        public EffectAudioClip EffectAudioClip => effectAudioClip;
+
+        public VoiceAudioClip VoiceAudioClip => voiceAudioClip;
+
+        public UIPrefab UIPrefab => uiPrefab;
+
+        #endregion
     }
 }
