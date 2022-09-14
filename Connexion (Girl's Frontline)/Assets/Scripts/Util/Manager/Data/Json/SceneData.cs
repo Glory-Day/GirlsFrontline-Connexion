@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Manager.Data.Category
+namespace Util.Manager.Data.Json
 {
     #region DATA CLASS API
 
@@ -12,6 +12,12 @@ namespace Manager.Data.Category
     public class Scene
     {
         public string name;
+
+        #region PROPERTIES API
+
+        public string Name => name;
+
+        #endregion
     }
 
     #endregion
@@ -20,5 +26,11 @@ namespace Manager.Data.Category
     public class SceneData
     {
         public Scene[] scenes;
+
+        #region PROPERTIES API
+
+        public Scene[] Scenes => scenes;
+
+        #endregion
     }
 }
