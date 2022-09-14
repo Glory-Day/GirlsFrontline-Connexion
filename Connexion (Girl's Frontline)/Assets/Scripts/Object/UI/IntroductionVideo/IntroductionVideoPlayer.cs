@@ -4,8 +4,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using Manager;
-using Label = Manager.Log.Label;
+using Object.Manager;
+using Util.Asset;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
@@ -27,6 +29,8 @@ namespace Object.UI.IntroductionVideo
 
         #endregion
 
+        private AssetLoader assetLoader;
+        
         // Start is called before the first frame update
         private void Start()
         {
@@ -38,26 +42,28 @@ namespace Object.UI.IntroductionVideo
             videoPlayer = GetComponent<VideoPlayer>();
             skipButton.gameObject.SetActive(false);
 
-            StartCoroutine(LoadAllDataAndAssets());
+            assetLoader = new AssetLoader();
+            
+            StartCoroutine(Initialize());
         }
         
-        private IEnumerator LoadAllDataAndAssets()
+        private IEnumerator Initialize()
         {
             DataManager.OnLoadAllData();
-            AssetManager.OnLoadAllAssets();
+            assetLoader.LoadAllAssets();
 
             LogManager.OnDebugLog(
                 Label.Event, 
                 typeof(IntroductionVideoPlayer),
                 $"<b>Waiting All Assets</b> is loaded");
 
-            while(!AssetManager.IsLoadedAllAssetsDone())
+            while(!assetLoader.IsLoadedAllAssetsDone())
             {
                 yield return null;
             }
 
             LogManager.OnDebugLog(
-                Label.Success, 
+                Label.Success,
                 typeof(IntroductionVideoPlayer),
                 "<b>All Data And Assets</b> are loaded");
 
@@ -82,7 +88,7 @@ namespace Object.UI.IntroductionVideo
                 typeof(IntroductionVideoPlayer),
                 "<b>Introduction Video</b> is over");
             
-            SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
+            SceneManager.OnLoadSceneByLabel(Util.Manager.Scene.Label.Main);
         }
     }
 }

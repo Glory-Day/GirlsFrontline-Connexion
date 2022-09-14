@@ -3,9 +3,9 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using Manager;
+using Util.Manager;
+using Util.Manager.Log;
 using View;
-using Label = Manager.Log.Label;
 
 #endregion
 

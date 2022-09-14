@@ -1,8 +1,9 @@
 ﻿#region NAMESPACE API
 
 using UnityEngine;
-using Manager;
-using Label = Manager.Log.Label;
+using Object.Manager;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
@@ -19,7 +20,7 @@ namespace Object.UI.IntroductionVideo.Controller
                 typeof(SkipButton),
                 "<b>Skip Button</b> is clicked");
             
-            SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
+            SceneManager.OnLoadSceneByLabel(Util.Manager.Scene.Label.Main);
         }
 
         #endregion

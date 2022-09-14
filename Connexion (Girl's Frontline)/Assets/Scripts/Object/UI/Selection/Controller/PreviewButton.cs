@@ -2,8 +2,8 @@
 
 using System;
 using UnityEngine;
-using Manager;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 

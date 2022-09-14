@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Manager;
-using Manager.Log;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
