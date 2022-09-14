@@ -2,11 +2,11 @@
 
 using System.IO;
 using UnityEngine;
-using Label = Manager.Log.Label;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager.Data
+namespace Util.Manager.Data
 {
     public class DataLoader
     {
