@@ -1,8 +1,9 @@
 ﻿#region NAMESPACE API
 
 using UnityEngine;
-using Manager;
-using Label = Manager.Log.Label;
+using Object.Manager;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
@@ -17,8 +18,7 @@ namespace Object
                 Label.Called,
                 typeof(ManagerInitializer),
                 "Start()");
-
-            AssetManager.OnInitialize();
+            
             SoundManager.OnInitialize();
             ObjectManager.OnInitialize();
             UIManager.OnInitialize();
