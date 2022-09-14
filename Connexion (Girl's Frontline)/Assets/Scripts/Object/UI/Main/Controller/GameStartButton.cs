@@ -1,12 +1,13 @@
 ﻿#region NAMESPACE API
 
 using UnityEngine;
-using Manager;
-using Label = Manager.Log.Label;
+using Object.Manager;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Object.UI.Controller
+namespace Object.UI.Main.Controller
 {
     public class GameStartButton : MonoBehaviour
     {
