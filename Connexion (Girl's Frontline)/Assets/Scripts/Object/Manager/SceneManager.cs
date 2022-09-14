@@ -1,11 +1,12 @@
 ﻿#region NAMESPACE API
 
 using System;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Object.Manager
 {
     public class SceneManager : Singleton<SceneManager>
     {
@@ -16,7 +17,7 @@ namespace Manager
 
         #region STATIC METHOD API
 
-        public static void OnLoadSceneByLabel(Scene.Label label)
+        public static void OnLoadSceneByLabel(Util.Manager.Scene.Label label)
         {
             LogManager.OnDebugLog(
                 Label.Called,
@@ -25,18 +26,18 @@ namespace Manager
 
             switch (label)
             {
-                case Scene.Label.Main:
+                case Util.Manager.Scene.Label.Main:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[0].name);
-                    SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Main);
+                    SoundManager.OnChangeBackgroundAudioClip(Util.Manager.Scene.Label.Main);
 
                     LogManager.OnDebugLog(
                         Label.Success, 
                         typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded");
                     break;
-                case Scene.Label.Selection:
+                case Util.Manager.Scene.Label.Selection:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
-                    SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Selection);
+                    SoundManager.OnChangeBackgroundAudioClip(Util.Manager.Scene.Label.Selection);
 
                     LogManager.OnDebugLog(
                         Label.Success, 
@@ -52,8 +53,8 @@ namespace Manager
 
         #region STATIC PROPERTIES API
 
-        public static Scene.Label CurrentSceneLabel =>
-            (Scene.Label)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        public static Util.Manager.Scene.Label CurrentSceneLabel =>
+            (Util.Manager.Scene.Label)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
 
         #endregion
     }
