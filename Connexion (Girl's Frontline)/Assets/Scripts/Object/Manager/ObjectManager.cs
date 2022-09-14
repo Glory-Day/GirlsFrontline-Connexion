@@ -2,12 +2,13 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using Manager.Object;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
+using Util.Manager.Object;
 
 #endregion
 
-namespace Manager
+namespace Object.Manager
 {
     public class ObjectManager : Singleton<ObjectManager>
     {
