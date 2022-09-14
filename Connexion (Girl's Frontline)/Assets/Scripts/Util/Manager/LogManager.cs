@@ -3,13 +3,13 @@
 using System;
 using System.IO;
 using UnityEngine;
-using Label = Manager.Log.Label;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Util.Manager
 {
-    public class LogManager : Singleton<LogManager>
+    public static class LogManager
     {
         #region CONSTANT FIELD
 
@@ -17,11 +17,6 @@ namespace Manager
         private const string UnityEditor      = "UNITY_EDITOR";
 
         #endregion
-        
-        protected LogManager()
-        {
-            // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
 
         #region UNITY EDITOR CONSOLE LOG METHOD API
 
