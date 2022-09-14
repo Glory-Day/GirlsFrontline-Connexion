@@ -4,11 +4,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object.UI;
-using Label = Manager.Log.Label;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Object.Manager
 {
     public class UIManager : Singleton<UIManager>
     {
@@ -77,10 +78,35 @@ namespace Manager
                 $"<b>Command Console Prefab</b> is instantiated");
         }
 
+        private void InstantiateOptionScreenPrefab()
+        {
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(UIManager),
+                "InstantiateOptionScreenPrefab()");
+
+            var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[3]],
+                transform, true);
+            uiPrefabs[DataManager.AssetData.uiPrefab.names[3]] = instantiatedObject;
+            
+            LogManager.OnDebugLog(
+                Label.Success, 
+                typeof(UIManager),
+                $"<b>Option Screen Prefab</b> is instantiated");
+        }
+
+        #endregion
+
+        #region CALLBACK API
+
+        private event Action SetTransitionDirectionToLeft;
+        private event Action SetTransitionDirectionToRight;
+        private event Action PlayScreenTransition;
+
         #endregion
 
         #region STATIC METHOD API
-
+        
         public static void OnInitialize()
         {
             LogManager.OnDebugLog(
@@ -101,6 +127,7 @@ namespace Manager
             Instance.InstantiateTransitionScreenPrefab();
             Instance.InstantiatePauseScreenPrefab();
             Instance.InstantiateCommandConsolePrefab();
+            Instance.InstantiateOptionScreenPrefab();
 
             LogManager.OnDebugLog(
                 Label.Success, 
@@ -117,19 +144,7 @@ namespace Manager
         {
             Instance.uiPrefabs?[DataManager.AssetData.uiPrefab.names[1]].SetActive(false);
         }
-
-        #endregion
-
-        #region CALLBACK API
-
-        private event Action SetTransitionDirectionToLeft;
-        private event Action SetTransitionDirectionToRight;
-        private event Action PlayScreenTransition;
-
-        #endregion
-
-        #region STATIC METHOD API
-
+        
         public static void OnPlayScreenTransitionToLeft()
         {
             LogManager.OnDebugLog(
