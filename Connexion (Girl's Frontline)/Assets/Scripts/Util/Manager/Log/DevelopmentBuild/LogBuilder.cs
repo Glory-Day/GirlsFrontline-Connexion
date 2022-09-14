@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Manager.Log.DevelopmentBuild
+namespace Util.Manager.Log.DevelopmentBuild
 {
     public static class LogBuilder
     {
