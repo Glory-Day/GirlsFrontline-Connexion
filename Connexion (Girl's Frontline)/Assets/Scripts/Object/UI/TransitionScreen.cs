@@ -2,8 +2,9 @@
 
 using System;
 using UnityEngine;
-using Manager;
-using Label = Manager.Log.Label;
+using Object.Manager;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
@@ -75,10 +76,10 @@ namespace Object.UI
 
             switch (SceneManager.CurrentSceneLabel)
             {
-                case Manager.Scene.Label.Main:
-                    SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Selection);
+                case Util.Manager.Scene.Label.Main:
+                    SceneManager.OnLoadSceneByLabel(Util.Manager.Scene.Label.Selection);
                     break;
-                case Manager.Scene.Label.Selection:
+                case Util.Manager.Scene.Label.Selection:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -94,10 +95,10 @@ namespace Object.UI
 
             switch (SceneManager.CurrentSceneLabel)
             {
-                case Manager.Scene.Label.Main:
+                case Util.Manager.Scene.Label.Main:
                     break;
-                case Manager.Scene.Label.Selection:
-                    SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
+                case Util.Manager.Scene.Label.Selection:
+                    SceneManager.OnLoadSceneByLabel(Util.Manager.Scene.Label.Main);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
