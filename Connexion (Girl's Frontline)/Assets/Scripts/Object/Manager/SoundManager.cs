@@ -3,12 +3,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Object;
-using Label = Manager.Log.Label;
+using UnityEngine.Audio;
+using Util.Manager;
+using Util.Manager.Log;
 
 #endregion
 
-namespace Manager
+namespace Object.Manager
 {
     public class SoundManager : Singleton<SoundManager>
     {
@@ -35,8 +36,11 @@ namespace Manager
         private const string AudioMixerGroupsName = "Audio Mixer Groups";
 
         #endregion
-        
-        private AudioMixerGroups audioMixerGroups;
+
+        private AudioMixerGroup masterAudioGroup;
+        private AudioMixerGroup backgroundAudioGroup;
+        private AudioMixerGroup effectAudioGroup;
+        private AudioMixerGroup voiceAudioGroup;
 
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
@@ -82,14 +86,18 @@ namespace Manager
                 $"OnInitialize()");
             
             // Initialize audio mixer groups
-            Instance.audioMixerGroups = GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroups>();
+            var audioMixerGroups = GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroups>();
+            Instance.masterAudioGroup = audioMixerGroups.Master;
+            Instance.backgroundAudioGroup = audioMixerGroups.Background;
+            Instance.effectAudioGroup = audioMixerGroups.Effect;
+            Instance.voiceAudioGroup = audioMixerGroups.Voice;
             
             // Initialize audio source component
             Instance.gameObject.AddComponent<AudioListener>();
             Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
             Instance.backgroundAudioSource.playOnAwake = false;
             Instance.backgroundAudioSource.loop = true;
-            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.audioMixerGroups.Background;
+            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.backgroundAudioGroup;
             
             // Initialize audio clips
             Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
@@ -97,7 +105,7 @@ namespace Manager
             Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
         }
 
-        public static void OnChangeBackgroundAudioClip(Scene.Label label)
+        public static void OnChangeBackgroundAudioClip(Util.Manager.Scene.Label label)
         {
             LogManager.OnDebugLog(
                 Label.Called,
@@ -106,10 +114,10 @@ namespace Manager
 
             switch (label)
             {
-                case Scene.Label.Main:
+                case Util.Manager.Scene.Label.Main:
                     Instance.PlayBackgroundAudioSource(DataManager.AssetData.backgroundAudioClip.names[0]);
                     break;
-                case Scene.Label.Selection:
+                case Util.Manager.Scene.Label.Selection:
                     Instance.PlayBackgroundAudioSource(DataManager.AssetData.backgroundAudioClip.names[0]);
                     break;
                 default:
@@ -126,6 +134,18 @@ namespace Manager
         public static Dictionary<string, AudioClip> EffectAudioClip => Instance.effectAudioClips;
 
         public static Dictionary<string, AudioClip> VoiceAudioClip => Instance.voiceAudioClips;
+
+        public static AudioMixer MasterAudioMixer => 
+            Instance != null ? Instance.masterAudioGroup.audioMixer : null;
+
+        public static AudioMixer BackgroundAudioMixer => 
+            Instance != null ? Instance.backgroundAudioGroup.audioMixer : null;
+
+        public static AudioMixer EffectAudioMixer => 
+            Instance != null ? Instance.effectAudioGroup.audioMixer : null;
+
+        public static AudioMixer VoiceAudioMixer => 
+            Instance != null ? Instance.voiceAudioGroup.audioMixer : null;
 
         #endregion
     }
