@@ -25,17 +25,17 @@ namespace Object.Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
 
-        public static void OnInitialize()
+        private void Start()
         {
             LogManager.OnDebugLog(
                 Label.Called,
                 typeof(ObjectManager),
-                $"OnInitialize()");
+                $"Start()");
             
-            Instance.objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
-            Instance.objectPool.clones = new Dictionary<GameObject, Pool<GameObject>>();
+            objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
+            objectPool.clones = new Dictionary<GameObject, Pool<GameObject>>();
         }
-
+        
         /// <summary>
         /// Instantiate <see cref="GameObject"/> and set <see cref="GameObject"/> to disable
         /// </summary>
@@ -133,6 +133,8 @@ namespace Object.Manager
             return clone;
         }
 
+        #region STATIC METHOD API
+
         /// <summary>
         /// Create new <see cref="GameObject"/> and put to <see cref="ObjectPool"/>
         /// </summary>
@@ -167,5 +169,7 @@ namespace Object.Manager
         {
             return Instance.Spawn(prefab, parentTransform, position, rotation);
         }
+
+        #endregion
     }
 }
