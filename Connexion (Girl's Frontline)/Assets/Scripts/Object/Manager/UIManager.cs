@@ -19,6 +19,16 @@ namespace Object.Manager
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
+        
+        private void Start()
+        {
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(UIManager),
+                $"Start()");
+
+            Instance.uiPrefabs = new Dictionary<string, GameObject>();
+        }
 
         #region INSTANTIATE METHOD API
 
@@ -106,16 +116,6 @@ namespace Object.Manager
         #endregion
 
         #region STATIC METHOD API
-        
-        public static void OnInitialize()
-        {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"OnInitialize()");
-
-            Instance.uiPrefabs = new Dictionary<string, GameObject>();
-        }
 
         public static void OnInstantiateAllUIPrefabs()
         {
