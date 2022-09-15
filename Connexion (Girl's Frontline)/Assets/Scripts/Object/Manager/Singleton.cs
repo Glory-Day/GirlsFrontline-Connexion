@@ -30,12 +30,21 @@ namespace Object.Manager
                 // Double-checked locking (Thread Safe)
                 lock (Locked)
                 {
-                    if (_instance != null) return _instance;
+                    if (_instance != null)
+                    {
+                        return _instance;
+                    }
 
                     // Search for existing instance
                     _instance = FindObjectOfType(typeof(T)) as T;
-
-                    if (_instance != null) return _instance;
+                    
+                    // Make instance persistent
+                    DontDestroyOnLoad(_instance);
+                    
+                    if (_instance != null)
+                    {
+                        return _instance;
+                    }
 
                     // If it hasn't been created yet, create an instance
                     var gameObject = new GameObject();

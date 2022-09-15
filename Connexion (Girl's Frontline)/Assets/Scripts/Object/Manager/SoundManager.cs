@@ -15,9 +15,25 @@ namespace Object.Manager
     {
         #region SERIALIZABLE FIELD API
 
+        [Header("# Master Audio Mixer Group")]
+        [SerializeField]
+        private AudioMixerGroup masterAudioMixerGroup;
+        
+        [Header("# Background Audio Mixer Group")]
+        [SerializeField]
+        private AudioMixerGroup backgroundAudioMixerGroup;
+        
+        [Header("# Effect Audio Mixer Group")]
+        [SerializeField]
+        private AudioMixerGroup effectAudioMixerGroup;
+        
+        [Header("# Voice Audio Mixer Group")]
+        [SerializeField]
+        private AudioMixerGroup voiceAudioMixerGroup;
+        
         [Header("# Playing Background Audio Clip")]
         [SerializeField]
-        public AudioClip playingBackgroundAudioClip;
+        private AudioClip playingBackgroundAudioClip;
 
         #endregion
         
@@ -37,11 +53,6 @@ namespace Object.Manager
 
         #endregion
 
-        private AudioMixerGroup masterAudioGroup;
-        private AudioMixerGroup backgroundAudioGroup;
-        private AudioMixerGroup effectAudioGroup;
-        private AudioMixerGroup voiceAudioGroup;
-
         private Dictionary<string, AudioClip> backgroundAudioClips;
         private Dictionary<string, AudioClip> effectAudioClips;
         private Dictionary<string, AudioClip> voiceAudioClips;
@@ -49,6 +60,35 @@ namespace Object.Manager
         protected SoundManager()
         {
             // Guarantee this object will be always a singleton only - Can not use the constructor
+        }
+        
+        private void Start()
+        {
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(SoundManager),
+                $"Start()");
+            
+            backgroundAudioClips = new Dictionary<string, AudioClip>();
+            effectAudioClips = new Dictionary<string, AudioClip>();
+            voiceAudioClips = new Dictionary<string, AudioClip>();
+            
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            LogManager.OnDebugLog(
+                Label.Called,
+                typeof(SoundManager),
+                $"Initialize()");
+            
+            // Initialize audio source component
+            gameObject.AddComponent<AudioListener>();
+            backgroundAudioSource = gameObject.AddComponent<AudioSource>();
+            backgroundAudioSource.playOnAwake = false;
+            backgroundAudioSource.loop = true;
+            backgroundAudioSource.outputAudioMixerGroup = backgroundAudioMixerGroup;
         }
 
         private void PlayBackgroundAudioSource(string key)
@@ -77,33 +117,6 @@ namespace Object.Manager
         }
 
         #region STATIC METHOD API
-
-        public static void OnInitialize()
-        {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(SoundManager),
-                $"OnInitialize()");
-            
-            // Initialize audio mixer groups
-            var audioMixerGroups = GameObject.Find(AudioMixerGroupsName).GetComponent<AudioMixerGroups>();
-            Instance.masterAudioGroup = audioMixerGroups.Master;
-            Instance.backgroundAudioGroup = audioMixerGroups.Background;
-            Instance.effectAudioGroup = audioMixerGroups.Effect;
-            Instance.voiceAudioGroup = audioMixerGroups.Voice;
-            
-            // Initialize audio source component
-            Instance.gameObject.AddComponent<AudioListener>();
-            Instance.backgroundAudioSource = Instance.gameObject.AddComponent<AudioSource>();
-            Instance.backgroundAudioSource.playOnAwake = false;
-            Instance.backgroundAudioSource.loop = true;
-            Instance.backgroundAudioSource.outputAudioMixerGroup = Instance.backgroundAudioGroup;
-            
-            // Initialize audio clips
-            Instance.backgroundAudioClips = new Dictionary<string, AudioClip>();
-            Instance.effectAudioClips = new Dictionary<string, AudioClip>();
-            Instance.voiceAudioClips = new Dictionary<string, AudioClip>();
-        }
 
         public static void OnChangeBackgroundAudioClip(Util.Manager.Scene.Label label)
         {
@@ -135,17 +148,13 @@ namespace Object.Manager
 
         public static Dictionary<string, AudioClip> VoiceAudioClip => Instance.voiceAudioClips;
 
-        public static AudioMixer MasterAudioMixer => 
-            Instance != null ? Instance.masterAudioGroup.audioMixer : null;
-
-        public static AudioMixer BackgroundAudioMixer => 
-            Instance != null ? Instance.backgroundAudioGroup.audioMixer : null;
-
-        public static AudioMixer EffectAudioMixer => 
-            Instance != null ? Instance.effectAudioGroup.audioMixer : null;
-
-        public static AudioMixer VoiceAudioMixer => 
-            Instance != null ? Instance.voiceAudioGroup.audioMixer : null;
+        public static AudioMixer MasterAudioMixer => Instance.masterAudioMixerGroup.audioMixer;
+        
+        public static AudioMixer BackgroundAudioMixer => Instance.backgroundAudioMixerGroup.audioMixer;
+        
+        public static AudioMixer EffectAudioMixer => Instance.effectAudioMixerGroup.audioMixer;
+        
+        public static AudioMixer VoiceAudioMixer => Instance.voiceAudioMixerGroup.audioMixer;
 
         #endregion
     }

@@ -1,20 +1,15 @@
 ﻿#region NAMESPACE API
 
 using System;
-using Util.Manager;
+using Object.Manager;
 using Util.Manager.Log;
 
 #endregion
 
-namespace Object.Manager
+namespace Util.Manager
 {
     public class SceneManager : Singleton<SceneManager>
     {
-        protected SceneManager()
-        {
-            // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
-
         #region STATIC METHOD API
 
         public static void OnLoadSceneByLabel(Util.Manager.Scene.Label label)
@@ -26,18 +21,18 @@ namespace Object.Manager
 
             switch (label)
             {
-                case Util.Manager.Scene.Label.Main:
+                case Scene.Label.Main:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[0].name);
-                    SoundManager.OnChangeBackgroundAudioClip(Util.Manager.Scene.Label.Main);
+                    SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Main);
 
                     LogManager.OnDebugLog(
                         Label.Success, 
                         typeof(SceneManager),
                         $"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded");
                     break;
-                case Util.Manager.Scene.Label.Selection:
+                case Scene.Label.Selection:
                     UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
-                    SoundManager.OnChangeBackgroundAudioClip(Util.Manager.Scene.Label.Selection);
+                    SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Selection);
 
                     LogManager.OnDebugLog(
                         Label.Success, 
