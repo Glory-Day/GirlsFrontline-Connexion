@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 using Object.UI;
 using Util.Manager;
 using Util.Manager.Log;
@@ -20,6 +22,7 @@ namespace Object.Manager
             // Guarantee this object will be always a singleton only - Can not use the constructor
         }
         
+        // Start is called before the first frame update
         private void Start()
         {
             LogManager.OnDebugLog(
@@ -170,7 +173,7 @@ namespace Object.Manager
         #endregion
 
         #region STATIC PROPERTIES API
-
+        
         public static Dictionary<string, GameObject> UIPrefabs => Instance.uiPrefabs;
 
         public static GameObject PauseScreen
