@@ -10,10 +10,11 @@ namespace Util.Manager
     public class Singleton<T> where T : class, new()
     {
         private static readonly object Locked = new object();
-        private static          T      _instance;
+        
+        private static T _instance;
         
         // Double-checked locking (Thread Safe)
-        public static T Instance
+        protected static T Instance
         {
             get
             {

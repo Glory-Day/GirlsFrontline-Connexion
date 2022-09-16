@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Input System/GameAction.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Input System/UI/Console Action.inputactions'
 
 using System;
 using System.Collections;
@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Input
+namespace Util.Input
 {
-    public class @GameAction : IInputActionCollection, IDisposable
+    public class @ConsoleAction : IInputActionCollection, IDisposable
     {
         public InputActionAsset asset { get; }
-        public @GameAction()
+        public @ConsoleAction()
         {
             asset = InputActionAsset.FromJson(@"{
-    ""name"": ""GameAction"",
+    ""name"": ""Console Action"",
     ""maps"": [
         {
             ""name"": ""Command Console"",
@@ -42,9 +42,9 @@ namespace Input
                     ""name"": """",
                     ""id"": ""54cb008b-8fba-43d2-98a0-c188b868e858"",
                     ""path"": ""<Keyboard>/f12"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Window Platform"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -53,9 +53,9 @@ namespace Input
                     ""name"": """",
                     ""id"": ""c12e6dce-1b08-446b-9971-abe2dd7876c1"",
                     ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Window Platform"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Execute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -65,8 +65,8 @@ namespace Input
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Window Platform"",
-            ""bindingGroup"": ""Window Platform"",
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -134,8 +134,8 @@ namespace Input
         private readonly InputAction m_CommandConsole_Execute;
         public struct CommandConsoleActions
         {
-            private @GameAction m_Wrapper;
-            public CommandConsoleActions(@GameAction wrapper) { m_Wrapper = wrapper; }
+            private @ConsoleAction m_Wrapper;
+            public CommandConsoleActions(@ConsoleAction wrapper) { m_Wrapper = wrapper; }
             public InputAction @Toggle => m_Wrapper.m_CommandConsole_Toggle;
             public InputAction @Execute => m_Wrapper.m_CommandConsole_Execute;
             public InputActionMap Get() { return m_Wrapper.m_CommandConsole; }
@@ -167,13 +167,13 @@ namespace Input
             }
         }
         public CommandConsoleActions @CommandConsole => new CommandConsoleActions(this);
-        private int m_WindowPlatformSchemeIndex = -1;
-        public InputControlScheme WindowPlatformScheme
+        private int m_KeyboardSchemeIndex = -1;
+        public InputControlScheme KeyboardScheme
         {
             get
             {
-                if (m_WindowPlatformSchemeIndex == -1) m_WindowPlatformSchemeIndex = asset.FindControlSchemeIndex("Window Platform");
-                return asset.controlSchemes[m_WindowPlatformSchemeIndex];
+                if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+                return asset.controlSchemes[m_KeyboardSchemeIndex];
             }
         }
         public interface ICommandConsoleActions

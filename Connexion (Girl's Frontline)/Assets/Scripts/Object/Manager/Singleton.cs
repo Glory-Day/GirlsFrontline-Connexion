@@ -49,7 +49,9 @@ namespace Object.Manager
                     // If it hasn't been created yet, create an instance
                     var gameObject = new GameObject();
                     _instance = gameObject.AddComponent<T>();
-                    gameObject.name = typeof(T).Name + "(Singleton)";
+                    
+                    var name = typeof(T).Name.Replace("Manager", " Manager");
+                    gameObject.name = name + "(Singleton)";
 
                     // Make instance persistent
                     DontDestroyOnLoad(gameObject);
