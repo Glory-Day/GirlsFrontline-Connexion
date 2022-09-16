@@ -1,11 +1,14 @@
 ﻿#region NAMESPACE API
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 using Util.Command;
+using Util.Input;
 using Util.Manager;
 using Util.Manager.Log;
 
@@ -21,6 +24,8 @@ namespace Object.UI.Console.Controller
 
         #endregion
 
+        private ConsoleAction consoleAction;
+        
         private Dictionary<string, ICommand> commands;
         private StringBuilder                commandLineBuilder;
 
@@ -34,6 +39,19 @@ namespace Object.UI.Console.Controller
             
             var component = GetComponentInParent<CommandConsole>();
             commands = component.Commands;
+
+            consoleAction = new ConsoleAction();
+        }
+
+        // OnEnable is called when the object becomes enabled and active
+        private void OnEnable()
+        {
+            LogManager.OnDebugLog(
+                Label.Called, 
+                typeof(InputField), 
+                "OnEnable()");
+            
+            consoleAction.Enable();
         }
 
         // Start is called before the first frame update
@@ -46,6 +64,19 @@ namespace Object.UI.Console.Controller
 
             inputField = GetComponent<TMP_InputField>();
             commandLineBuilder = new StringBuilder();
+
+            consoleAction.CommandConsole.Execute.performed += Execute;
+        }
+
+        // OnDisable is called when the behaviour becomes disabled
+        private void OnDisable()
+        {
+            LogManager.OnDebugLog(
+                Label.Called, 
+                typeof(InputField), 
+                "OnDisable()");
+            
+            consoleAction.Disable();
         }
 
         public string[] GetInputCommands()
@@ -61,10 +92,13 @@ namespace Object.UI.Console.Controller
             commandLineBuilder.Clear();
         }
 
-        #region INPUT EVENT API
-        
-        public void OnExecute()
+        private void Execute(InputAction.CallbackContext context)
         {
+            if (!context.performed)
+            {
+                return;
+            }
+            
             var inputCommands = GetInputCommands();
             for (var i = 0; i < inputCommands.Length; i++)
             {
@@ -84,7 +118,5 @@ namespace Object.UI.Console.Controller
                 inputField.text = string.Empty;
             }
         }
-        
-        #endregion
     }
 }
