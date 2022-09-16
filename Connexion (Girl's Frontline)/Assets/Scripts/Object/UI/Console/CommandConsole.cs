@@ -1,9 +1,13 @@
 ﻿#region NAMESPACE API
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Object.Manager;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Util.Command;
+using Util.Input;
 using Util.Manager;
 using Util.Manager.Log;
 
@@ -32,6 +36,8 @@ namespace Object.UI.Console
 
         #endregion
 
+        private ConsoleAction consoleAction;
+        
         // Awake is called when the script instance is being loaded 
         private void Awake()
         {
@@ -49,12 +55,45 @@ namespace Object.UI.Console
                            { ApplicationQuit,                new ApplicationQuitCommand() },
                            { ApplicationPlay,                new ApplicationPlayCommand() }
                        };
+
+            consoleAction = new ConsoleAction();
         }
 
-        #region INPUT EVENT API
-
-        public void OnToggle()
+        // OnEnable is called when the object becomes enabled and active
+        private void OnEnable()
         {
+            LogManager.OnDebugLog(
+                Label.Called, 
+                typeof(CommandConsole), 
+                "OnEnable()");
+            
+            consoleAction.Enable();
+        }
+
+        // Start is called before the first frame update
+        private void Start()
+        {
+            consoleAction.CommandConsole.Toggle.performed += Toggle;
+        }
+
+        // OnDisable is called when the behaviour becomes disabled
+        private void OnDisable()
+        {
+            LogManager.OnDebugLog(
+                Label.Called, 
+                typeof(CommandConsole), 
+                "OnDisable()");
+            
+            consoleAction.Disable();
+        }
+
+        private void Toggle(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                return;
+            }
+            
             switch (inputFieldLayoutGroup.activeInHierarchy)
             {
                 case true:
@@ -74,8 +113,6 @@ namespace Object.UI.Console
             }
         }
 
-        #endregion
-        
         #region PROPERTIES API
 
         public Dictionary<string, ICommand> Commands { get; private set; }
