@@ -1,4 +1,4 @@
-### <div align="center">Girl's Frontline - Connextion</div>
+### <div align="center">Girl's Frontline - Connexion</div>
 
 <div align="center">It's a game based on the Girls Frontline. It's a game that's not commercially used.</div>
 <br>

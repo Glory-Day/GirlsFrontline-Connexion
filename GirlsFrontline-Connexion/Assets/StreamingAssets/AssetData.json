@@ -1,0 +1,25 @@
+﻿{
+  "backgroundAudioClip": {
+    "names": [
+      "Main Screen Audio Source"
+    ]
+  },
+  "effectAudioClip": {
+    "names": [
+
+    ]
+  },
+  "voiceAudioClip": {
+    "names": [
+
+    ]
+  },
+  "uiPrefab": {
+    "names": [
+      "Transition Screen",
+      "Pause Screen",
+      "Command Console",
+      "Option Screen"
+    ]
+  }
+}
