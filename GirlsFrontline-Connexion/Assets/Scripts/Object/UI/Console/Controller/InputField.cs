@@ -1,6 +1,4 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,9 +8,7 @@ using UnityEngine.InputSystem;
 using Util.Command;
 using Util.Input;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Console.Controller
 {
