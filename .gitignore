@@ -23,7 +23,7 @@ TestBuild.ps1
 #  $$$$$$$/ $$$$$$/$$/   $$/$$$$$$$$/ $$$$$$/    $$/   $$$$$$/ $$/   $$/    $$/     
 #  _________________________________________________________________________________
 
-.vscode/
+.idea/
 Build/
 
 /GirlsFrontline-Connexion/Library/
@@ -52,3 +52,4 @@ Build/
 *.csproj
 *.meta
 *.sln
+*.sln.DotSettings.user
