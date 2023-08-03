@@ -1,10 +1,6 @@
-﻿#region NAMESPACE API
-
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Util.Manager.Data
 {
