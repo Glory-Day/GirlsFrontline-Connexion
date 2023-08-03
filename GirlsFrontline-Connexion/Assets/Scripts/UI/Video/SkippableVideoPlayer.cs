@@ -1,11 +1,7 @@
-﻿#region NAMESPACE API
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Video;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace UI.Video
 {
