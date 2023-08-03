@@ -1,13 +1,9 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using Util.Manager;
-using Util.Manager.Log;
+using Util.Log;
 using View;
-
-#endregion
 
 namespace Object.UI.Selection
 {
