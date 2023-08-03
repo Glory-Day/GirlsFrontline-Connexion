@@ -1,10 +1,6 @@
-﻿#region NAMESPACE API
-
-using Util.Manager.Data;
+﻿using Util.Manager.Data;
 using Util.Manager.Data.Json;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Util.Manager
 {
