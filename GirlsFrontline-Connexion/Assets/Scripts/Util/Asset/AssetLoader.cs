@@ -1,9 +1,5 @@
-﻿#region NAMESPACE API
-
-using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+﻿using Util.Manager;
+using Util.Log;
 
 namespace Util.Asset
 {
