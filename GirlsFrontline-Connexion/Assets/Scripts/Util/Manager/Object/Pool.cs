@@ -1,11 +1,7 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Util.Manager.Object
 {
