@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Util.Manager.Log.DevelopmentBuild
+namespace Util.Log.DevelopmentBuild
 {
     public static class LogBuilder
     {
@@ -21,12 +21,12 @@ namespace Util.Manager.Log.DevelopmentBuild
         /// <summary>
         /// Build string of spacial log
         /// </summary>
-        /// <param name="label"> <see cref="Manager.Log.Label"/> of log </param>
+        /// <param name="label"> <see cref="Log.Label"/> of log </param>
         /// <param name="type"> <see cref="Type"/> of class where the log was called </param>
         /// <param name="contents"> Contents of output log </param>
         /// <returns> String of spacial log </returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Out of range exception in <see cref="Manager.Log.Label"/>
+        /// Out of range exception in <see cref="Log.Label"/>
         /// </exception>
         public static string Build(Label label, Type type, string contents)
         {
