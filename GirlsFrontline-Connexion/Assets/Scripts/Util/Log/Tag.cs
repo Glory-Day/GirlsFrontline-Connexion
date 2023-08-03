@@ -1,4 +1,4 @@
-﻿namespace Util.Manager.Log
+﻿namespace Util.Log
 {
     public static class Tag
     {
