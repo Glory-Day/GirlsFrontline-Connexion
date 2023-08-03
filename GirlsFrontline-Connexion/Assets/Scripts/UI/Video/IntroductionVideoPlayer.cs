@@ -1,12 +1,8 @@
-﻿#region MyRegion
-
-using System.Collections;
+﻿using System.Collections;
 using Object.Manager;
 using Util.Asset;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace UI.Video
 {
