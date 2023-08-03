@@ -1,10 +1,6 @@
-﻿#region NAMESPACE API
-
-using UnityEngine;
+﻿using UnityEngine;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Option.Controller
 {
