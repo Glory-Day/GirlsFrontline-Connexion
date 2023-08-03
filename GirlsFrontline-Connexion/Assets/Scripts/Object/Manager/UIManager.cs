@@ -1,15 +1,11 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 using Object.UI;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.Manager
 {
