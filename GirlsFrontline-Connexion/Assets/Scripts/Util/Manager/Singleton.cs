@@ -1,8 +1,4 @@
-﻿#region NAMESPACE API
-
-using System.Diagnostics.CodeAnalysis;
-
-#endregion
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Util.Manager
 {
