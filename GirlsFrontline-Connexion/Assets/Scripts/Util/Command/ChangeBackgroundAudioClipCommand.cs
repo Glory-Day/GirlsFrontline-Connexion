@@ -11,7 +11,7 @@ namespace Util.Command
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(
+            LogManager.LogAdministrator(
                 "Execute <b><i>OnChangeBackgroundAudioClip(SceneManager.CurrentSceneName)</i></b>");
 
             SoundManager.OnChangeBackgroundAudioClip(SceneManager.CurrentSceneLabel);
