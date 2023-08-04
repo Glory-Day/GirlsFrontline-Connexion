@@ -1,11 +1,7 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Util.Manager.Object
 {
@@ -112,8 +108,7 @@ namespace Util.Manager.Object
                 return;
             }
 
-            LogManager.OnDebugLog(Label.Error, typeof(Pool<T>),
-                $"This object pool does not contain the object provided: {key}");
+            LogManager.LogError($"This object pool does not contain the object provided: {key}");
         }
 
         public int ObjectContainerCount => containers.Count;

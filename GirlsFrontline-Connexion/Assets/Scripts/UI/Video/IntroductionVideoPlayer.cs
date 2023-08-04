@@ -1,12 +1,8 @@
-﻿#region MyRegion
-
-using System.Collections;
+﻿using System.Collections;
 using Object.Manager;
 using Util.Asset;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace UI.Video
 {
@@ -18,10 +14,7 @@ namespace UI.Video
         {
             base.Start();
          
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(IntroductionVideoPlayer),
-                $"Start()");
+            LogManager.LogCalled();
             
             skipButton.SetActive(false);
             
@@ -32,28 +25,19 @@ namespace UI.Video
         
         private IEnumerator Loading()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(IntroductionVideoPlayer),
-                $"Loading()");
+            LogManager.LogCalled();
             
             DataManager.OnLoadAllData();
             assetLoader.LoadAllAssets();
 
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(SkippableVideoPlayer),
-                $"<b>Waiting All Assets</b> is loaded");
+            LogManager.LogMessage("<b>Waiting All Assets</b> is loaded");
 
             while(!assetLoader.IsLoadedAllAssetsDone())
             {
                 yield return null;
             }
 
-            LogManager.OnDebugLog(
-                Label.Success,
-                typeof(SkippableVideoPlayer),
-                "<b>All Data And Assets</b> are loaded");
+            LogManager.LogSuccess("<b>All Data And Assets</b> are loaded");
 
             // Unset the loop of the video and set the event called at the end of the video
             videoPlayer.isLooping = false;

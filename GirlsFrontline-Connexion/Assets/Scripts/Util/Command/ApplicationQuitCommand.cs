@@ -10,7 +10,7 @@ namespace Util.Command
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(
+            LogManager.LogAdministrator(
                 "Execute <b><i>OnApplicationQuit()</i></b>");
 
             GameManager.OnQuit();

@@ -1,15 +1,11 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object.Manager;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Util.Asset
 {
@@ -21,10 +17,7 @@ namespace Util.Asset
         
         public AudioAssetLoader()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                "AudioAssetLoader()");
+            LogManager.LogCalled();
             
             backgroundAudioClipAssetsHandle = new AsyncOperationHandle<IList<AudioClip>>();
             effectAudioClipAssetsHandle     = new AsyncOperationHandle<IList<AudioClip>>();
@@ -35,19 +28,13 @@ namespace Util.Asset
         
         public void LoadBackgroundAudioClipAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                $"LoadBackgroundAudioClipAssets()");
+            LogManager.LogCalled();
             
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.BackgroundAudioClip.Add(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
-                LogManager.OnDebugLog(
-                    Label.Success,
-                    typeof(AudioAssetLoader),
-                    $"<b>{loadedAudioClipAsset.name}</b> is loaded");
+                LogManager.LogSuccess($"<b>{loadedAudioClipAsset.name}</b> is loaded");
             }
 
             backgroundAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
@@ -56,19 +43,13 @@ namespace Util.Asset
         
         public void LoadEffectAudioClipAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                $"LoadEffectAudioClipAssets()");
+            LogManager.LogCalled();
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.EffectAudioClip.Add(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
-                LogManager.OnDebugLog(
-                    Label.Success, 
-                    typeof(AudioAssetLoader),
-                    $"<b>{loadedAudioClipAsset.name}</b> is loaded");
+                LogManager.LogSuccess($"<b>{loadedAudioClipAsset.name}</b> is loaded");
             }
 
             effectAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
@@ -77,19 +58,13 @@ namespace Util.Asset
         
         public void LoadVoiceAudioClipAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                $"LoadVoiceAudioClipAssets()");
+            LogManager.LogCalled();
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.VoiceAudioClip.Add(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
-                LogManager.OnDebugLog(
-                    Label.Success, 
-                    typeof(AudioAssetLoader),
-                    $"<b>{loadedAudioClipAsset.name}</b> is loaded");
+                LogManager.LogSuccess($"<b>{loadedAudioClipAsset.name}</b> is loaded");
             }
 
             voiceAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
@@ -104,40 +79,25 @@ namespace Util.Asset
         {
             Addressables.Release(backgroundAudioClipAssetsHandle);
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(AudioAssetLoader),
-                $"<b>All Background Audio Clips</b> are unloaded");
+            LogManager.LogSuccess("<b>All Background Audio Clips</b> are unloaded");
         }
         
         public void UnloadEffectAudioClipAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                $"UnloadEffectAudioClipAssets()");
+            LogManager.LogCalled();
 
             Addressables.Release(effectAudioClipAssetsHandle);
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(AudioAssetLoader),
-                $"<b>All Effect Audio Clips</b> are unloaded");
+            LogManager.LogSuccess("<b>All Effect Audio Clips</b> are unloaded");
         }
         
         public void UnloadVoiceAudioClipAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                $"UnloadVoiceAudioClipAssets()");
+            LogManager.LogCalled();
 
             Addressables.Release(voiceAudioClipAssetsHandle);
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(AudioAssetLoader),
-                $"<b>All Voice Audio Clips</b> are unloaded");
+            LogManager.LogSuccess("<b>All Voice Audio Clips</b> are unloaded");
         }
 
         #endregion

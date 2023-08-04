@@ -1,11 +1,7 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using UnityEngine;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Selection.Controller
 {
@@ -26,10 +22,7 @@ namespace Object.UI.Selection.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(NextButton),
-                "Start()");
+            LogManager.LogCalled();
             
             var component = GetComponentInParent<ChapterSelector>();
             selectionAnimation = component.SelectionAnimation;
@@ -41,10 +34,7 @@ namespace Object.UI.Selection.Controller
 
         public void OnClicked()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(NextButton),
-                $"<b>Next Button</b> is clicked");
+            LogManager.LogMessage("<b>Next Button</b> is clicked");
 
             if (GetCurrentChapterIndexCallBack == null) return;
 
@@ -54,10 +44,7 @@ namespace Object.UI.Selection.Controller
 
             IncreaseChapterIndexCallBack?.Invoke();
 
-            LogManager.OnDebugLog(
-                Label.Success,
-                typeof(NextButton),
-                $"<b>Chapter 0{(GetCurrentChapterIndexCallBack.Invoke() + 1).ToString()}</b> is selected");
+            LogManager.LogSuccess($"<b>Chapter 0{(GetCurrentChapterIndexCallBack.Invoke() + 1).ToString()}</b> is selected");
         }
 
         #endregion

@@ -1,14 +1,10 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Object.Manager;
 using Util.Input;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Option
 {
@@ -21,10 +17,7 @@ namespace Object.UI.Option
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(OptionScreen), 
-                "Awake()");
+            LogManager.LogCalled();
             
             components = transform.GetChild(0).gameObject;
 
@@ -34,10 +27,7 @@ namespace Object.UI.Option
         // OnEnable is called when the object becomes enabled and active
         private void OnEnable()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(OptionScreen), 
-                "OnEnable()");
+            LogManager.LogCalled();
             
             optionAction.Enable();
         }
@@ -45,10 +35,7 @@ namespace Object.UI.Option
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(OptionScreen), 
-                "Start()");
+            LogManager.LogCalled();
             
             optionAction.OptionScreen.Toggle.performed += Toggle;
         }
@@ -56,10 +43,7 @@ namespace Object.UI.Option
         // OnDisable is called when the behaviour becomes disabled
         private void OnDisable()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(OptionScreen), 
-                "OnDisable()");
+            LogManager.LogCalled();
             
             optionAction.Disable();
         }
@@ -74,18 +58,12 @@ namespace Object.UI.Option
             switch (components.activeInHierarchy)
             {
                 case true:
-                    LogManager.OnDebugLog(
-                        Label.Event, 
-                        typeof(OptionScreen), 
-                        "<b>Input Event</b> is enabled. Option screen is toggled <b>On</b>");
+                    LogManager.LogMessage("<b>Input Event</b> is enabled. Option screen is toggled <b>On</b>");
                     
                     components.SetActive(false);
                     return;
                 case false:
-                    LogManager.OnDebugLog(
-                        Label.Event, 
-                        typeof(OptionScreen), 
-                        "<b>Input Event</b> is enabled. Option screen is toggled <b>Off</b>");
+                    LogManager.LogMessage("<b>Input Event</b> is enabled. Option screen is toggled <b>Off</b>");
                     
                     components.SetActive(true);
                     return;

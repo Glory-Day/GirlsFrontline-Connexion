@@ -1,10 +1,6 @@
-﻿#region NAMESPACE API
-
-using UnityEngine;
+﻿using UnityEngine;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Option.Controller
 {
@@ -14,10 +10,7 @@ namespace Object.UI.Option.Controller
 
         public void OnClicked()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(ExitButton), 
-                "<b>Exit Button</b> is clicked");
+            LogManager.LogMessage("<b>Exit Button</b> is clicked");
             
             GameManager.OnQuit();
         }

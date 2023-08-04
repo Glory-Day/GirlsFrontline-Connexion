@@ -1,11 +1,7 @@
-﻿#region NAMESPACE API
-
-using UnityEngine;
+﻿using UnityEngine;
 using Object.Manager;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Option.Controller.Background
 {
@@ -26,10 +22,7 @@ namespace Object.UI.Option.Controller.Background
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(Slider), 
-                "Start()");
+            LogManager.LogCalled();
             
             slider = GetComponent<UnityEngine.UI.Slider>();
         }

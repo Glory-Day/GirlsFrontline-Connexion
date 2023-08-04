@@ -1,11 +1,7 @@
-﻿#region NAMESPACE API
-
-using UnityEngine;
+﻿using UnityEngine;
 using Object.Manager;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Main.Controller
 {
@@ -20,10 +16,7 @@ namespace Object.UI.Main.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(GameStartButton),
-                "Start()");
+            LogManager.LogCalled();
             
             gameStartButton = GetComponent<UnityEngine.UI.Button>();
         }
@@ -32,10 +25,7 @@ namespace Object.UI.Main.Controller
 
         public void OnClicked()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(GameStartButton),
-                "<b>Game Start Button</b> is clicked");
+            LogManager.LogMessage("<b>Game Start Button</b> is clicked");
 
             gameStartButton.interactable = false;
 

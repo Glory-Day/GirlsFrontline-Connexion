@@ -1,13 +1,9 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.UI.Console.View
 {
@@ -34,10 +30,7 @@ namespace Object.UI.Console.View
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(Viewport),
-                "Awake()");
+            LogManager.LogCalled();
             
             Initialize();
             
@@ -65,10 +58,7 @@ namespace Object.UI.Console.View
 
         private void Initialize()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(Viewport),
-                "Initialize()");
+            LogManager.LogCalled();
 
             var component = GetComponentInParent<CommandConsole>();
             commandNames = component.CommandNames;

@@ -1,15 +1,11 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 using Object.UI;
 using Util.Manager;
-using Util.Manager.Log;
-
-#endregion
+using Util.Log;
 
 namespace Object.Manager
 {
@@ -25,10 +21,7 @@ namespace Object.Manager
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"Start()");
+            LogManager.LogCalled();
 
             Instance.uiPrefabs = new Dictionary<string, GameObject>();
         }
@@ -37,10 +30,7 @@ namespace Object.Manager
 
         private void InstantiateTransitionScreenPrefab()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"OnInstantiateTransitionScreenPrefab()");
+            LogManager.LogCalled();
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[0]],
                 transform, true);
@@ -50,62 +40,41 @@ namespace Object.Manager
             SetTransitionDirectionToRight = component.SetTransitionDirectionToRight;
             PlayScreenTransition = component.PlayScreenTransition;
             
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(UIManager),
-                $"<b>Transition Screen Prefab</b> is instantiated");
+            LogManager.LogSuccess("<b>Transition Screen Prefab</b> is instantiated");
         }
 
         private void InstantiatePauseScreenPrefab()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"InstantiatePauseScreenPrefab()");
+            LogManager.LogCalled();
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[1]],
                 transform, true);
             instantiatedObject.SetActive(false);
             uiPrefabs[DataManager.AssetData.uiPrefab.names[1]] = instantiatedObject;
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(UIManager),
-                $"<b>Pause Screen Prefab</b> is instantiated");
+            LogManager.LogSuccess("<b>Pause Screen Prefab</b> is instantiated");
         }
 
         private void InstantiateCommandConsolePrefab()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"InstantiateCommandConsolePrefab()");
+            LogManager.LogCalled();
             
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[2]],
                 transform, true);
             uiPrefabs[DataManager.AssetData.uiPrefab.names[2]] = instantiatedObject;
             
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(UIManager),
-                $"<b>Command Console Prefab</b> is instantiated");
+            LogManager.LogSuccess("<b>Command Console Prefab</b> is instantiated");
         }
 
         private void InstantiateOptionScreenPrefab()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                "InstantiateOptionScreenPrefab()");
+            LogManager.LogCalled();
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[3]],
                 transform, true);
             uiPrefabs[DataManager.AssetData.uiPrefab.names[3]] = instantiatedObject;
             
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(UIManager),
-                $"<b>Option Screen Prefab</b> is instantiated");
+            LogManager.LogSuccess("<b>Option Screen Prefab</b> is instantiated");
         }
 
         #endregion
@@ -122,20 +91,14 @@ namespace Object.Manager
 
         public static void OnInstantiateAllUIPrefabs()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                $"OnInstantiateAllUIPrefabs()");
+            LogManager.LogCalled();
 
             Instance.InstantiateTransitionScreenPrefab();
             Instance.InstantiatePauseScreenPrefab();
             Instance.InstantiateCommandConsolePrefab();
             Instance.InstantiateOptionScreenPrefab();
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(DataManager),
-                "<b>All UI Prefabs</b> are instantiated");
+            LogManager.LogSuccess("<b>All UI Prefabs</b> are instantiated");
         }
 
         public static void OnEnablePauseScreen()
@@ -150,10 +113,7 @@ namespace Object.Manager
         
         public static void OnPlayScreenTransitionToLeft()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                "OnPlayScreenTransitionToLeft()");
+            LogManager.LogCalled();
             
             Instance.SetTransitionDirectionToLeft.Invoke();
             Instance.PlayScreenTransition.Invoke();
@@ -161,10 +121,7 @@ namespace Object.Manager
 
         public static void OnPlayScreenTransitionToRight()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UIManager),
-                "OnPlayScreenTransitionToRight()");
+            LogManager.LogCalled();
             
             Instance.SetTransitionDirectionToRight.Invoke();
             Instance.PlayScreenTransition.Invoke();

@@ -1,13 +1,9 @@
-﻿#region NAMESPACE API
-
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using Util.Manager;
-using Util.Manager.Log;
+using Util.Log;
 using View;
-
-#endregion
 
 namespace Object.UI.Selection
 {
@@ -43,10 +39,7 @@ namespace Object.UI.Selection
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(ChapterSelector),
-                "Start()");
+            LogManager.LogCalled();
             
             Initialize();
 
@@ -55,10 +48,7 @@ namespace Object.UI.Selection
 
         private void Initialize()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(ChapterSelector),
-                "Initialize()");
+            LogManager.LogCalled();
 
             isChapterBlock = Enumerable.Range(0, 5)
                                        .Select(i => DataManager.GameData.chapters[i].isBlock)
@@ -100,10 +90,7 @@ namespace Object.UI.Selection
 
         public void OnEnableButtons()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(ChapterSelector), 
-                "<b>Chapter Controller Animation Event</b> is activated. " +
+            LogManager.LogMessage("<b>Chapter Controller Animation Event</b> is activated. " +
                 "Next, preview, Undo Buttons is <b>Enabled</b>");
             
             switch (currentChapterIndex)
@@ -127,10 +114,7 @@ namespace Object.UI.Selection
         
         public void OnDisableButtons()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(ChapterSelector), 
-                "<b>Chapter Controller Animation Event</b> is activated. " +
+            LogManager.LogMessage("<b>Chapter Controller Animation Event</b> is activated. " +
                 "Next, preview, Undo Buttons is <b>Disabled</b>");
             
             nextButton.interactable = false;
