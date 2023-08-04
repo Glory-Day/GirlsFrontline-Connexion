@@ -60,10 +60,7 @@ namespace Object.Manager
         
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(SoundManager),
-                $"Start()");
+            LogManager.LogCalled();
             
             backgroundAudioClips = new Dictionary<string, AudioClip>();
             effectAudioClips = new Dictionary<string, AudioClip>();
@@ -74,10 +71,7 @@ namespace Object.Manager
 
         private void Initialize()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(SoundManager),
-                $"Initialize()");
+            LogManager.LogCalled();
             
             // Initialize audio source component
             gameObject.AddComponent<AudioListener>();
@@ -89,10 +83,7 @@ namespace Object.Manager
 
         private void PlayBackgroundAudioSource(string key)
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(SoundManager),
-                $"PlayBackgroundAudioSource()");
+            LogManager.LogCalled();
 
             // If there is no audio clip, set the name as 'None', set it as the name of the audio clip
             var audioClipName = playingBackgroundAudioClip != null
@@ -106,20 +97,14 @@ namespace Object.Manager
             playingBackgroundAudioClip = audioClip;
             backgroundAudioSource.PlayOneShot(playingBackgroundAudioClip);
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(SoundManager),
-                $"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b>");
+            LogManager.LogSuccess($"Change background audio clip <b>{audioClipName}</b> to <b>{audioClip.name}</b>");
         }
 
         #region STATIC METHOD API
 
         public static void OnChangeBackgroundAudioClip(Util.Manager.Scene.Label label)
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(SoundManager),
-                $"OnChangeBackgroundAudioClip()");
+            LogManager.LogCalled();
 
             switch (label)
             {
