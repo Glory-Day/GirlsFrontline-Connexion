@@ -11,17 +11,11 @@ namespace Util.Manager
 
         public static void OnPause()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(GameManager),
-                $"OnPause()");
+            LogManager.LogCalled();
 
             if (Time.timeScale < 0.5f)
             {
-                LogManager.OnDebugLog(
-                    Label.Error, 
-                    typeof(GameManager),
-                    $"<b>Game Application</b> has already been paused");
+                LogManager.LogError("<b>Game Application</b> has already been paused");
 
                 return;
             }
@@ -30,25 +24,16 @@ namespace Util.Manager
 
             Time.timeScale = 0f;
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(GameManager),
-                $"<b>Game Application</b> is paused");
+            LogManager.LogSuccess($"<b>Game Application</b> is paused");
         }
 
         public static void OnPlay()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(GameManager),
-                $"OnPlay()");
+            LogManager.LogCalled();
 
             if (Time.timeScale > 0.5f)
             {
-                LogManager.OnDebugLog(
-                    Label.Error, 
-                    typeof(GameManager),
-                    $"<b>Game Application</b> is currently running");
+                LogManager.LogError("<b>Game Application</b> is currently running");
 
                 return;
             }
@@ -57,23 +42,14 @@ namespace Util.Manager
 
             Time.timeScale = 1f;
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(GameManager),
-                $"<b>Game Application</b> is played");
+            LogManager.LogSuccess("<b>Game Application</b> is played");
         }
 
         public static void OnQuit()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(GameManager),
-                $"OnQuit()");
+            LogManager.LogCalled();
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(GameManager),
-                $"<b>Game Application</b> is quited");
+            LogManager.LogSuccess("<b>Game Application</b> is quited");
 
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
