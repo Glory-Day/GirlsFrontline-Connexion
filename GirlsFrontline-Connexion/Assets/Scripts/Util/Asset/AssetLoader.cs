@@ -10,10 +10,7 @@ namespace Util.Asset
 
         public AssetLoader()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(AssetLoader), 
-                "AssetLoader()");
+            LogManager.LogCalled();
             
             audioAssetLoader = new AudioAssetLoader();
             prefabAssetLoader = new PrefabAssetLoader();
@@ -23,10 +20,7 @@ namespace Util.Asset
 
         private void LoadAudioAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetLoader),
-                $"LoadAudioAssets()");
+            LogManager.LogCalled();
             
             audioAssetLoader.LoadBackgroundAudioClipAssets();
         }
@@ -46,10 +40,7 @@ namespace Util.Asset
         
         private void UnloadAudioAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetLoader),
-                $"UnloadAudioAssets()");
+            LogManager.LogCalled();
             
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
         }
@@ -88,20 +79,14 @@ namespace Util.Asset
 
         private void LoadPrefabAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetLoader),
-                $"LoadPrefabAssets()");
+            LogManager.LogCalled();
 
             prefabAssetLoader.LoadUIPrefabAssets();
         }
 
         private void UnloadPrefabAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetLoader),
-                $"UnloadPrefabAssets()");
+            LogManager.LogCalled();
 
             prefabAssetLoader.UnloadUIPrefabAssets();
         }
@@ -117,10 +102,7 @@ namespace Util.Asset
         
         public void LoadAllAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetLoader),
-                $"OnLoadAllAssets()");
+            LogManager.LogCalled();
 
             LoadAudioAssets();
             LoadPrefabAssets();
@@ -128,10 +110,7 @@ namespace Util.Asset
 
         public void UnloadAllAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AssetLoader),
-                $"OnUnloadAllAssets()");
+            LogManager.LogCalled();
 
             UnloadAudioAssets();
             UnloadPrefabAssets();
