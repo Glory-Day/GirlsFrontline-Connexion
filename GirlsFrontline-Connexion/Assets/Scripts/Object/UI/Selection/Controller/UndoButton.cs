@@ -20,10 +20,7 @@ namespace Object.UI.Selection.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(UndoButton),
-                "Start()");
+            LogManager.LogCalled();
 
             undoButton = GetComponent<UnityEngine.UI.Button>();
             
@@ -37,10 +34,7 @@ namespace Object.UI.Selection.Controller
 
         public void OnClicked()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(UndoButton),
-                $"<b>Undo Button</b> is clicked");
+            LogManager.LogMessage("<b>Undo Button</b> is clicked");
 
             if (GetCurrentChapterButtonCallBack == null) return;
             
