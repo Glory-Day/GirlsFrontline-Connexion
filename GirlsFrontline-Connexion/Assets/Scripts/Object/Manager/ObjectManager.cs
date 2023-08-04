@@ -24,10 +24,7 @@ namespace Object.Manager
 
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(ObjectManager),
-                $"Start()");
+            LogManager.LogCalled();
             
             objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
             objectPool.clones = new Dictionary<GameObject, Pool<GameObject>>();
@@ -66,10 +63,7 @@ namespace Object.Manager
         private void Create(GameObject prefab, int capacity, Transform parentTransform)
         {
             if (objectPool.originals.ContainsKey(prefab))
-                LogManager.OnDebugLog(
-                    Label.Error, 
-                    typeof(ObjectManager),
-                    $"Pool for object type {prefab.name} has already been created");
+                LogManager.LogError($"Pool for object type {prefab.name} has already been created");
 
             // Instantiate new object to use
             var pool = new Pool<GameObject>(
@@ -94,10 +88,7 @@ namespace Object.Manager
                 return;
             }
 
-            LogManager.OnDebugLog(
-                Label.Error, 
-                typeof(ObjectManager),
-                $"No pool contains the object {clone.name}");
+            LogManager.LogError($"No pool contains the object {clone.name}");
         }
 
         /// <summary>
