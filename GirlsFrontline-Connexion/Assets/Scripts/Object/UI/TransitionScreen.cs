@@ -28,47 +28,32 @@ namespace Object.UI
 
         public void SetTransitionDirectionToLeft()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(TransitionScreen),
-                $"SetTransitionDirectionToLeft()");
+            LogManager.LogCalled();
 
             transitionAnimation.clip = transitionAnimation.GetClip(TransitionDirectionToLeft);
         }
 
         public void SetTransitionDirectionToRight()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(TransitionScreen),
-                $"SetTransitionDirectionToRight()");
+            LogManager.LogCalled();
 
             transitionAnimation.clip = transitionAnimation.GetClip(TransitionDirectionToRight);
         }
 
         public void PlayScreenTransition()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(TransitionScreen),
-                $"PlayScreenTransition()");
+            LogManager.LogCalled();
 
             transitionAnimation.Play();
 
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(TransitionScreen),
-                $"Play <b>{transitionAnimation.clip.name}</b>");
+            LogManager.LogMessage($"Play <b>{transitionAnimation.clip.name}</b>");
         }
         
         #region ANIMATION EVENT API
 
         public void OnLoadSceneWhenSceneTransitionToLeft()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(TransitionScreen),
-                $"<b>Transition Screen Animation Event</b> is activated. Transition direction is <b>Left</b>");
+            LogManager.LogMessage("<b>Transition Screen Animation Event</b> is activated. Transition direction is <b>Left</b>");
 
             switch (SceneManager.CurrentSceneLabel)
             {
@@ -84,10 +69,7 @@ namespace Object.UI
 
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(TransitionScreen),
-                $"<b>Transition Screen Animation Event</b> is activated. Transition direction is <b>Right</b>");
+            LogManager.LogMessage("<b>Transition Screen Animation Event</b> is activated. Transition direction is <b>Right</b>");
 
             switch (SceneManager.CurrentSceneLabel)
             {
