@@ -28,10 +28,7 @@ namespace Object.UI.Console.Controller
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(InputField),
-                "Awake()");
+            LogManager.LogCalled();
             
             var component = GetComponentInParent<CommandConsole>();
             commands = component.Commands;
@@ -42,10 +39,7 @@ namespace Object.UI.Console.Controller
         // OnEnable is called when the object becomes enabled and active
         private void OnEnable()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(InputField), 
-                "OnEnable()");
+            LogManager.LogCalled();
             
             consoleAction.Enable();
         }
@@ -53,10 +47,7 @@ namespace Object.UI.Console.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(InputField),
-                "Start()");
+            LogManager.LogCalled();
 
             inputField = GetComponent<TMP_InputField>();
             commandLineBuilder = new StringBuilder();
@@ -67,10 +58,7 @@ namespace Object.UI.Console.Controller
         // OnDisable is called when the behaviour becomes disabled
         private void OnDisable()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(InputField), 
-                "OnDisable()");
+            LogManager.LogCalled();
             
             consoleAction.Disable();
         }
@@ -105,10 +93,7 @@ namespace Object.UI.Console.Controller
                 }
                 else
                 {
-                    LogManager.OnDebugLog(
-                        Label.Error,
-                        typeof(CommandConsole),
-                        "Invalid <b>Input Command Line</b>");
+                    LogManager.LogError("Invalid <b>Input Command Line</b>");
                 }
 
                 inputField.text = string.Empty;
