@@ -30,10 +30,7 @@ namespace Object.UI.Console.View
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(Viewport),
-                "Awake()");
+            LogManager.LogCalled();
             
             Initialize();
             
@@ -61,10 +58,7 @@ namespace Object.UI.Console.View
 
         private void Initialize()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(Viewport),
-                "Initialize()");
+            LogManager.LogCalled();
 
             var component = GetComponentInParent<CommandConsole>();
             commandNames = component.CommandNames;
