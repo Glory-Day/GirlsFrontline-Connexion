@@ -22,10 +22,7 @@ namespace Object.UI.Selection.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(PreviewButton),
-                "Start()");
+            LogManager.LogCalled();
             
             var component = GetComponentInParent<ChapterSelector>();
             selectionAnimation = component.SelectionAnimation;
@@ -37,10 +34,7 @@ namespace Object.UI.Selection.Controller
 
         public void OnClicked()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(PreviewButton),
-                $"<b>Preview Button</b> is clicked");
+            LogManager.LogMessage("<b>Preview Button</b> is clicked");
 
             if (GetCurrentChapterIndexCallBack == null) return;
             
@@ -50,10 +44,7 @@ namespace Object.UI.Selection.Controller
                 selectionAnimation.GetClip(animationNames[GetCurrentChapterIndexCallBack.Invoke()]);
             selectionAnimation.Play();
             
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(NextButton),
-                $"<b>Chapter 0{(GetCurrentChapterIndexCallBack.Invoke() + 1).ToString()}</b> is selected");
+            LogManager.LogSuccess($"<b>Chapter 0{(GetCurrentChapterIndexCallBack.Invoke() + 1).ToString()}</b> is selected");
         }
 
         #endregion
