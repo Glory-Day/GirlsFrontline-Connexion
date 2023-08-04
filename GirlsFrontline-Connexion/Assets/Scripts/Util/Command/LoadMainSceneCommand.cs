@@ -11,7 +11,7 @@ namespace Util.Command
     {
         public void Execute()
         {
-            LogManager.OnDebugLog(
+            LogManager.LogAdministrator(
                 "Execute <b><i>OnLoadSceneByName(Scene.Label.Main)</i></b>");
 
             SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
