@@ -15,10 +15,7 @@ namespace Util.Asset
         
         public PrefabAssetLoader()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                "PrefabAssetLoader()");
+            LogManager.LogCalled();
             
             uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
         }
@@ -27,19 +24,13 @@ namespace Util.Asset
         
         public void LoadUIPrefabAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(PrefabAssetLoader),
-                $"LoadUIPrefabAssets()");
+            LogManager.LogCalled();
 
             void Loaded(GameObject loadedGameObject)
             {
                 UIManager.UIPrefabs.Add(loadedGameObject.name, loadedGameObject);
 
-                LogManager.OnDebugLog(
-                    Label.Success, 
-                    typeof(PrefabAssetLoader),
-                    $"<b>{loadedGameObject.name}</b> is loaded");
+                LogManager.LogSuccess($"<b>{loadedGameObject.name}</b> is loaded");
             }
 
             uiPrefabAssetsHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.prefabAsset.labels[0],
@@ -52,17 +43,11 @@ namespace Util.Asset
         
         public void UnloadUIPrefabAssets()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(AudioAssetLoader),
-                $"UnloadUIPrefabAssets()");
+            LogManager.LogCalled();
 
             Addressables.Release(uiPrefabAssetsHandle);
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(AudioAssetLoader),
-                $"<b>All UI Prefabs</b> are unloaded");
+            LogManager.LogSuccess("<b>All UI Prefabs</b> are unloaded");
         }
 
         #endregion
