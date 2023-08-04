@@ -38,10 +38,7 @@ namespace Object.UI.Console
         // Awake is called when the script instance is being loaded 
         private void Awake()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(CommandConsole), 
-                "Awake()");
+            LogManager.LogCalled();
             
             Commands = new Dictionary<string, ICommand>
                        {
@@ -59,10 +56,7 @@ namespace Object.UI.Console
         // OnEnable is called when the object becomes enabled and active
         private void OnEnable()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(CommandConsole), 
-                "OnEnable()");
+            LogManager.LogCalled();
             
             consoleAction.Enable();
         }
@@ -76,10 +70,7 @@ namespace Object.UI.Console
         // OnDisable is called when the behaviour becomes disabled
         private void OnDisable()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(CommandConsole), 
-                "OnDisable()");
+            LogManager.LogCalled();
             
             consoleAction.Disable();
         }
@@ -94,15 +85,13 @@ namespace Object.UI.Console
             switch (inputFieldLayoutGroup.activeInHierarchy)
             {
                 case true:
-                    LogManager.OnDebugLog(
-                        "Turn off <b>Command Console</b>");
+                    LogManager.LogMessage("Turn off <b>Command Console</b>");
                     
                     GameManager.OnPlay(); 
                     inputFieldLayoutGroup.SetActive(false);
                     break;
                 case false:
-                    LogManager.OnDebugLog(
-                        "Turn on <b>Command Console</b>");
+                    LogManager.LogMessage("Turn on <b>Command Console</b>");
                     
                     GameManager.OnPause();
                     inputFieldLayoutGroup.SetActive(true);
