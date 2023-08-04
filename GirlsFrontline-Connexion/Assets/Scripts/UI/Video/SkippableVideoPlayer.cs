@@ -36,10 +36,7 @@ namespace UI.Video
         // Start is called before the first frame update
         protected virtual void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(SkippableVideoPlayer),
-                $"Start()");
+            LogManager.LogCalled();
             
             // Initialize component and child game object
             videoPlayer = transform.GetChild((int)ChildrenIndex.VideoPlayer).GetComponent<VideoPlayer>();
@@ -54,10 +51,7 @@ namespace UI.Video
         /// </summary>
         public void OnSkipped()
         {
-            LogManager.OnDebugLog(
-                Label.Event,
-                typeof(SkippableVideoPlayer),
-                "<b>Video</b> is skipped");
+            LogManager.LogMessage("<b>Video</b> is skipped");
 
             SceneManager.OnLoadSceneByLabel(label);
         }
