@@ -15,40 +15,28 @@ namespace Util.Manager
 
         private void LoadGameData()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(DataManager),
-                $"LoadGameData()");
+            LogManager.LogCalled();
 
             gameData = DataLoader.OnLoadData<GameData>(JsonFilePath.GameDataPath);
         }
 
         private void LoadSceneData()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(DataManager),
-                $"LoadSceneData()");
+            LogManager.LogCalled();
 
             sceneData = DataLoader.OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
         }
 
         private void LoadAssetData()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(DataManager),
-                $"LoadAssetData()");
+            LogManager.LogCalled();
 
             assetData = DataLoader.OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
         }
 
         private void LoadAddressableLabelData()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(DataManager),
-                $"LoadAddressableLabelData()");
+            LogManager.LogCalled();
 
             addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
                 JsonFilePath.AddressableLabelDataPath);
@@ -60,20 +48,14 @@ namespace Util.Manager
 
         public static void OnLoadAllData()
         {
-            LogManager.OnDebugLog(
-                Label.Called,
-                typeof(DataManager),
-                $"OnLoadAllData()");
+            LogManager.LogCalled();
             
             Instance.LoadGameData();
             Instance.LoadAddressableLabelData();
             Instance.LoadAssetData();
             Instance.LoadSceneData();
 
-            LogManager.OnDebugLog(
-                Label.Success, 
-                typeof(DataManager),
-                "<b>All Data</b> is loaded");
+            LogManager.LogSuccess("<b>All Data</b> is loaded");
         }
 
         #endregion
