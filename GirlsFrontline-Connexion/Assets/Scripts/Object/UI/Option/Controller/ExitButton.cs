@@ -10,10 +10,7 @@ namespace Object.UI.Option.Controller
 
         public void OnClicked()
         {
-            LogManager.OnDebugLog(
-                Label.Event, 
-                typeof(ExitButton), 
-                "<b>Exit Button</b> is clicked");
+            LogManager.LogMessage("<b>Exit Button</b> is clicked");
             
             GameManager.OnQuit();
         }
