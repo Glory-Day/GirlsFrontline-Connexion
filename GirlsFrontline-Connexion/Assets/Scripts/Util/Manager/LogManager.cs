@@ -1,171 +1,124 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System.IO;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using Util.Log;
+using Util.Log.Component;
 
 namespace Util.Manager
 {
     public static class LogManager
     {
-        #region CONSTANT FIELD
-
-        private const string DevelopmentBuild = "DEVELOPMENT_BUILD";
-        private const string UnityEditor      = "UNITY_EDITOR";
-
-        #endregion
-
-        #region UNITY EDITOR CONSOLE LOG METHOD API
-
-        /// <summary>
-        /// Outputs a administrator permission log to the console in <b>Unity Editor Console</b>
-        /// </summary>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(UnityEditor)]
-        private static void UnityEditorLog(string contexts)
+        public static void LogCalled([CallerMemberName] string methodName = "",
+                                     [CallerFilePath] string filePath = "")
         {
-#if UNITY_EDITOR
-            
-            Debug.LogWarning(Log.UnityEditor.LogBuilder.Build(contexts));
-            
-#endif
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            Debug.Log(Builder.Build(className, methodName));
         }
 
-        /// <summary>
-        /// Outputs a log by <see cref="Label"/> to the console in <b>Unity Editor Console</b>
-        /// </summary>
-        /// <param name="label"> <see cref="Label"/> of log </param>
-        /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
-        /// <param name="contexts"> Contents of output log </param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Out of range exception in <see cref="Label"/>
-        /// </exception>
-        [System.Diagnostics.Conditional(UnityEditor)]
-        private static void UnityEditorLog(Label label, Type type, string contexts)
+        public static void LogAdministrator(string message, 
+                                            [CallerMemberName] string methodName = "", 
+                                            [CallerFilePath] string filePath = "")
         {
-            var message = Log.UnityEditor.LogBuilder.Build(label, type, contexts);
-
-            switch (label)
-            {
-                case Label.Called:
-#if UNITY_EDITOR
-                    
-                    Debug.Log(message);
-                    
-#endif
-                    break;
-                case Label.Event:
-#if UNITY_EDITOR
-                    
-                    Debug.Log(message);
-                    
-#endif
-                    break;
-                case Label.Error:
-#if UNITY_EDITOR
-                    
-                    Debug.LogError(message);
-                    
-#endif
-                    break;
-                case Label.Success:
-#if UNITY_EDITOR
-                    
-                    Debug.Log(message);
-                    
-#endif
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(label), label, null);
-            }
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            Debug.LogWarning(Builder.Build(Label.Administrator, message, className, methodName));
         }
 
-        #endregion
-
-        #region DEVELOPMENT BUILD CONSOLE LOG METHOD API
-
-        private const string DevelopmentBuildLogFilePath = @"/Build.log";
-
-        /// <summary>
-        /// Outputs a administrator permission log to the console in <b>Development Build</b>
-        /// </summary>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void DevelopmentBuildLog(string contexts)
+        public static void LogMessage(string message, 
+                                      [CallerMemberName] string methodName = "", 
+                                      [CallerFilePath] string filePath = "")
         {
-#if DEVELOPMENT_BUILD
-
-            using (var writer = new StreamWriter(
-                       Application.persistentDataPath + DevelopmentBuildLogFilePath, true))
-            {
-                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.Build(contexts));
-            }
-            
-#endif
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            Debug.Log(Builder.Build(Label.Message, message, className, methodName));
         }
 
-        /// <summary>
-        /// Outputs a log by <see cref="Label"/> to the console in <b>Development Build</b>
-        /// </summary>
-        /// <param name="label"> <see cref="Label"/> of log </param>
-        /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)]
-        private static void DevelopmentBuildLog(Label label, Type type, string contexts)
+        public static void LogError(string message, 
+                                    [CallerMemberName] string methodName = "", 
+                                    [CallerFilePath] string filePath = "")
         {
-#if DEVELOPMENT_BUILD
-
-            using (var writer = new StreamWriter(
-                       Application.persistentDataPath + DevelopmentBuildLogFilePath, true))
-            {
-                writer.WriteLine(Log.DevelopmentBuild.LogBuilder.Build(label, type, contexts));
-            }
-            
-#endif
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            Debug.LogError(Builder.Build(Label.Error, message, className, methodName));
         }
 
-        #endregion
-
-        #region STATIC METHOD API
-
-        /// <summary>
-        /// Outputs a administrator permission log
-        /// </summary>
-        /// <param name="contexts"> Contents of output log </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)] 
-        [System.Diagnostics.Conditional(UnityEditor)]
-        public static void OnDebugLog(string contexts)
+        public static void LogSuccess(string message, 
+                                      [CallerMemberName] string methodName = "", 
+                                      [CallerFilePath] string filePath = "")
         {
-#if UNITY_EDITOR
-            
-            UnityEditorLog(contexts);
-            
-#elif DEVELOPMENT_BUILD
-
-            DevelopmentBuildLog(contexts);
-            
-#endif
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            Debug.Log(Builder.Build(Label.Success, message, className, methodName));
         }
-
-        /// <summary>
-        /// Outputs a log by <see cref="Label"/>
-        /// </summary>
-        /// <param name="label"> <see cref="Label"/> of log </param>
-        /// <param name="type"> <see cref="Type"/> of the class where the log was called </param>
-        /// <param name="contexts"> Contents of output <b>Log</b> </param>
-        [System.Diagnostics.Conditional(DevelopmentBuild)] 
-        [System.Diagnostics.Conditional(UnityEditor)]
-        public static void OnDebugLog(Label label, Type type, string contexts)
-        {
-#if UNITY_EDITOR
-            
-            UnityEditorLog(label, type, contexts);
-            
-#elif DEVELOPMENT_BUILD
-
-            DevelopmentBuildLog(label, type, contexts);
-            
-#endif
-        }
-
-        #endregion
     }
 }
+
+#elif DEVELOPMENT_BUILD
+
+using System.IO;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using Util.Log;
+using Util.Log.Component;
+
+namespace Util.Manager
+{
+    public static class LogManager
+    {
+        private const string LogFilePath = @"/Build.log";
+
+        public static void LogCalled([CallerMemberName] string methodName = "",
+                                     [CallerFilePath] string filePath = "")
+        {
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            using (var writer = new StreamWriter(Application.persistentDataPath + LogFilePath, true))
+            {
+                writer.WriteLine(Builder.Build(className, methodName));
+            }
+        }
+
+        public static void LogAdministrator(string message, 
+                                            [CallerMemberName] string methodName = "", 
+                                            [CallerFilePath] string filePath = "")
+        {
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            using (var writer = new StreamWriter(Application.persistentDataPath + LogFilePath, true))
+            {
+                writer.WriteLine(Builder.Build(Label.Administrator, message, className, methodName));
+            }
+        }
+
+        public static void LogMessage(string message, 
+                                      [CallerMemberName] string methodName = "", 
+                                      [CallerFilePath] string filePath = "")
+        {
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            using (var writer = new StreamWriter(Application.persistentDataPath + LogFilePath, true))
+            {
+                writer.WriteLine(Builder.Build(Label.Message, message, className, methodName));
+            }
+        }
+
+        public static void LogError(string message, 
+                                    [CallerMemberName] string methodName = "", 
+                                    [CallerFilePath] string filePath = "")
+        {
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            using (var writer = new StreamWriter(Application.persistentDataPath + LogFilePath, true))
+            {
+                writer.WriteLine(Builder.Build(Label.Error, message, className, methodName));
+            }
+        }
+
+        public static void LogSuccess(string message, 
+                                      [CallerMemberName] string methodName = "", 
+                                      [CallerFilePath] string filePath = "")
+        {
+            var className = Path.GetFileNameWithoutExtension(filePath);
+            using (var writer = new StreamWriter(Application.persistentDataPath + LogFilePath, true))
+            {
+                writer.WriteLine(Builder.Build(Label.Success, message, className, methodName));
+            }
+        }
+    }
+}
+
+#endif
