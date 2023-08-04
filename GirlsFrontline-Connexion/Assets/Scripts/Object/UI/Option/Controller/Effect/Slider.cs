@@ -22,10 +22,7 @@ namespace Object.UI.Option.Controller.Effect
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.OnDebugLog(
-                Label.Called, 
-                typeof(Slider), 
-                "Start()");
+            LogManager.LogCalled();
             
             slider = GetComponent<UnityEngine.UI.Slider>();
         }
