@@ -2,7 +2,6 @@
 using UnityEngine;
 using Object.Manager;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI
 {
@@ -28,21 +27,21 @@ namespace Object.UI
 
         public void SetTransitionDirectionToLeft()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             transitionAnimation.clip = transitionAnimation.GetClip(TransitionDirectionToLeft);
         }
 
         public void SetTransitionDirectionToRight()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             transitionAnimation.clip = transitionAnimation.GetClip(TransitionDirectionToRight);
         }
 
         public void PlayScreenTransition()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             transitionAnimation.Play();
 
