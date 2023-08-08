@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEngine;
 using Util.Manager;
-using Util.Log;
 using View;
 
 namespace Object.UI.Selection
@@ -39,7 +38,7 @@ namespace Object.UI.Selection
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             Initialize();
 
@@ -48,7 +47,7 @@ namespace Object.UI.Selection
 
         private void Initialize()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             isChapterBlock = Enumerable.Range(0, 5)
                                        .Select(i => DataManager.GameData.chapters[i].isBlock)
