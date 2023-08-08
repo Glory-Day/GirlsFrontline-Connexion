@@ -10,7 +10,7 @@ namespace Util.Command
     {
         public void Execute()
         {
-            LogManager.LogAdministrator("Execute <b><i>OnApplicationPlay()</i></b>");
+            LogManager.LogAsAdministrator("Execute <b><i>OnApplicationPlay()</i></b>");
 
             GameManager.OnPlay();
         }
