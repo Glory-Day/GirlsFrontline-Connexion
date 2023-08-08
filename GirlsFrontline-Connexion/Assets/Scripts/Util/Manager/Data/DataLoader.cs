@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using UnityEngine;
-using Util.Log;
 
 namespace Util.Manager.Data
 {
@@ -8,7 +7,7 @@ namespace Util.Manager.Data
     {
         public static T OnLoadData<T>(string path) where T : class
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             T data;
 
