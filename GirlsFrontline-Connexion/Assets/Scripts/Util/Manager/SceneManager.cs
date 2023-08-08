@@ -1,6 +1,5 @@
 ﻿using System;
 using Object.Manager;
-using Util.Log;
 
 namespace Util.Manager
 {
@@ -10,7 +9,7 @@ namespace Util.Manager
 
         public static void OnLoadSceneByLabel(Util.Manager.Scene.Label label)
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             switch (label)
             {
