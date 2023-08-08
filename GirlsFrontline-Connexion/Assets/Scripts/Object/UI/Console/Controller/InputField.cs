@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 using Util.Command;
 using Util.Input;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI.Console.Controller
 {
@@ -28,7 +27,7 @@ namespace Object.UI.Console.Controller
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             var component = GetComponentInParent<CommandConsole>();
             commands = component.Commands;
@@ -39,7 +38,7 @@ namespace Object.UI.Console.Controller
         // OnEnable is called when the object becomes enabled and active
         private void OnEnable()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             consoleAction.Enable();
         }
@@ -47,7 +46,7 @@ namespace Object.UI.Console.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             inputField = GetComponent<TMP_InputField>();
             commandLineBuilder = new StringBuilder();
@@ -58,7 +57,7 @@ namespace Object.UI.Console.Controller
         // OnDisable is called when the behaviour becomes disabled
         private void OnDisable()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             consoleAction.Disable();
         }
