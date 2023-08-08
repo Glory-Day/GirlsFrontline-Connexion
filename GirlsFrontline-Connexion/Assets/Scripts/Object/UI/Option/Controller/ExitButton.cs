@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI.Option.Controller
 {
