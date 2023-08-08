@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Video;
 using Util.Manager;
-using Util.Log;
 
 namespace UI.Video
 {
@@ -36,7 +35,7 @@ namespace UI.Video
         // Start is called before the first frame update
         protected virtual void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             // Initialize component and child game object
             videoPlayer = transform.GetChild((int)ChildrenIndex.VideoPlayer).GetComponent<VideoPlayer>();
