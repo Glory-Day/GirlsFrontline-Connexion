@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 using Object.Manager;
-using Util.Log;
 
 namespace Util.Manager
 {
@@ -11,7 +10,7 @@ namespace Util.Manager
 
         public static void OnPause()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             if (Time.timeScale < 0.5f)
             {
@@ -29,7 +28,7 @@ namespace Util.Manager
 
         public static void OnPlay()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             if (Time.timeScale > 0.5f)
             {
@@ -47,7 +46,7 @@ namespace Util.Manager
 
         public static void OnQuit()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             LogManager.LogSuccess("<b>Game Application</b> is quited");
 
