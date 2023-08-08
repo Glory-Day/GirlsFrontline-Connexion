@@ -10,7 +10,7 @@ namespace Util.Command
     {
         public void Execute()
         {
-            LogManager.LogAdministrator(
+            LogManager.LogAsAdministrator(
                 "Execute <b><i>OnLoadAllData()</i></b>");
 
             DataManager.OnLoadAllData();
