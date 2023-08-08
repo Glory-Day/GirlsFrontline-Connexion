@@ -1,11 +1,10 @@
 ﻿#if UNITY_EDITOR || DEVELOPMENT_BUILD
 
-namespace Util.Log.Component
+namespace Util.Log
 {
     public enum Label
     {
         Administrator,
-        Called,
         Message,
         Error,
         Success
