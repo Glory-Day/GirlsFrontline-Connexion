@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using Object.Manager;
 using Util.Input;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI.Option
 {
@@ -17,7 +16,7 @@ namespace Object.UI.Option
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             components = transform.GetChild(0).gameObject;
 
@@ -27,7 +26,7 @@ namespace Object.UI.Option
         // OnEnable is called when the object becomes enabled and active
         private void OnEnable()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             optionAction.Enable();
         }
@@ -35,7 +34,7 @@ namespace Object.UI.Option
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             optionAction.OptionScreen.Toggle.performed += Toggle;
         }
@@ -43,7 +42,7 @@ namespace Object.UI.Option
         // OnDisable is called when the behaviour becomes disabled
         private void OnDisable()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             optionAction.Disable();
         }
