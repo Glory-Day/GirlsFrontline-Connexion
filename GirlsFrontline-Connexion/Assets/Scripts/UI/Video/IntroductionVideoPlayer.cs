@@ -2,7 +2,6 @@
 using Object.Manager;
 using Util.Asset;
 using Util.Manager;
-using Util.Log;
 
 namespace UI.Video
 {
@@ -14,7 +13,7 @@ namespace UI.Video
         {
             base.Start();
          
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             skipButton.SetActive(false);
             
@@ -25,7 +24,7 @@ namespace UI.Video
         
         private IEnumerator Loading()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             DataManager.OnLoadAllData();
             assetLoader.LoadAllAssets();
