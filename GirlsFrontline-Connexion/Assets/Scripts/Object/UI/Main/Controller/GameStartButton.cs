@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Object.Manager;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI.Main.Controller
 {
@@ -16,7 +15,7 @@ namespace Object.UI.Main.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             gameStartButton = GetComponent<UnityEngine.UI.Button>();
         }
