@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 using Util.Command;
 using Util.Input;
 using Util.Manager;
-using Util.Log;
 
 
 namespace Object.UI.Console
@@ -38,7 +37,7 @@ namespace Object.UI.Console
         // Awake is called when the script instance is being loaded 
         private void Awake()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             Commands = new Dictionary<string, ICommand>
                        {
@@ -56,7 +55,7 @@ namespace Object.UI.Console
         // OnEnable is called when the object becomes enabled and active
         private void OnEnable()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             consoleAction.Enable();
         }
@@ -70,7 +69,7 @@ namespace Object.UI.Console
         // OnDisable is called when the behaviour becomes disabled
         private void OnDisable()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             consoleAction.Disable();
         }

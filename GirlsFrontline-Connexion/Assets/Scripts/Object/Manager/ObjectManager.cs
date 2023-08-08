@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Util.Manager;
-using Util.Log;
 using Util.Manager.Object;
 
 
@@ -24,7 +23,7 @@ namespace Object.Manager
 
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             objectPool.originals = new Dictionary<GameObject, Pool<GameObject>>();
             objectPool.clones = new Dictionary<GameObject, Pool<GameObject>>();

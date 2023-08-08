@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Object.Manager;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI.Option.Controller.Background
 {
@@ -22,7 +21,7 @@ namespace Object.UI.Option.Controller.Background
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             slider = GetComponent<UnityEngine.UI.Slider>();
         }

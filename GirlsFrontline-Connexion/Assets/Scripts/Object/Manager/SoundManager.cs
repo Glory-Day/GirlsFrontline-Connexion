@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.Manager
 {
@@ -60,7 +59,7 @@ namespace Object.Manager
         
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             backgroundAudioClips = new Dictionary<string, AudioClip>();
             effectAudioClips = new Dictionary<string, AudioClip>();
@@ -71,7 +70,7 @@ namespace Object.Manager
 
         private void Initialize()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             // Initialize audio source component
             gameObject.AddComponent<AudioListener>();
@@ -83,7 +82,7 @@ namespace Object.Manager
 
         private void PlayBackgroundAudioSource(string key)
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             // If there is no audio clip, set the name as 'None', set it as the name of the audio clip
             var audioClipName = playingBackgroundAudioClip != null
@@ -104,7 +103,7 @@ namespace Object.Manager
 
         public static void OnChangeBackgroundAudioClip(Util.Manager.Scene.Label label)
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             switch (label)
             {

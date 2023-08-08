@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.UI.Selection.Controller
 {
@@ -22,7 +21,7 @@ namespace Object.UI.Selection.Controller
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             var component = GetComponentInParent<ChapterSelector>();
             selectionAnimation = component.SelectionAnimation;

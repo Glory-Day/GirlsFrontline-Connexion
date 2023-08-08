@@ -11,7 +11,7 @@ namespace Util.Command
     {
         public void Execute()
         {
-            LogManager.LogAdministrator(
+            LogManager.LogAsAdministrator(
                 "Execute <b><i>OnInstantiateAllUIPrefabs()</i></b>");
 
             UIManager.OnInstantiateAllUIPrefabs();

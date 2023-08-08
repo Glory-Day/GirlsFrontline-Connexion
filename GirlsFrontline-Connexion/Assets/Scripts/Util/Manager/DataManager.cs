@@ -1,6 +1,5 @@
 ﻿using Util.Manager.Data;
 using Util.Manager.Data.Json;
-using Util.Log;
 
 namespace Util.Manager
 {
@@ -15,28 +14,28 @@ namespace Util.Manager
 
         private void LoadGameData()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             gameData = DataLoader.OnLoadData<GameData>(JsonFilePath.GameDataPath);
         }
 
         private void LoadSceneData()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             sceneData = DataLoader.OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
         }
 
         private void LoadAssetData()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             assetData = DataLoader.OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
         }
 
         private void LoadAddressableLabelData()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
                 JsonFilePath.AddressableLabelDataPath);
@@ -48,7 +47,7 @@ namespace Util.Manager
 
         public static void OnLoadAllData()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             Instance.LoadGameData();
             Instance.LoadAddressableLabelData();

@@ -1,5 +1,4 @@
 ﻿using Util.Manager;
-using Util.Log;
 
 namespace Util.Asset
 {
@@ -10,7 +9,7 @@ namespace Util.Asset
 
         public AssetLoader()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             audioAssetLoader = new AudioAssetLoader();
             prefabAssetLoader = new PrefabAssetLoader();
@@ -20,7 +19,7 @@ namespace Util.Asset
 
         private void LoadAudioAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             audioAssetLoader.LoadBackgroundAudioClipAssets();
         }
@@ -40,7 +39,7 @@ namespace Util.Asset
         
         private void UnloadAudioAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             audioAssetLoader.UnloadBackgroundAudioClipAssets();
         }
@@ -79,14 +78,14 @@ namespace Util.Asset
 
         private void LoadPrefabAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             prefabAssetLoader.LoadUIPrefabAssets();
         }
 
         private void UnloadPrefabAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             prefabAssetLoader.UnloadUIPrefabAssets();
         }
@@ -102,7 +101,7 @@ namespace Util.Asset
         
         public void LoadAllAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             LoadAudioAssets();
             LoadPrefabAssets();
@@ -110,7 +109,7 @@ namespace Util.Asset
 
         public void UnloadAllAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             UnloadAudioAssets();
             UnloadPrefabAssets();

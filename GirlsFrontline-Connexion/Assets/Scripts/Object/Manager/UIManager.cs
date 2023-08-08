@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 using Object.UI;
 using Util.Manager;
-using Util.Log;
 
 namespace Object.Manager
 {
@@ -21,7 +20,7 @@ namespace Object.Manager
         // Start is called before the first frame update
         private void Start()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             Instance.uiPrefabs = new Dictionary<string, GameObject>();
         }
@@ -30,7 +29,7 @@ namespace Object.Manager
 
         private void InstantiateTransitionScreenPrefab()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[0]],
                 transform, true);
@@ -45,7 +44,7 @@ namespace Object.Manager
 
         private void InstantiatePauseScreenPrefab()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[1]],
                 transform, true);
@@ -57,7 +56,7 @@ namespace Object.Manager
 
         private void InstantiateCommandConsolePrefab()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[2]],
                 transform, true);
@@ -68,7 +67,7 @@ namespace Object.Manager
 
         private void InstantiateOptionScreenPrefab()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[3]],
                 transform, true);
@@ -91,7 +90,7 @@ namespace Object.Manager
 
         public static void OnInstantiateAllUIPrefabs()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             Instance.InstantiateTransitionScreenPrefab();
             Instance.InstantiatePauseScreenPrefab();
@@ -113,7 +112,7 @@ namespace Object.Manager
         
         public static void OnPlayScreenTransitionToLeft()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             Instance.SetTransitionDirectionToLeft.Invoke();
             Instance.PlayScreenTransition.Invoke();
@@ -121,7 +120,7 @@ namespace Object.Manager
 
         public static void OnPlayScreenTransitionToRight()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             Instance.SetTransitionDirectionToRight.Invoke();
             Instance.PlayScreenTransition.Invoke();

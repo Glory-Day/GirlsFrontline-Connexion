@@ -5,7 +5,6 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object.Manager;
 using Util.Manager;
-using Util.Log;
 
 namespace Util.Asset
 {
@@ -17,7 +16,7 @@ namespace Util.Asset
         
         public AudioAssetLoader()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             backgroundAudioClipAssetsHandle = new AsyncOperationHandle<IList<AudioClip>>();
             effectAudioClipAssetsHandle     = new AsyncOperationHandle<IList<AudioClip>>();
@@ -28,7 +27,7 @@ namespace Util.Asset
         
         public void LoadBackgroundAudioClipAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             void Loaded(AudioClip loadedAudioClipAsset)
             {
@@ -43,7 +42,7 @@ namespace Util.Asset
         
         public void LoadEffectAudioClipAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
@@ -58,7 +57,7 @@ namespace Util.Asset
         
         public void LoadVoiceAudioClipAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
@@ -84,7 +83,7 @@ namespace Util.Asset
         
         public void UnloadEffectAudioClipAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             Addressables.Release(effectAudioClipAssetsHandle);
 
@@ -93,7 +92,7 @@ namespace Util.Asset
         
         public void UnloadVoiceAudioClipAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             Addressables.Release(voiceAudioClipAssetsHandle);
 

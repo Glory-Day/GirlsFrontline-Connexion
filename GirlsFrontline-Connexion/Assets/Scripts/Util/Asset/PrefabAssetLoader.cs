@@ -5,7 +5,6 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object.Manager;
 using Util.Manager;
-using Util.Log;
 
 namespace Util.Asset
 {
@@ -15,7 +14,7 @@ namespace Util.Asset
         
         public PrefabAssetLoader()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
             
             uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
         }
@@ -24,7 +23,7 @@ namespace Util.Asset
         
         public void LoadUIPrefabAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             void Loaded(GameObject loadedGameObject)
             {
@@ -43,7 +42,7 @@ namespace Util.Asset
         
         public void UnloadUIPrefabAssets()
         {
-            LogManager.LogCalled();
+            LogManager.LogProgress();
 
             Addressables.Release(uiPrefabAssetsHandle);
 
