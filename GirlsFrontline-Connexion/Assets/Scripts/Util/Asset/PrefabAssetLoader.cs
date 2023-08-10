@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object.Manager;
+using Util.Data.Addressable;
 using Util.Manager;
 
 namespace Util.Asset
@@ -18,8 +19,6 @@ namespace Util.Asset
             
             uiPrefabAssetsHandle = new AsyncOperationHandle<IList<GameObject>>();
         }
-
-        #region LOAD ASSET METHOD API
         
         public void LoadUIPrefabAssets()
         {
@@ -35,10 +34,6 @@ namespace Util.Asset
             uiPrefabAssetsHandle = Addressables.LoadAssetsAsync(DataManager.AddressableLabelData.prefabAsset.labels[0],
                 (Action<GameObject>)Loaded);
         }
-
-        #endregion
-
-        #region UNLOAD ASSET METHOD API
         
         public void UnloadUIPrefabAssets()
         {
@@ -49,15 +44,9 @@ namespace Util.Asset
             LogManager.LogSuccess("<b>All UI Prefabs</b> are unloaded");
         }
 
-        #endregion
-
-        #region CHECK ASSET METHOD API
-
         public bool IsLoadedUIPrefabAssetsDone()
         {
             return uiPrefabAssetsHandle.IsValid() && uiPrefabAssetsHandle.IsDone;
         }
-
-        #endregion
     }
 }

@@ -8,7 +8,7 @@ using Util.Manager;
 
 namespace Util.Asset
 {
-    public class AudioAssetLoader
+    public class AudioAssetLoader : IAssetLoader
     {
         private AsyncOperationHandle<IList<AudioClip>> backgroundAudioClipAssetsHandle;
         private AsyncOperationHandle<IList<AudioClip>> effectAudioClipAssetsHandle;
@@ -23,26 +23,41 @@ namespace Util.Asset
             voiceAudioClipAssetsHandle      = new AsyncOperationHandle<IList<AudioClip>>(); 
         }
 
-        #region LOAD ASSET METHOD API
+        public void Load()
+        {
+            
+        }
+
+        public void Unload()
+        {
+            
+        }
         
         public void LoadBackgroundAudioClipAssets()
         {
             LogManager.LogProgress();
+
+            backgroundAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
+                DataManager.AddressableLabelData.audioAsset.labels[0], (Action<AudioClip>)Loaded);
             
+            return;
+
             void Loaded(AudioClip loadedAudioClipAsset)
             {
                 SoundManager.BackgroundAudioClip.Add(loadedAudioClipAsset.name, loadedAudioClipAsset);
 
                 LogManager.LogSuccess($"<b>{loadedAudioClipAsset.name}</b> is loaded");
             }
-
-            backgroundAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
-                DataManager.AddressableLabelData.audioAsset.labels[0], (Action<AudioClip>)Loaded);
         }
         
         public void LoadEffectAudioClipAssets()
         {
             LogManager.LogProgress();
+
+            effectAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
+                DataManager.AddressableLabelData.audioAsset.labels[1], (Action<AudioClip>)Loaded);
+            
+            return;
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
@@ -50,14 +65,16 @@ namespace Util.Asset
 
                 LogManager.LogSuccess($"<b>{loadedAudioClipAsset.name}</b> is loaded");
             }
-
-            effectAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
-                DataManager.AddressableLabelData.audioAsset.labels[1], (Action<AudioClip>)Loaded);
         }
         
         public void LoadVoiceAudioClipAssets()
         {
             LogManager.LogProgress();
+
+            voiceAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
+                DataManager.AddressableLabelData.audioAsset.labels[2], (Action<AudioClip>)Loaded);
+            
+            return;
 
             void Loaded(AudioClip loadedAudioClipAsset)
             {
@@ -65,14 +82,7 @@ namespace Util.Asset
 
                 LogManager.LogSuccess($"<b>{loadedAudioClipAsset.name}</b> is loaded");
             }
-
-            voiceAudioClipAssetsHandle = Addressables.LoadAssetsAsync(
-                DataManager.AddressableLabelData.audioAsset.labels[2], (Action<AudioClip>)Loaded);
         }
-
-        #endregion
-
-        #region UNLOAD ASSET METHOD API
         
         public void UnloadBackgroundAudioClipAssets()
         {
@@ -99,10 +109,6 @@ namespace Util.Asset
             LogManager.LogSuccess("<b>All Voice Audio Clips</b> are unloaded");
         }
 
-        #endregion
-
-        #region CHECK ASSET METHOD API
-
         public bool IsLoadedBackgroundAudioClipAssetsDone()
         {
             return backgroundAudioClipAssetsHandle.IsValid() && backgroundAudioClipAssetsHandle.IsDone;
@@ -117,7 +123,5 @@ namespace Util.Asset
         {
             return voiceAudioClipAssetsHandle.IsValid() && voiceAudioClipAssetsHandle.IsDone;
         }
-
-        #endregion
     }
 }

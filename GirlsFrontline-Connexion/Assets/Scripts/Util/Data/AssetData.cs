@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Util.Manager.Data.Json
+namespace Util.Data
 {
     #region DATA CLASS API
 
