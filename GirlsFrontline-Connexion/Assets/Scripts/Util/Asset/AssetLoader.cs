@@ -15,8 +15,6 @@ namespace Util.Asset
             prefabAssetLoader = new PrefabAssetLoader();
         }
 
-        #region AUDIO ASSET METHOD API
-
         private void LoadAudioAssets()
         {
             LogManager.LogProgress();
@@ -72,10 +70,6 @@ namespace Util.Asset
         }
         */
 
-        #endregion
-
-        #region PREFAB ASSET METHOD API
-
         private void LoadPrefabAssets()
         {
             LogManager.LogProgress();
@@ -94,8 +88,6 @@ namespace Util.Asset
         {
             return prefabAssetLoader.IsLoadedUIPrefabAssetsDone();
         }
-
-        #endregion
 
         #region STATIC METHOD API
         
