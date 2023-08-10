@@ -1,5 +1,7 @@
-﻿using Util.Manager.Data;
-using Util.Manager.Data.Json;
+﻿using System.IO;
+using UnityEngine;
+using Newtonsoft.Json;
+using Util.Data;
 
 namespace Util.Manager
 {
@@ -10,35 +12,57 @@ namespace Util.Manager
         private AssetData            assetData;
         private AddressableLabelData addressableLabelData;
         
+        private static T OnLoadData<T>(string fileName) where T : class
+        {
+            LogManager.LogProgress();
+
+            T data;
+
+            try
+            {
+                data = JsonUtility.FromJson<T>(File.ReadAllText(Application.persistentDataPath + fileName));
+
+                LogManager.LogSuccess($"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b>");
+            }
+            catch (DirectoryNotFoundException error)
+            {
+                LogManager.LogError(error.Message);
+
+                // Directory not found exception error
+                return null;
+            }
+
+            return data;
+        }
+        
         #region LOAD DATA METHOD API
 
         private void LoadGameData()
         {
             LogManager.LogProgress();
 
-            gameData = DataLoader.OnLoadData<GameData>(JsonFilePath.GameDataPath);
+            gameData = OnLoadData<GameData>(JsonFilePath.GameDataPath);
         }
 
         private void LoadSceneData()
         {
             LogManager.LogProgress();
 
-            sceneData = DataLoader.OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
+            sceneData = OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
         }
 
         private void LoadAssetData()
         {
             LogManager.LogProgress();
 
-            assetData = DataLoader.OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
+            assetData = OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
         }
 
         private void LoadAddressableLabelData()
         {
             LogManager.LogProgress();
 
-            addressableLabelData = DataLoader.OnLoadData<AddressableLabelData>(
-                JsonFilePath.AddressableLabelDataPath);
+            addressableLabelData = OnLoadData<AddressableLabelData>(JsonFilePath.AddressableLabelDataPath);
         }
 
         #endregion
