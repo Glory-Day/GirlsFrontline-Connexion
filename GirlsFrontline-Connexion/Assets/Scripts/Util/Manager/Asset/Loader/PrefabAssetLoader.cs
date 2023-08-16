@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Util.Manager.Asset.Loader
 {
-    public class PrefabLoader : ILoader
+    public class PrefabAssetLoader : IAssetLoader
     {
         private struct AsyncOperationHandler
         {
@@ -15,7 +15,7 @@ namespace Util.Manager.Asset.Loader
 
         private AsyncOperationHandler asyncOperationHandler;
         
-        public PrefabLoader()
+        public PrefabAssetLoader()
         {
             LogManager.LogProgress();
 
