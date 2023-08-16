@@ -1,6 +1,6 @@
 ﻿namespace Util.Manager.Asset.Loader
 {
-    public class TextLoader : ILoader
+    public class TextAssetLoader : IAssetLoader
     {
         public void Load()
         {
