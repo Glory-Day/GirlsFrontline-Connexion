@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR || DEVELOPMENT_BUILD
 
-namespace Util.Log
+namespace Util.Manager.Log
 {
-    public enum Label
+    public enum LogLabel
     {
         Administrator,
         Message,
