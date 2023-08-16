@@ -1,9 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Util.Manager
 {
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
-    public class Singleton<T> where T : class, new()
+    public class Singleton<T> where T : class
     {
         private static readonly object Locked = new object();
         
@@ -16,8 +17,30 @@ namespace Util.Manager
             {
                 lock (Locked)
                 {
-                    return _instance ?? (_instance = new T());
+                    if (_instance == null)
+                    {
+                        CreateInstance();
+                    }
+                    
+                    return _instance;
                 }
+            }
+        }
+
+        private static void CreateInstance()
+        {
+            lock (Locked)
+            {
+                var type = typeof(T);
+                var constructorInfos = type.GetConstructors();
+                if (constructorInfos.Length > 0)
+                {
+                    throw new InvalidOperationException(
+                        $"{type.Name} has at least one accessible constructor" +
+                        " making it impossible to enforce singleton behaviour");
+                }
+
+                _instance = (T)Activator.CreateInstance(type, true);
             }
         }
     }
