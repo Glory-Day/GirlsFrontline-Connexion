@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using Object.Manager;
-using Util.Asset;
 using Util.Manager;
 
 namespace UI.Video
 {
     public class IntroductionVideoPlayer : SkippableVideoPlayer
     {
-        private AssetLoader assetLoader;
-        
         protected override void Start()
         {
             base.Start();
@@ -16,8 +13,6 @@ namespace UI.Video
             LogManager.LogProgress();
             
             skipButton.SetActive(false);
-            
-            assetLoader = new AssetLoader();
             
             StartCoroutine(Loading());
         }
@@ -27,11 +22,12 @@ namespace UI.Video
             LogManager.LogProgress();
             
             DataManager.OnLoadAllData();
-            assetLoader.LoadAllAssets();
+            AssetManager.OnLoadAllAssets();
 
             LogManager.LogMessage("<b>Waiting All Assets</b> is loaded");
 
-            while(!assetLoader.IsLoadedAllAssetsDone())
+            while(!(AssetManager.CheckAllAudioClipsLoaded() &&
+                    AssetManager.CheckAllUIPrefabsLoaded()))
             {
                 yield return null;
             }
