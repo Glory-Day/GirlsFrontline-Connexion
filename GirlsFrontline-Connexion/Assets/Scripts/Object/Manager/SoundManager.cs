@@ -88,7 +88,7 @@ namespace Object.Manager
             var audioClipName = playingBackgroundAudioClip != null
                                     ? playingBackgroundAudioClip.name
                                     : None;
-            var audioClip = backgroundAudioClips[key];
+            var audioClip = AssetManager.AudioClipAsset.Background[key];
 
             // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;

@@ -31,7 +31,7 @@ namespace Object.Manager
         {
             LogManager.LogProgress();
 
-            var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[0]],
+            var instantiatedObject = Instantiate(AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[0]],
                 transform, true);
             
             var component = instantiatedObject.GetComponent<TransitionScreen>();
@@ -46,10 +46,10 @@ namespace Object.Manager
         {
             LogManager.LogProgress();
 
-            var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[1]],
+            var instantiatedObject = Instantiate(AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[1]],
                 transform, true);
             instantiatedObject.SetActive(false);
-            uiPrefabs[DataManager.AssetData.uiPrefab.names[1]] = instantiatedObject;
+            AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[1]] = instantiatedObject;
 
             LogManager.LogSuccess("<b>Pause Screen Prefab</b> is instantiated");
         }
@@ -58,9 +58,9 @@ namespace Object.Manager
         {
             LogManager.LogProgress();
             
-            var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[2]],
+            var instantiatedObject = Instantiate(AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[2]],
                 transform, true);
-            uiPrefabs[DataManager.AssetData.uiPrefab.names[2]] = instantiatedObject;
+            AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[2]] = instantiatedObject;
             
             LogManager.LogSuccess("<b>Command Console Prefab</b> is instantiated");
         }
@@ -69,9 +69,9 @@ namespace Object.Manager
         {
             LogManager.LogProgress();
 
-            var instantiatedObject = Instantiate(uiPrefabs[DataManager.AssetData.uiPrefab.names[3]],
+            var instantiatedObject = Instantiate(AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[3]],
                 transform, true);
-            uiPrefabs[DataManager.AssetData.uiPrefab.names[3]] = instantiatedObject;
+            AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[3]] = instantiatedObject;
             
             LogManager.LogSuccess("<b>Option Screen Prefab</b> is instantiated");
         }
@@ -102,12 +102,12 @@ namespace Object.Manager
 
         public static void OnEnablePauseScreen()
         {
-            Instance.uiPrefabs?[DataManager.AssetData.uiPrefab.names[1]].SetActive(true);
+            AssetManager.PrefabAsset.UI?[DataManager.AssetData.uiPrefab.names[1]].SetActive(true);
         }
 
         public static void OnDisablePauseScreen()
         {
-            Instance.uiPrefabs?[DataManager.AssetData.uiPrefab.names[1]].SetActive(false);
+            AssetManager.PrefabAsset.UI?[DataManager.AssetData.uiPrefab.names[1]].SetActive(false);
         }
         
         public static void OnPlayScreenTransitionToLeft()
@@ -130,12 +130,12 @@ namespace Object.Manager
 
         #region STATIC PROPERTIES API
         
-        public static Dictionary<string, GameObject> UIPrefabs => Instance.uiPrefabs;
+        public static Dictionary<string, GameObject> UIPrefabs => AssetManager.PrefabAsset.UI;
 
         public static GameObject PauseScreen
         {
-            get => Instance.uiPrefabs[DataManager.AssetData.uiPrefab.names[1]];
-            set => Instance.uiPrefabs[DataManager.AssetData.uiPrefab.names[1]] = value;
+            get => AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[1]];
+            set => AssetManager.PrefabAsset.UI[DataManager.AssetData.uiPrefab.names[1]] = value;
         }
 
         #endregion
