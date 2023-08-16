@@ -1,16 +1,19 @@
 ﻿using System.IO;
+using JetBrains.Annotations;
 using UnityEngine;
 using Newtonsoft.Json;
 using Util.Data;
 
 namespace Util.Manager
 {
+    [PublicAPI]
     public class DataManager : Singleton<DataManager>
     {
         private GameData             gameData;
         private SceneData            sceneData;
         private AssetData            assetData;
-        private AddressableLabelData addressableLabelData;
+        
+        private DataManager() { }
         
         private static T OnLoadData<T>(string fileName) where T : class
         {
@@ -58,13 +61,6 @@ namespace Util.Manager
             assetData = OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
         }
 
-        private void LoadAddressableLabelData()
-        {
-            LogManager.LogProgress();
-
-            addressableLabelData = OnLoadData<AddressableLabelData>(JsonFilePath.AddressableLabelDataPath);
-        }
-
         #endregion
 
         #region STATIC METHOD API
@@ -74,7 +70,6 @@ namespace Util.Manager
             LogManager.LogProgress();
             
             Instance.LoadGameData();
-            Instance.LoadAddressableLabelData();
             Instance.LoadAssetData();
             Instance.LoadSceneData();
 
@@ -90,8 +85,6 @@ namespace Util.Manager
         public static SceneData SceneData => Instance.sceneData;
 
         public static AssetData AssetData => Instance.assetData;
-
-        public static AddressableLabelData AddressableLabelData => Instance.addressableLabelData;
 
         #endregion
     }
