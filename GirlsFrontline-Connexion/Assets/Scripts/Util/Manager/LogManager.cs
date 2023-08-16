@@ -2,12 +2,7 @@
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-
-using Util.Log;
-
-#endif
+using Util.Manager.Log;
 
 using Debug = UnityEngine.Debug;
 
@@ -31,13 +26,11 @@ namespace Util.Manager
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         
         /// <summary>
-        /// Get name of <see cref="Label"/>, which is the value of <see cref="Enum"/> with all upper case
+        /// Get the name of <see cref="LogLabel"/> in all upper case
         /// </summary>
-        /// <param name="label"> <see cref="Label"/> to distinguish between types of logs </param>
-        /// <returns> Name of <see cref="Label"/> </returns>
-        private static string GetName(this Label label)
+        private static string GetName(this LogLabel label)
         {
-            return Enum.GetName(typeof(Label), label)?.ToUpper();
+            return Enum.GetName(typeof(LogLabel), label)?.ToUpper();
         }
 
 #endif
@@ -49,7 +42,6 @@ namespace Util.Manager
         /// </summary>
         /// <param name="className"> Name of class to which the log is called </param>
         /// <param name="methodName"> Name of method to which the log is called </param>
-        /// <returns> Log of progress </returns>
         private static string Build(string className, string methodName)
         {
             return "<color=#F8F8FF><b>[PROGRESS]</b></color>\n" +
@@ -59,30 +51,29 @@ namespace Util.Manager
         /// <summary>
         /// Build specify log for checking progress of application
         /// </summary>
-        /// <param name="label"> <see cref="Label"/> to distinguish between types of logs </param>
+        /// <param name="label"> <see cref="LogLabel"/> to distinguish between types of logs </param>
+        /// <param name="message"> Additional explanation of progress </param>
         /// <param name="className"> Name of class to which the log is called </param>
         /// <param name="methodName"> Name of method to which the log is called </param>
-        /// <param name="message"> Additional explanation of progress </param>
-        /// <returns> Specify log of progress </returns>
-        private static string Build(Label label, string className, string methodName, string message)
+        private static string Build(LogLabel label, string message, string className, string methodName)
         {
             string log;
             
             switch (label)
             {
-                case Label.Administrator:
+                case LogLabel.Administrator:
                     log = $"<color=#F7E600><b>[{label.GetName()}]</b></color>\n" +
                           $"<b>Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
-                case Label.Message:
+                case LogLabel.Message:
                     log = $"<color=#F8F8FF><b>[{label.GetName()}]</b></color>\n" +
                           $"<b>Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
-                case Label.Error:
+                case LogLabel.Error:
                     log = $"<color=#DC143C><b>[{label.GetName()}]</b></color>\n<b>" +
                           $"Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
-                case Label.Success:
+                case LogLabel.Success:
                     log = $"<color=#39FF14><b>[{label.GetName()}]</b></color>\n<b>" +
                           $"Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
@@ -100,7 +91,7 @@ namespace Util.Manager
             return $"PROGRESS|{className}|{methodName}()";
         }
         
-        private static string Build(Label label, string className, string methodName, string message)
+        private static string Build(LogLabel label, string className, string methodName, string message)
         {
             return $"{label.GetName()}|{className}|{methodName}()|{message}";
         }
@@ -134,9 +125,9 @@ namespace Util.Manager
         }
         
         /// <summary>
-        /// Log progress of application with administrator permission
+        /// Log message with administrator permission
         /// </summary>
-        /// <param name="message"> Message for checking </param>
+        /// <param name="message"> Additional explanation of progress </param>
         /// <param name="methodName"> Name of the method, property, or event from which the call originated </param>
         /// <param name="filePath"> Full path of the file which the call originated </param>
         [Conditional(UnityEditor), Conditional(DevelopmentBuild)]
@@ -148,13 +139,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.LogWarning(Build(Label.Administrator, className, methodName, message));
+            Debug.LogWarning(Build(LogLabel.Administrator, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(Label.Administrator, className, methodName, message));
+                writer.WriteLine(Build(LogLabel.Administrator, message, className, methodName));
             }
             
 #endif
@@ -163,7 +154,7 @@ namespace Util.Manager
         /// <summary>
         /// Log message for checking application
         /// </summary>
-        /// <param name="message"> Message for checking </param>
+        /// <param name="message"> Additional explanation of progress </param>
         /// <param name="methodName"> Name of the method, property, or event from which the call originated </param>
         /// <param name="filePath"> Full path of the file which the call originated </param>
         [Conditional(UnityEditor), Conditional(DevelopmentBuild)]
@@ -175,13 +166,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.Log(Build(Label.Message, className, methodName, message));
+            Debug.Log(Build(LogLabel.Message, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(Label.Message, className, methodName, message));
+                writer.WriteLine(Build(Label.Message, message, className, methodName));
             }
             
 #endif
@@ -190,7 +181,7 @@ namespace Util.Manager
         /// <summary>
         /// Log error message in application
         /// </summary>
-        /// <param name="message"> Message for checking </param>
+        /// <param name="message"> Additional explanation of progress </param>
         /// <param name="methodName"> Name of the method, property, or event from which the call originated </param>
         /// <param name="filePath"> Full path of the file which the call originated </param>
         [Conditional(UnityEditor), Conditional(DevelopmentBuild)]
@@ -202,13 +193,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.LogError(Build(Label.Error, className, methodName, message));
+            Debug.LogError(Build(LogLabel.Error, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(Label.Error, className, methodName, message));
+                writer.WriteLine(Build(LogLabel.Error, message, className, methodName));
             }
             
 #endif
@@ -217,7 +208,7 @@ namespace Util.Manager
         /// <summary>
         /// Log success message in application
         /// </summary>
-        /// <param name="message"> Message for checking </param>
+        /// <param name="message"> Additional explanation of progress </param>
         /// <param name="methodName"> Name of the method, property, or event from which the call originated </param>
         /// <param name="filePath"> Full path of the file which the call originated </param>
         [Conditional(UnityEditor), Conditional(DevelopmentBuild)]
@@ -229,13 +220,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.Log(Build(Label.Success, className, methodName, message));
+            Debug.Log(Build(LogLabel.Success, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(Label.Success, className, methodName, message));
+                writer.WriteLine(Build(LogLabel.Success, message, className, methodName));
             }
             
 #endif
