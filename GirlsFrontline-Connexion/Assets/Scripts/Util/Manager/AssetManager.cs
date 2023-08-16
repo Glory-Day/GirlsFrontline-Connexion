@@ -7,7 +7,7 @@ namespace Util.Manager
     [PublicAPI]
     public class AssetManager : Singleton<AssetManager>
     {
-        private readonly ILoader[] loaders;
+        private readonly IAssetLoader[] assetLoaders;
         
         private readonly AudioClipAsset audioClipAsset;
         private readonly PrefabAsset    prefabAsset;
@@ -16,9 +16,9 @@ namespace Util.Manager
         {
             LogManager.LogProgress();
 
-            loaders = new ILoader[] {
-                                        new AudioClipLoader(),
-                                        new PrefabLoader()
+            assetLoaders = new IAssetLoader[] {
+                                        new AudioClipAssetLoader(),
+                                        new PrefabAssetLoader()
                                     };
 
             audioClipAsset = new AudioClipAsset();
@@ -29,10 +29,10 @@ namespace Util.Manager
         {
             LogManager.LogProgress();
             
-            var length = loaders.Length;
+            var length = assetLoaders.Length;
             for (var i = 0; i < length; i++)
             {
-                loaders[i].Load();
+                assetLoaders[i].Load();
             }
         }
         
@@ -40,10 +40,10 @@ namespace Util.Manager
         {
             LogManager.LogProgress();
             
-            var length = loaders.Length;
+            var length = assetLoaders.Length;
             for (var i = 0; i < length; i++)
             {
-                loaders[i].Unload();
+                assetLoaders[i].Unload();
             }
         }
 
@@ -51,7 +51,7 @@ namespace Util.Manager
         {
             get
             {
-                var audioClipLoader = loaders[0] as AudioClipLoader;
+                var audioClipLoader = assetLoaders[0] as AudioClipAssetLoader;
 
                 return audioClipLoader != null &&
                        audioClipLoader.Check();
@@ -68,7 +68,7 @@ namespace Util.Manager
         {
             get
             {
-                var prefabLoader = loaders[1] as PrefabLoader;
+                var prefabLoader = assetLoaders[1] as PrefabAssetLoader;
 
                 return prefabLoader != null &&
                        prefabLoader.Check();
@@ -79,10 +79,10 @@ namespace Util.Manager
         {
             get
             {
-                var length = loaders.Length;
+                var length = assetLoaders.Length;
                 for (var i = 0; i < length; i++)
                 {
-                    if (loaders[i].Check() == false)
+                    if (assetLoaders[i].Check() == false)
                     {
                         return false;
                     }
