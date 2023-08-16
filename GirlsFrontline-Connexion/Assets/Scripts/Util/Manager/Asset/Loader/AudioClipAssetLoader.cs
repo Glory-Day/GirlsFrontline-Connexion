@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Util.Manager.Asset.Loader
 {
-    public class AudioClipLoader : ILoader
+    public class AudioClipAssetLoader : IAssetLoader
     {
         private struct AsyncOperationHandler
         {
@@ -17,7 +17,7 @@ namespace Util.Manager.Asset.Loader
 
         private AsyncOperationHandler asyncOperationHandler;
         
-        public AudioClipLoader()
+        public AudioClipAssetLoader()
         {
             LogManager.LogProgress();
 
