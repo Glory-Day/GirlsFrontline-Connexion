@@ -1,6 +1,6 @@
 ﻿namespace Util.Manager.Asset.Loader
 {
-    public interface ILoader
+    public interface IAssetLoader
     {
         /// <summary>
         /// Load assets using addressables
