@@ -49,9 +49,13 @@ namespace Object.UI.Selection
         {
             LogManager.LogProgress();
 
-            isChapterBlock = Enumerable.Range(0, 5)
-                                       .Select(i => DataManager.GameData.chapters[i].isBlock)
-                                       .ToArray();
+            isChapterBlock = new[] {
+                                       DataManager.UserData.Chapter01.IsLocked,
+                                       DataManager.UserData.Chapter02.IsLocked,
+                                       DataManager.UserData.Chapter03.IsLocked,
+                                       DataManager.UserData.Chapter04.IsLocked,
+                                       DataManager.UserData.Chapter05.IsLocked
+                                   };
 
             for (var i = 0; i < 5; i++)
             {
