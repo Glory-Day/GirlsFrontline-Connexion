@@ -14,16 +14,16 @@ namespace Util.Manager
             switch (label)
             {
                 case Scene.Label.Main:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[0].name);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Main Scene");
                     SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Main);
 
-                    LogManager.LogSuccess($"<b>{DataManager.SceneData.scenes[0].name}</b> is loaded");
+                    LogManager.LogSuccess("<b>Main Scene</b> is loaded");
                     break;
                 case Scene.Label.Selection:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.SceneData.scenes[1].name);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Selection Scene");
                     SoundManager.OnChangeBackgroundAudioClip(Scene.Label.Selection);
 
-                    LogManager.LogSuccess($"<b>{DataManager.SceneData.scenes[1].name}</b> is loaded");
+                    LogManager.LogSuccess("<b>Selection Scene</b> is loaded");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(label), label, null);
