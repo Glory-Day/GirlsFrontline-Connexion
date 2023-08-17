@@ -108,10 +108,10 @@ namespace Object.Manager
             switch (label)
             {
                 case Util.Manager.Scene.Label.Main:
-                    Instance.PlayBackgroundAudioSource(DataManager.AssetData.backgroundAudioClip.names[0]);
+                    Instance.PlayBackgroundAudioSource(DataManager.AudioSourceData.Background.Main);
                     break;
                 case Util.Manager.Scene.Label.Selection:
-                    Instance.PlayBackgroundAudioSource(DataManager.AssetData.backgroundAudioClip.names[0]);
+                    Instance.PlayBackgroundAudioSource(DataManager.AudioSourceData.Background.Main);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(label), label, null);
