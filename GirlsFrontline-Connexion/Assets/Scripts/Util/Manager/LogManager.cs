@@ -2,7 +2,6 @@
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Util.Manager.Log;
 
 using Debug = UnityEngine.Debug;
 
@@ -22,18 +21,6 @@ namespace Util.Manager
         private const string DevelopmentBuild = "DEVELOPMENT_BUILD";
         
         #endregion
-        
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        
-        /// <summary>
-        /// Get the name of <see cref="LogLabel"/> in all upper case
-        /// </summary>
-        private static string GetName(this LogLabel label)
-        {
-            return Enum.GetName(typeof(LogLabel), label)?.ToUpper();
-        }
-
-#endif
 
 #if UNITY_EDITOR
         
@@ -51,29 +38,29 @@ namespace Util.Manager
         /// <summary>
         /// Build specify log for checking progress of application
         /// </summary>
-        /// <param name="label"> <see cref="LogLabel"/> to distinguish between types of logs </param>
+        /// <param name="label"> <see cref="Log.LogLabel"/> to distinguish between types of logs </param>
         /// <param name="message"> Additional explanation of progress </param>
         /// <param name="className"> Name of class to which the log is called </param>
         /// <param name="methodName"> Name of method to which the log is called </param>
-        private static string Build(LogLabel label, string message, string className, string methodName)
+        private static string Build(Log.LogLabel label, string message, string className, string methodName)
         {
             string log;
             
             switch (label)
             {
-                case LogLabel.Administrator:
+                case Log.LogLabel.Administrator:
                     log = $"<color=#F7E600><b>[{label.GetName()}]</b></color>\n" +
                           $"<b>Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
-                case LogLabel.Message:
+                case Log.LogLabel.Message:
                     log = $"<color=#F8F8FF><b>[{label.GetName()}]</b></color>\n" +
                           $"<b>Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
-                case LogLabel.Error:
+                case Log.LogLabel.Error:
                     log = $"<color=#DC143C><b>[{label.GetName()}]</b></color>\n<b>" +
                           $"Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
-                case LogLabel.Success:
+                case Log.LogLabel.Success:
                     log = $"<color=#39FF14><b>[{label.GetName()}]</b></color>\n<b>" +
                           $"Class: </b>{className}\n<b>Method: </b>{methodName}()\n<b>Message: </b>{message}\n";
                     break;
@@ -91,7 +78,7 @@ namespace Util.Manager
             return $"PROGRESS|{className}|{methodName}()";
         }
         
-        private static string Build(LogLabel label, string className, string methodName, string message)
+        private static string Build(Log.LogLabel label, string className, string methodName, string message)
         {
             return $"{label.GetName()}|{className}|{methodName}()|{message}";
         }
@@ -139,13 +126,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.LogWarning(Build(LogLabel.Administrator, message, className, methodName));
+            Debug.LogWarning(Build(Log.LogLabel.Administrator, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(LogLabel.Administrator, message, className, methodName));
+                writer.WriteLine(Build(Log.LogLabel.Administrator, message, className, methodName));
             }
             
 #endif
@@ -166,13 +153,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.Log(Build(LogLabel.Message, message, className, methodName));
+            Debug.Log(Build(Log.LogLabel.Message, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(Label.Message, message, className, methodName));
+                writer.WriteLine(Build(Log.LogLabel.Message, message, className, methodName));
             }
             
 #endif
@@ -193,13 +180,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.LogError(Build(LogLabel.Error, message, className, methodName));
+            Debug.LogError(Build(Log.LogLabel.Error, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(LogLabel.Error, message, className, methodName));
+                writer.WriteLine(Build(Log.LogLabel.Error, message, className, methodName));
             }
             
 #endif
@@ -220,13 +207,13 @@ namespace Util.Manager
             
 #if UNITY_EDITOR
             
-            Debug.Log(Build(LogLabel.Success, message, className, methodName));
+            Debug.Log(Build(Log.LogLabel.Success, message, className, methodName));
 
 #elif DEVELOPMENT_BUILD
 
             using (var writer = new StreamWriter(UnityEngine.Application.persistentDataPath + LogFileName, true))
             {
-                writer.WriteLine(Build(LogLabel.Success, message, className, methodName));
+                writer.WriteLine(Build(Log.LogLabel.Success, message, className, methodName));
             }
             
 #endif
