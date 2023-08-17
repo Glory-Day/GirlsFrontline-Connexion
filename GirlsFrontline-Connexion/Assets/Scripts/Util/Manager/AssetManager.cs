@@ -11,18 +11,23 @@ namespace Util.Manager
         
         private readonly AudioClipAsset audioClipAsset;
         private readonly PrefabAsset    prefabAsset;
+        private readonly TextAsset      textAsset;
         
         private AssetManager()
         {
             LogManager.LogProgress();
 
+            // Initialize asset loaders
             assetLoaders = new IAssetLoader[] {
                                         new AudioClipAssetLoader(),
-                                        new PrefabAssetLoader()
+                                        new PrefabAssetLoader(),
+                                        new TextAssetLoader()
                                     };
 
+            // Initialize assets
             audioClipAsset = new AudioClipAsset();
             prefabAsset = new PrefabAsset();
+            textAsset = new TextAsset();
         }
         
         private void LoadAllAssets()
@@ -47,34 +52,6 @@ namespace Util.Manager
             }
         }
 
-        private bool IsAllAudioClipsLoadedDone
-        {
-            get
-            {
-                var audioClipLoader = assetLoaders[0] as AudioClipAssetLoader;
-
-                return audioClipLoader != null &&
-                       audioClipLoader.Check();
-
-                //TODO: This code is not working yet.
-                // return audioClipLoader != null &&
-                //       audioClipLoader.IsBackgroundAudioClipsLoadedDone &&
-                //       audioClipLoader.IsEffectAudioClipsLoadedDone &&
-                //       audioClipLoader.IsVoiceAudioClipsLoadedDone;
-            }
-        }
-
-        private bool IsAllUIPrefabsLoadedDone
-        {
-            get
-            {
-                var prefabLoader = assetLoaders[1] as PrefabAssetLoader;
-
-                return prefabLoader != null &&
-                       prefabLoader.Check();
-            }
-        }
-
         private bool IsAllAssetsLoadedDone
         {
             get
@@ -92,13 +69,15 @@ namespace Util.Manager
             }
         }
 
-        #region STATIC API
+        #region STATIC METHOD API
         
         /// <summary>
         /// Load all assets for application
         /// </summary>
         public static void OnLoadAllAssets()
         {
+            LogManager.LogProgress();
+            
             Instance.LoadAllAssets();
         }
 
@@ -107,26 +86,28 @@ namespace Util.Manager
         /// </summary>
         public static void OnUnloadAllAssets()
         {
+            LogManager.LogProgress();
+            
             Instance.UnloadAllAssets();
         }
-        
-        public static bool CheckAllAudioClipsLoaded()
-        {
-            return Instance.IsAllAudioClipsLoadedDone;
-        }
-        
-        public static bool CheckAllUIPrefabsLoaded()
-        {
-            return Instance.IsAllUIPrefabsLoadedDone;
-        }
 
+        /// <summary>
+        /// Check all assets is loaded
+        /// </summary>
         public static bool CheckAllAssetsLoaded()
         {
+            LogManager.LogProgress();
+            
             return Instance.IsAllAssetsLoadedDone;
         }
         
+        #endregion
+        
+        #region STATIC PROPERTIES API
+        
         public static AudioClipAsset AudioClipAsset => Instance.audioClipAsset;
         public static PrefabAsset PrefabAsset => Instance.prefabAsset;
+        public static TextAsset TextAsset => Instance.textAsset;
         
         #endregion
     }

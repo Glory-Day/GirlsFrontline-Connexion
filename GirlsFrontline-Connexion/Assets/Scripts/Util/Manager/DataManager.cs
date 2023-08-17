@@ -1,90 +1,92 @@
-﻿using System.IO;
-using JetBrains.Annotations;
-using UnityEngine;
-using Newtonsoft.Json;
-using Util.Data;
+﻿using JetBrains.Annotations;
+using Util.Manager.Data.Json;
+using Util.Manager.Data.Stream;
 
 namespace Util.Manager
 {
     [PublicAPI]
     public class DataManager : Singleton<DataManager>
     {
-        private GameData             gameData;
-        private SceneData            sceneData;
-        private AssetData            assetData;
+        private IDataStream<AudioSourceData> audioSourceDataStream;
+        private IDataStream<PrefabData>      prefabDataStream;
+        private IDataStream<UserData>        userDataStream;
+
+        private AudioSourceData audioSourceData;
+        private PrefabData      prefabData;
+        private UserData        userData;
         
-        private DataManager() { }
-        
-        private static T OnLoadData<T>(string fileName) where T : class
+        private DataManager()
         {
             LogManager.LogProgress();
 
-            T data;
-
-            try
-            {
-                data = JsonUtility.FromJson<T>(File.ReadAllText(Application.persistentDataPath + fileName));
-
-                LogManager.LogSuccess($"<b>{typeof(T).Name}</b> is loaded from <b>{typeof(T).Name}.json</b>");
-            }
-            catch (DirectoryNotFoundException error)
-            {
-                LogManager.LogError(error.Message);
-
-                // Directory not found exception error
-                return null;
-            }
-
-            return data;
+            audioSourceDataStream = new AudioSourceDataStream();
+            prefabDataStream = new PrefabDataStream();
+            userDataStream = new UserDataStream();
         }
         
-        #region LOAD DATA METHOD API
-
-        private void LoadGameData()
+        private void LoadAudioSourceData()
         {
             LogManager.LogProgress();
-
-            gameData = OnLoadData<GameData>(JsonFilePath.GameDataPath);
+            
+            audioSourceData = audioSourceDataStream.Load();
         }
-
-        private void LoadSceneData()
+        
+        private void LoadPrefabData()
         {
             LogManager.LogProgress();
-
-            sceneData = OnLoadData<SceneData>(JsonFilePath.SceneDataPath);
+            
+            prefabData = prefabDataStream.Load();
         }
-
-        private void LoadAssetData()
+        
+        private void LoadUserData()
         {
             LogManager.LogProgress();
-
-            assetData = OnLoadData<AssetData>(JsonFilePath.AssetDataPath);
+            
+            userData = userDataStream.Load();
         }
-
-        #endregion
+        
+        private void SaveUserData()
+        {
+            LogManager.LogProgress();
+            
+            (userDataStream as UserDataStream)?.Save(userData);
+        }
 
         #region STATIC METHOD API
-
+        
+        /// <summary>
+        /// Load all data for application
+        /// </summary>
         public static void OnLoadAllData()
         {
             LogManager.LogProgress();
             
-            Instance.LoadGameData();
-            Instance.LoadAssetData();
-            Instance.LoadSceneData();
+            Instance.LoadAudioSourceData();
+            Instance.LoadPrefabData();
+            Instance.LoadUserData();
 
             LogManager.LogSuccess("<b>All Data</b> is loaded");
+        }
+        
+        /// <summary>
+        /// Save current user data to file
+        /// </summary>
+        public static void OnSaveUserData()
+        {
+            LogManager.LogProgress();
+            
+            Instance.SaveUserData();
+            
+            LogManager.LogSuccess("<b>User Data</b> is saved");
         }
 
         #endregion
 
         #region STATIC PROPERTIES API
 
-        public static GameData GameData => Instance.gameData;
-
-        public static SceneData SceneData => Instance.sceneData;
-
-        public static AssetData AssetData => Instance.assetData;
+        public static AudioSourceData AudioSourceData => Instance.audioSourceData;
+        public static PrefabData PrefabData => Instance.prefabData;
+        public static UserData UserData => Instance.userData;
 
         #endregion
     }

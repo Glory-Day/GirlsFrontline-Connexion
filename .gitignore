@@ -35,7 +35,7 @@ Build/
 
 /GirlsFrontline-Connexion/Assets/*
 !/GirlsFrontline-Connexion/Assets/Scripts/
-!/GirlsFrontline-Connexion/Assets/StreamingAssets/
+!/GirlsFrontline-Connexion/Assets/Data/
 
 #   ________ __    __ ________ ________ __    __  ______  ______  ______  __    __ 
 #  /        /  |  /  /        /        /  \  /  |/      \/      |/      \/  \  /  |

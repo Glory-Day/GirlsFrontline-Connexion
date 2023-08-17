@@ -21,16 +21,16 @@ namespace UI.Video
         {
             LogManager.LogProgress();
             
-            DataManager.OnLoadAllData();
             AssetManager.OnLoadAllAssets();
 
             LogManager.LogMessage("<b>Waiting All Assets</b> is loaded");
 
-            while(!(AssetManager.CheckAllAudioClipsLoaded() &&
-                    AssetManager.CheckAllUIPrefabsLoaded()))
+            while(!AssetManager.CheckAllAssetsLoaded())
             {
                 yield return null;
             }
+            
+            DataManager.OnLoadAllData();
 
             LogManager.LogSuccess("<b>All Data And Assets</b> are loaded");
 
