@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Util.Manager
+namespace Utility.Manager
 {
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class Singleton<T> where T : class
