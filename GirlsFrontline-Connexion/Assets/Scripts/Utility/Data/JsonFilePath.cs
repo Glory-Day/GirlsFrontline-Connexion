@@ -1,4 +1,4 @@
-﻿namespace Util.Data
+﻿namespace Utility.Data
 {
     public struct JsonFilePath
     {
