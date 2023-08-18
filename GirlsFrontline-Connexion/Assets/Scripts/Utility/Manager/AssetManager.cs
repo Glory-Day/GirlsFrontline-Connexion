@@ -1,33 +1,33 @@
 ﻿using JetBrains.Annotations;
-using Util.Manager.Asset;
-using Util.Manager.Asset.Loader;
+using Utility.Manager.Asset.Addressable;
+using Utility.Manager.Asset.Reference;
 
-namespace Util.Manager
+namespace Utility.Manager
 {
     [PublicAPI]
     public class AssetManager : Singleton<AssetManager>
     {
-        private readonly IAssetLoader[] assetLoaders;
+        private readonly AudioClipReference audioClipReference;
+        private readonly PrefabReference    prefabReference;
+        private readonly TextReference      textReference;
         
-        private readonly AudioClipAsset audioClipAsset;
-        private readonly PrefabAsset    prefabAsset;
-        private readonly TextAsset      textAsset;
+        private readonly IAddressables[] assetLoaders;
         
         private AssetManager()
         {
             LogManager.LogProgress();
 
-            // Initialize asset loaders
-            assetLoaders = new IAssetLoader[] {
-                                        new AudioClipAssetLoader(),
-                                        new PrefabAssetLoader(),
-                                        new TextAssetLoader()
-                                    };
-
             // Initialize assets
-            audioClipAsset = new AudioClipAsset();
-            prefabAsset = new PrefabAsset();
-            textAsset = new TextAsset();
+            audioClipReference = new AudioClipReference();
+            prefabReference = new PrefabReference();
+            textReference = new TextReference();
+            
+            // Initialize asset loaders
+            assetLoaders = new IAddressables[] {
+                                                  new AudioClipAddressables(),
+                                                  new PrefabAddressables(),
+                                                  new TextAddressables()
+                                              };
         }
         
         private void LoadAllAssets()
@@ -96,8 +96,6 @@ namespace Util.Manager
         /// </summary>
         public static bool CheckAllAssetsLoaded()
         {
-            LogManager.LogProgress();
-            
             return Instance.IsAllAssetsLoadedDone;
         }
         
@@ -105,9 +103,9 @@ namespace Util.Manager
         
         #region STATIC PROPERTIES API
         
-        public static AudioClipAsset AudioClipAsset => Instance.audioClipAsset;
-        public static PrefabAsset PrefabAsset => Instance.prefabAsset;
-        public static TextAsset TextAsset => Instance.textAsset;
+        public static AudioClipReference AudioClipReference => Instance.audioClipReference;
+        public static PrefabReference PrefabReference => Instance.prefabReference;
+        public static TextReference TextReference => Instance.textReference;
         
         #endregion
     }
