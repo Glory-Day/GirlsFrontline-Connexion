@@ -1,8 +1,8 @@
 ﻿using JetBrains.Annotations;
-using Util.Manager.Data.Json;
-using Util.Manager.Data.Stream;
+using Utility.Manager.Data.Json;
+using Utility.Manager.Data.Stream;
 
-namespace Util.Manager
+namespace Utility.Manager
 {
     [PublicAPI]
     public class DataManager : Singleton<DataManager>
