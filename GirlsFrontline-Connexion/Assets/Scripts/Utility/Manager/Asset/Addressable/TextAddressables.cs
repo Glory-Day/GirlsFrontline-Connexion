@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -49,9 +50,9 @@ namespace Utility.Manager.Asset.Addressable
         {
             LogManager.LogProgress();
             
-            AssetManager.TextAssets.Data.Add(asset.name.GetName(), asset);
-            
-            LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
+            AssetManager.TextAssets.Data.Add(asset.name, asset);
+
+            LogManager.LogSuccess($"<b>{string.Concat(asset.name.Select(c => char.IsUpper(c) ? " " + c : c.ToString())).Substring(1)}</b> is loaded");
         }
         
         /// <summary>
