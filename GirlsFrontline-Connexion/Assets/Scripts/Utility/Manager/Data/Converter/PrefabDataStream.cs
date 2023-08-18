@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
-using Utility.Manager.Data.Json;
 
-namespace Utility.Manager.Data.Stream
+namespace Utility.Manager.Data.Converter
 {
-    public class PrefabDataStream : IDataStream<PrefabData>
+    public class PrefabDataStream : IDataConverter<PrefabData>
     {
-        public PrefabData Load()
+        public PrefabData ToObject()
         {
             LogManager.LogProgress();
             

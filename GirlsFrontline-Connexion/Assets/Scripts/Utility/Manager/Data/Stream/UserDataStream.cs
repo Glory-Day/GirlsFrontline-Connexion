@@ -3,7 +3,6 @@ using System.Text;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Utility.Manager.Data.Json;
 
 namespace Utility.Manager.Data.Stream
 {
@@ -41,18 +40,14 @@ namespace Utility.Manager.Data.Stream
 
             return data;
         }
-
-        /// <summary>
-        /// Save current user data to file
-        /// </summary>
-        /// <param name="userData"> User data to save </param>
-        public void Save(UserData userData)
+        
+        public void Save(UserData data)
         {
             LogManager.LogProgress();
             
             using (var writer = new StreamWriter(FullFilePath,false, Encoding.UTF8))
             {
-                var json = JsonConvert.SerializeObject(userData, Formatting.Indented, settings);
+                var json = JsonConvert.SerializeObject(data, Formatting.Indented, settings);
                 writer.WriteLine(json);
             }
         }
