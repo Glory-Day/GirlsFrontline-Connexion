@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility.Manager.Asset.Reference
+namespace Utility.Manager.Asset
 {
-    public class AudioClipReference
+    public class AudioClipAssets
     {
         public Dictionary<string, AudioClip> Background { get; } 
             = new Dictionary<string, AudioClip>();
