@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using Util.Manager;
+using Utility.Manager;
 
 namespace Object.Manager
 {
@@ -88,7 +88,7 @@ namespace Object.Manager
             var audioClipName = playingBackgroundAudioClip != null
                                     ? playingBackgroundAudioClip.name
                                     : None;
-            var audioClip = AssetManager.AudioClipAsset.Background[key];
+            var audioClip = AssetManager.AudioClipReference.Background[key];
 
             // If the audio clip is playing, do not change it
             if (audioClipName.Equals(audioClip.name)) return;
@@ -101,16 +101,16 @@ namespace Object.Manager
 
         #region STATIC METHOD API
 
-        public static void OnChangeBackgroundAudioClip(Util.Manager.Scene.Label label)
+        public static void OnChangeBackgroundAudioClip(Utility.Manager.Scene.Label label)
         {
             LogManager.LogProgress();
 
             switch (label)
             {
-                case Util.Manager.Scene.Label.Main:
+                case Utility.Manager.Scene.Label.Main:
                     Instance.PlayBackgroundAudioSource(DataManager.AudioSourceData.Background.Main);
                     break;
-                case Util.Manager.Scene.Label.Selection:
+                case Utility.Manager.Scene.Label.Selection:
                     Instance.PlayBackgroundAudioSource(DataManager.AudioSourceData.Background.Main);
                     break;
                 default:
