@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Util.Manager;
-using Util.Manager.Object;
+using Utility.Manager;
+using Utility.Manager.Object;
 
 
 namespace Object.Manager
