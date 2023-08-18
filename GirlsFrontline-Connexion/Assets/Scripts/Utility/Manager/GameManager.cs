@@ -2,7 +2,7 @@
 
 using Object.Manager;
 
-namespace Util.Manager
+namespace Utility.Manager
 {
     public static class GameManager
     {
