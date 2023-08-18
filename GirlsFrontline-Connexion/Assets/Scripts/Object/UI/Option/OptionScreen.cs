@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Object.Manager;
-using Util.Input;
-using Util.Manager;
+using Utility.Input;
+using Utility.Manager;
 
 namespace Object.UI.Option
 {
