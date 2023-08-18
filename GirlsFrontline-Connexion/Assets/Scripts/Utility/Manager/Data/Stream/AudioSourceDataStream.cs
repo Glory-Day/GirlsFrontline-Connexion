@@ -9,7 +9,7 @@ namespace Utility.Manager.Data.Stream
         {
             LogManager.LogProgress();
             
-            var json = AssetManager.TextReference.Data[nameof(AudioSourceData)].text;
+            var json = AssetManager.TextAssets.Data[nameof(AudioSourceData)].text;
             var data = JsonConvert.DeserializeObject<AudioSourceData>(json);
 
             return data;
