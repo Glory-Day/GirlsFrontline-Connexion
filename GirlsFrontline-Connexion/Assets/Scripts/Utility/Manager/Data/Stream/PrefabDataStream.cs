@@ -9,7 +9,7 @@ namespace Utility.Manager.Data.Stream
         {
             LogManager.LogProgress();
             
-            var json = AssetManager.TextReference.Data[nameof(PrefabData)].text;
+            var json = AssetManager.TextAssets.Data[nameof(PrefabData)].text;
             var data = JsonConvert.DeserializeObject<PrefabData>(json);
 
             return data;
