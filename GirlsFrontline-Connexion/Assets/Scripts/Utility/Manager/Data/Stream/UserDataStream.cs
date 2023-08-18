@@ -3,9 +3,9 @@ using System.Text;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Util.Manager.Data.Json;
+using Utility.Manager.Data.Json;
 
-namespace Util.Manager.Data.Stream
+namespace Utility.Manager.Data.Stream
 {
     public class UserDataStream : IDataStream<UserData>
     {
