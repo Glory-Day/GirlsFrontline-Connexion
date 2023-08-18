@@ -1,15 +1,15 @@
 ﻿using JetBrains.Annotations;
+using Utility.Manager.Asset;
 using Utility.Manager.Asset.Addressable;
-using Utility.Manager.Asset.Reference;
 
 namespace Utility.Manager
 {
     [PublicAPI]
     public class AssetManager : Singleton<AssetManager>
     {
-        private readonly AudioClipReference audioClipReference;
-        private readonly PrefabReference    prefabReference;
-        private readonly TextReference      textReference;
+        private readonly AudioClipAssets audioClipAssets;
+        private readonly PrefabAssets    prefabAssets;
+        private readonly TextAssets      textAssets;
         
         private readonly IAddressables[] assetLoaders;
         
@@ -18,9 +18,9 @@ namespace Utility.Manager
             LogManager.LogProgress();
 
             // Initialize assets
-            audioClipReference = new AudioClipReference();
-            prefabReference = new PrefabReference();
-            textReference = new TextReference();
+            audioClipAssets = new AudioClipAssets();
+            prefabAssets = new PrefabAssets();
+            textAssets = new TextAssets();
             
             // Initialize asset loaders
             assetLoaders = new IAddressables[] {
@@ -103,9 +103,9 @@ namespace Utility.Manager
         
         #region STATIC PROPERTIES API
         
-        public static AudioClipReference AudioClipReference => Instance.audioClipReference;
-        public static PrefabReference PrefabReference => Instance.prefabReference;
-        public static TextReference TextReference => Instance.textReference;
+        public static AudioClipAssets AudioClipAssets => Instance.audioClipAssets;
+        public static PrefabAssets PrefabAssets => Instance.prefabAssets;
+        public static TextAssets TextAssets => Instance.textAssets;
         
         #endregion
     }
