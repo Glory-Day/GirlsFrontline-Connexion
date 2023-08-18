@@ -1,4 +1,4 @@
-﻿namespace Util.Manager.Data.Json
+﻿namespace Utility.Manager.Data.Json
 {
     public class Chapter
     {
