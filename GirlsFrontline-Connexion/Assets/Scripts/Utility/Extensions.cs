@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Utility
 {
-    public static class Extension
+    public static class Extensions
     {
         public static List<string> GetPropertyNames(this Type type)
         {
