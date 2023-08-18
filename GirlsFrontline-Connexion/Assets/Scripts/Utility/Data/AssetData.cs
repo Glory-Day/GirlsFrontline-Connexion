@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Util.Data
+namespace Utility.Data
 {
     #region DATA CLASS API
 
