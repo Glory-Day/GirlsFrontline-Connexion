@@ -28,7 +28,7 @@ namespace Utility.Manager.Asset.Addressable
         {
             LogManager.LogProgress();
             
-            asyncOperationHandler.background = Addressables.LoadAssetsAsync(Label.AudioClip.Background,
+            asyncOperationHandler.background = Addressables.LoadAssetsAsync(AssetLabel.AudioClip.Background,
                 (Action<AudioClip>)LoadBackgroundAudioClips);
             
             //TODO: This code is not working yet.
