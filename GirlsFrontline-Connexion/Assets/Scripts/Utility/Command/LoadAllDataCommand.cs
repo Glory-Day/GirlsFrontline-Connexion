@@ -1,10 +1,10 @@
 ﻿#region NAMESPACE API
 
-using Util.Manager;
+using Utility.Manager;
 
 #endregion
 
-namespace Util.Command
+namespace Utility.Command
 {
     public class LoadAllDataCommand : ICommand
     {
