@@ -1,13 +1,14 @@
 ﻿using System;
 using Object.Manager;
+using Utility.Manager.Scene;
 
-namespace Util.Manager
+namespace Utility.Manager
 {
     public class SceneManager : Singleton<SceneManager>
     {
         #region STATIC METHOD API
 
-        public static void OnLoadSceneByLabel(Util.Manager.Scene.Label label)
+        public static void OnLoadSceneByLabel(Label label)
         {
             LogManager.LogProgress();
 
@@ -34,8 +35,8 @@ namespace Util.Manager
 
         #region STATIC PROPERTIES API
 
-        public static Util.Manager.Scene.Label CurrentSceneLabel =>
-            (Util.Manager.Scene.Label)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        public static Label CurrentSceneLabel =>
+            (Label)UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
 
         #endregion
     }
