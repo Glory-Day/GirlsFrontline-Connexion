@@ -15,7 +15,6 @@
         /// <summary>
         /// Check assets is Loaded
         /// </summary>
-        /// <returns></returns>
         bool Check();
     }
 }
