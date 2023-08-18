@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Util.Manager.Asset.Loader
+namespace Utility.Manager.Asset.Addressable
 {
-    public class TextAssetLoader : IAssetLoader
+    public class TextAddressables : IAddressables
     {
         private struct AsyncOperationHandler
         {
@@ -15,11 +14,31 @@ namespace Util.Manager.Asset.Loader
 
         private AsyncOperationHandler asyncOperationHandler;
 
-        public TextAssetLoader()
+        public TextAddressables()
         {
             LogManager.LogProgress();
             
             asyncOperationHandler = new AsyncOperationHandler();
+        }
+        
+        public void Load()
+        {
+            LogManager.LogProgress();
+            
+            asyncOperationHandler.data = Addressables.LoadAssetsAsync(AssetLabel.Text.Data,
+                (Action<UnityEngine.TextAsset>)LoadData);
+        }
+
+        public void Unload()
+        {
+            LogManager.LogProgress();
+            
+            UnloadData();
+        }
+
+        public bool Check()
+        {
+            return IsDataLoadedDone;
         }
         
         /// <summary>
@@ -30,7 +49,7 @@ namespace Util.Manager.Asset.Loader
         {
             LogManager.LogProgress();
             
-            AssetManager.TextAsset.Data.Add(asset.name.GetName(), asset);
+            AssetManager.TextReference.Data.Add(asset.name.GetName(), asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
@@ -45,26 +64,6 @@ namespace Util.Manager.Asset.Loader
             Addressables.Release(asyncOperationHandler.data);
 
             LogManager.LogSuccess("<b>All Data</b> are unloaded");
-        }
-        
-        public void Load()
-        {
-            LogManager.LogProgress();
-            
-            asyncOperationHandler.data = Addressables.LoadAssetsAsync(AddressablesLabel.Text.Data,
-                (Action<UnityEngine.TextAsset>)LoadData);
-        }
-
-        public void Unload()
-        {
-            LogManager.LogProgress();
-            
-            UnloadData();
-        }
-
-        public bool Check()
-        {
-            return IsDataLoadedDone;
         }
         
         /// <summary>
