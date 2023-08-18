@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Util.Manager.Asset.Loader
+namespace Utility.Manager.Asset.Addressable
 {
-    public class AudioClipAssetLoader : IAssetLoader
+    public class AudioClipAddressables : IAddressables
     {
         private struct AsyncOperationHandler
         {
@@ -17,18 +17,18 @@ namespace Util.Manager.Asset.Loader
 
         private AsyncOperationHandler asyncOperationHandler;
         
-        public AudioClipAssetLoader()
+        public AudioClipAddressables()
         {
             LogManager.LogProgress();
 
             asyncOperationHandler = new AsyncOperationHandler();
         }
-
+        
         public void Load()
         {
             LogManager.LogProgress();
             
-            asyncOperationHandler.background = Addressables.LoadAssetsAsync(AddressablesLabel.AudioClip.Background,
+            asyncOperationHandler.background = Addressables.LoadAssetsAsync(Label.AudioClip.Background,
                 (Action<AudioClip>)LoadBackgroundAudioClips);
             
             //TODO: This code is not working yet.
@@ -63,7 +63,7 @@ namespace Util.Manager.Asset.Loader
         /// <param name="asset"> Loaded asset </param>
         private static void LoadBackgroundAudioClips(AudioClip asset)
         {
-            AssetManager.AudioClipAsset.Background.Add(asset.name, asset);
+            AssetManager.AudioClipReference.Background.Add(asset.name, asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
@@ -75,7 +75,7 @@ namespace Util.Manager.Asset.Loader
         /// <param name="asset"> Loaded asset </param>
         private static void LoadEffectAudioClips(AudioClip asset)
         {
-            AssetManager.AudioClipAsset.Effect.Add(asset.name, asset);
+            AssetManager.AudioClipReference.Effect.Add(asset.name, asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
@@ -87,7 +87,7 @@ namespace Util.Manager.Asset.Loader
         /// <param name="asset"> Loaded asset </param>
         private static void LoadVoiceAudioClips(AudioClip asset)
         {
-            AssetManager.AudioClipAsset.Voice.Add(asset.name, asset);
+            AssetManager.AudioClipReference.Voice.Add(asset.name, asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
@@ -121,7 +121,7 @@ namespace Util.Manager.Asset.Loader
 
             LogManager.LogSuccess("<b>All Voice Audio Clips</b> are unloaded");
         }
-
+        
         /// <summary>
         /// Check background audio clip assets is loaded
         /// </summary>
