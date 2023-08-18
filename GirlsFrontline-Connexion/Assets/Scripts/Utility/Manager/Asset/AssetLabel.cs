@@ -1,6 +1,6 @@
 ﻿namespace Utility.Manager.Asset
 {
-    public struct Label
+    public struct AssetLabel
     {
         public struct AudioClip
         {
