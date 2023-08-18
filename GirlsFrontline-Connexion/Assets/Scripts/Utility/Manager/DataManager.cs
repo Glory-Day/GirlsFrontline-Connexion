@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
-using Utility.Manager.Data.Json;
+using Utility.Manager.Data;
+using Utility.Manager.Data.Converter;
 using Utility.Manager.Data.Stream;
 
 namespace Utility.Manager
@@ -7,11 +8,11 @@ namespace Utility.Manager
     [PublicAPI]
     public class DataManager : Singleton<DataManager>
     {
-        private IDataStream<AudioSourceData> audioSourceDataStream;
-        private IDataStream<PrefabData>      prefabDataStream;
+        private IDataConverter<AudioClipData> audioSourceDataStream;
+        private IDataConverter<PrefabData>      prefabDataStream;
         private IDataStream<UserData>        userDataStream;
 
-        private AudioSourceData audioSourceData;
+        private AudioClipData audioClipData;
         private PrefabData      prefabData;
         private UserData        userData;
         
@@ -24,18 +25,18 @@ namespace Utility.Manager
             userDataStream = new UserDataStream();
         }
         
-        private void LoadAudioSourceData()
+        private void SetAudioClipData()
         {
             LogManager.LogProgress();
             
-            audioSourceData = audioSourceDataStream.Load();
+            audioClipData = audioSourceDataStream.ToObject();
         }
         
-        private void LoadPrefabData()
+        private void SetPrefabData()
         {
             LogManager.LogProgress();
             
-            prefabData = prefabDataStream.Load();
+            prefabData = prefabDataStream.ToObject();
         }
         
         private void LoadUserData()
@@ -49,7 +50,7 @@ namespace Utility.Manager
         {
             LogManager.LogProgress();
             
-            (userDataStream as UserDataStream)?.Save(userData);
+            userDataStream.Save(userData);
         }
 
         #region STATIC METHOD API
@@ -60,9 +61,10 @@ namespace Utility.Manager
         public static void OnLoadAllData()
         {
             LogManager.LogProgress();
+            LogManager.LogMessage("<b>All Data</b> is loading...");
             
-            Instance.LoadAudioSourceData();
-            Instance.LoadPrefabData();
+            Instance.SetAudioClipData();
+            Instance.SetPrefabData();
             Instance.LoadUserData();
 
             LogManager.LogSuccess("<b>All Data</b> is loaded");
@@ -84,7 +86,7 @@ namespace Utility.Manager
 
         #region STATIC PROPERTIES API
 
-        public static AudioSourceData AudioSourceData => Instance.audioSourceData;
+        public static AudioClipData AudioClipData => Instance.audioClipData;
         public static PrefabData PrefabData => Instance.prefabData;
         public static UserData UserData => Instance.userData;
 
