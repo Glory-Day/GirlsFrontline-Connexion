@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Util.Manager.Asset.Loader
+namespace Utility.Manager.Asset.Addressable
 {
-    public class PrefabAssetLoader : IAssetLoader
+    public class PrefabAddressables : IAddressables
     {
         private struct AsyncOperationHandler
         {
@@ -15,7 +15,7 @@ namespace Util.Manager.Asset.Loader
 
         private AsyncOperationHandler asyncOperationHandler;
         
-        public PrefabAssetLoader()
+        public PrefabAddressables()
         {
             LogManager.LogProgress();
 
@@ -26,7 +26,7 @@ namespace Util.Manager.Asset.Loader
         {
             LogManager.LogProgress();
             
-            asyncOperationHandler.ui = Addressables.LoadAssetsAsync(AddressablesLabel.Prefab.UI,
+            asyncOperationHandler.ui = Addressables.LoadAssetsAsync(AssetLabel.Prefab.UI,
                 (Action<GameObject>)LoadUIPrefabs);
         }
 
@@ -48,7 +48,7 @@ namespace Util.Manager.Asset.Loader
         /// <param name="asset"> Loaded assets </param>
         private static void LoadUIPrefabs(GameObject asset)
         {
-            AssetManager.PrefabAsset.UI.Add(asset.name, asset);
+            AssetManager.PrefabReference.UI.Add(asset.name, asset);
 
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
