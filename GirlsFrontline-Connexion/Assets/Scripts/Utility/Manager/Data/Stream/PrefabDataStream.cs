@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Util.Manager.Data.Json;
+using Utility.Manager.Data.Json;
 
-namespace Util.Manager.Data.Stream
+namespace Utility.Manager.Data.Stream
 {
     public class PrefabDataStream : IDataStream<PrefabData>
     {
@@ -9,7 +9,7 @@ namespace Util.Manager.Data.Stream
         {
             LogManager.LogProgress();
             
-            var json = AssetManager.TextAsset.Data[nameof(PrefabData)].text;
+            var json = AssetManager.TextReference.Data[nameof(PrefabData)].text;
             var data = JsonConvert.DeserializeObject<PrefabData>(json);
 
             return data;
