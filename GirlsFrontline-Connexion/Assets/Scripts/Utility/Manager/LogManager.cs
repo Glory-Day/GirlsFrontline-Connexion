@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 using Debug = UnityEngine.Debug;
 
-namespace Util.Manager
+namespace Utility.Manager
 {
     public static class LogManager
     {
