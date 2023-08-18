@@ -48,7 +48,7 @@ namespace Utility.Manager.Asset.Addressable
         /// <param name="asset"> Loaded assets </param>
         private static void LoadUIPrefabs(GameObject asset)
         {
-            AssetManager.PrefabReference.UI.Add(asset.name, asset);
+            AssetManager.PrefabAssets.UI.Add(asset.name, asset);
 
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
