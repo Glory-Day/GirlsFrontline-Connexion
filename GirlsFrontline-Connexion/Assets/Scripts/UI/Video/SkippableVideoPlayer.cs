@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Video;
-using Util.Manager;
+using Utility.Manager;
 
 namespace UI.Video
 {
@@ -10,7 +10,7 @@ namespace UI.Video
 
         [Header("# Next Scene Label")]
         [SerializeField]
-        public Util.Manager.Scene.Label label;
+        public Utility.Manager.Scene.Label label;
 
         #endregion
         
