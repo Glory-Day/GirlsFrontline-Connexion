@@ -63,7 +63,7 @@ namespace Utility.Manager.Asset.Addressable
         /// <param name="asset"> Loaded asset </param>
         private static void LoadBackgroundAudioClips(AudioClip asset)
         {
-            AssetManager.AudioClipReference.Background.Add(asset.name, asset);
+            AssetManager.AudioClipAssets.Background.Add(asset.name, asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
@@ -75,7 +75,7 @@ namespace Utility.Manager.Asset.Addressable
         /// <param name="asset"> Loaded asset </param>
         private static void LoadEffectAudioClips(AudioClip asset)
         {
-            AssetManager.AudioClipReference.Effect.Add(asset.name, asset);
+            AssetManager.AudioClipAssets.Effect.Add(asset.name, asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
@@ -87,7 +87,7 @@ namespace Utility.Manager.Asset.Addressable
         /// <param name="asset"> Loaded asset </param>
         private static void LoadVoiceAudioClips(AudioClip asset)
         {
-            AssetManager.AudioClipReference.Voice.Add(asset.name, asset);
+            AssetManager.AudioClipAssets.Voice.Add(asset.name, asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
