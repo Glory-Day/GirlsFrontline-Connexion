@@ -49,7 +49,7 @@ namespace Utility.Manager.Asset.Addressable
         {
             LogManager.LogProgress();
             
-            AssetManager.TextReference.Data.Add(asset.name.GetName(), asset);
+            AssetManager.TextAssets.Data.Add(asset.name.GetName(), asset);
             
             LogManager.LogSuccess($"<b>{asset.name}</b> is loaded");
         }
