@@ -1,4 +1,4 @@
-﻿namespace Util.Manager.Data.Stream
+﻿namespace Utility.Manager.Data.Stream
 {
     public interface IDataStream<out T>
     {
