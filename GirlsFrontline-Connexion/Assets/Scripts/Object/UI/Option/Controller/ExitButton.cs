@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Util.Manager;
+using Utility.Manager;
 
 namespace Object.UI.Option.Controller
 {
