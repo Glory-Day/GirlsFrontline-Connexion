@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Util.Data
+namespace Utility.Data
 {
     #region DATA CLASS API
 
