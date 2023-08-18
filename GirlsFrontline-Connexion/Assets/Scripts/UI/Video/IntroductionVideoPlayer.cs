@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Object.Manager;
-using Util.Manager;
+using Utility.Manager;
 
 namespace UI.Video
 {
