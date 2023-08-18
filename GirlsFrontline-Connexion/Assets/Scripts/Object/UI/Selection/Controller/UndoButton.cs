@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Object.Manager;
-using Util.Manager;
+using Utility.Manager;
 
 namespace Object.UI.Selection.Controller
 {
