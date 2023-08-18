@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Object.Manager;
-using Util.Manager;
+using Utility.Manager;
 
 namespace Object.UI
 {
@@ -56,10 +56,10 @@ namespace Object.UI
 
             switch (SceneManager.CurrentSceneLabel)
             {
-                case Util.Manager.Scene.Label.Main:
-                    SceneManager.OnLoadSceneByLabel(Util.Manager.Scene.Label.Selection);
+                case Utility.Manager.Scene.Label.Main:
+                    SceneManager.OnLoadSceneByLabel(Utility.Manager.Scene.Label.Selection);
                     break;
-                case Util.Manager.Scene.Label.Selection:
+                case Utility.Manager.Scene.Label.Selection:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -72,10 +72,10 @@ namespace Object.UI
 
             switch (SceneManager.CurrentSceneLabel)
             {
-                case Util.Manager.Scene.Label.Main:
+                case Utility.Manager.Scene.Label.Main:
                     break;
-                case Util.Manager.Scene.Label.Selection:
-                    SceneManager.OnLoadSceneByLabel(Util.Manager.Scene.Label.Main);
+                case Utility.Manager.Scene.Label.Selection:
+                    SceneManager.OnLoadSceneByLabel(Utility.Manager.Scene.Label.Main);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
