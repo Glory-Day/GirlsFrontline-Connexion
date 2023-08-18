@@ -1,4 +1,4 @@
-﻿namespace Util.Manager.Object
+﻿namespace Utility.Manager.Object
 {
     public class Container<T>
     {
