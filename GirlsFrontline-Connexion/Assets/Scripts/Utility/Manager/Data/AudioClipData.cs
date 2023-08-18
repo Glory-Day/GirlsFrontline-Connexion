@@ -1,4 +1,4 @@
-﻿namespace Utility.Manager.Data.Json
+﻿namespace Utility.Manager.Data
 {
     public class Background
     {
@@ -15,7 +15,7 @@
         
     }
     
-    public class AudioSourceData
+    public class AudioClipData
     {
         public Background Background { get; set; } = new Background();
         public Effect Effect { get; set; } = new Effect();
