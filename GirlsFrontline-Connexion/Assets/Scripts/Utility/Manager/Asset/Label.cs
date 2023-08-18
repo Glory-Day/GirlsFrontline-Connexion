@@ -1,6 +1,6 @@
-﻿namespace Util.Manager.Asset.Loader
+﻿namespace Utility.Manager.Asset
 {
-    public struct AddressablesLabel
+    public struct Label
     {
         public struct AudioClip
         {
