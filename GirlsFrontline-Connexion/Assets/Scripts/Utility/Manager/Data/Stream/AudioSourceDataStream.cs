@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Util.Manager.Data.Json;
+using Utility.Manager.Data.Json;
 
-namespace Util.Manager.Data.Stream
+namespace Utility.Manager.Data.Stream
 {
     public class AudioSourceDataStream : IDataStream<AudioSourceData>
     {
@@ -9,7 +9,7 @@ namespace Util.Manager.Data.Stream
         {
             LogManager.LogProgress();
             
-            var json = AssetManager.TextAsset.Data[nameof(AudioSourceData)].text;
+            var json = AssetManager.TextReference.Data[nameof(AudioSourceData)].text;
             var data = JsonConvert.DeserializeObject<AudioSourceData>(json);
 
             return data;
