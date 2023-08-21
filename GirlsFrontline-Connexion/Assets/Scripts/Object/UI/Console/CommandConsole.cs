@@ -42,9 +42,8 @@ namespace Object.UI.Console
             Commands = new Dictionary<string, ICommand>
                        {
                            { LoadAllDataCommand,             new LoadAllDataCommand() },
-                           { ChangeBackgroundAudioClip,      new ChangeBackgroundAudioClipCommand() },
                            { InstantiateAllUIPrefabsCommand, new InstantiateAllUIPrefabsCommand() },
-                           { LoadMainScene,                  new LoadMainScene() },
+                           { LoadMainScene,                  new LoadNextScene() },
                            { ApplicationQuit,                new ApplicationQuitCommand() },
                            { ApplicationPlay,                new ApplicationPlayCommand() }
                        };
