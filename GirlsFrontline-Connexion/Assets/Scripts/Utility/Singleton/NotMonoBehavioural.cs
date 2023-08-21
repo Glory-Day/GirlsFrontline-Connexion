@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Utility.Manager
+namespace Utility.Singleton
 {
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
-    public class Singleton<T> where T : class
+    public class NotMonoBehavioural<T> where T : class
     {
         private static readonly object Locked = new object();
         

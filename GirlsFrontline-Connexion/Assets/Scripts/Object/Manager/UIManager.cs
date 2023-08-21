@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.Singleton;
 
 using Object.UI;
 using Utility.Manager;
 
 namespace Object.Manager
 {
-    public class UIManager : Singleton<UIManager>
+    public class UIManager : MonoBehavioural<UIManager>
     {
         private Dictionary<string, GameObject> uiPrefabs;
         
