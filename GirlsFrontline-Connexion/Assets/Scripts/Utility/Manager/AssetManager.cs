@@ -1,11 +1,12 @@
 ﻿using JetBrains.Annotations;
 using Utility.Manager.Asset;
 using Utility.Manager.Asset.Addressable;
+using Utility.Singleton;
 
 namespace Utility.Manager
 {
     [PublicAPI]
-    public class AssetManager : Singleton<AssetManager>
+    public class AssetManager : NotMonoBehavioural<AssetManager>
     {
         private readonly AudioClipAssets audioClipAssets;
         private readonly PrefabAssets    prefabAssets;
