@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using Utility.Manager;
+using Utility.Singleton;
 
 namespace Object.Manager
 {
-    public class SoundManager : Singleton<SoundManager>
+    public class SoundManager : MonoBehavioural<SoundManager>
     {
         #region SERIALIZABLE FIELD API
-
-        [Header("# Master Audio Mixer Group")]
-        [SerializeField]
-        private AudioMixerGroup masterAudioMixerGroup;
         
-        [Header("# Background Audio Mixer Group")]
-        [SerializeField]
-        private AudioMixerGroup backgroundAudioMixerGroup;
+        [Serializable]
+        private struct AudioMixerGroups
+        {
+            public AudioMixerGroup master;
+            public AudioMixerGroup background;
+            public AudioMixerGroup effect;
+            public AudioMixerGroup voice;
+        }
         
-        [Header("# Effect Audio Mixer Group")]
+        [Header("# Audio Mixer Groups")]
         [SerializeField]
-        private AudioMixerGroup effectAudioMixerGroup;
-        
-        [Header("# Voice Audio Mixer Group")]
-        [SerializeField]
-        private AudioMixerGroup voiceAudioMixerGroup;
+        private AudioMixerGroups audioMixerGroups;
         
         [Header("# Playing Background Audio Clip")]
         [SerializeField]
@@ -43,41 +40,29 @@ namespace Object.Manager
         // Audio clip name if audio clip of background audio source is none
         private const string None = "None";
 
-        // Audio mixer group object name
-        private const string AudioMixerGroupsName = "Audio Mixer Groups";
-
         #endregion
-
-        private Dictionary<string, AudioClip> backgroundAudioClips;
-        private Dictionary<string, AudioClip> effectAudioClips;
-        private Dictionary<string, AudioClip> voiceAudioClips;
-
-        protected SoundManager()
-        {
-            // Guarantee this object will be always a singleton only - Can not use the constructor
-        }
         
         private void Start()
         {
             LogManager.LogProgress();
             
-            backgroundAudioClips = new Dictionary<string, AudioClip>();
-            effectAudioClips = new Dictionary<string, AudioClip>();
-            voiceAudioClips = new Dictionary<string, AudioClip>();
-            
-            Initialize();
+            gameObject.AddComponent<AudioListener>();
+            InitializeAudioSources();
         }
 
-        private void Initialize()
+        //TODO: This code is not complete yet. You need to add effects and voice audio source code.
+        private void InitializeAudioSources()
         {
             LogManager.LogProgress();
             
-            // Initialize audio source component
-            gameObject.AddComponent<AudioListener>();
+            // Initialize background audio source component
             backgroundAudioSource = gameObject.AddComponent<AudioSource>();
             backgroundAudioSource.playOnAwake = false;
             backgroundAudioSource.loop = true;
-            backgroundAudioSource.outputAudioMixerGroup = backgroundAudioMixerGroup;
+            backgroundAudioSource.outputAudioMixerGroup = audioMixerGroups.background;
+            
+            // Initialize effect audio source component
+            // Initialize voice audio source component
         }
 
         private void PlayBackgroundAudioSource(string key)
@@ -111,20 +96,12 @@ namespace Object.Manager
         #endregion
 
         #region STATIC PROPERTIES API
-
-        public static Dictionary<string, AudioClip> BackgroundAudioClip => Instance.backgroundAudioClips;
-
-        public static Dictionary<string, AudioClip> EffectAudioClip => Instance.effectAudioClips;
-
-        public static Dictionary<string, AudioClip> VoiceAudioClip => Instance.voiceAudioClips;
-
-        public static AudioMixer MasterAudioMixer => Instance.masterAudioMixerGroup.audioMixer;
         
-        public static AudioMixer BackgroundAudioMixer => Instance.backgroundAudioMixerGroup.audioMixer;
+        public static AudioMixer BackgroundAudioMixer => Instance.audioMixerGroups.background.audioMixer;
         
-        public static AudioMixer EffectAudioMixer => Instance.effectAudioMixerGroup.audioMixer;
+        public static AudioMixer EffectAudioMixer => Instance.audioMixerGroups.effect.audioMixer;
         
-        public static AudioMixer VoiceAudioMixer => Instance.voiceAudioMixerGroup.audioMixer;
+        public static AudioMixer VoiceAudioMixer => Instance.audioMixerGroups.voice.audioMixer;
 
         #endregion
     }
