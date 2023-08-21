@@ -2,7 +2,7 @@
 
 namespace Utility.Manager.Data.Converter
 {
-    public class PrefabDataStream : IDataConverter<PrefabData>
+    public class PrefabDataConverter : IDataConverter<PrefabData>
     {
         public PrefabData ToObject()
         {
