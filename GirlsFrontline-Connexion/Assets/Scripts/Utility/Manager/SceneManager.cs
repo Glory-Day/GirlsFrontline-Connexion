@@ -3,12 +3,13 @@ using System.IO;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Object.Manager;
+using Utility.Singleton;
 using SceneManagement = UnityEngine.SceneManagement;
 
 namespace Utility.Manager
 {
     [PublicAPI]
-    public class SceneManager : Singleton<SceneManager>
+    public class SceneManager : NotMonoBehavioural<SceneManager>
     {
         public List<string> sceneNames;
         
