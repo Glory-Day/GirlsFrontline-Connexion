@@ -6,14 +6,6 @@ namespace UI.Video
 {
     public class SkippableVideoPlayer : MonoBehaviour
     {
-        #region SERIALIZED FIELD API
-
-        [Header("# Next Scene Label")]
-        [SerializeField]
-        public Utility.Manager.Scene.Label label;
-
-        #endregion
-        
         #region ENUMURATED TYPE API
 
         private enum ChildrenIndex
@@ -52,7 +44,7 @@ namespace UI.Video
         {
             LogManager.LogMessage("<b>Video</b> is skipped");
 
-            SceneManager.OnLoadSceneByLabel(label);
+            SceneManager.OnLoadNextScene();
         }
 
         #endregion

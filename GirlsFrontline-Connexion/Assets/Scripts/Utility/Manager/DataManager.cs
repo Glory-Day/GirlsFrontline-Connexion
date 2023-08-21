@@ -8,35 +8,35 @@ namespace Utility.Manager
     [PublicAPI]
     public class DataManager : Singleton<DataManager>
     {
-        private IDataConverter<AudioClipData> audioSourceDataStream;
-        private IDataConverter<PrefabData>      prefabDataStream;
-        private IDataStream<UserData>        userDataStream;
+        private IDataConverter<SceneData[]> sceneDataConverter;
+        private IDataConverter<PrefabData>  prefabDataConverter;
+        private IDataStream<UserData>       userDataStream;
 
-        private AudioClipData audioClipData;
-        private PrefabData      prefabData;
-        private UserData        userData;
+        private SceneData[] sceneData;
+        private PrefabData  prefabData;
+        private UserData    userData;
         
         private DataManager()
         {
             LogManager.LogProgress();
 
-            audioSourceDataStream = new AudioSourceDataStream();
-            prefabDataStream = new PrefabDataStream();
+            sceneDataConverter = new SceneDataConverter();
+            prefabDataConverter = new PrefabDataConverter();
             userDataStream = new UserDataStream();
         }
         
-        private void SetAudioClipData()
+        private void SetSceneData()
         {
             LogManager.LogProgress();
             
-            audioClipData = audioSourceDataStream.ToObject();
+            sceneData = sceneDataConverter.ToObject();
         }
         
         private void SetPrefabData()
         {
             LogManager.LogProgress();
             
-            prefabData = prefabDataStream.ToObject();
+            prefabData = prefabDataConverter.ToObject();
         }
         
         private void LoadUserData()
@@ -63,7 +63,7 @@ namespace Utility.Manager
             LogManager.LogProgress();
             LogManager.LogMessage("<b>All Data</b> is loading...");
             
-            Instance.SetAudioClipData();
+            Instance.SetSceneData();
             Instance.SetPrefabData();
             Instance.LoadUserData();
 
@@ -86,7 +86,7 @@ namespace Utility.Manager
 
         #region STATIC PROPERTIES API
 
-        public static AudioClipData AudioClipData => Instance.audioClipData;
+        public static SceneData[] SceneData => Instance.sceneData;
         public static PrefabData PrefabData => Instance.prefabData;
         public static UserData UserData => Instance.userData;
 

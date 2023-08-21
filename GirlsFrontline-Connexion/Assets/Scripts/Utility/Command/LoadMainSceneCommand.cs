@@ -7,14 +7,13 @@ using Utility.Manager;
 
 namespace Utility.Command
 {
-    public class LoadMainScene : ICommand
+    public class LoadNextScene : ICommand
     {
         public void Execute()
         {
-            LogManager.LogAsAdministrator(
-                "Execute <b><i>OnLoadSceneByName(Scene.Label.Main)</i></b>");
+            LogManager.LogAsAdministrator("Execute <b><i>OnLoadNextScene()</i></b>");
 
-            SceneManager.OnLoadSceneByLabel(Manager.Scene.Label.Main);
+            SceneManager.OnLoadNextScene();
         }
     }
 }
