@@ -54,32 +54,14 @@ namespace Object.UI
         {
             LogManager.LogMessage("<b>Transition Screen Animation Event</b> is activated. Transition direction is <b>Left</b>");
 
-            switch (SceneManager.CurrentSceneLabel)
-            {
-                case Utility.Manager.Scene.Label.Main:
-                    SceneManager.OnLoadSceneByLabel(Utility.Manager.Scene.Label.Selection);
-                    break;
-                case Utility.Manager.Scene.Label.Selection:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            SceneManager.OnLoadNextScene();
         }
 
         public void OnLoadSceneWhenSceneTransitionToRight()
         {
             LogManager.LogMessage("<b>Transition Screen Animation Event</b> is activated. Transition direction is <b>Right</b>");
 
-            switch (SceneManager.CurrentSceneLabel)
-            {
-                case Utility.Manager.Scene.Label.Main:
-                    break;
-                case Utility.Manager.Scene.Label.Selection:
-                    SceneManager.OnLoadSceneByLabel(Utility.Manager.Scene.Label.Main);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            SceneManager.OnLoadPreviewScene();
         }
 
         #endregion
