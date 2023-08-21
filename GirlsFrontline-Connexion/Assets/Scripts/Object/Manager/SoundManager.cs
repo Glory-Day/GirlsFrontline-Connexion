@@ -101,21 +101,11 @@ namespace Object.Manager
 
         #region STATIC METHOD API
 
-        public static void OnChangeBackgroundAudioClip(Utility.Manager.Scene.Label label)
+        public static void OnChangeBackgroundAudioClip(int sceneIndex)
         {
             LogManager.LogProgress();
-
-            switch (label)
-            {
-                case Utility.Manager.Scene.Label.Main:
-                    Instance.PlayBackgroundAudioSource(DataManager.AudioClipData.Background.Main);
-                    break;
-                case Utility.Manager.Scene.Label.Selection:
-                    Instance.PlayBackgroundAudioSource(DataManager.AudioClipData.Background.Main);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(label), label, null);
-            }
+            
+            Instance.PlayBackgroundAudioSource(DataManager.SceneData[sceneIndex].BackgroundMusic);
         }
 
         #endregion
