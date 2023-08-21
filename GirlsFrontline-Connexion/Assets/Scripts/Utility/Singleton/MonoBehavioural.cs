@@ -1,14 +1,11 @@
-﻿#region NAMESPACE API
-
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
-#endregion
-
-namespace Object.Manager
+namespace Utility.Singleton
 {
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
-    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    public class MonoBehavioural<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static bool _quited;
         private static T    _instance;
