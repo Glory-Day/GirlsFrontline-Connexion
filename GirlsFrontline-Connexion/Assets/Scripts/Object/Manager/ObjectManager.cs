@@ -2,11 +2,11 @@
 using UnityEngine;
 using Utility.Manager;
 using Utility.Manager.Object;
-
+using Utility.Singleton;
 
 namespace Object.Manager
 {
-    public class ObjectManager : Singleton<ObjectManager>
+    public class ObjectManager : MonoBehavioural<ObjectManager>
     {
         private struct ObjectPool
         {
