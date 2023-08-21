@@ -2,11 +2,12 @@
 using Utility.Manager.Data;
 using Utility.Manager.Data.Converter;
 using Utility.Manager.Data.Stream;
+using Utility.Singleton;
 
 namespace Utility.Manager
 {
     [PublicAPI]
-    public class DataManager : Singleton<DataManager>
+    public class DataManager : NotMonoBehavioural<DataManager>
     {
         private IDataConverter<SceneData[]> sceneDataConverter;
         private IDataConverter<PrefabData>  prefabDataConverter;
