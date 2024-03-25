@@ -1,27 +1,37 @@
 ﻿using System;
-using System.IO;
+using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Object.Manager;
-using Utility.Singleton;
+using System.IO;
+using GloryDay.Log;
+using GloryDay.Threading;
+using GloryDay.Utility;
+using UnityEngine;
+using Utility.Manager.UI;
 using SceneManagement = UnityEngine.SceneManagement;
 
 namespace Utility.Manager
 {
-    [PublicAPI]
-    public class SceneManager : NotMonoBehavioural<SceneManager>
+    public class SceneManager : Singleton<SceneManager>
     {
-        public List<string> sceneNames;
+        private readonly List<string> _sceneNames;
+
+        /// <summary>
+        /// To check the status of asynchronous scene load operations.
+        /// </summary>
+        private AsyncOperation _asyncOperation;
         
         private SceneManager()
         {
             LogManager.LogProgress();
             
-            sceneNames = new List<string>();
+            _sceneNames = new List<string>();
             
             SetSceneNames();
         }
 
+        /// <summary>
+        /// Set the names of the built scenes.
+        /// </summary>
         private void SetSceneNames()
         {
             LogManager.LogProgress();
@@ -29,69 +39,76 @@ namespace Utility.Manager
             for (var i = 0; i < SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
             {
                 var scenePath = SceneManagement.SceneUtility.GetScenePathByBuildIndex(i);
-                sceneNames.Add(Path.GetFileNameWithoutExtension(scenePath));
+                _sceneNames.Add(Path.GetFileNameWithoutExtension(scenePath));
             }
         }
 
-        private void LoadNextScene()
+        private IEnumerator LoadScene(string sceneName, TransitionMode mode)
         {
             LogManager.LogProgress();
-
-            try
-            {
-                var sceneIndex = CurrentSceneIndex + 1;
-                var sceneName  = sceneNames[sceneIndex];
-                SceneManagement.SceneManager.LoadScene(sceneName);
-                SoundManager.OnChangeBackgroundAudioClip(sceneIndex);
+            LogManager.LogMessage($"{sceneName} is loading...");
             
-                LogManager.LogSuccess($"<b>{sceneName}</b> is loaded");
-            }
-            catch (IndexOutOfRangeException exception)
+            var transition = UIManager.GetTransitionByMode(mode);
+            
+            transition?.Open();
+            
+            if (transition != null)
             {
-                LogManager.LogError(exception.Message);
+                while (transition.IsOpening)
+                {
+                    yield return null;
+                }
             }
+
+            UIManager.OnEnableLoadingMessageScreen();
+            
+            _asyncOperation = SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+            while (_asyncOperation.isDone == false)
+            {
+                yield return null;
+            }
+            
+            UIManager.OnDisableLoadingMessageScreen();
+            
+            transition?.Close();
+            
+            LogManager.LogSuccess($"<b>{sceneName}</b> is loaded");
         }
 
-        private void LoadPreviewScene()
+        private void LoadSceneByIndex(int index, TransitionMode mode)
         {
+            LogManager.LogProgress();
+            
             try
             {
-                var sceneIndex = CurrentSceneIndex - 1;
-                var sceneName  = sceneNames[sceneIndex];
-                SceneManagement.SceneManager.LoadScene(sceneName);
-                SoundManager.OnChangeBackgroundAudioClip(sceneIndex);
-            
-                LogManager.LogSuccess($"<b>{sceneName}</b> is loaded");
+                var sceneName  = _sceneNames[index];
+                var backgroundMusicName = DataManager.SceneData[index].BackgroundMusic;
+                if (SoundManager.IsBackgroundMusicPlaying(backgroundMusicName))
+                {
+                    StaticCoroutine.StartCoroutine(LoadScene(sceneName, mode));
+                }
+                else
+                {
+                    SoundManager.OnStopBackgroundMusic();
+                    StaticCoroutine.StartCoroutine(LoadScene(sceneName, mode));
+                    SoundManager.OnPlayBackgroundMusic(backgroundMusicName);
+                }
             }
             catch (IndexOutOfRangeException exception)
             {
                 LogManager.LogError(exception.Message);
             }
         }
-        
-        private int CurrentSceneIndex => SceneManagement.SceneManager.GetActiveScene().buildIndex;
         
         #region STATIC METHOD API
 
         /// <summary>
-        /// Load the current scene to next scene
+        /// Load the scene asynchronously by index.
         /// </summary>
-        public static void OnLoadNextScene()
-        {
-            LogManager.LogProgress();
-            
-            Instance.LoadNextScene();
-        }
-
-        /// <summary>
-        /// Load the current scene to preview scene
-        /// </summary>
-        public static void OnLoadPreviewScene()
-        {
-            LogManager.LogProgress();
-            
-            Instance.LoadPreviewScene();
-        }
+        /// <param name="index"> Number of scene index. </param>
+        /// <param name="mode"> Mode of how to transition the scene. </param>
+        public static void OnLoadSceneByIndex(int index, TransitionMode mode) => 
+            Instance.LoadSceneByIndex(index, mode);
 
         #endregion
     }

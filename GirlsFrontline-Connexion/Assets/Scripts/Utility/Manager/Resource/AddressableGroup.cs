@@ -1,20 +1,20 @@
-﻿namespace Utility.Manager.Asset
+﻿namespace Utility.Manager.Resource
 {
-    public struct AssetLabel
+    public static class AddressableGroup
     {
-        public struct AudioClip
+        public static class AudioClip
         {
             public const string Background = "background";
             public const string Effect     = "effect";
             public const string Voice      = "voice";
         }
 
-        public struct Prefab
+        public static class GameObject
         {
             public const string UI = "ui";
         }
 
-        public struct Text
+        public static class Text
         {
             public const string Data = "data";
         }

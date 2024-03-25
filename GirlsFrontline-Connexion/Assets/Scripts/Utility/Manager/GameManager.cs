@@ -1,59 +1,80 @@
-﻿using UnityEngine;
-
-using Object.Manager;
+﻿using GloryDay.Log;
+using GloryDay.Utility;
 
 namespace Utility.Manager
 {
-    public static class GameManager
+    public class GameManager : Singleton<GameManager>
     {
+        private bool _isApplicationPaused;
+
+        private GameManager()
+        {
+            LogManager.LogProgress();
+            
+            _isApplicationPaused = false;
+        }
+        
         #region STATIC METHOD API
 
-        public static void OnPause()
+        /// <summary>
+        /// Pause the running application.
+        /// </summary>
+        public static void OnApplicationPause()
         {
             LogManager.LogProgress();
 
-            if (Time.timeScale < 0.5f)
+            if (Instance._isApplicationPaused)
             {
-                LogManager.LogError("<b>Game Application</b> has already been paused");
+                LogManager.LogError("<b>Application</b> has already been paused");
 
                 return;
             }
 
+            Instance._isApplicationPaused = true;
+            
             UIManager.OnEnablePauseScreen();
 
-            Time.timeScale = 0f;
-
-            LogManager.LogSuccess($"<b>Game Application</b> is paused");
+            LogManager.LogSuccess("<b>Application</b> is paused");
         }
 
-        public static void OnPlay()
+        /// <summary>
+        /// Run the player application.
+        /// </summary>
+        public static void OnApplicationPlay()
         {
             LogManager.LogProgress();
 
-            if (Time.timeScale > 0.5f)
+            if (Instance._isApplicationPaused == false)
             {
-                LogManager.LogError("<b>Game Application</b> is currently running");
+                LogManager.LogError("<b>Application</b> is currently running");
 
                 return;
             }
 
+            Instance._isApplicationPaused = false;
+            
             UIManager.OnDisablePauseScreen();
 
-            Time.timeScale = 1f;
-
-            LogManager.LogSuccess("<b>Game Application</b> is played");
+            LogManager.LogSuccess("<b>Application</b> is played");
         }
 
-        public static void OnQuit()
+        /// <summary>
+        /// Quits the player application.
+        /// </summary>
+        public static void OnApplicationQuit()
         {
             LogManager.LogProgress();
 
             LogManager.LogSuccess("<b>Game Application</b> is quited");
 
 #if UNITY_EDITOR
+            
             UnityEditor.EditorApplication.isPlaying = false;
+
 #else
-            Application.Quit();
+
+            UnityEngine.Application.Quit();
+
 #endif
         }
 

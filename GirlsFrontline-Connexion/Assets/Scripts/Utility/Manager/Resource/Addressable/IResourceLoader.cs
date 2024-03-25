@@ -1,6 +1,6 @@
-﻿namespace Utility.Manager.Asset.Addressable
+﻿namespace Utility.Manager.Resource.Addressable
 {
-    public interface IAddressables
+    public interface IResourceLoader
     {
         /// <summary>
         /// Load assets using addressables
@@ -15,6 +15,6 @@
         /// <summary>
         /// Check assets is Loaded
         /// </summary>
-        bool Check();
+        bool IsLoadedDone { get; }
     }
 }
