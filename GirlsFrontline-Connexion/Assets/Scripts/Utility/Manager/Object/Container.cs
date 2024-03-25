@@ -2,36 +2,30 @@
 {
     public class Container<T>
     {
-        public Container(T instantiatedObject)
+        public Container(T instance)
         {
-            Used = true;
-            Object = instantiatedObject;
+            Instance = instance;
+            IsUsed = true;
         }
-
-        /// <summary>
-        /// Whether to use an object
-        /// </summary>
-        public bool Used { get; private set; }
-
-        /// <summary>
-        /// Contained object
-        /// </summary>
-        public T Object { get; }
-
+        
         /// <summary>
         /// Set contained object to use
         /// </summary>
-        public void Use()
-        {
-            Used = true;
-        }
+        public void Use() => IsUsed = true;
 
         /// <summary>
         /// Release contained object
         /// </summary>
-        public void Release()
-        {
-            Used = false;
-        }
+        public void Release() => IsUsed = false;
+
+        /// <summary>
+        /// Contained object
+        /// </summary>
+        public T Instance { get; }
+        
+        /// <summary>
+        /// Whether to use an object
+        /// </summary>
+        public bool IsUsed { get; private set; }
     }
 }

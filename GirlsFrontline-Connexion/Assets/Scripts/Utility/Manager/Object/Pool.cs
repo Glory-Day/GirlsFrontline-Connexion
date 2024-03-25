@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Utility.Manager;
+﻿using System.Collections.Generic;
+using GloryDay.Log;
 
 namespace Utility.Manager.Object
 {
@@ -9,58 +8,62 @@ namespace Utility.Manager.Object
         /// <summary>
         /// List to save object container
         /// </summary>
-        private readonly List<Container<T>> containers;
+        private readonly List<Container<T>> _containers;
 
         /// <summary>
         /// Pool to contain object
         /// </summary>
-        private readonly Dictionary<T, Container<T>> pool;
+        private readonly Dictionary<T, Container<T>> _pool;
 
-        /// <summary>
-        /// <b>UnityEngine.Instantiate</b> Method
-        /// </summary>
-        private readonly Func<T> instantiateObjectMethod;
-
+        private readonly InstantiateCallback<T> _onInstantiateCallback;
+        
         /// <summary>
         /// Index of used object container
         /// </summary>
-        private int objectContainerIndex;
+        private int _index;
 
         /// <summary>
         /// Object pool constructor
         /// </summary>
-        /// <param name="instantiateObjectMethod"> <b>UnityEngine.Instantiate</b> Method </param>
         /// <param name="capacity"> Initial capacity </param>
-        public Pool(Func<T> instantiateObjectMethod, int capacity)
+        /// <param name="callback"> <b>UnityEngine.Instantiate</b> Method </param>
+        public Pool(int capacity, InstantiateCallback<T> callback)
         {
-            containers = new List<Container<T>>(capacity);
-            pool = new Dictionary<T, Container<T>>(capacity);
-
+            _containers = new List<Container<T>>(capacity);
+            _pool = new Dictionary<T, Container<T>>(capacity);
+            _onInstantiateCallback = callback;
+            
             // Initialize object containers
-            InitializeObjectContainers(capacity);
-
-            this.instantiateObjectMethod = instantiateObjectMethod;
+            InitializeContainers(capacity);
         }
 
         /// <summary>
         /// Initialize object containers
         /// </summary>
         /// <param name="capacity"> Initial capacity </param>
-        private void InitializeObjectContainers(int capacity)
+        private void InitializeContainers(int capacity)
         {
-            for (var i = 0; i < capacity; i++) CreateObjectContainer();
+            for (var i = 0; i < capacity; i++)
+            {
+                CreateContainer();
+            }
         }
 
         /// <summary>
         /// Create object container
         /// </summary>
         /// <returns> Created object container instance </returns>
-        private Container<T> CreateObjectContainer()
+        private Container<T> CreateContainer()
         {
-            var objectContainer = new Container<T>(instantiateObjectMethod());
-            containers.Add(objectContainer);
+            if (_onInstantiateCallback == null)
+            {
+                return null;
+            }
+            
+            var container = new Container<T>(_onInstantiateCallback.Invoke());
+            _containers.Add(container);
 
-            return objectContainer;
+            return container;
         }
 
         /// <summary>
@@ -72,25 +75,28 @@ namespace Utility.Manager.Object
             get
             {
                 Container<T> container = null;
-                for (var i = -1; i < containers.Count; i++)
+                for (var i = -1; i < _containers.Count; i++)
                 {
-                    objectContainerIndex++;
-                    if (objectContainerIndex > containers.Count - 0) objectContainerIndex = 0;
-                    if (containers[objectContainerIndex].Used) continue;
+                    _index++;
+                    if (_index > _containers.Count - 0) _index = 0;
+                    if (_containers[_index].IsUsed) continue;
 
                     // Object container with unused objects
-                    container = containers[objectContainerIndex];
+                    container = _containers[_index];
                     break;
                 }
 
                 // If all object is used, create new object container
-                if (container == null) container = CreateObjectContainer();
+                if (container == null)
+                {
+                    container = CreateContainer();
+                }
 
                 // Set object in container used and add pool
                 container.Use();
-                pool.Add(container.Object, container);
+                _pool.Add(container.Instance, container);
 
-                return container.Object;
+                return container.Instance;
             }
         }
 
@@ -100,18 +106,19 @@ namespace Utility.Manager.Object
         /// <param name="key"> Object to release </param>
         public void Release(T key)
         {
-            if (pool.ContainsKey(key))
+            if (_pool.TryGetValue(key, out var container))
             {
-                var objectContainer = pool[key];
-                objectContainer.Release();
+                container.Release();
                 return;
             }
 
             LogManager.LogError($"This object pool does not contain the object provided: {key}");
         }
 
-        public int ObjectContainerCount => containers.Count;
+        public int ObjectContainerCount => _containers.Count;
 
-        public int UsedObjectContainerCount => pool.Count;
+        public int UsedObjectContainerCount => _pool.Count;
     }
+    
+    public delegate T InstantiateCallback<out T>();
 }
