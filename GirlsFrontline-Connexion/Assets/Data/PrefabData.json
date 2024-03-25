@@ -1,8 +1,0 @@
-﻿{
-  "ui": {
-    "transitionScreen": "Transition Screen",
-    "pauseScreen": "Pause Screen",
-    "optionScreen": "Option Screen",
-    "commandConsole": "Command Console"
-  }
-}

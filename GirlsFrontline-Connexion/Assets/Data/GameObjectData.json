@@ -1,0 +1,8 @@
+﻿{
+  "ui": {
+    "sceneTransitionScreen": "Sliding Transition Canvas",
+    "pauseScreen": "Pause Canvas",
+    "optionScreen": "Option Canvas",
+    "loadingMessageScreen" : "Loading Message Canvas"
+  }
+}
