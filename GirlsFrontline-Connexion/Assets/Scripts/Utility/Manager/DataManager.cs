@@ -1,4 +1,5 @@
-﻿using GloryDay.Data.Stream;
+﻿using System.Collections.Generic;
+using GloryDay.Data.File.Stream;
 using GloryDay.Log;
 using GloryDay.Utility;
 using Newtonsoft.Json;
@@ -9,9 +10,8 @@ namespace Utility.Manager
 {
     public class DataManager : Singleton<DataManager>
     {
-        private SceneData[]    _sceneData;
-        private GameObjectData _gameObjectData;
-        private UserData       _userData;
+        private AudioData _audioData;
+        private UserData _userData;
         
         private readonly SaveFileStream _saveFileStream;
         
@@ -27,26 +27,14 @@ namespace Utility.Manager
             
             _saveFileStream = new SaveFileStream();
         }
-
-        #region LOAD METHOD API
-
-        private void LoadSceneData()
+        
+        private void LoadAudioData()
         {
             LogManager.LogProgress();
             
-            var data = ResourceManager.TextResource.Data[nameof(SceneData)].text;
-            _sceneData = JsonConvert.DeserializeObject<SceneData[]>(data);
+            var data = ResourceManager.TextResource.Data[nameof(AudioData)].text;
+            _audioData = JsonConvert.DeserializeObject<AudioData>(data);
         }
-        
-        private void LoadGameObjectData()
-        {
-            LogManager.LogProgress();
-
-            var data = ResourceManager.TextResource.Data[nameof(GameObjectData)].text;
-            _gameObjectData = JsonConvert.DeserializeObject<GameObjectData>(data);
-        }
-
-        #endregion
         
         private void LoadUserData()
         {
@@ -76,8 +64,28 @@ namespace Utility.Manager
         {
             LogManager.LogProgress();
             
-            _userData = new UserData();
-            
+            _userData = new UserData
+                        {
+                            Chapter = new List<Chapter>
+                                      {
+                                          new Chapter { IsLocked = false, Score = -1 }, 
+                                          new Chapter { IsLocked = true, Score = -1 },
+                                          new Chapter { IsLocked = true, Score = -1 },
+                                          new Chapter { IsLocked = true, Score = -1 },
+                                          new Chapter { IsLocked = true, Score = -1 }
+                                      },
+                            Default = new Default
+                                      {
+                                          IsDisplayAllowed = new List<bool> { true, true, true, true }
+                                      },
+                            Sound = new List<Sound>
+                                    {
+                                        new Sound { IsMute = false, Volume = -30f },
+                                        new Sound { IsMute = false, Volume = -30f },
+                                        new Sound { IsMute = false, Volume = -30f }
+                                    }
+                        };
+
             SaveUserData();
         }
 
@@ -91,8 +99,7 @@ namespace Utility.Manager
             LogManager.LogProgress();
             LogManager.LogMessage("<b>All Data</b> is loading...");
             
-            Instance.LoadSceneData();
-            Instance.LoadGameObjectData();
+            Instance.LoadAudioData();
 
             LogManager.LogSuccess("<b>All Data</b> is loaded");
         }
@@ -136,16 +143,11 @@ namespace Utility.Manager
         #endregion
 
         #region STATIC PROPERTIES API
-
-        /// <summary>
-        /// Data related to scene.
-        /// </summary>
-        public static SceneData[] SceneData => Instance._sceneData;
         
         /// <summary>
-        /// Data related to game object.
+        /// Data related to audio source.
         /// </summary>
-        public static GameObjectData GameObjectData => Instance._gameObjectData;
+        public static AudioData AudioData => Instance._audioData;
         
         /// <summary>
         /// Data related to user.

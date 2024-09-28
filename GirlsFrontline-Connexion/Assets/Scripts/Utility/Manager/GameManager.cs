@@ -1,5 +1,6 @@
 ﻿using GloryDay.Log;
 using GloryDay.Utility;
+using UnityEngine;
 
 namespace Utility.Manager
 {
@@ -15,7 +16,7 @@ namespace Utility.Manager
         }
         
         #region STATIC METHOD API
-
+        
         /// <summary>
         /// Pause the running application.
         /// </summary>
@@ -30,15 +31,15 @@ namespace Utility.Manager
                 return;
             }
 
-            Instance._isApplicationPaused = true;
+            Time.timeScale = 0f;
             
-            UIManager.OnEnablePauseScreen();
+            Instance._isApplicationPaused = true;
 
             LogManager.LogSuccess("<b>Application</b> is paused");
         }
 
         /// <summary>
-        /// Run the player application.
+        /// Play the quiting application.
         /// </summary>
         public static void OnApplicationPlay()
         {
@@ -51,9 +52,9 @@ namespace Utility.Manager
                 return;
             }
 
-            Instance._isApplicationPaused = false;
+            Time.timeScale = 1f;
             
-            UIManager.OnDisablePauseScreen();
+            Instance._isApplicationPaused = false;
 
             LogManager.LogSuccess("<b>Application</b> is played");
         }
@@ -77,6 +78,12 @@ namespace Utility.Manager
 
 #endif
         }
+
+        #endregion
+
+        #region STATIC PROPERTIES API
+
+        public static bool IsApplicationPaused => Instance._isApplicationPaused;
 
         #endregion
     }

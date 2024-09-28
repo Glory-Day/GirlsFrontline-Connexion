@@ -2,8 +2,10 @@
 {
     public interface IState
     {
-        void Enter();
+        void Start();
+        
         void Update();
-        void Exit();
+        
+        void End();
     }
 }

@@ -1,18 +1,20 @@
 ﻿using System;
 using GloryDay.Log;
 using GloryDay.UI.Controller.Button;
-using UI.View;
 
 namespace UI.Controller.Button
 {
-    public class PreviousChapterSelectionButton : ButtonBase
+    public class PreviousChapterSelectionButton : UIButtonBase
     {
-        // Start is called before the first frame update
+        // Awake is called when the script instance is being loaded.
         protected override void Awake()
         {
             LogManager.LogProgress();
             
             base.Awake();
+            
+            SetHoverSound(0);
+            SetClickSound(6);
             
             var component = GetComponentInParent<ChapterSelectionScreen>();
             IsPossibleCallback = component.IsPreviousChapterSelectionPossible;
@@ -40,6 +42,8 @@ namespace UI.Controller.Button
         {
             LogManager.LogMessage("<b>Preview Button</b> is clicked");
 
+            base.Click();
+            
             PlayAnimationCallback?.Invoke();
         }
 

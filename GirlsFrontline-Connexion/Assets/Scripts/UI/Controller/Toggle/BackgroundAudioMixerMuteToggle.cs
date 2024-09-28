@@ -1,35 +1,34 @@
 ﻿using GloryDay.Log;
-using GloryDay.UI.Controller.Toggle;
 using Utility.Manager;
 
 namespace UI.Controller.Toggle
 {
-    public class BackgroundAudioMixerMuteToggle : ToggleBase
+    public class BackgroundAudioMixerMuteToggle : UIToggleBase
     {
         // Start is called before the first frame update
-        private void Start()
+        protected override void Awake()
         {
             LogManager.LogProgress();
 
-            IsOn = DataManager.UserData.Option.IsMute.Background;
+            base.Awake();
+
+            var isMute = DataManager.UserData.Sound[0].IsMute;
+            SoundManager.IsBackgroundAudioMute = isMute;
+            IsOn = isMute;
+            
+            SetHoverSound(0);
+            SetClickSound(1);
         }
         
-        protected override void ChangeValue(bool value)
+        protected override void ValueChanged(bool value)
         {
             LogManager.LogProgress();
             
-            if (value)
-            {
-                SoundManager.SetBackgroundAudioVolume(-80f);
-            }
-            else
-            {
-                SoundManager.SetBackgroundAudioVolume(DataManager.UserData.Option.Volume.Background);
-            }
-
+            base.ValueChanged(value);
+            
             SoundManager.IsBackgroundAudioMute = value;
             
-            DataManager.UserData.Option.IsMute.Background = value;
+            DataManager.UserData.Sound[0].IsMute = value;
             DataManager.OnSaveUserData();
         }
     }

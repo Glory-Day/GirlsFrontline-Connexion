@@ -16,7 +16,7 @@ namespace Utility.Manager.Resource.Addressable
             LogManager.LogProgress();
             
             _dataResourceHandle = Addressables.LoadAssetsAsync(
-                AddressableGroup.Text.Data, (Action<UnityEngine.TextAsset>)LoadDataResources);
+                AddressableLabelGroup.Text.Data, (Action<UnityEngine.TextAsset>)LoadDataResources);
         }
 
         public void Unload()

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using GloryDay.Log;
 using GloryDay.Utility;
+using Utility.Extension;
 
 namespace Utility.Manager
 {
@@ -10,65 +12,50 @@ namespace Utility.Manager
     {
         #region SERIALIZABLE FIELD API
         
-        [Header("# Master Audio Mixer")]
-        [SerializeField] 
-        private AudioMixer masterAudioMixer;
-        
-        [Header("# Audio Mixer Controllers")]
-        [SerializeField]
-        private AudioMixerControllers audioMixerControllers;
-        
-        [Header("# Playing Background Music")]
-        [SerializeField]
-        private AudioClip backgroundMusic;
+        [Label("Master")]
+        [SerializeField] private AudioMixer masterAudioMixer;
+        [Label("Background")]
+        [SerializeField] private AudioMixerGroup backgroundAudioMixerGroup;
+        [Label("Effect")]
+        [SerializeField] private AudioMixerGroup effectAudioMixerGroup;
+        [Label("Voice")]
+        [SerializeField] private AudioMixerGroup voiceAudioMixerGroup;
 
         #endregion
         
-        #region COMPONENT API
+        #region COMPONENT FIELD API
 
         private AudioSource _backgroundAudioSource;
+        private AudioSource _effectAudioSource;
+        private AudioSource _voiceAudioSource;
 
         #endregion
 
-        private bool _isBackgroundAudioMute;
-        private bool _isEffectAudioMute;
-        private bool _isVoiceAudioMute;
-        
-        // Start is called before the first frame update.
-        private void Start()
+        protected override void OnAwake()
         {
             LogManager.LogProgress();
             
-            gameObject.AddComponent<AudioListener>();
+            base.OnAwake();
+            
+            // Initialize background, voice audio sources.
+            _backgroundAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
+            _effectAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
+            _voiceAudioSource = transform.GetChild(2).GetComponent<AudioSource>();
+            
+            LogManager.LogSuccess("<b>All Audio Sources</b> are initialized");
         }
 
-        //TODO: This code is not complete yet. You need to add effects and voice audio source code.
-        private void InitializeAudioSources()
+        private void PlayBackgroundAudioSource(AudioClip clip)
         {
             LogManager.LogProgress();
             
-            // Initialize background audio source component.
-            _backgroundAudioSource = gameObject.AddComponent<AudioSource>();
-            _backgroundAudioSource.playOnAwake = false;
-            _backgroundAudioSource.loop = true;
-            _backgroundAudioSource.outputAudioMixerGroup = audioMixerControllers.background;
-            
-            // Initialize effect audio source component.
-            
-            // Initialize voice audio source component.
+            _backgroundAudioSource.clip = clip;
+            _backgroundAudioSource.Play();
+
+            LogManager.LogMessage($"Play <b>{clip.name}</b>");
         }
 
-        private void PlayBackgroundMusic(string backgroundMusicName)
-        {
-            LogManager.LogProgress();
-            
-            backgroundMusic = ResourceManager.AudioClipResource.Background[backgroundMusicName];
-            _backgroundAudioSource.PlayOneShot(backgroundMusic);
-
-            LogManager.LogMessage($"Play <b>{backgroundMusic.name}</b>");
-        }
-
-        private void StopBackgroundMusic()
+        private void StopBackgroundAudioSource()
         {
             LogManager.LogProgress();
 
@@ -78,55 +65,45 @@ namespace Utility.Manager
             }
         }
 
-        private string BackgroundAudioMixerControllerName => audioMixerControllers.background.name;
+        private void PlayEffectAudioSource(AudioClip clip)
+        {
+            LogManager.LogProgress();
 
-        private string EffectAudioMixerControllerName => audioMixerControllers.effect.name;
+            if (clip is null)
+            {
+                return;
+            }
+            
+            _effectAudioSource.PlayOneShot(clip);
+        }
+        
+        private void PlayVoiceAudioSource(AudioClip clip)
+        {
+            LogManager.LogProgress();
+            
+            _voiceAudioSource.clip = clip;
+            _voiceAudioSource.Play();
 
-        private string VoiceAudioMixerControllerName => audioMixerControllers.voice.name;
+            LogManager.LogMessage($"Play <b>{clip.name}</b>");
+        }
+
+        private string BackgroundAudioMixerControllerName => backgroundAudioMixerGroup.name;
+
+        private string EffectAudioMixerControllerName => effectAudioMixerGroup.name;
+
+        private string VoiceAudioMixerControllerName => voiceAudioMixerGroup.name;
 
         #region STATIC METHOD API
         
         /// <summary>
-        /// Initialize all audio source components.
-        /// </summary>
-        public static void OnInitializeAudioSources()
-        {
-            LogManager.LogProgress();
-            
-            Instance.InitializeAudioSources();
-            
-            LogManager.LogSuccess("<b>All Audio Sources</b> are initialized");
-        }
-
-        /// <summary>
-        /// Initialize sound settings stored in user data.
-        /// </summary>
-        public static void OnInitializeSoundSettings()
-        {
-            LogManager.LogProgress();
-            
-            // Set volume values in user data.
-            var volume = DataManager.UserData.Option.Volume;
-            SetBackgroundAudioVolume(volume.Background);
-            SetEffectAudioVolume(volume.Effect);
-            SetVoiceAudioVolume(volume.Voice);
-
-            // Set whether to mute in user data.
-            var isMute = DataManager.UserData.Option.IsMute;
-            IsBackgroundAudioMute = isMute.Background;
-            IsEffectAudioMute = isMute.Effect;
-            IsVoiceAudioMute = isMute.Voice;
-        }
-        
-        /// <summary>
         /// Play background music with that name.
         /// </summary>
-        /// <param name="backgroundMusicName"> Name of background music. </param>
-        public static void OnPlayBackgroundMusic(string backgroundMusicName)
+        /// <param name="clip"> Name of background music. </param>
+        public static void OnPlayBackgroundAudioSource(AudioClip clip)
         {
             LogManager.LogProgress();
             
-            Instance.PlayBackgroundMusic(backgroundMusicName);
+            Instance.PlayBackgroundAudioSource(clip);
         }
 
         /// <summary>
@@ -136,7 +113,21 @@ namespace Utility.Manager
         {
             LogManager.LogProgress();
             
-            Instance.StopBackgroundMusic();
+            Instance.StopBackgroundAudioSource();
+        }
+
+        public static void OnPlayEffectAudioSource(AudioClip clip)
+        {
+            LogManager.LogProgress();
+            
+            Instance.PlayEffectAudioSource(clip);
+        }
+        
+        public static void OnPlayVoiceAudioSource(AudioClip clip)
+        {
+            LogManager.LogProgress();
+            
+            Instance.PlayVoiceAudioSource(clip);
         }
 
         /// <summary>
@@ -164,45 +155,45 @@ namespace Utility.Manager
         /// Check is background music is playing.
         /// </summary>
         /// <param name="backgroundMusicName"> Name of background music. </param>
-        public static bool IsBackgroundMusicPlaying(string backgroundMusicName) => 
-            Instance._backgroundAudioSource.isPlaying && 
-            Instance.backgroundMusic != null && 
-            Instance.backgroundMusic.name == backgroundMusicName;
-
+        public static bool IsBackgroundAudioSourcePlaying(string backgroundMusicName)
+        {
+            var source = Instance._backgroundAudioSource;
+            
+            return source is null == false && source.isPlaying && source.clip.name == backgroundMusicName;
+        }
+        
         #endregion
 
         #region STATIC PROPERTIES API
 
         public static AudioMixer MasterAudioMixer => Instance.masterAudioMixer;
 
-        public static AudioMixerGroup BackgroundAudioMixerGroup => Instance.audioMixerControllers.background;
+        public static AudioMixerGroup BackgroundAudioMixerGroup => Instance.backgroundAudioMixerGroup;
+
+        public static AudioMixerGroup EffectAudioMixerGroup => Instance.effectAudioMixerGroup;
+
+        public static AudioMixerGroup VoiceAudioMixerGroup => Instance.voiceAudioMixerGroup;
+
+        public static AudioSource BackgroundAudioSource => Instance._backgroundAudioSource;
         
         public static bool IsBackgroundAudioMute
         {
-            get => Instance._isBackgroundAudioMute;
-            set => Instance._isBackgroundAudioMute = value;
+            get => Instance._backgroundAudioSource.mute; 
+            set => Instance._backgroundAudioSource.mute = value;
         }
-        
+
         public static bool IsEffectAudioMute
         {
-            get => Instance._isEffectAudioMute;
-            set => Instance._isEffectAudioMute = value;
+            get => Instance._effectAudioSource.mute; 
+            set => Instance._effectAudioSource.mute = value;
         }
-        
+
         public static bool IsVoiceAudioMute
         {
-            get => Instance._isVoiceAudioMute;
-            set => Instance._isVoiceAudioMute = value;
+            get => Instance._voiceAudioSource.mute; 
+            set => Instance._voiceAudioSource.mute = value;
         }
 
         #endregion
-    }
-    
-    [Serializable]
-    public struct AudioMixerControllers
-    {
-        public AudioMixerGroup background;
-        public AudioMixerGroup effect;
-        public AudioMixerGroup voice;
     }
 }

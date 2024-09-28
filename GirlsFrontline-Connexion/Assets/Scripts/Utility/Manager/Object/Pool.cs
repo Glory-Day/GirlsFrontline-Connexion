@@ -15,7 +15,7 @@ namespace Utility.Manager.Object
         /// </summary>
         private readonly Dictionary<T, Container<T>> _pool;
 
-        private readonly InstantiateCallback<T> _onInstantiateCallback;
+        private readonly InstantiateCallback<T> _onInstantiate;
         
         /// <summary>
         /// Index of used object container
@@ -31,7 +31,7 @@ namespace Utility.Manager.Object
         {
             _containers = new List<Container<T>>(capacity);
             _pool = new Dictionary<T, Container<T>>(capacity);
-            _onInstantiateCallback = callback;
+            _onInstantiate = callback;
             
             // Initialize object containers
             InitializeContainers(capacity);
@@ -55,12 +55,12 @@ namespace Utility.Manager.Object
         /// <returns> Created object container instance </returns>
         private Container<T> CreateContainer()
         {
-            if (_onInstantiateCallback == null)
+            if (_onInstantiate is null)
             {
                 return null;
             }
             
-            var container = new Container<T>(_onInstantiateCallback.Invoke());
+            var container = new Container<T>(_onInstantiate.Invoke());
             _containers.Add(container);
 
             return container;
@@ -75,11 +75,20 @@ namespace Utility.Manager.Object
             get
             {
                 Container<T> container = null;
-                for (var i = -1; i < _containers.Count; i++)
+
+                var count = _containers.Count;
+                for (var i = 0; i < count; i++)
                 {
                     _index++;
-                    if (_index > _containers.Count - 0) _index = 0;
-                    if (_containers[_index].IsUsed) continue;
+                    if (_index > _containers.Count - 1)
+                    {
+                        _index = 0;
+                    }
+
+                    if (_containers[_index].IsUsed)
+                    {
+                        continue;
+                    }
 
                     // Object container with unused objects
                     container = _containers[_index];
@@ -87,7 +96,7 @@ namespace Utility.Manager.Object
                 }
 
                 // If all object is used, create new object container
-                if (container == null)
+                if (container is null)
                 {
                     container = CreateContainer();
                 }
@@ -109,6 +118,7 @@ namespace Utility.Manager.Object
             if (_pool.TryGetValue(key, out var container))
             {
                 container.Release();
+                _pool.Remove(key);
                 return;
             }
 

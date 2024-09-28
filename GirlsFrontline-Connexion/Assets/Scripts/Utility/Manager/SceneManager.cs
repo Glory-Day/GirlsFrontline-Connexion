@@ -6,15 +6,16 @@ using GloryDay.Log;
 using GloryDay.Threading;
 using GloryDay.Utility;
 using UnityEngine;
-using Utility.Manager.UI;
 using SceneManagement = UnityEngine.SceneManagement;
 
 namespace Utility.Manager
 {
     public class SceneManager : Singleton<SceneManager>
     {
-        private readonly List<string> _sceneNames;
+        private readonly List<string> _sceneNames = new List<string>();
 
+        private int _currentSceneIndex;
+        
         /// <summary>
         /// To check the status of asynchronous scene load operations.
         /// </summary>
@@ -24,74 +25,56 @@ namespace Utility.Manager
         {
             LogManager.LogProgress();
             
-            _sceneNames = new List<string>();
-            
-            SetSceneNames();
-        }
-
-        /// <summary>
-        /// Set the names of the built scenes.
-        /// </summary>
-        private void SetSceneNames()
-        {
-            LogManager.LogProgress();
-            
+            // Initialize the names of the built scenes.
             for (var i = 0; i < SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
             {
                 var scenePath = SceneManagement.SceneUtility.GetScenePathByBuildIndex(i);
                 _sceneNames.Add(Path.GetFileNameWithoutExtension(scenePath));
             }
+
+            _currentSceneIndex = 0;
         }
 
-        private IEnumerator LoadScene(string sceneName, TransitionMode mode)
+        private IEnumerator LoadingScene(string sceneName)
         {
             LogManager.LogProgress();
             LogManager.LogMessage($"{sceneName} is loading...");
-            
-            var transition = UIManager.GetTransitionByMode(mode);
-            
-            transition?.Open();
-            
-            if (transition != null)
-            {
-                while (transition.IsOpening)
-                {
-                    yield return null;
-                }
-            }
 
-            UIManager.OnEnableLoadingMessageScreen();
+            IsSceneLoaded = false;
             
             _asyncOperation = SceneManagement.SceneManager.LoadSceneAsync(sceneName);
-            while (_asyncOperation.isDone == false)
+            while (_asyncOperation?.isDone == false)
             {
                 yield return null;
             }
             
-            UIManager.OnDisableLoadingMessageScreen();
-            
-            transition?.Close();
+            IsSceneLoaded = true;
             
             LogManager.LogSuccess($"<b>{sceneName}</b> is loaded");
         }
 
-        private void LoadSceneByIndex(int index, TransitionMode mode)
+        private void LoadSceneByIndex(int index)
         {
             LogManager.LogProgress();
             
             try
             {
-                var sceneName  = _sceneNames[index];
-                var backgroundMusicName = DataManager.SceneData[index].BackgroundMusic;
-                if (SoundManager.IsBackgroundMusicPlaying(backgroundMusicName))
+                _currentSceneIndex = index;
+                
+                var sceneName  = _sceneNames[_currentSceneIndex];
+                var audioSourceName = DataManager.AudioData.Background[_currentSceneIndex];
+                if (SoundManager.IsBackgroundAudioSourcePlaying(audioSourceName))
                 {
-                    StaticCoroutine.StartCoroutine(LoadScene(sceneName, mode));
+                    StaticCoroutineHandler.StartCoroutine(LoadingScene(sceneName));
                 }
                 else
                 {
                     SoundManager.OnStopBackgroundMusic();
-                    StaticCoroutine.StartCoroutine(LoadScene(sceneName, mode));
-                    SoundManager.OnPlayBackgroundMusic(backgroundMusicName);
+                    
+                    StaticCoroutineHandler.StartCoroutine(LoadingScene(sceneName));
+                    
+                    var clip = ResourceManager.AudioClipResource.Background[audioSourceName];
+                    SoundManager.OnPlayBackgroundAudioSource(clip);
                 }
             }
             catch (IndexOutOfRangeException exception)
@@ -106,9 +89,15 @@ namespace Utility.Manager
         /// Load the scene asynchronously by index.
         /// </summary>
         /// <param name="index"> Number of scene index. </param>
-        /// <param name="mode"> Mode of how to transition the scene. </param>
-        public static void OnLoadSceneByIndex(int index, TransitionMode mode) => 
-            Instance.LoadSceneByIndex(index, mode);
+        public static void OnLoadSceneByIndex(int index) => Instance.LoadSceneByIndex(index);
+
+        #endregion
+
+        #region STATIC PROPERTIES API
+
+        public static bool IsSceneLoaded { get; private set; }
+
+        public static int CurrentSceneIndex => Instance._currentSceneIndex;
 
         #endregion
     }

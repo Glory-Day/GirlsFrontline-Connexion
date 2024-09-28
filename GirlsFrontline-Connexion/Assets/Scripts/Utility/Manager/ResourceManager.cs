@@ -7,28 +7,21 @@ namespace Utility.Manager
 {
     public class ResourceManager : Singleton<ResourceManager>
     {
-        private readonly AudioClipResource  _audioClipResource;
-        private readonly GameObjectResource _gameObjectResource;
-        private readonly TextResource       _textResource;
+        private readonly IResourceLoader[] _resourceLoaders = {
+                                                                  new AudioClipResourceLoader(),
+                                                                  new GameObjectResourceLoader(),
+                                                                  new TextResourceLoader(),
+                                                                  new UIResourceLoader()
+                                                              };
         
-        private readonly IResourceLoader[] _resourceLoaders;
-        
+        private readonly AudioClipResource _audioClipResource = new AudioClipResource();
+        private readonly GameObjectResource _gameObjectResource = new GameObjectResource();
+        private readonly TextResource _textResource = new TextResource();
+        private readonly UIResource _uiResource = new UIResource();
+
         private ResourceManager()
         {
             LogManager.LogProgress();
-
-            // Initialize resources.
-            _audioClipResource = new AudioClipResource();
-            _gameObjectResource = new GameObjectResource();
-            _textResource = new TextResource();
-            
-            // Initialize resource loaders.
-            _resourceLoaders = new IResourceLoader[]
-                               {
-                                   new AudioClipResourceLoader(),
-                                   new GameObjectResourceLoader(),
-                                   new TextResourceLoader()
-                               };
         }
         
         private void LoadAllResources()
@@ -78,7 +71,7 @@ namespace Utility.Manager
         #endregion
         
         #region STATIC PROPERTIES API
-
+        
         /// <summary>
         /// Check all resources is loaded done.
         /// </summary>
@@ -113,7 +106,9 @@ namespace Utility.Manager
         /// Resource related to text data
         /// </summary>
         public static TextResource TextResource => Instance._textResource;
-        
+
+        public static UIResource UIResource => Instance._uiResource;
+
         #endregion
     }
 }

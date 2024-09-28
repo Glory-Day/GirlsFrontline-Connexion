@@ -5,7 +5,6 @@
         public Container(T instance)
         {
             Instance = instance;
-            IsUsed = true;
         }
         
         /// <summary>

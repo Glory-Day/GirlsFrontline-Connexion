@@ -1,8 +1,15 @@
 ﻿{
+  "item": {
+    "healthPointItem" : "Health Point Item",
+    "damagePointItem" : "Damage Point Item",
+    "defensePointItem" : "Defensive Point Item",
+    "speedPointItem" : "Speed Point Item"
+  },
   "ui": {
     "sceneTransitionScreen": "Sliding Transition Canvas",
     "pauseScreen": "Pause Canvas",
     "optionScreen": "Option Canvas",
-    "loadingMessageScreen" : "Loading Message Canvas"
+    "loadingMessageScreen" : "Loading Message Canvas",
+    "skillTimerScreen": "Skill Timer Canvas"
   }
 }

@@ -1,0 +1,81 @@
+﻿[
+  {
+    "default": [
+      {
+        "waves": [
+          [
+            {
+              "characterName": "",
+              "destination": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "characterName": "",
+              "destination": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ],
+          [
+            {
+              "characterName": "",
+              "destination": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "characterName": "",
+              "destination": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "characterName": "",
+              "destination": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        ]
+      },
+      {
+        "waves": [
+
+        ]
+      }
+    ],
+    "boss": {
+      "waves": [
+        [
+          {
+            "characterName": "",
+            "destination": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "characterName": "",
+            "destination": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      ]
+    }
+  }
+]

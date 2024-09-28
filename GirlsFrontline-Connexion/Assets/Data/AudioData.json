@@ -1,0 +1,45 @@
+{
+  "background": [
+    null,
+    "main_background",
+    "main_background",
+    "chapter_01_background",
+    "chapter_02_background",
+    "chapter_03_background",
+    "chapter_04_background",
+    "chapter_05_background",
+    "chapter_failed_background",
+    "chapter_victory_background"
+  ],
+  "effect": [
+    "hover_button",
+    "click_button",
+    "open_pop_up",
+    "open_dialog",
+    "open_gate",
+    "close_gate",
+    "select_chapter",
+    "display_text",
+    "display_rank",
+    "fire_01",
+    "fire_02",
+    "launch_grenade",
+    "explosion",
+    "charge_laser",
+    "launch_laser",
+    "buff",
+    "shield",
+    "get_item",
+    "player_character_fall_down",
+    "player_character_hit",
+    "enemy_character_hit"
+  ],
+  "voice": [
+    "dead",
+    "start_stage",
+    "skill_01",
+    "skill_02",
+    "skill_03",
+    "victory"
+  ]
+}

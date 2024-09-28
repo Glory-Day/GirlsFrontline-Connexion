@@ -1,9 +1,10 @@
-﻿using GloryDay.UI.Controller.Toggle;
+﻿using GloryDay.Log;
+using GloryDay.UI.Controller.Toggle;
 using UnityEngine;
 
 namespace UI.Controller.Toggle
 {
-    public class OptionMenuToggle : ToggleBase
+    public class OptionMenuToggle : UIToggleBase
     {
         #region SERIALIZABLE FIELD API
         
@@ -12,13 +13,25 @@ namespace UI.Controller.Toggle
 
         #endregion
 
+        protected override void Awake()
+        {
+            LogManager.LogProgress();
+            
+            base.Awake();
+            
+            SetHoverSound(0);
+            SetClickSound(1);
+        }
+
         protected void Start()
         {
             screen.SetActive(IsOn);
         }
 
-        protected override void ChangeValue(bool value)
+        protected override void ValueChanged(bool value)
         {
+            base.ValueChanged(value);
+            
             screen.SetActive(IsOn);
         }
     }

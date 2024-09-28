@@ -7,26 +7,23 @@ namespace UI.Controller.Slider
     public class VoiceAudioMixerSlider : SliderBase
     {
         // Start is called before the first frame update
-        protected override void Start()
+        protected override void Awake()
         {
             LogManager.LogProgress();
             
-            base.Start();
+            base.Awake();
             
-            Slider.value = DataManager.UserData.Option.Volume.Voice;
+            var volume = DataManager.UserData.Sound[2].Volume;
+            SoundManager.SetVoiceAudioVolume(volume);
+            Slider.value = volume;
         }
 
         protected override void ValueChanged(float value)
         {
-            DataManager.UserData.Option.Volume.Voice = value;
-            DataManager.OnSaveUserData();
-            
-            if (SoundManager.IsVoiceAudioMute)
-            {
-                return;
-            }
-            
             SoundManager.SetVoiceAudioVolume(value);
+            
+            DataManager.UserData.Sound[2].Volume = value;
+            DataManager.OnSaveUserData();
         }
     }
 }

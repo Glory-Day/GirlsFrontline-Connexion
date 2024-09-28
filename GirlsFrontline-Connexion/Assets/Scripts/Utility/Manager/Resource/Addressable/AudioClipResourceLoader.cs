@@ -18,13 +18,11 @@ namespace Utility.Manager.Resource.Addressable
             LogManager.LogProgress();
             
             _backgroundAudioClipResourceHandle = Addressables.LoadAssetsAsync(
-                AddressableGroup.AudioClip.Background, (Action<AudioClip>)LoadBackgroundAudioClipResources);
-            
-            //TODO: This code is not working yet.
-            // _effectAudioClipResourceHandle = Addressables.LoadAssetsAsync(AddressableLabel.AudioClip.Effect,
-            //     (Action<UnityEngine.AudioClip>)LoadEffectAudioClipResources);
-            // _voiceAudioClipResourceHandle = Addressables.LoadAssetsAsync(AddressableLabel.AudioClip.Voice,
-            //     (Action<UnityEngine.AudioClip>)LoadVoiceAudioClipResources);
+                AddressableLabelGroup.AudioClip.Background, (Action<AudioClip>)LoadBackgroundAudioClipResources);
+            _effectAudioClipResourceHandle = Addressables.LoadAssetsAsync(
+                AddressableLabelGroup.AudioClip.Effect, (Action<AudioClip>)LoadEffectAudioClipResources);
+            _voiceAudioClipResourceHandle = Addressables.LoadAssetsAsync(
+                AddressableLabelGroup.AudioClip.Voice, (Action<AudioClip>)LoadVoiceAudioClipResources);
         }
 
         public void Unload()
@@ -47,7 +45,6 @@ namespace Utility.Manager.Resource.Addressable
             LogManager.LogSuccess($"<b>{resource.name}</b> is loaded");
         }
         
-        //TODO: This code is not working yet.
         /// <summary>
         /// Load effect audio clip assets using addressables
         /// </summary>
@@ -59,7 +56,6 @@ namespace Utility.Manager.Resource.Addressable
             LogManager.LogSuccess($"<b>{resource.name}</b> is loaded");
         }
         
-        //TODO: This code is not working yet.
         /// <summary>
         /// Load voice audio clip assets using addressables
         /// </summary>
@@ -101,12 +97,9 @@ namespace Utility.Manager.Resource.Addressable
             LogManager.LogSuccess("<b>All Voice Audio Clips</b> are unloaded");
         }
         
-        public bool IsLoadedDone => IsBackgroundAudioClipResourcesLoadedDone;
-
-        //TODO: This code is not working yet.
-        // public bool IsDone => IsBackgroundAudioClipsLoadedDone &&
-        //                       IsEffectAudioClipsLoadedDone &&
-        //                       IsVoiceAudioClipsLoadedDone;
+        public bool IsLoadedDone => IsBackgroundAudioClipResourcesLoadedDone &&
+                                    IsEffectAudioClipResourcesLoadedDone &&
+                                    IsVoiceAudioClipResourcesLoadedDone;
         
         /// <summary>
         /// Check background audio clip assets is loaded

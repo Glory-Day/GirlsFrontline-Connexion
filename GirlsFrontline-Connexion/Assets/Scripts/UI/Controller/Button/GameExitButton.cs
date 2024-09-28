@@ -1,28 +1,28 @@
 ﻿using GloryDay.Log;
 using Utility.Manager;
-using GloryDay.UI.Controller.Button;
 
 namespace UI.Controller.Button
 {
-    public class GameExitButton : ButtonBase
+    public class GameExitButton : UIButtonBase
     {
-        // Start is called before the first frame update
+        // Awake is called when the script instance is being loaded.
         protected override void Awake()
         {
             LogManager.LogProgress();
             
             base.Awake();
+            
+            SetHoverSound(0);
+            SetClickSound(1);
         }
         
-        #region BUTTON EVENT API
-
         protected override void Click()
         {
             LogManager.LogMessage("<b>Exit Button</b> is clicked");
             
+            base.Click();
+            
             GameManager.OnApplicationQuit();
         }
-
-        #endregion
     }
 }
