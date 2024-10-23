@@ -1,5 +1,5 @@
-﻿using GloryDay.Log;
-using GloryDay.Utility;
+﻿using GloryDay.Debug.Log;
+using GloryDay.Debug;
 using Object.Character;
 using Object.Weapon;
 using UnityEngine;
@@ -31,7 +31,6 @@ namespace Object.Map
         private PlayerCharacter _playerCharacterCache;
         
         private float _time;
-        private float _deltaTime;
         private float _damage;
 
         private AudioClip _explosionSound;
@@ -56,11 +55,9 @@ namespace Object.Map
 
             var key = DataManager.AudioData.Effect[12];
             _explosionSound = ResourceManager.AudioClipResource.Effect[key];
-            
-            _deltaTime = Time.deltaTime;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if (_playerCharacterCache is null)
             {
@@ -77,13 +74,13 @@ namespace Object.Map
                 _map.PlayerCharacter = this;
             }
             
-            _time += _deltaTime;
-            if (_time <= 1.5f)
+            _time += Time.deltaTime;
+            if (_time <= 0.2f)
             {
                 return;
             }
             
-            _time %= 1.5f;
+            _time %= 0.2f;
             
             if (_criticalState is null == false && _criticalState.IsDisplaying)
             {

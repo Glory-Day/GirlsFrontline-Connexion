@@ -1,5 +1,5 @@
-﻿using GloryDay.Log;
-using GloryDay.Utility;
+﻿using GloryDay;
+using GloryDay.Debug.Log;
 using Utility.Manager.Resource;
 using Utility.Manager.Resource.Addressable;
 

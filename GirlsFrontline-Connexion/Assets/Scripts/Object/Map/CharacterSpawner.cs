@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using Object.Character;
 using UI;
 using UnityEngine;

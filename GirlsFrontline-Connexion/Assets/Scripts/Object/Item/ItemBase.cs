@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using GloryDay.Math;
-using GloryDay.Utility;
+using GloryDay.Debug;
 using Object.Character;
 using UnityEngine;
 using Utility.Manager;

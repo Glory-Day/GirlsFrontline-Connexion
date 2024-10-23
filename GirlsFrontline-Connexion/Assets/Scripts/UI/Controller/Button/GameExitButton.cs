@@ -1,4 +1,4 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
 using Utility.Manager;
 
 namespace UI.Controller.Button

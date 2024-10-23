@@ -1,5 +1,5 @@
-﻿using GloryDay.Log;
-using GloryDay.Utility;
+﻿using GloryDay.Debug.Log;
+using GloryDay.Debug;
 using UnityEngine;
 
 namespace Object.Character

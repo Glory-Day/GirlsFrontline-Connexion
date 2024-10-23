@@ -1,4 +1,4 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
 using UI.Utility.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;

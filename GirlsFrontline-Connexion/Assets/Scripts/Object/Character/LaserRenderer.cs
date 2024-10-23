@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using UnityEngine;
 
 namespace Object.Character

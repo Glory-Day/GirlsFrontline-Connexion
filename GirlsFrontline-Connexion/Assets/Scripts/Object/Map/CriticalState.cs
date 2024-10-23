@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using GloryDay.Log;
-using GloryDay.Threading;
+using GloryDay;
+using GloryDay.Debug.Log;
 using UnityEngine;
 
 namespace Object.Map
@@ -16,7 +16,7 @@ namespace Object.Map
             if (IsDisplaying == false)
             {
                 Coroutine = FadeIn();
-                StaticCoroutineHandler.StartCoroutine(Coroutine);
+                StaticCoroutine.Start(Coroutine);
             }
 
             Count++;
@@ -35,12 +35,12 @@ namespace Object.Map
             Renderer.color = new Color(1f, 1f, 1f, 0f);
             
             Coroutine = FadeOut();
-            StaticCoroutineHandler.StartCoroutine(Coroutine);
+            StaticCoroutine.Start(Coroutine);
         }
 
         private IEnumerator FadeIn()
         {
-            for (var i = 0f; i <= 0.5f; i += FixedDeltaTime)
+            for (var i = 0f; i <= 0.5f; i += Time.fixedDeltaTime)
             {
                 var alpha = i * 2;
                 Renderer.color = new Color(1f, 1f, 1f, alpha);
@@ -48,13 +48,13 @@ namespace Object.Map
                 yield return null;
             }
             
-            StaticCoroutineHandler.StopCoroutine(Coroutine);
+            StaticCoroutine.Stop(Coroutine);
             Coroutine = null;
         }
         
         private IEnumerator FadeOut()
         {
-            for (var i = 0.5f; i >= 0f; i -= FixedDeltaTime)
+            for (var i = 0.5f; i >= 0f; i -= Time.fixedDeltaTime)
             {
                 var alpha = i * 2;
                 Renderer.color = new Color(1f, 1f, 1f, alpha);
@@ -62,7 +62,7 @@ namespace Object.Map
                 yield return null;
             }
             
-            StaticCoroutineHandler.StopCoroutine(Coroutine);
+            StaticCoroutine.Stop(Coroutine);
             Coroutine = null;
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using Object.Character;
 using UnityEngine;
 using Utility.Manager;

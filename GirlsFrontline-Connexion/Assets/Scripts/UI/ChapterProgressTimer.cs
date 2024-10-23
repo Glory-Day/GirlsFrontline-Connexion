@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using UnityEngine;
 using Utility;
 using Utility.Manager;
@@ -45,7 +45,6 @@ namespace UI
 
         private IEnumerator CountingDown()
         {
-            var deltaTime = Time.deltaTime;
             while (true)
             {
                 var time = TimeSpan.FromSeconds(_time);
@@ -64,7 +63,7 @@ namespace UI
                 
                 OnProgressTimeTextChanged.Invoke(Text);
 
-                _time += deltaTime;
+                _time += Time.deltaTime;
 
                 yield return _instruction;
             }

@@ -1,4 +1,5 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
+using UnityEngine;
 
 namespace Object.Character.Enemy
 {
@@ -69,7 +70,7 @@ namespace Object.Character.Enemy
         {
             base.Update();
             
-            _coolDownTime += DeltaTime;
+            _coolDownTime += Time.deltaTime;
         }
     }
 }

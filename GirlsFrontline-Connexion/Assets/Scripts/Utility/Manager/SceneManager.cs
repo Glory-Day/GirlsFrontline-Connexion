@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using GloryDay.Log;
-using GloryDay.Threading;
-using GloryDay.Utility;
+using GloryDay;
+using GloryDay.Debug.Log;
 using UnityEngine;
 using SceneManagement = UnityEngine.SceneManagement;
 
@@ -65,13 +64,13 @@ namespace Utility.Manager
                 var audioSourceName = DataManager.AudioData.Background[_currentSceneIndex];
                 if (SoundManager.IsBackgroundAudioSourcePlaying(audioSourceName))
                 {
-                    StaticCoroutineHandler.StartCoroutine(LoadingScene(sceneName));
+                    StaticCoroutine.Start(LoadingScene(sceneName));
                 }
                 else
                 {
                     SoundManager.OnStopBackgroundMusic();
                     
-                    StaticCoroutineHandler.StartCoroutine(LoadingScene(sceneName));
+                    StaticCoroutine.Start(LoadingScene(sceneName));
                     
                     var clip = ResourceManager.AudioClipResource.Background[audioSourceName];
                     SoundManager.OnPlayBackgroundAudioSource(clip);

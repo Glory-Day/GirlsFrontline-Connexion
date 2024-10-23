@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using GloryDay.Animations;
-using GloryDay.Log;
+using GloryDay.Animation;
+using GloryDay.Debug.Log;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.Manager;
@@ -93,8 +93,7 @@ namespace UI
             _animations[_index].Play(_animationNames[0]);
             _animations[_index + 1].Play(_animationNames[1]);
             
-            var deltaTime = Time.deltaTime;
-            for (var i = 0f; i < Duration; i += deltaTime)
+            for (var i = 0f; i < Duration; i += Time.deltaTime)
             {
                 var progress = i / Duration;
                 _processSliders[_index].value = progress;

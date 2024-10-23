@@ -1,5 +1,5 @@
 ﻿using System;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
 using Spine;
 using Utility.Manager;

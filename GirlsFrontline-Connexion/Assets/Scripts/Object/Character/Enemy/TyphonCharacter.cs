@@ -1,4 +1,4 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
 using Object.Map;
 using UnityEngine;
 using Utility.Manager;
@@ -17,7 +17,7 @@ namespace Object.Character.Enemy
         
         private const int TileLayerMask = 1 << 13;
         
-        private const float MaximumCoolDownTime = 30f;
+        private const float MaximumCoolDownTime = 10f;
         private const float MaximumDistance = 100f;
 
         #endregion

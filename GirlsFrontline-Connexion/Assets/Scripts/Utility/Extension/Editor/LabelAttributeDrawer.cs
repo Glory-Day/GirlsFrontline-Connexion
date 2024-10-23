@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
 
 using System.Collections.Generic;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using UnityEditor;
 using UnityEngine;
 

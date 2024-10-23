@@ -1,5 +1,5 @@
 ﻿using System;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using GloryDay.UI.Controller.Button;
 
 namespace UI.Controller.Button

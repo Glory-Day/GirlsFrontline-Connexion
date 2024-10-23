@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using Object.Map;
 using UnityEngine;
 using Utility.Data;

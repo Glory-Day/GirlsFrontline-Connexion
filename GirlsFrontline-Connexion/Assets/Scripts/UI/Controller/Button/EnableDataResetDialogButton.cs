@@ -1,4 +1,4 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
 using GloryDay.UI.Controller.Button;
 using UnityEngine;
 using UnityEngine.Serialization;

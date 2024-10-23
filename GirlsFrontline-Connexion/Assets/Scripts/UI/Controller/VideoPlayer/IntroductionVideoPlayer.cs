@@ -1,5 +1,5 @@
 ﻿using Controller.VideoPlayer;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using UnityEngine.Video;
 using Utility.Manager;
 

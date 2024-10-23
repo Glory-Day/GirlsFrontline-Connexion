@@ -7,7 +7,6 @@ namespace Object.Map
     public abstract class TileState : IDisplayable
     {
         protected readonly SpriteRenderer Renderer;
-        protected readonly float FixedDeltaTime;
         
         protected IEnumerator Coroutine;
         
@@ -19,8 +18,7 @@ namespace Object.Map
             Renderer.color = new Color(1f, 1f, 1f, 0f);
 
             Coroutine = null;
-
-            FixedDeltaTime = Time.fixedDeltaTime;
+            
             Count = 0;
         }
         

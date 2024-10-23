@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 
 namespace Utility.Manager.Object
 {

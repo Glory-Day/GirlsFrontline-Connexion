@@ -1,5 +1,5 @@
-﻿using GloryDay.Log;
-using GloryDay.Utility;
+﻿using GloryDay;
+using GloryDay.Debug.Log;
 using UnityEngine;
 
 namespace Utility.Manager

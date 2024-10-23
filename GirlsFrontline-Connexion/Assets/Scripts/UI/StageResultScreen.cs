@@ -1,5 +1,5 @@
-﻿using GloryDay.Animations;
-using GloryDay.Log;
+﻿using GloryDay.Animation;
+using GloryDay.Debug.Log;
 using GloryDay.UI;
 using UnityEngine;
 using Utility.Manager;

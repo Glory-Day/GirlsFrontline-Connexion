@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using Object.Character;
 using Object.Item;
 using Object.Weapon;

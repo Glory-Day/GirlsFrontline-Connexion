@@ -1,4 +1,5 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
+using UnityEngine;
 
 namespace Object.Character.Enemy
 {
@@ -12,7 +13,7 @@ namespace Object.Character.Enemy
         
         #region CONSTANT FIELD API
 
-        private const float MaximumCoolDownTime = 60f;
+        private const float MaximumCoolDownTime = 8f;
 
         #endregion
         
@@ -59,7 +60,7 @@ namespace Object.Character.Enemy
         {
             base.Update();
             
-            _coolDownTime += DeltaTime;
+            _coolDownTime += Time.deltaTime;
         }
     }
 }

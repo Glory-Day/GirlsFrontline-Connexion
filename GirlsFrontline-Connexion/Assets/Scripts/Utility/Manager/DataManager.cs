@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GloryDay.Data.File.Stream;
-using GloryDay.Log;
-using GloryDay.Utility;
+using GloryDay;
+using GloryDay.Debug.Log;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Utility.Manager.Data;

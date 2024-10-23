@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
-using GloryDay.Animations;
-using GloryDay.Log;
+using GloryDay.Animation;
+using GloryDay.Debug.Log;
 using TMPro;
 using UI.Utility.Input;
 using UnityEngine;

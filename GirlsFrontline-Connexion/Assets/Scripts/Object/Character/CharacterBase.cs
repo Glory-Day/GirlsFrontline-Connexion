@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
-using GloryDay.Utility;
+using GloryDay.Debug;
 using Object.Map;
 using UnityEngine;
 using Utility;
@@ -58,9 +58,6 @@ namespace Object.Character
         protected Vector3? Destination;
         
         protected AudioClip HitSound;
-        
-        protected float DeltaTime;
-        protected float FixedDeltaTime;
 
         private readonly WaitUntil _instruction = new WaitUntil(() => GameManager.IsApplicationPaused == false);
 
@@ -100,9 +97,6 @@ namespace Object.Character
             child = sibling.GetChild(0);
             Extractor = sibling.GetComponent<PlaneMeshVertexExtractor>();
             TileMap = child.GetComponent<TileMap>();
-            
-            DeltaTime = Time.deltaTime;
-            FixedDeltaTime = Time.fixedDeltaTime;
             
             InstanceID = GetInstanceID();
             InstanceName = characterData.CharacterName;
@@ -190,22 +184,15 @@ namespace Object.Character
         protected IEnumerator FadeOut()
         {
             // Fade out the background image of the health bar and the spine skeleton image.
-            for (var i = 5f; i >= 0f; i -= DeltaTime)
+            for (var i = 1f; i >= 0f; i -= Time.deltaTime)
             {
-                var alpha = i / 5f;
-                HealthPointBar.BackgroundImageColor = new Color(1f, 1f, 1f, alpha);
-                SkeletonAnimationHandler.Skeleton.A = alpha;
+                HealthPointBar.BackgroundImageColor = new Color(1f, 1f, 1f, i);
+                SkeletonAnimationHandler.Skeleton.A = i;
                 
                 yield return null;
             }
             
             SkeletonAnimationHandler.ResetPose();
-
-            // Wait for the pose to reset.
-            for (var i = 0f; i < 1f; i += DeltaTime)
-            {
-                yield return null;
-            }
             
             OnReleaseCharacter(this);
         }
@@ -227,7 +214,7 @@ namespace Object.Character
             }
             
             var position = Rigidbody.position;
-            for (var deltaTime = 0f; deltaTime <= time; deltaTime += FixedDeltaTime)
+            for (var deltaTime = 0f; deltaTime <= time; deltaTime += Time.fixedDeltaTime)
             {
                 var delta = deltaTime / time;
                 Rigidbody.MovePosition(Vector3.Lerp(position, Destination.Value, delta));

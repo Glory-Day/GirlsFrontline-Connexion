@@ -1,4 +1,4 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
 using Object.Character.Enemy;
 using UnityEngine;
 using Utility.Manager;

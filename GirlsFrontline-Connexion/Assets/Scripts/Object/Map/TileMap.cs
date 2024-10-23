@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GloryDay.Log;
+using GloryDay.Debug.Log;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -65,7 +65,7 @@ namespace Object.Map
 
         public Tile[] GetRow(int index)
         {
-            var y = index / MaximumRowLength;
+            var y = index % MaximumColumnLength;
 
             var tiles = new Tile[MaximumRowLength];
             for (var i = 0; i < MaximumRowLength; i++)

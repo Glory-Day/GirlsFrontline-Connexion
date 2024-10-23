@@ -1,4 +1,4 @@
-﻿using GloryDay.Log;
+﻿using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
 using Spine;
 using UnityEngine;
@@ -191,7 +191,7 @@ namespace Object.Character.Enemy
 
             public override void Update()
             {
-                _coolDownTime += Component.DeltaTime;
+                _coolDownTime += Time.deltaTime;
                 if (_coolDownTime < MaximumCoolDownTime)
                 {
                     return;

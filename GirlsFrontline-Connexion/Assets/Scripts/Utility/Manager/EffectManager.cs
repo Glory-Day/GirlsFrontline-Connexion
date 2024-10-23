@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using GloryDay.Threading;
-using GloryDay.Utility;
+using GloryDay;
 using UnityEngine;
 
 namespace Utility.Manager
@@ -24,7 +23,7 @@ namespace Utility.Manager
 
         public static void OnFadeOut(SpriteRenderer spriteRenderer, float time = 1f)
         {
-            StaticCoroutineHandler.StartCoroutine(FadeOut(spriteRenderer, time));
+            StaticCoroutine.Start(FadeOut(spriteRenderer, time));
         }
 
         #endregion

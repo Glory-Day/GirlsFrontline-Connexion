@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
-using GloryDay.Log;
-using GloryDay.Utility;
+using GloryDay;
+using GloryDay.Debug.Log;
 using Utility.Extension;
 
 namespace Utility.Manager
