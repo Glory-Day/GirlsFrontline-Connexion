@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefab Assets
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefab Assets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: acfab8f45f2450745a9ae095c7f72781
+  m_SerializeEntries:
+  - m_GUID: 6445699771d51ca48af4f0a2b75a049e
+    m_Address: Pause Screen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui/pause_screen
+  - m_GUID: 02fc641591ed42c4b8d5a02c4136d81b
+    m_Address: Option Screen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui/option_screen
+  - m_GUID: 4f31e3a75bf00f449ba463e14838b439
+    m_Address: Bullet 01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: 91829af5156574c4eacf8e749844022c
+    m_Address: Bullet 02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: 2524d02e0e7022944bf18687fdad83cb
+    m_Address: Bullet 03
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: 4509af8fa2954184e806f25f911cf345
+    m_Address: Bullet 04
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: 16eb56db692a1e94787a432626d052b1
+    m_Address: Arrow 01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: f457518b58f372d4490811be64774364
+    m_Address: Arrow 02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/grenade
+  - m_GUID: 85e8b2a3f604ead4ba765197bbbadc31
+    m_Address: Bullet 05
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: 7c6234708497f1d4b960a79e3e7d07fc
+    m_Address: Grenade 01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/grenade
+  - m_GUID: fe4647dca4ac34149811cdece2a7d512
+    m_Address: Grenade 02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/grenade
+  - m_GUID: 562dc98bffd811549aab9694dcae5f36
+    m_Address: Missile 02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/grenade
+  - m_GUID: a0c74b3093209d745aa0d7acaa1e951a
+    m_Address: Splash Damage Area
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon
+  - m_GUID: 9365eed8d4d21b341a53ec2d32275552
+    m_Address: Aegis GA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: ba1a2cec15bafb442ac2a6181c0d74e9
+    m_Address: Archer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: f1105f6b7db28f44c92bf11614ea41cc
+    m_Address: Cerynitis
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 14f2b2637736b0a45a18fc61dc503017
+    m_Address: Cyclops
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 807a45c21ffbbef4fa7863a100e71a2b
+    m_Address: Doppelsoldner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 6ccef4bafcef5344194c80f3c67e7669
+    m_Address: Hydra
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: b6660e8a484808e4d9325118251ff6ba
+    m_Address: Isomer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 8b5258a8fbaaee742997964858e6916e
+    m_Address: M4A1 Mod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/player
+  - m_GUID: 13ed9ebf211fb83498696f7842f091ce
+    m_Address: Pathfinder
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: df03087bd867b7c4590d7cc30c793388
+    m_Address: Pyxis
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: b0042b6891c774f41a005dc3b2b4bc89
+    m_Address: Reccecentre
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 80448b0b7a3e5994689e0ae17b070a39
+    m_Address: Roarer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 4a3d8f407939f7d4bbd58748cf904c31
+    m_Address: Strelet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: e654f47e90cf38b40bca20ee6582f894
+    m_Address: Teslatrooper
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 2bb738128925c7e4ca10dda73a232ee7
+    m_Address: Thunder
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: da9eedb528e37d94a96afa20912b0c0e
+    m_Address: Typhon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 2a9455d7c4cdf184e9a7da1df4368fd0
+    m_Address: Uhlan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: 4f89c4bf13c15eb488952ac6480489ae
+    m_Address: Unknown
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: ee47705ec525d13419a0de997f18b558
+    m_Address: Zombie A
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: da3c8089a741bd54786c44a9efd04f14
+    m_Address: Zombie B
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/character/enemy
+  - m_GUID: bbb4fa96702fc2a45b096d12a61fa46f
+    m_Address: Bullet 06
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/bullet
+  - m_GUID: 7998f1ce607c09947bb594163187150f
+    m_Address: Missile 01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/weapon/grenade
+  - m_GUID: dc8d47b498cb3884996764031f6dbb2c
+    m_Address: Health Point Item
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/item
+  - m_GUID: f3c7b572eb91e0c4ab82739417f7e4ab
+    m_Address: Damage Point Item
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/item
+  - m_GUID: 5791f0d7af683334bad08a794dec02b3
+    m_Address: Defensive Point Item
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/item
+  - m_GUID: 711cfd7a5c0a7ed4cbed49a4857b38ec
+    m_Address: Speed Point Item
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - object/item
+  - m_GUID: 279f686b84c916d499d329b1a39588c3
+    m_Address: Transition Gate Screen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui/transition_screen
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 289173a06d78e0f4eba0d49bb69078f2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 174f6d5aaa28e154bb22ec5248ff5399, type: 2}
+    - {fileID: 11400000, guid: 75a7c6d278fca9649a3d1db4c74a2783, type: 2}

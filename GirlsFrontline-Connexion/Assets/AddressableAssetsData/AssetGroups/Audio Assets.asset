@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Audio Assets
+  m_EditorClassIdentifier: 
+  m_GroupName: Audio Assets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b5349c65bead95e4297f40181c1f2664
+  m_SerializeEntries:
+  - m_GUID: 78167191232d36c4a92dfd050bcfd595
+    m_Address: Main Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: 26dd4f7d74aec4e47b6dba7b5abae025
+    m_Address: Chapter 01 Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: d41d396e88bb3934ba255a9aa42238f4
+    m_Address: Chapter 02 Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: b2606fb7715e58a4fa24f9cb3217ecca
+    m_Address: Chapter 03 Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: 08526cbad2887ed4ba83ee6bdf494b37
+    m_Address: Chapter 04 Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: 418158649e61bcb47aae70d052923510
+    m_Address: Chapter 05 Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: 7b3340dd90c66fc44a72b63aa3f22617
+    m_Address: Hover Button
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: a3fe1fae8b19bb9489577480c530fc5b
+    m_Address: Click Button
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 7b471a85ccd58dd4cb17ea0103338172
+    m_Address: Open Pop Up
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 7a03598483347ea44a70092abbb8c891
+    m_Address: Open Dialog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 46e9b81a2836dbe499684cd58ffc2dd4
+    m_Address: Victory
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/voice
+  - m_GUID: 59cac8a39fc5e6c458ae87dfb28fc463
+    m_Address: Skill 02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/voice
+  - m_GUID: 0018b146ef90db04a9932b499142bc9d
+    m_Address: Chapter Start
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/voice
+  - m_GUID: 3dd14a5668ee7f248b5528fad6d7ae59
+    m_Address: Dead
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/voice
+  - m_GUID: 0de2821bfbe3461438e2c9e73bc4ed79
+    m_Address: Skill 01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/voice
+  - m_GUID: 78ca808dd2f65cd408ae0c7627254d07
+    m_Address: Skill 03
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/voice
+  - m_GUID: 836df05d505289349be0c02f59245dc9
+    m_Address: Display Rank
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 017ff55dd64bb1c4690174368ce16ea2
+    m_Address: Close Gate
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 8b26b6e6296503542b221d15c8920ca2
+    m_Address: Open Gate
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: a58e16e1f54ddb34080d8cc6cde2ea3a
+    m_Address: Select Chapter
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: d193ea3f258274242a2463139b0d91cc
+    m_Address: Display Text
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 88d67a57424f01c4dbc06bdfe87822bb
+    m_Address: Buff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 0571f9782d2d23b46bd29ed956900d43
+    m_Address: Charge Lazer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 936b4ac3974156a4a8b0beffebdcb7ac
+    m_Address: Enemy Character Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: aa8ba748f27543a4f94a4ad48803d374
+    m_Address: Explosion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 2dedaa528e818644d99745d4f03d3942
+    m_Address: Fall Down
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 40b24b1d8ab11494d8b7c7696a650d91
+    m_Address: Fire 01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 4ab59563d73e3c24c8d11bdaa98b133d
+    m_Address: Get Item
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 6d4e9752b9e18544086db67adf4e4399
+    m_Address: Launch Grenade
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: fd018674dcd1084429ad11abb8d50108
+    m_Address: Launch Lazer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: cb117ed51c7a0e24999f25596b437d94
+    m_Address: Player Character Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: 9163f44ac2191d14bb035343b96174da
+    m_Address: Shield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  - m_GUID: ccd9ab4ac42ac8145aad94b69fa114be
+    m_Address: Chapter Victory
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: 02ce5b32af696fe4ca529bcab07958bb
+    m_Address: Chapter Failed
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/background
+  - m_GUID: 5ec1dee9787b9e7469a52e170e0ab77d
+    m_Address: Fire 02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - audio/effect
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 289173a06d78e0f4eba0d49bb69078f2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c12cbe7875c6210488f5bdd7ed808085, type: 2}
+    - {fileID: 11400000, guid: 93c5e85a795a77149b423963c742b0f8, type: 2}

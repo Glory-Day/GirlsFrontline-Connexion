@@ -1,0 +1,23 @@
+{
+    "name": "GloryDay.CommandConsole",
+    "references": [
+        "GUID:388e9d4f91a55b14088e50845e7a78fc",
+        "GUID:3a5a5c7f38c56504fa0d53ff570c42a9",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WSA",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

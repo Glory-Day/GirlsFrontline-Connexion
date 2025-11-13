@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Zombie B)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 818671a0cba88aa44ad51ee124f330cb, type: 2}
+  - {fileID: 11400000, guid: 22cf286dd82798d48b995aa6ae769dd9, type: 2}
+  - {fileID: 11400000, guid: 72d56f33620d66844972a5b55e7b8b27, type: 2}
+  - {fileID: 11400000, guid: 17fc652fbc459af4b8e28feecb3d34b1, type: 2}
+  - {fileID: 11400000, guid: 2618a2d3d57c2c740a6375e182f99c77, type: 2}
+  - {fileID: 11400000, guid: 109192a43e62eab418dac05c83c9209f, type: 2}
+  events:
+  - {fileID: 11400000, guid: 807718b92d9fcf04c829d6f76915902f, type: 2}
+  - {fileID: 11400000, guid: 4e9533bcb670e06488b79a28d9398556, type: 2}

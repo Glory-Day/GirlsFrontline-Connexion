@@ -1,0 +1,8 @@
+{
+  "name": "com.gloryday.debugmodule",
+  "displayName": "Debug Module",
+  "version": "1.0.0",
+  "dependencies": {
+    "com.gloryday.unityeditormodule": "1.0.0"
+  }
+}

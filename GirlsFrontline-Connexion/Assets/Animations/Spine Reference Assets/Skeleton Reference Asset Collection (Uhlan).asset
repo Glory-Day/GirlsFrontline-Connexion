@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Uhlan)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: c2cbb8f0e567f564d9045f8c0f31cf28, type: 2}
+  - {fileID: 11400000, guid: b997cd76525cfc844a2a5b89c6b5889f, type: 2}
+  - {fileID: 11400000, guid: d9150bfaabf5caf4aa89bbf33ddfd1b9, type: 2}
+  - {fileID: 11400000, guid: eb6e5e2db55096445aeb3d35de65bfd6, type: 2}
+  - {fileID: 11400000, guid: 56a65cd29f1b8614ca01910992ce9dcb, type: 2}
+  events:
+  - {fileID: 11400000, guid: f8908dc4311fc9f40849afd16659cf2b, type: 2}
+  - {fileID: 11400000, guid: bd02346a47be0144c803b1e9e50d0117, type: 2}

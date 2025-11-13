@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c478b01ab3f44f688d4c953f6da55afb, type: 3}
+  m_Name: M4A1 Mod Data
+  m_EditorClassIdentifier: 
+  characterName: M4A1 Mod
+  healthPoint: 300
+  damagePoint: 100
+  defensePenetrationPoint: 0
+  defensePoint: 0
+  speedPoint: 40
+  shieldPoint: 0
+  shieldPointCount: 0
+  weaponData:
+  - name: Splash Damage Area
+    damagePoint: 100
+    defensePenetrationPoint: 100
+  bulletData:
+  - name: Bullet 01
+    damagePoint: 10
+    defensePenetrationPoint: 0
+    speedPoint: 80
+    isFlip: 1
+  grenadeData: []

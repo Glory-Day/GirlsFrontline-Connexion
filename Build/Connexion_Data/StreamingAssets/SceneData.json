@@ -1,0 +1,10 @@
+{
+  "scenes": [
+    {
+      "name": "Main Scene"
+    },
+    {
+      "name": "Selection Scene"
+    }
+  ]
+}

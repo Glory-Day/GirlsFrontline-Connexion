@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Pathfinder)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: a7cfaba698cdc334d93777a6d2970783, type: 2}
+  - {fileID: 11400000, guid: 9122a057f3279c340a85a723ea51725b, type: 2}
+  - {fileID: 11400000, guid: c516111c85e1b0b47929bde320feb669, type: 2}
+  - {fileID: 11400000, guid: 6b46e29e6afd0834a886361bad2763fc, type: 2}
+  - {fileID: 11400000, guid: 9c7c708c03b261b458e0d20f92a0ef95, type: 2}
+  events:
+  - {fileID: 11400000, guid: f7f059e661ebb6f4b9be8fb454f37588, type: 2}
+  - {fileID: 11400000, guid: 6f2e8080004b54040bc1aaa718a282c7, type: 2}

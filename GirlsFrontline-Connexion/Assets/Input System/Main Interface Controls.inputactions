@@ -1,0 +1,118 @@
+{
+    "name": "Main Interface Controls",
+    "maps": [
+        {
+            "name": "Information Display",
+            "id": "ad8b20ae-f0b3-4832-8e7f-83a040025a83",
+            "actions": [
+                {
+                    "name": "Display Skill Information",
+                    "type": "Button",
+                    "id": "58882f9f-3151-498c-918d-10e8df8a2788",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Display Character Stat Point Information",
+                    "type": "Button",
+                    "id": "5bb7c706-9425-4182-a815-552fbd18e73f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0b8d658f-1ecb-4d22-8fe9-293e6e7da3b9",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Window Platform",
+                    "action": "Display Skill Information",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e00dc5f7-5f30-4a13-8928-954256bccabd",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Window Platform",
+                    "action": "Display Character Stat Point Information",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Pause Button",
+            "id": "448e4283-80f2-4400-80a1-0a6fe6c5a75e",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "aca5d531-59a2-4150-8075-7231a6f5d3cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7eca0bdd-a779-4d91-abb7-96a0aba60979",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Window Platform",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Quit Button",
+            "id": "a65afd21-8549-47e4-b6b3-820e2a4d41b5",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "9005d84f-8771-497f-96cb-2bda50f58235",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0b4a2dab-863d-401f-a2de-254b3d638bec",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Window Platform",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Window Platform",
+            "bindingGroup": "Window Platform",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

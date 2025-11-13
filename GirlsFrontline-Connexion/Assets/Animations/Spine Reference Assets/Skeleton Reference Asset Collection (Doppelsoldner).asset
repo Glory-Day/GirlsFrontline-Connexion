@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Doppelsoldner)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: b540cfe93f34f284799770da077c9ffb, type: 2}
+  - {fileID: 11400000, guid: d6aca409576a2c143ab354f993b64d42, type: 2}
+  - {fileID: 11400000, guid: 4cbe4bca3a6a10046ba958448393eeb3, type: 2}
+  - {fileID: 11400000, guid: db277af3ddae5ce4181a8cc462743993, type: 2}
+  - {fileID: 11400000, guid: 37c1383075404d3489884ef274c840b6, type: 2}
+  events:
+  - {fileID: 11400000, guid: 2414141b1f27c474bb3893595e684551, type: 2}
+  - {fileID: 11400000, guid: ddfff7a9a8b85c149b53ec81eff5c05a, type: 2}

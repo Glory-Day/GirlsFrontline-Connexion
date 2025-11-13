@@ -1,0 +1,14 @@
+﻿{
+  "audioAsset": {
+    "labels": [
+      "background",
+      "effect",
+      "voice"
+    ]
+  },
+  "prefabAsset": {
+    "labels": [
+      "UI"
+    ]
+  }
+}

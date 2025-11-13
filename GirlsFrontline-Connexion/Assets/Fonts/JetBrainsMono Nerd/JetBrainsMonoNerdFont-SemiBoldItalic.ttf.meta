@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 6652fb55bfc2e35418dd4d263d989f1c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: JetBrainsMono Nerd Font
+  fontNames:
+  - JetBrainsMono Nerd Font
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3eaae353dc8b5e04494565c7ac915fcb, type: 3}
+  - {fileID: 12800000, guid: 7191f8b3b4e2024499d1ce252279b71d, type: 3}
+  - {fileID: 12800000, guid: 72bad817baf6c924ab45afd6d7132de9, type: 3}
+  - {fileID: 12800000, guid: 826f32c71c090604489c9bc1de67295f, type: 3}
+  - {fileID: 12800000, guid: d32f940ad89c6d346b1e5f6e201a0c1b, type: 3}
+  - {fileID: 12800000, guid: ee9ae09d0cf23724f83aab4ef6d98253, type: 3}
+  - {fileID: 12800000, guid: 13c0dbbda5b06df4c80d9c9d4249903f, type: 3}
+  - {fileID: 12800000, guid: 2949a88edefda724ea9f70e0cb45b5c2, type: 3}
+  - {fileID: 12800000, guid: c7bffffe7e52132429e22933436b75e4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

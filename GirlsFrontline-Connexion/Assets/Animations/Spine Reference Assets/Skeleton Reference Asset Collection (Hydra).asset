@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Hydra)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 0cf03a14d6412794fab2e877df04f3f6, type: 2}
+  - {fileID: 11400000, guid: 7d89b9f120643ee46a3971584e78380f, type: 2}
+  - {fileID: 11400000, guid: b75be729729140546be9c30da6779741, type: 2}
+  - {fileID: 11400000, guid: 7fe43122d03dba64ca91bbc240e81a03, type: 2}
+  - {fileID: 11400000, guid: 86353ba0de76baa4eb195829d8abed45, type: 2}
+  events:
+  - {fileID: 11400000, guid: 380edbbfa87026040ab7b597a46c8073, type: 2}
+  - {fileID: 11400000, guid: 50a4dc95b3cd8c64186fe18995ac2d2e, type: 2}

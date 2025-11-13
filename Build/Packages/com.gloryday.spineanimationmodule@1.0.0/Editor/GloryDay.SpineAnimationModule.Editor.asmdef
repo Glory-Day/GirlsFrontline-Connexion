@@ -1,0 +1,20 @@
+{
+    "name": "GloryDay.SpineAnimationModule.Editor",
+    "references": [
+        "GUID:e241905d48cf47d992592ad078ead960"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WSA",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

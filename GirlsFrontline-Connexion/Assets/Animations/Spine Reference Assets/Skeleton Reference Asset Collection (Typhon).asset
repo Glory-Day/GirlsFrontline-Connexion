@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Typhon)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 1617e392228ca374faf56bd2cc1bb872, type: 2}
+  - {fileID: 11400000, guid: 339e06d66b00c544aad58c4cb9592cd1, type: 2}
+  - {fileID: 11400000, guid: 4da442f587710f246a52c0117ca8c897, type: 2}
+  - {fileID: 11400000, guid: 1c56ded416e5dc44a8158d89fb1876c0, type: 2}
+  - {fileID: 11400000, guid: ab8b46fc091c415478dd3cda19de3d04, type: 2}
+  events:
+  - {fileID: 11400000, guid: d337a62a9880043418efc7d75de35380, type: 2}
+  - {fileID: 11400000, guid: 252aa0e10fe2e234b8101a5032b4a148, type: 2}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Teslatrooper)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 73f7ede40600eda409a8fc3d9b1061b4, type: 2}
+  - {fileID: 11400000, guid: 5a731917386d56d4586616eb0d3c3f0e, type: 2}
+  - {fileID: 11400000, guid: 20e21575031f97f4eb94f843b0528972, type: 2}
+  - {fileID: 11400000, guid: 68d3adb8dd0f13b4984952593664a263, type: 2}
+  - {fileID: 11400000, guid: 64a5a9b1a5e0f2644966f60453abf82d, type: 2}
+  - {fileID: 11400000, guid: 8ae6ed2fc0c223d489a0bcc237d8b745, type: 2}
+  - {fileID: 11400000, guid: 27066765c2c9d0b4b99ec7ac7d8e9303, type: 2}
+  - {fileID: 11400000, guid: 3200d13fa55013142bf55e60482bd172, type: 2}
+  events:
+  - {fileID: 11400000, guid: 91401651284538841aabde21b4fd60f9, type: 2}
+  - {fileID: 11400000, guid: 119a0da830c4fe84291b9b2847c089ba, type: 2}
+  - {fileID: 11400000, guid: 50398fc5a4785164687ab042346e8ca2, type: 2}

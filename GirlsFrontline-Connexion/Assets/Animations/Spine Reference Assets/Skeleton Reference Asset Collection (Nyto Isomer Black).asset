@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f34a72119da41bebe1dd0cc9d7924ff, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Nyto Isomer Black)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 46edb4c3464efe04288ea20f978fea0c, type: 2}
+  - {fileID: 11400000, guid: 2506d0e4d8cd6654db6933087490e27e, type: 2}
+  - {fileID: 11400000, guid: 441ef0110c9845343b0dd6d5dd71c9e8, type: 2}
+  - {fileID: 11400000, guid: fa2a63a2995b8ef45b4fb4a098dccaa4, type: 2}
+  - {fileID: 11400000, guid: e5a215b83ef231045b3804b8921de2ae, type: 2}
+  - {fileID: 11400000, guid: bca24a664564b10468ec1725b7a33813, type: 2}
+  - {fileID: 11400000, guid: 546843681f1650149a4cf5123a6863f7, type: 2}
+  - {fileID: 11400000, guid: ab1a78d0393a2a84f8724fdfd1900f61, type: 2}
+  - {fileID: 11400000, guid: 2b8ddcf385171704ab4e57f436cdccee, type: 2}
+  - {fileID: 11400000, guid: 976347d3ab8f2024c96c58ae8de3b3c2, type: 2}
+  - {fileID: 11400000, guid: c1528c3e95b53ce45976fffc8ed7aae9, type: 2}
+  - {fileID: 11400000, guid: 917d09b61011ccc41943c46cdce39d2e, type: 2}
+  events: []

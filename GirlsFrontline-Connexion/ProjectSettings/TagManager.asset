@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Melee
+  - Enemy
+  - Bullet
+  - Explosive
+  - Ground
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Post Processing
+  - 
+  - Weapon (Player Character)
+  - Weapon (Enemy Character)
+  - 
+  - Tile
+  - Ground
+  - Wall (Default)
+  - Wall (Player Character)
+  - Wall (Enemy Character)
+  - 
+  - Collider (Player Character)
+  - Collider (Enemy Character)
+  - Trigger (Player Character)
+  - Trigger (Enemy Character)
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Particle System
+    uniqueID: 3664413699
+    locked: 0
+  - name: Health Point Bar
+    uniqueID: 2909024699
+    locked: 0

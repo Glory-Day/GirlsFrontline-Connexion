@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Cerynitis)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: f75ad13656169a240acfa6001b9dfd7d, type: 2}
+  - {fileID: 11400000, guid: 5e343ed5d7542c34887d69e8689b5d45, type: 2}
+  - {fileID: 11400000, guid: 1a9438a7729036248a705dd83cf436b6, type: 2}
+  - {fileID: 11400000, guid: 0651be2fe146b0542be48c0d8609e780, type: 2}
+  - {fileID: 11400000, guid: 64c234006effa3440b0e5784228a54cc, type: 2}
+  - {fileID: 11400000, guid: 12e44076811f0f04a9a8fb82048db3a5, type: 2}
+  events:
+  - {fileID: 11400000, guid: 1b58f07de79695741a91ea20541cebcb, type: 2}
+  - {fileID: 11400000, guid: 47373687785f58a469e117f18bc4a40a, type: 2}

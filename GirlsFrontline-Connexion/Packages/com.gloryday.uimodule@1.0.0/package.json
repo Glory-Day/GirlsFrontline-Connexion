@@ -1,0 +1,10 @@
+{
+  "name": "com.gloryday.uimodule",
+  "displayName": "UI Module",
+  "version": "1.0.0",
+  "dependencies": {
+    "com.gloryday.debugmodule": "1.0.0",
+    "com.unity.textmeshpro": "2.1.6",
+    "com.unity.inputsystem": "1.0.2"
+  }
+}

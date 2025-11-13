@@ -1,0 +1,8 @@
+{
+  "name": "com.gloryday.datamodule",
+  "displayName": "Data Module",
+  "version": "1.0.0",
+  "dependencies": {
+    "com.gloryday.debugmodule": "1.0.0"
+  }
+}

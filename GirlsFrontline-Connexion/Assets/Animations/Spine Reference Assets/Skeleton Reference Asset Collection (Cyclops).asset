@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Cyclops)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 9deef654f4ef8324db11a0d3a072be9f, type: 2}
+  - {fileID: 11400000, guid: 1fcef8bc1ec39da478c76f8088956c30, type: 2}
+  - {fileID: 11400000, guid: c934ee32bc3255449a9b0d79741d78e5, type: 2}
+  - {fileID: 11400000, guid: 8a15a113791462c45bd2a3f0d589127a, type: 2}
+  - {fileID: 11400000, guid: f716542578038fa4ca039f0a9b93f889, type: 2}
+  - {fileID: 11400000, guid: 63dd654cb6dd56243908451f909d58e7, type: 2}
+  - {fileID: 11400000, guid: 7cd3c3ca9ce9b9c4d9bff07f5a1f3bf5, type: 2}
+  events:
+  - {fileID: 11400000, guid: 212099f7d29da76499823d4f2a6b6b7a, type: 2}
+  - {fileID: 11400000, guid: 48cb531cf396ccc4a9268cac7050686b, type: 2}

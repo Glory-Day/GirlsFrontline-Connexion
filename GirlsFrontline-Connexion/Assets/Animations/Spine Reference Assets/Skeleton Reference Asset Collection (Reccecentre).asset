@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Reccecentre)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 996d6048ed4d84c44a4075db5831a7a8, type: 2}
+  - {fileID: 11400000, guid: 8f97c8b1eeef4504c8662c54aafe6502, type: 2}
+  - {fileID: 11400000, guid: 0209c5eb66aef9444bd76f093b907f30, type: 2}
+  events:
+  - {fileID: 11400000, guid: 24c5439a04d4e5344904f1e7ac4b7e0f, type: 2}
+  - {fileID: 11400000, guid: fd3db07849d46e34b9fd755ce260bb6a, type: 2}

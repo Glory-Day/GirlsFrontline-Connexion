@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Strelet)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: fb6c044ee359de449b667a98338c4c51, type: 2}
+  - {fileID: 11400000, guid: 9286fddb04ad5ca45a2428da170db6fa, type: 2}
+  - {fileID: 11400000, guid: e65ea2df8707351479bbcbaa8e7d5415, type: 2}
+  - {fileID: 11400000, guid: a98ef10d8989e364d80d0167405491d3, type: 2}
+  - {fileID: 11400000, guid: b5a6c968830399547afbced0e50af165, type: 2}
+  - {fileID: 11400000, guid: 3b352d11d9449f14f88e220596cdae80, type: 2}
+  events:
+  - {fileID: 11400000, guid: 9a01e5ec3bd33504c8a6333635bfde17, type: 2}
+  - {fileID: 11400000, guid: 871a01fe3725f444aa9ad39b30521e1e, type: 2}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f34a72119da41bebe1dd0cc9d7924ff, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Nyto Isomer White)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 228b1bfa10ed1fe4b8b49438dc8903fa, type: 2}
+  - {fileID: 11400000, guid: f32fcbeef435f6942b475f97918d68b2, type: 2}
+  - {fileID: 11400000, guid: 14a08d69e8eeac941bb4f7eabdc21bc6, type: 2}
+  - {fileID: 11400000, guid: 7e725f2ee00436843b02cf6c519506c3, type: 2}
+  - {fileID: 11400000, guid: 5f0a754557c468642b4516926adbddab, type: 2}
+  - {fileID: 11400000, guid: 2a45b2f4a3757b14abba052e00c500aa, type: 2}
+  - {fileID: 11400000, guid: a2a4bef9b6fca214e92fe4c09843bced, type: 2}
+  events: []

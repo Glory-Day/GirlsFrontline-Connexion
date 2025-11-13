@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Unknown)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 04ec237bf4e54f140bee72aadcb972ca, type: 2}
+  - {fileID: 11400000, guid: 6cc6cdb65ea3a8448904ce6af6de4f98, type: 2}
+  - {fileID: 11400000, guid: e8da97b494aad52458c226d4b6855b22, type: 2}
+  - {fileID: 11400000, guid: a7c5d7e1b41f5af408f818f48eb46cc1, type: 2}
+  events:
+  - {fileID: 11400000, guid: 28d4b84063832cf408a9dc6a17e6211a, type: 2}
+  - {fileID: 11400000, guid: cfdcb7548ddfa674d9a4bb39a4b8a56a, type: 2}

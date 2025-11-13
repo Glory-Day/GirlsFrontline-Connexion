@@ -1,0 +1,24 @@
+{
+    "name": "UI Controls",
+    "maps": [
+        {
+            "name": "Pop Up Screen",
+            "id": "b1c14855-cb66-4092-8184-70204e056e81",
+            "actions": [],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Window Platform",
+            "bindingGroup": "Window Platform",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

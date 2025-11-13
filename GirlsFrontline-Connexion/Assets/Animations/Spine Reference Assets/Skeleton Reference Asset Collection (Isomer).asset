@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd620b90b2b4469acf59650a2d4fc8a, type: 3}
+  m_Name: Skeleton Reference Asset Collection (Isomer)
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 11400000, guid: 3cffbbc3634e7fa4794afbb046df2428, type: 2}
+  - {fileID: 11400000, guid: 169c899436bc7b340ab526748f88f119, type: 2}
+  - {fileID: 11400000, guid: 72cb37186897feb40b77791ffe6c2ee5, type: 2}
+  events:
+  - {fileID: 11400000, guid: 76747cf5659460146b8969d860137f82, type: 2}
