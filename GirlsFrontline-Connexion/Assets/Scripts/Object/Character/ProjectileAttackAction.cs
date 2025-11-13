@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using GloryDay.Debug.Log;
-using Object.Weapon;
+using Backend.Object.Weapon;
 using UnityEngine;
-using Utility.Manager;
-using Utility.Data;
+using Backend.Utility.Management;
+using Backend.Utility.Data;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class ProjectileAttackAction : AttackAction
     {
@@ -19,12 +19,12 @@ namespace Object.Character
         }
 
         #endregion
-        
+
         #region SERIALZABLE FIELD API
-        
+
         [SerializeField]
         private List<ProjectileGeneratorList> list = new List<ProjectileGeneratorList>();
-        
+
         #endregion
 
         private List<BulletData> _bulletDataList = new List<BulletData>();
@@ -33,10 +33,10 @@ namespace Object.Character
         private void OnDestroy()
         {
             LogManager.LogProgress();
-            
+
             _bulletDataList.Clear();
             _bulletDataList = null;
-            
+
             _grenadeDataList.Clear();
             _grenadeDataList = null;
         }
@@ -47,7 +47,7 @@ namespace Object.Character
             var parent = transform.parent;
             ObjectManager.OnCreate(original, parent, 10);
         }
-        
+
         /// <summary>
         /// Add bullet data for the character.
         /// Create 10 bullet objects in the object pool.
@@ -57,7 +57,7 @@ namespace Object.Character
         {
             var original = ResourceManager.GameObjectResource.Bullet[data.Name].gameObject;
             ObjectManager.OnCreate(original, transform.parent, 10);
-            
+
             _bulletDataList.Add(data);
         }
 
@@ -70,7 +70,7 @@ namespace Object.Character
         {
             var original = ResourceManager.GameObjectResource.Grenade[data.Name].gameObject;
             ObjectManager.OnCreate(original, transform.parent, 10);
-            
+
             _grenadeDataList.Add(data);
         }
 
@@ -82,15 +82,15 @@ namespace Object.Character
         public void Spawn(string data, int generatorIndex, int iterator)
         {
             LogManager.LogProgress();
-            
+
             var generator = list[generatorIndex].generators[iterator];
-            
+
             var original = ResourceManager.GameObjectResource.EnemyCharacter[data];
             var clone = ObjectManager.OnSpawn(original, generator.position, generator.rotation);
-            
+
             clone.gameObject.SetActive(true);
         }
-        
+
         /// <summary>
         /// Shoot a bullet.
         /// </summary>
@@ -101,21 +101,21 @@ namespace Object.Character
         public Bullet Prepare(int dataIndex, int generatorIndex, int iterator, Vector3? target = null)
         {
             LogManager.LogProgress();
-            
+
             var generator = list[generatorIndex].generators[iterator];
             var data = _bulletDataList[dataIndex];
             var damagePoint = data.DamagePoint + DefaultDamagePoint;
             var defensePenetrationPoint = data.DefensePenetrationPoint + DefaultDefensePenetrationPoint;
-            
+
             var original = ResourceManager.GameObjectResource.Bullet[data.Name];
             var clone = ObjectManager.OnSpawn<Bullet>(original.gameObject, generator.position, generator.rotation);
             clone.SetData(damagePoint, defensePenetrationPoint, data.SpeedPoint, data.IsFlip);
             clone.SetCalledCharacterInfo(Tag);
             clone.SetTarget(target);
-            
+
             return clone;
         }
-        
+
         /// <summary>
         /// Prepare a grenade that shoot to the destination.
         /// </summary>
@@ -126,13 +126,13 @@ namespace Object.Character
         public Grenade Prepare(int dataIndex, Vector3 destination, int generatorIndex, int iterator)
         {
             LogManager.LogProgress();
-            
+
             var generator = list[generatorIndex].generators[iterator];
 
             var data = _grenadeDataList[dataIndex];
             var damagePoint = data.DamagePoint + DefaultDamagePoint;
             var defensePenetrationPoint = data.DefensePenetrationPoint + DefaultDefensePenetrationPoint;
-            
+
             var original = ResourceManager.GameObjectResource.Grenade[data.Name];
             var clone = ObjectManager.OnSpawn<Grenade>(original.gameObject, generator.position, generator.rotation);
             clone.SetData(damagePoint, defensePenetrationPoint, data.SpeedPoint, data.Height);

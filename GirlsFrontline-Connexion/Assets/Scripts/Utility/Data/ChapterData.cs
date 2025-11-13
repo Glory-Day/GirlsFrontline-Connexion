@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility.Data
+namespace Backend.Utility.Data
 {
-    [CreateAssetMenu(fileName = "Chapter Data", 
+    [CreateAssetMenu(fileName = "Chapter Data",
                      menuName = "Scriptable Object/Data/Chapter Data")]
     public class ChapterData : ScriptableObject
     {
@@ -25,12 +25,12 @@ namespace Utility.Data
         [SerializeField] private string destinationIndex;
         [SerializeField] private int spawnedPositionIndex;
 
-        public string CharacterName 
-        { 
+        public string CharacterName
+        {
             get => characterName;
             set => characterName = value;
         }
-        
+
         public int? DestinationIndex
         {
             get
@@ -39,7 +39,7 @@ namespace Utility.Data
                 {
                     return null;
                 }
-                
+
                 return int.Parse(destinationIndex);
             }
             set => destinationIndex = value.ToString();
@@ -55,10 +55,10 @@ namespace Utility.Data
         [SerializeField] private List<SpawnData> spawnData = new List<SpawnData>();
 
         public float Delay => delay;
-        
+
         public List<SpawnData> SpawnData => spawnData;
     }
-        
+
     [Serializable]
     public class StageData
     {

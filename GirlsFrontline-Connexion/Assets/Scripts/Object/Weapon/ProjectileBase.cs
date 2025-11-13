@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Object.Weapon
+namespace Backend.Object.Weapon
 {
     public class ProjectileBase : WeaponBase
     {
@@ -10,7 +10,7 @@ namespace Object.Weapon
 
             SpeedPoint = speedPoint;
         }
-        
+
         /// <summary>
         /// Set after calculating the angle when moving in a curve.
         /// </summary>
@@ -18,10 +18,10 @@ namespace Object.Weapon
         protected static Quaternion Rotate(Vector3 direction)
         {
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            
+
             return Quaternion.Euler(0f, 0f, angle);
         }
-        
+
         /// <summary>
         /// The speed point for projectile movement.
         /// </summary>

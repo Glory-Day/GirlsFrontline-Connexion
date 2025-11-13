@@ -3,7 +3,7 @@ using GloryDay.Debug.Log;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class TileMap : MonoBehaviour
     {
@@ -13,13 +13,13 @@ namespace Object.Map
         private const int MaximumRowLength = 5;
 
         #endregion
-        
+
         private readonly Tile[,] _map = new Tile[MaximumColumnLength, MaximumRowLength];
 
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             // Initialize the tiles to a grid type map.
             for (var y = 0; y < MaximumColumnLength; y++)
             {
@@ -32,11 +32,11 @@ namespace Object.Map
                     _map[y, x] = tile;
                 }
             }
-            
+
             // Initialize a tile for distance comparison.
             PlayerCharacter = _map[0, 0];
         }
-        
+
         /// <param name="y"> Y-axis coordinate value. </param>
         /// <param name="x"> X-axis coordinate value. </param>
         /// <returns> Tile for given coordinate values. </returns>
@@ -53,7 +53,7 @@ namespace Object.Map
         public Tile[] GetColumn(int index)
         {
             var x = index % MaximumRowLength;
-            
+
             var tiles = new Tile[MaximumRowLength];
             for (var i = 0; i < MaximumRowLength; i++)
             {
@@ -75,7 +75,7 @@ namespace Object.Map
 
             return tiles;
         }
-        
+
         /// <returns> Tile in randomized position. </returns>
         public Tile GetRandom()
         {
@@ -84,7 +84,7 @@ namespace Object.Map
 
             return _map[y, x];
         }
-        
+
         /// <param name="index"> Index number of tile. </param>
         /// <returns> Random tile in row of given index. </returns>
         public Tile GetRandomInRow(int index)
@@ -101,14 +101,14 @@ namespace Object.Map
         {
             var y = Random.Range(0, MaximumColumnLength);
             var x = index % MaximumRowLength;
-            
+
             return _map[y, x];
         }
 
         public int ColumnLength => _map.GetLength(0);
 
         public int RowLength => _map.GetLength(1);
-        
+
         /// <summary>
         /// The tile the player character is standing on.
         /// </summary>

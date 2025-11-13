@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GloryDay.Debug.Log;
-using Object.Map;
+using Backend.Object.Map;
 using UnityEngine;
-using Utility.Data;
-using Utility.Manager;
-using Utility.State;
+using Backend.Utility.Data;
+using Backend.Utility.Management;
+using Backend.Utility.State;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class EnemyCharacter : CharacterBase
     {
@@ -20,36 +20,36 @@ namespace Object.Character
         #endregion
 
         #region COMPONENT FIELD API
-        
+
         protected ItemSpawner ItemSpawner;
-        
+
         #endregion
-        
+
         protected IState DieState;
         protected IState WaitState;
         protected List<IState> States;
         protected FiniteStateMachine FiniteStateMachine;
 
         private int _destinationIndex;
-        
+
         private PlayerCharacter _playerCharacterCache;
-        
+
         protected override void Awake()
         {
             LogManager.LogProgress();
-            
+
             base.Awake();
 
             // Initialize item spawner.
             ItemSpawner = GetComponent<ItemSpawner>();
-            
+
             // Initialize finite state machine and the list of states it needs.
             States = new List<IState>();
             FiniteStateMachine = new FiniteStateMachine();
 
             var key = DataManager.AudioData.Effect[20];
             HitSound = ResourceManager.AudioClipResource.Effect[key];
-            
+
             var layer = gameObject.layer;
             Physics.IgnoreLayerCollision(layer, WallForPlayerCharacterLayer);
             Physics.IgnoreLayerCollision(layer, WallForEnemyCharacterLayer);
@@ -59,17 +59,17 @@ namespace Object.Character
         protected override void OnEnable()
         {
             LogManager.LogProgress();
-            
+
             base.OnEnable();
-            
+
             // Initialize cache of player character.
             _playerCharacterCache = FindObjectOfType<PlayerCharacter>();
-            
+
             if (SpawnData is null || SpawnData.DestinationIndex.HasValue == false)
             {
                 return;
             }
-            
+
             _destinationIndex = SpawnData.DestinationIndex.Value;
             Destination = Extractor?.GetDestination(_destinationIndex);
         }
@@ -85,7 +85,7 @@ namespace Object.Character
             LogManager.LogProgress();
 
             _playerCharacterCache = null;
-            
+
             FiniteStateMachine.ShutDown();
         }
 
@@ -94,11 +94,11 @@ namespace Object.Character
             LogManager.LogProgress();
 
             base.OnDestroy();
-            
+
             ItemSpawner = null;
-            
+
             _playerCharacterCache = null;
-            
+
             DieState = null;
             WaitState = null;
             States = null;
@@ -115,10 +115,10 @@ namespace Object.Character
         protected void MoveToLeftDirection()
         {
             LogManager.LogProgress();
-            
+
             Rigidbody.velocity = AdjustDirectionToSlope(Vector3.left) * SpeedPoint;
         }
-        
+
         /// <summary>
         /// Move to the destination.
         /// </summary>
@@ -130,18 +130,18 @@ namespace Object.Character
             {
                 return;
             }
-            
+
             // Calculate the total time it takes to move.
             var distance = Vector3.Distance(Rigidbody.position, Destination.Value);
             var time = distance / SpeedPoint;
-            
+
             StartCoroutine(MovingToDestinationInTime(time));
         }
 
         protected override IEnumerator MovingToDestinationInTime(float time)
         {
             IsArrivedAtDestination = false;
-            
+
             yield return StartCoroutine(base.MovingToDestinationInTime(time));
 
             IsArrivedAtDestination = true;
@@ -153,7 +153,7 @@ namespace Object.Character
         protected void StopMoving()
         {
             LogManager.LogProgress();
-            
+
             Rigidbody.velocity = Vector3.zero;
         }
 
@@ -164,12 +164,12 @@ namespace Object.Character
         protected void SetRandomDestinationInRange(int range)
         {
             LogManager.LogProgress();
-            
+
             // Set destination.
             _destinationIndex = Extractor.GetRandomIndex(_destinationIndex, range);
             Destination = Extractor.GetDestination(_destinationIndex);
         }
-        
+
         /// <returns>
         /// Position of the player character.
         /// </returns>
@@ -177,27 +177,27 @@ namespace Object.Character
         {
             return _playerCharacterCache.Position;
         }
-        
+
         public override void TakeDamage(float damagePoint, float defensePenetratePoint, DamageType type)
         {
             LogManager.LogProgress();
-            
+
             base.TakeDamage(damagePoint, defensePenetratePoint, type);
-            
+
             if (IsAlive)
             {
                 return;
             }
-            
+
             StopAllCoroutines();
-            
+
             FiniteStateMachine.ChangeTo(DieState);
         }
 
         public void SetWaitState()
         {
             LogManager.LogProgress();
-            
+
             FiniteStateMachine.ChangeTo(WaitState);
         }
 
@@ -213,7 +213,7 @@ namespace Object.Character
         /// True if it arrives and false if it doesn't arrive.
         /// </returns>
         protected bool IsArrivedAtDestination { get; private set; }
-        
+
         public SpawnData SpawnData { get; set; }
 
         #region DELEGATE CALLBACK API

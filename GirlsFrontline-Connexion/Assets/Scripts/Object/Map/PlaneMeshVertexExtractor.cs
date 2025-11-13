@@ -3,30 +3,30 @@ using GloryDay.Debug.Log;
 using GloryDay.Debug;
 using UnityEngine;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class PlaneMeshVertexExtractor : MonoBehaviour
     {
         private Vector3[] _vertices;
-        
+
         private readonly Vector3[][] _destinations = new Vector3[21][];
         private readonly Vector3[] _corners = new Vector3[4];
 
         private readonly Vector3[] _spawns = new Vector3[21];
 
-        private readonly Direction[] _directions = new Direction[8]; 
+        private readonly Direction[] _directions = new Direction[8];
         private readonly List<Direction> _caches = new List<Direction>();
-        
+
 #if UNITY_EDITOR
-        
+
         private readonly LabelBuilder _labelBuilder = new LabelBuilder();
-        
+
 #endif
 
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             // Initialize the vertices of the mesh in the plane.
             var matrix = transform.localToWorldMatrix;
             _vertices = GetComponent<MeshFilter>().sharedMesh.vertices;
@@ -36,7 +36,7 @@ namespace Object.Map
             {
                 _vertices[i] = matrix.MultiplyPoint3x4(_vertices[i]);
             }
-            
+
             var index = 60;
             for (var i = 0; i < 21; i++)
             {
@@ -47,7 +47,7 @@ namespace Object.Map
                 }
 
                 _spawns[i] = _vertices[index + 11];
-                
+
                 index += 25;
             }
 
@@ -59,13 +59,13 @@ namespace Object.Map
         }
 
 #if UNITY_EDITOR
-        
+
         private void OnDrawGizmos()
         {
             if (Application.isPlaying == false)
             {
                 _labelBuilder.SetStyle("yellow", 8);
-            
+
                 var matrix = transform.localToWorldMatrix;
                 var vertices = GetComponent<MeshFilter>().sharedMesh.vertices;
                 for (var i = 0; i < vertices.Length; i++)
@@ -74,13 +74,13 @@ namespace Object.Map
                     var label = _labelBuilder.ToString();
                     var position = matrix.MultiplyPoint3x4(vertices[i]);
                     _labelBuilder.Clear();
-                
+
                     UnityEditor.Handles.Label(position, label, new GUIStyle { richText = true });
-                
+
                     Gizmos.color = Color.yellow;
                     Gizmos.DrawSphere(position, 2f);
                 }
-                
+
                 return;
             }
 
@@ -95,31 +95,31 @@ namespace Object.Map
                     _labelBuilder.Append("Index", $"{i * 6 + j}");
                     text = _labelBuilder.ToString();
                     _labelBuilder.Clear();
-                    
+
                     UnityEditor.Handles.Label(_destinations[i][j], text, style);
-                    
+
                     Gizmos.color = Color.cyan;
                     Gizmos.DrawSphere(_destinations[i][j], 1f);
                 }
             }
-            
+
             _labelBuilder.SetStyle("red", 8);
-            
+
             for (var i = 0; i < 21; i++)
             {
                 _labelBuilder.Append("Index", $"{i}");
                 text = _labelBuilder.ToString();
                 _labelBuilder.Clear();
-                
+
                 UnityEditor.Handles.Label(_spawns[i], text, style);
-                
+
                 Gizmos.color = Color.red;
                 Gizmos.DrawSphere(_spawns[i], 1.6f);
             }
         }
 
 #endif
-        
+
         /// <param name="index"> The index number in the list of plane mesh vertex positions.  </param>
         /// <returns>
         /// The vertex position of the plane mesh corresponding to the index number.
@@ -127,10 +127,10 @@ namespace Object.Map
         public Vector3 GetPosition(int index)
         {
             LogManager.LogProgress();
-            
+
             return _vertices[index];
         }
-        
+
         /// <param name="index"> The index number in the list of positions where the enemy character arrives. </param>
         /// <returns>
         /// The position where the enemy character arrives corresponding to the index number.
@@ -146,7 +146,7 @@ namespace Object.Map
 
             return null;
         }
-        
+
         /// <param name="index"> The index number in the list of positions where the enemy character spawns. </param>
         /// <returns>
         /// The position where the enemy character spawns corresponding to the index number.
@@ -157,14 +157,14 @@ namespace Object.Map
 
             return _spawns[index];
         }
-        
+
         /// <returns>
         /// The coordinates of random position on the plane.
         /// </returns>
         public Vector3 GetRandom()
         {
             LogManager.LogProgress();
-            
+
             // Two triangles in a plane,
             // which triangle contains the random point is chosen corner point is chosen for triangles as the variable.
             var index = Random.Range(0, 2) == 0 ? 0 : 2;
@@ -210,11 +210,11 @@ namespace Object.Map
                     }
                 }
             }
-            
+
             var count = _caches.Count;
             var cache = _caches[Random.Range(0, count)];
             _caches.Clear();
-            
+
             return cache.Y * 6 + cache.X;
         }
 
@@ -224,10 +224,10 @@ namespace Object.Map
         {
             public void SetValue(int y, int x)
             {
-                Y = y; 
+                Y = y;
                 X = x;
             }
-            
+
             public int Y { get; private set; }
             public int X { get; private set; }
         }

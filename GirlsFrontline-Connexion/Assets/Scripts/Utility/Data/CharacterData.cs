@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility.Data
+namespace Backend.Utility.Data
 {
-    [CreateAssetMenu(fileName = "Character Data", 
+    [CreateAssetMenu(fileName = "Character Data",
                      menuName = "Scriptable Object/Data/Character Data")]
     public class CharacterData : ScriptableObject
     {
         [SerializeField] private string characterName;
-        
+
         [SerializeField] private float healthPoint;
         [SerializeField] private float damagePoint;
         [SerializeField] private float defensePenetrationPoint;
@@ -18,25 +18,25 @@ namespace Utility.Data
 
         [SerializeField] private float shieldPoint;
         [SerializeField] private int shieldPointCount;
-        
+
         [SerializeField] private List<WeaponData> weaponData;
         [SerializeField] private List<BulletData> bulletData;
         [SerializeField] private List<GrenadeData> grenadeData;
 
         public string CharacterName => characterName;
-        
+
         public float HealthPoint => healthPoint;
-        
+
         public float DamagePoint => damagePoint;
 
         public float DefensePenetrationPoint => defensePenetrationPoint;
-        
+
         public float DefensePoint => defensePoint;
-        
+
         public float SpeedPoint => speedPoint;
 
         public float ShieldPoint => shieldPoint;
-        
+
         public int ShieldPointCount => shieldPointCount;
 
         public List<WeaponData> WeaponData => weaponData;
@@ -56,9 +56,9 @@ namespace Utility.Data
         [SerializeField] private float defensePenetrationPoint;
 
         public string Name => name;
-        
+
         public float DamagePoint => damagePoint;
-        
+
         public float DefensePenetrationPoint => defensePenetrationPoint;
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using GloryDay;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class DamageNumberRenderer : BitmapTextParticleSystem
     {
@@ -12,7 +12,7 @@ namespace Object.Character
         #endregion
 
         private readonly StringBuilder _builder = new StringBuilder();
-        
+
         public void Render(string message)
         {
             if (hasIcon)
@@ -21,7 +21,7 @@ namespace Object.Character
             }
 
             _builder.Append(message);
-            
+
             Spawn(_builder.ToString(), 1.5f);
 
             _builder.Clear();

@@ -2,9 +2,9 @@
 using GloryDay.SpineServices;
 using Spine;
 using UnityEngine;
-using Utility.State;
+using Backend.Utility.State;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class StreletCharacter
     {
@@ -17,12 +17,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 _count = Random.Range(3, 6);
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Shoot);
-                
+
                 Component.SkeletonAnimationHandler.Play(0, 0, true);
             }
 
@@ -31,7 +31,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Shoot);
             }
@@ -39,30 +39,30 @@ namespace Object.Character.Enemy
             private void Completed(TrackEntry trackEntry)
             {
                 LogManager.LogProgress();
-                
+
                 _count--;
                 if (0 < _count)
                 {
                     return;
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(Component.States[1]);
             }
 
             private void Shoot(TrackEntry trackEntry, Spine.Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.ParticleSystemHandler.Emit(@event.Int + 1);
                 Component._action.Prepare(0, 0, 0).Fire(0);
             }
         }
-        
+
         private new class DieState : StateBase<StreletCharacter>
         {
             public DieState(StreletCharacter component) : base(component) { }
@@ -73,9 +73,9 @@ namespace Object.Character.Enemy
 
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -97,23 +97,23 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveEventListener(FadeOut);
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Spine.Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(1) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<StreletCharacter>
         {
             public MoveState(StreletCharacter component) : base(component) { }
@@ -121,9 +121,9 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.MoveToDestination();
-                
+
                 Component.SkeletonAnimationHandler.Play(4, 0, true);
             }
 
@@ -138,11 +138,11 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SetRandomDestinationInRange(5);
             }
         }
-        
+
         private new class WaitState : StateBase<StreletCharacter>
         {
             public WaitState(StreletCharacter component) : base(component) { }
@@ -150,7 +150,7 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.Play(5, 0, true);
             }
 

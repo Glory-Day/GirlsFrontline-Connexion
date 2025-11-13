@@ -1,4 +1,4 @@
-﻿namespace Object.Character
+﻿namespace Backend.Object.Character
 {
     public interface IHorizontalComparable
     {

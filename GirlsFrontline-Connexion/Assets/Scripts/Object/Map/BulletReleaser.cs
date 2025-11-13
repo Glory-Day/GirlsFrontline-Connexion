@@ -1,8 +1,8 @@
 ﻿using GloryDay.Debug.Log;
 using UnityEngine;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class BulletReleaser : MonoBehaviour
     {
@@ -11,11 +11,11 @@ namespace Object.Map
         private const string BulletTag = "Bullet";
 
         #endregion
-        
+
         private void OnTriggerEnter(Collider other)
         {
             LogManager.LogProgress();
-            
+
             if (other.CompareTag(BulletTag))
             {
                 ObjectManager.OnRelease(other.gameObject);

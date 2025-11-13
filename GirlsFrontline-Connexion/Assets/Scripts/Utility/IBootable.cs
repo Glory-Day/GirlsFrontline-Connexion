@@ -1,4 +1,4 @@
-﻿namespace Utility
+﻿namespace Backend.Utility
 {
     public interface IBootable
     {

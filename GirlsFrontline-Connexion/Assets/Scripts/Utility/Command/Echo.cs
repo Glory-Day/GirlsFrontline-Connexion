@@ -2,14 +2,14 @@
 using Library.UI.CommandConsole;
 using Library.UI.CommandConsole.Utils;
 
-namespace Utility.Command
+namespace Backend.Utility.Command
 {
     public class Echo : BaseCommand
     {
         public override void Execute(ParameterData parameterData)
         {
             base.Execute(parameterData);
-            
+
             var text =(Arguments[nameof(Message)] as Message)?.Text;
             LogManager.LogAsAdministrator(text);
         }
@@ -20,7 +20,7 @@ namespace Utility.Command
             {
                 Text = TypeConverter.ToString(data[0]);
             }
-            
+
             public string Text { get; private set; }
         }
     }

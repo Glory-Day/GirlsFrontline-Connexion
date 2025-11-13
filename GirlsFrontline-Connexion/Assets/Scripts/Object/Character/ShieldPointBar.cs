@@ -5,13 +5,13 @@ using GloryDay.Debug.Log;
 using GloryDay.Debug;
 using UnityEngine;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class ShieldPointBar : MonoBehaviour
     {
         private readonly ShieldPoint[] _shieldPoints = new ShieldPoint[10];
         private readonly Stack<ShieldPoint> _stack = new Stack<ShieldPoint>();
-        
+
         private GameObject _logoImageObject;
 
 #if UNITY_EDITOR
@@ -23,12 +23,12 @@ namespace Object.Character
         private void OnDisable()
         {
             LogManager.LogProgress();
-            
+
             _stack.Clear();
         }
 
 #if UNITY_EDITOR
-        
+
         private void OnDrawGizmos()
         {
             if (Application.isPlaying == false || IsEnabled == false)
@@ -39,14 +39,14 @@ namespace Object.Character
             var totalPoint = _stack.Sum(element => element.Value);
 
             var position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-            
+
             _labelBuilder.SetStyle("blue", 16);
             _labelBuilder.Append("Shield Point", $"{totalPoint}");
 
             var text = _labelBuilder.ToString();
             var style = new GUIStyle { richText = true };
             UnityEditor.Handles.Label(position, text, style);
-            
+
             _labelBuilder.Clear();
         }
 
@@ -55,10 +55,10 @@ namespace Object.Character
         public void Initialize()
         {
             LogManager.LogProgress();
-            
+
             var child = transform.GetChild(0);
             _logoImageObject = child.gameObject;
-            
+
             child = transform.GetChild(1);
             for (var i = 0; i < 10; i++)
             {
@@ -66,7 +66,7 @@ namespace Object.Character
                 _shieldPoints[i].Initialize();
             }
         }
-        
+
         /// <summary>
         /// Initialize the shield points by a given number.
         /// </summary>
@@ -75,21 +75,21 @@ namespace Object.Character
         public void SetPoints(float point, int count)
         {
             LogManager.LogProgress();
-            
+
             if (count == 0)
             {
                 _logoImageObject.SetActive(false);
-                
+
                 return;
             }
-            
+
             _stack.Clear();
             for (var i = 0; i < count; i++)
             {
                 _shieldPoints[i].SetPoint(point);
                 _stack.Push(_shieldPoints[i]);
             }
-            
+
             _logoImageObject.SetActive(true);
         }
 
@@ -108,15 +108,15 @@ namespace Object.Character
                 {
                     break;
                 }
-                
+
                 _stack.Pop();
                 if (IsEnabled == false)
                 {
                     _logoImageObject.SetActive(false);
-                    
+
                     break;
                 }
-                
+
                 cache = _stack.Peek();
             }
 

@@ -1,7 +1,7 @@
-﻿namespace Object.Character.Enemy
+﻿namespace Backend.Object.Character.Enemy
 {
     public partial class NytoIsomerWhiteCharacter
     {
-        
+
     }
 }

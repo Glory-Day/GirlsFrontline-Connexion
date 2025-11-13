@@ -1,7 +1,7 @@
 ﻿using Library.UI.CommandConsole;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Utility.Command
+namespace Backend.Utility.Command
 {
     public class PlayApplication : BaseCommand
     {
@@ -9,7 +9,7 @@ namespace Utility.Command
         {
             base.Execute(data);
 
-            GameManager.OnApplicationPlay();
+            ApplicationManager.Play();
         }
     }
 }

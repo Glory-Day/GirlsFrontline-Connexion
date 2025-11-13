@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using GloryDay.Debug.Log;
-using Object.Character;
+using Backend.Object.Character;
 using UnityEngine;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Object.Weapon
+namespace Backend.Object.Weapon
 {
     public class SplashDamageArea : WeaponBase
     {
@@ -13,17 +13,17 @@ namespace Object.Weapon
         private ParticleSystemHandler _particleSystemHandler;
 
         #endregion
-        
+
         #region CONSTANT FIELD API
 
         private const float Radius = 20f;
-        
+
         private const int TriggerInEnemyCharacterLayerMask = 1 << 22;
 
         #endregion
 
         private AudioClip _explosionSound;
-        
+
         private readonly Collider[] _colliders = new Collider[20];
 
         private void Awake()
@@ -32,7 +32,7 @@ namespace Object.Weapon
 
             var key = DataManager.AudioData.Effect[12];
             _explosionSound = ResourceManager.AudioClipResource.Effect[key];
-            
+
             _particleSystemHandler = GetComponentInChildren<ParticleSystemHandler>();
         }
 
@@ -45,7 +45,7 @@ namespace Object.Weapon
         }
 
 #endif
-        
+
         public void Attack()
         {
             LogManager.LogProgress();
@@ -64,13 +64,13 @@ namespace Object.Weapon
             }
 
             SoundManager.OnPlayEffectAudioSource(_explosionSound);
-            
+
             _particleSystemHandler.Play(0);
             while (_particleSystemHandler.IsPlaying(0))
             {
                 yield return null;
             }
-            
+
             ObjectManager.OnRelease(gameObject);
         }
     }

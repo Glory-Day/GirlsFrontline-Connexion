@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using GloryDay.Debug.Log;
-using Object.Character;
+using Backend.Object.Character;
 using UnityEngine;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Object.Weapon
+namespace Backend.Object.Weapon
 {
     public class Bullet : ProjectileBase
     {
@@ -15,27 +15,27 @@ namespace Object.Weapon
         private ParticleSystemHandler _particleSystemHandler;
 
         #endregion
-        
+
         private Vector3 _target;
         private bool _hasTarget;
 
         private Vector3 _direction;
-        
+
         private readonly AudioClip[] _fireSounds = new AudioClip[2];
-        
-        private readonly WaitUntil _instruction = new WaitUntil(() => GameManager.IsApplicationPaused == false);
+
+        private readonly WaitUntil _instruction = new WaitUntil(() => ApplicationManager.IsPaused == false);
 
         private void Awake()
         {
             LogManager.LogProgress();
 
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            
+
             _particleSystemHandler = GetComponentInChildren<ParticleSystemHandler>();
-            
+
             var key = DataManager.AudioData.Effect[9];
             _fireSounds[0] = ResourceManager.AudioClipResource.Effect[key];
-            
+
             key = DataManager.AudioData.Effect[10];
             _fireSounds[1] = ResourceManager.AudioClipResource.Effect[key];
         }
@@ -73,7 +73,7 @@ namespace Object.Weapon
 
                 return;
             }
-            
+
             if (other.TryGetComponent<HealthPointBar>(out var component) == false)
             {
                 return;
@@ -83,27 +83,27 @@ namespace Object.Weapon
             {
                 return;
             }
-            
+
             var parent = other.transform.parent;
             if (parent.TryGetComponent<CharacterBase>(out var character))
             {
                 character.EmitHitEffect();
                 character.TakeDamage(DamagePoint, DefensePenetrationPoint, DamageType.Default);
             }
-            
+
             ObjectManager.OnRelease(gameObject);
         }
 
         private IEnumerator PlayingEffect()
         {
             _spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
-            
+
             _particleSystemHandler.Play(0);
             while (_particleSystemHandler.IsPlaying(0))
             {
                 yield return _instruction;
             }
-                
+
             ObjectManager.OnRelease(gameObject);
         }
 
@@ -117,7 +117,7 @@ namespace Object.Weapon
             {
                 _target = (Vector3)position;
                 _hasTarget = true;
-                
+
                 transform.rotation = Rotate(_target - transform.position);
             }
         }
@@ -132,16 +132,16 @@ namespace Object.Weapon
         public void Fire()
         {
             LogManager.LogProgress();
-            
+
             gameObject.SetActive(true);
         }
-        
+
         public void Fire(int index)
         {
             LogManager.LogProgress();
-            
+
             SoundManager.OnPlayEffectAudioSource(_fireSounds[index]);
-            
+
             gameObject.SetActive(true);
         }
     }

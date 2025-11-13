@@ -1,23 +1,23 @@
 ﻿using GloryDay.Debug.Log;
 using GloryDay.Debug;
-using Object.Character;
-using Object.Weapon;
+using Backend.Object.Character;
+using Backend.Object.Weapon;
 using UnityEngine;
-using Utility;
-using Utility.Manager;
+using Backend.Utility;
+using Backend.Utility.Management;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class Tile : MonoBehaviour
     {
         #region COMPONENT FIELD API
 
         private TileMap _map;
-        
+
         private ParticleSystemHandler _particleSystemHandler;
-        
+
         #endregion
-        
+
         #region CONSTANT FIELD API
 
         private const string PlayerCharacterTag = "Player";
@@ -27,26 +27,26 @@ namespace Object.Map
 
         private IDisplayable _warningState;
         private IDisplayable _criticalState;
-        
+
         private PlayerCharacter _playerCharacterCache;
-        
+
         private float _time;
         private float _damage;
 
         private AudioClip _explosionSound;
-        
+
 #if UNITY_EDITOR
 
         private readonly LabelBuilder _labelBuilder = new LabelBuilder();
 
 #endif
-        
+
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             _map = transform.parent.GetComponent<TileMap>();
-            
+
             // Get child components.
             _warningState = new WarningState(transform.GetChild(0).GetComponent<SpriteRenderer>());
             _criticalState = new CriticalState(transform.GetChild(1).GetComponent<SpriteRenderer>());
@@ -63,25 +63,25 @@ namespace Object.Map
             {
                 return;
             }
-            
+
             // Set the tile closest to the player character.
             var position = _playerCharacterCache.Position;
             var a = Vector3.Distance(position, _map.PlayerCharacter.Position);
             var b = Vector3.Distance(position, transform.position);
-            
+
             if (a > b)
             {
                 _map.PlayerCharacter = this;
             }
-            
+
             _time += Time.deltaTime;
             if (_time <= 0.2f)
             {
                 return;
             }
-            
+
             _time %= 0.2f;
-            
+
             if (_criticalState is null == false && _criticalState.IsDisplaying)
             {
                 _playerCharacterCache?.TakeDamage(_damage, 1f, DamageType.Critical);
@@ -101,13 +101,13 @@ namespace Object.Map
             {
                 return;
             }
-            
+
             var instance = grenade.gameObject;
             var instanceID = grenade.InstanceID;
             StopWarningState(instanceID, grenade.DamagePoint, grenade.DefensePenetrationPoint);
-            
+
             SoundManager.OnPlayEffectAudioSource(_explosionSound);
-            
+
             ObjectManager.OnRelease(instance);
         }
 
@@ -118,7 +118,7 @@ namespace Object.Map
             {
                 return;
             }
-            
+
             var child = other.transform.GetChild(0);
             if (child.CompareTag(PlayerCharacterTag) == false)
             {
@@ -136,9 +136,9 @@ namespace Object.Map
             {
                 return;
             }
-            
+
             var style = new GUIStyle { richText = true };
-            
+
             _labelBuilder.SetStyle("lime", 8);
             _labelBuilder.Append("Position", $"[{RowNumber}, {ColumnNumber}]");
             _labelBuilder.Append("Index", $"{Index}");
@@ -149,16 +149,16 @@ namespace Object.Map
                 if (Index == _map.PlayerCharacter.Index)
                 {
                     color = "red";
-                    
+
                 }
-                
+
                 _labelBuilder.SetStyle(color, 8);
                 _labelBuilder.Append("Player Character");
             }
-            
+
             var text = _labelBuilder.ToString();
             UnityEditor.Handles.Label(Position, text, style);
-            
+
             _labelBuilder.Clear();
         }
 
@@ -171,10 +171,10 @@ namespace Object.Map
         public void StartWarningState(int instanceID)
         {
             _map.WarningStateTiles[instanceID].Enqueue(this);
-            
+
             _warningState.StartDisplaying();
         }
-        
+
         /// <summary>
         /// State displaying the critical state.
         /// </summary>
@@ -184,7 +184,7 @@ namespace Object.Map
         {
             _map.CriticalStateTiles[instanceID].Enqueue(this);
             _damage += damage;
-            
+
             _criticalState.StartDisplaying();
         }
 
@@ -196,13 +196,13 @@ namespace Object.Map
                 var tile = _map.WarningStateTiles[instanceID].Dequeue();
                 tile._warningState.StopDisplaying();
                 tile._particleSystemHandler.Emit(0);
-                
+
                 if (tile._playerCharacterCache is null == false)
                 {
                     playerCharacter = tile._playerCharacterCache;
                 }
             }
-            
+
             playerCharacter?.TakeDamage(damage, percentage, DamageType.Explosive);
         }
 
@@ -233,7 +233,7 @@ namespace Object.Map
                 tile._damage -= damage;
             }
         }
-        
+
         /// <summary>
         /// Index number of the tile.
         /// </summary>

@@ -1,13 +1,13 @@
 ﻿using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
-using Object.Map;
-using Object.Weapon;
+using Backend.Object.Map;
+using Backend.Object.Weapon;
 using Spine;
 using UnityEngine;
-using Utility.Manager;
-using Utility.State;
+using Backend.Utility.Management;
+using Backend.Utility.State;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class ArcherCharacter
     {
@@ -20,12 +20,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 _count = Random.Range(1, 6);
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Shoot);
-                
+
                 Component.SkeletonAnimationHandler.Play(0, 0, true);
             }
 
@@ -34,7 +34,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Shoot);
             }
@@ -42,35 +42,35 @@ namespace Object.Character.Enemy
             private void Completed(TrackEntry trackEntry)
             {
                 LogManager.LogProgress();
-                
+
                 _count--;
                 if (0 < _count)
                 {
                     return;
                 }
-                
+
                 var state = Component.States[2];
                 if (Component._coolDownTime < MaximumCoolDownTime)
                 {
                     state = Component.States[1];
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(state);
             }
-            
+
             private void Shoot(TrackEntry trackEntry, Spine.Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component._action.Prepare(0, 0, 0).Fire();
             }
         }
-        
+
         private new class DieState : StateBase<ArcherCharacter>
         {
             public DieState(ArcherCharacter component) : base(component) { }
@@ -78,12 +78,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -105,23 +105,23 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveEventListener(FadeOut);
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Spine.Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(1) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<ArcherCharacter>
         {
             public MoveState(ArcherCharacter component) : base(component) { }
@@ -129,9 +129,9 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.MoveToDestination();
-                
+
                 Component.SkeletonAnimationHandler.Play(4, 0, true);
             }
 
@@ -147,14 +147,14 @@ namespace Object.Character.Enemy
                 {
                     state = Component.States[0];
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(state);
             }
 
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SetRandomDestinationInRange(3);
             }
         }
@@ -162,18 +162,18 @@ namespace Object.Character.Enemy
         private class UseSkill : StateBase<ArcherCharacter>
         {
             private readonly Tile[] _tiles = new Tile[5];
-            
+
             private bool _isShot;
             private Grenade _grenade;
-            
+
             public UseSkill(ArcherCharacter component) : base(component) { }
-            
+
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component._coolDownTime = 0f;
-                
+
                 _tiles[0] = Component.TileMap.PlayerCharacter;
                 _tiles[1] = Component.TileMap.GetTile(_tiles[0].ColumnNumber + 1, _tiles[0].RowNumber);
                 _tiles[2] = Component.TileMap.GetTile(_tiles[0].ColumnNumber - 1, _tiles[0].RowNumber);
@@ -183,15 +183,15 @@ namespace Object.Character.Enemy
                 var destination = _tiles[0].Position;
                 _grenade = Component._action.Prepare(0, destination, 1, 0);
                 _isShot = false;
-                
+
                 for (var i = 0; i < 5; i++)
                 {
                     _tiles[i]?.StartWarningState(_grenade.InstanceID);
                 }
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Shoot);
-                
+
                 Component.SkeletonAnimationHandler.Play(5);
             }
 
@@ -200,7 +200,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Shoot);
             }
@@ -215,28 +215,28 @@ namespace Object.Character.Enemy
                     {
                         _tiles[i]?.StopWarningState(_grenade.InstanceID);
                     }
-                    
+
                     ObjectManager.OnRelease(_grenade.gameObject);
                     _grenade = null;
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(Component.States[1]);
             }
-            
+
             private void Shoot(TrackEntry trackEntry, Spine.Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
                 }
-                
+
                 _isShot = true;
                 _grenade.Launch(false);
             }
         }
-        
+
         private new class WaitState : StateBase<ArcherCharacter>
         {
             public WaitState(ArcherCharacter component) : base(component) { }

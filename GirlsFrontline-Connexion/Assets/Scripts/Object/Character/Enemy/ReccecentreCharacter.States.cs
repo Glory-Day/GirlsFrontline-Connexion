@@ -2,11 +2,11 @@
 using GloryDay.SpineServices;
 using Spine;
 using UnityEngine;
-using Utility.Manager;
-using Utility.State;
+using Backend.Utility.Management;
+using Backend.Utility.State;
 using Event = Spine.Event;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class ReccecentreCharacter
     {
@@ -22,10 +22,10 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Spawn);
-                
+
                 Component.SkeletonAnimationHandler.Play(0);
             }
 
@@ -34,7 +34,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Spawn);
             }
@@ -42,23 +42,23 @@ namespace Object.Character.Enemy
             private void Completed(TrackEntry trackEntry)
             {
                 LogManager.LogProgress();
-                
+
                 Component.FiniteStateMachine.ChangeTo(Component.States[2]);
             }
 
             private void Spawn(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component._action.Spawn(_data, 0, 0);
             }
         }
-        
+
         private new class DieState : StateBase<ReccecentreCharacter>
         {
             public DieState(ReccecentreCharacter component) : base(component) { }
@@ -66,12 +66,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -90,20 +90,20 @@ namespace Object.Character.Enemy
             {
                 LogManager.LogProgress();
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(1) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<ReccecentreCharacter>
         {
             public MoveState(ReccecentreCharacter component) : base(component) { }
@@ -111,9 +111,9 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.MoveToDestination();
-                
+
                 Component.SkeletonAnimationHandler.Play(2, 0, true);
             }
 
@@ -130,11 +130,11 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
             }
         }
-        
+
         private class CoolDownState : StateBase<ReccecentreCharacter>
         {
             private float _coolDownTime;
-            
+
             public CoolDownState(ReccecentreCharacter component) : base(component) { }
 
             public override void Start()
@@ -142,7 +142,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
 
                 _coolDownTime = 0f;
-                
+
                 Component.SkeletonAnimationHandler.Play(2, 0, true);
             }
 
@@ -153,7 +153,7 @@ namespace Object.Character.Enemy
                 {
                     return;
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(Component.States[0]);
             }
 
@@ -162,7 +162,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
             }
         }
-        
+
         private new class WaitState : StateBase<ReccecentreCharacter>
         {
             public WaitState(ReccecentreCharacter component) : base(component) { }

@@ -1,4 +1,4 @@
-﻿namespace Object.Map
+﻿namespace Backend.Object.Map
 {
     public interface IUVAnimation
     {
@@ -6,12 +6,12 @@
         /// Play the UV animation.
         /// </summary>
         void Play();
-        
+
         /// <summary>
         /// Pause the UV animation.
         /// </summary>
         void Pause();
-        
+
         /// <summary>
         /// Stop the UV animation.
         /// </summary>

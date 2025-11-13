@@ -4,7 +4,7 @@ using GloryDay.Debug.Log;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Utility
+namespace Backend.Utility
 {
     public class Bootstrap : MonoBehaviour
     {
@@ -19,7 +19,7 @@ namespace Utility
         public void Run()
         {
             LogManager.LogProgress();
-            
+
             StartCoroutine(Running());
         }
 
@@ -34,7 +34,7 @@ namespace Utility
                 {
                     progresses[i].Invoke();
                     _count++;
-                    
+
                     yield return null;
                 }
             }
@@ -43,17 +43,17 @@ namespace Utility
         public void Add(UnityAction callback)
         {
             LogManager.LogProgress();
-            
+
             var @event = new UnityEvent();
             @event.AddListener(callback);
-            
+
             progresses.Add(@event);
         }
 
         public void Insert(int index, UnityAction callback)
         {
             LogManager.LogProgress();
-            
+
             progresses[index].AddListener(callback);
         }
 

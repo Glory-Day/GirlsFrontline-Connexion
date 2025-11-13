@@ -2,9 +2,9 @@
 using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
 using Spine;
-using Utility.State;
+using Backend.Utility.State;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class UnknownCharacter
     {
@@ -15,10 +15,10 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Hit);
-                
+
                 Component.SkeletonAnimationHandler.Play(0, 0, true);
             }
 
@@ -27,7 +27,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Hit);
             }
@@ -41,7 +41,7 @@ namespace Object.Character.Enemy
                     Component.FiniteStateMachine.ChangeTo(Component.States[1]);
                 }
             }
-            
+
             private void Hit(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
@@ -50,11 +50,11 @@ namespace Object.Character.Enemy
                 {
                     return;
                 }
-                
+
                 Component._action.Hit(0);
             }
         }
-        
+
         private new class DieState : StateBase<UnknownCharacter>
         {
             public DieState(UnknownCharacter component) : base(component) { }
@@ -62,12 +62,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -85,23 +85,23 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveEventListener(FadeOut);
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(1) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<UnknownCharacter>
         {
             public MoveState(UnknownCharacter component) : base(component) { }
@@ -111,7 +111,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
 
                 Component.MoveToLeftDirection();
-                
+
                 Component.SkeletonAnimationHandler.Play(2, 0, true);
             }
 
@@ -126,11 +126,11 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.StopMoving();
             }
         }
-        
+
         private new class WaitState : StateBase<UnknownCharacter>
         {
             public WaitState(UnknownCharacter component) : base(component) { }
@@ -138,7 +138,7 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.Play(0, 0, true);
             }
 

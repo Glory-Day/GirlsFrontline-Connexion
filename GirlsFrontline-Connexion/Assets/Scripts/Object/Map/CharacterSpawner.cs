@@ -3,48 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GloryDay.Debug.Log;
-using Object.Character;
-using UI;
+using Backend.Object.Character;
+using Backend.Object.UI;
 using UnityEngine;
-using Utility.Data;
-using Utility.Manager;
+using Backend.Utility.Data;
+using Backend.Utility.Management;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class CharacterSpawner : MonoBehaviour
     {
         private readonly Dictionary<int, EnemyCharacter> _records = new Dictionary<int, EnemyCharacter>();
         private readonly Queue<SpawnData> _queue = new Queue<SpawnData>();
         private Comparison<IHorizontalComparable> _comparison;
-        
+
         private PlaneMeshVertexExtractor _extractor;
-        
+
         private MainInterfaceScreen _screen;
         private FailedResultScreen _failedResultScreen;
-        
+
         private readonly WaitForSeconds _delay = new WaitForSeconds(10f);
-        private readonly WaitUntil _instruction = new WaitUntil(() => GameManager.IsApplicationPaused == false);
-        
+        private readonly WaitUntil _instruction = new WaitUntil(() => ApplicationManager.IsPaused == false);
+
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             // Initialize the plane mesh vertex extractor to get coordinates for spawning character.
             var child = transform.GetChild(5);
             _extractor = child.GetComponent<PlaneMeshVertexExtractor>();
-            
+
             _comparison = CompareEnemyCharacterPosition;
 
             _screen = FindObjectOfType<MainInterfaceScreen>();
             _failedResultScreen = FindObjectOfType<FailedResultScreen>();
-            
+
             PlayerCharacterLifeCount = 1;
         }
 
         public void CreateCharacters(ChapterData data)
         {
             LogManager.LogProgress();
-            
+
             // Create player character.
             var original = ResourceManager.GameObjectResource.PlayerCharacter;
             ObjectManager.OnCreate(original, transform, 1);
@@ -72,7 +72,7 @@ namespace Object.Map
                     }
                 }
             }
-            
+
             // Create all the enemy characters needed for the chapter.
             foreach (var cache in caches)
             {
@@ -88,20 +88,20 @@ namespace Object.Map
                 ObjectManager.OnCreate(original, transform, count);
             }
         }
-        
+
         public void SpawnPlayerCharacter()
         {
             LogManager.LogProgress();
 
             IsPlayerCharacterSpawning = true;
-            
+
             StartCoroutine(SpawningPlayerCharacter());
         }
 
         public void MovePlayerCharacter()
         {
             LogManager.LogProgress();
-            
+
             StartCoroutine(MovingPlayerCharacter());
         }
 
@@ -137,31 +137,31 @@ namespace Object.Map
             clone.OnScoreChanged = SetChapterScore;
             clone.OnReleaseCharacter = ReleasePlayerCharacter;
             clone.gameObject.SetActive(true);
-            
+
             _screen.DisplayPlayerCharacterLifeCount(PlayerCharacterLifeCount);
-            
+
             PlayerCharacterCache = clone;
-            
+
             yield return StartCoroutine(MovingPlayerCharacter());
-            
+
             IsPlayerCharacterSpawning = false;
         }
 
         private IEnumerator MovingPlayerCharacter()
         {
             IsPlayerCharacterMoving = true;
-            
+
             PlayerCharacterCache.DisablePlayerCharacterControls();
             PlayerCharacterCache.IgnoreWallCollision();
-            
+
             PlayerCharacterCache.MoveToDestination();
             while (PlayerCharacterCache.IsMovingToDestination)
             {
                 yield return _instruction;
             }
-            
+
             PlayerCharacterCache.IgnoreWallCollision(false);
-            
+
             IsPlayerCharacterMoving = false;
         }
 
@@ -175,13 +175,13 @@ namespace Object.Map
         private IEnumerator SpawningEnemyCharacters(StageData data)
         {
             IsEnemyCharactersSpawning = true;
-            
+
             var count = data.WaveData.Count;
             for (var i = 0; i < count; i++)
             {
                 yield return StartCoroutine(SpawningEnemyCharacters(data.WaveData[i]));
             }
-            
+
             while (SpawnedEnemyCharacterCount != 0)
             {
                 yield return _instruction;
@@ -189,7 +189,7 @@ namespace Object.Map
 
             IsEnemyCharactersSpawning = false;
         }
-        
+
         private IEnumerator SpawningEnemyCharacters(WaveData data)
         {
             var count = data.SpawnData.Count;
@@ -197,13 +197,13 @@ namespace Object.Map
             for (var i = 0; i < count; i++)
             {
                 SpawnEnemyCharacter(data.SpawnData[i]);
-                
+
                 SpawnedEnemyCharacterCount++;
                 _screen.DisplayCurrentEnemyCharacterCount(SpawnedEnemyCharacterCount);
             }
-                    
+
             yield return delay;
-                
+
             // If the player character dies, stop spawning waves and respawn the player character.
             while (PlayerCharacterCache is null)
             {
@@ -214,7 +214,7 @@ namespace Object.Map
         private void SpawnEnemyCharacter(SpawnData data)
         {
             LogManager.LogProgress();
-            
+
             var key = data.CharacterName;
             var original = ResourceManager.GameObjectResource.EnemyCharacter[key];
             var position = _extractor.GetSpawnPosition(data.SpawnedPositionIndex);
@@ -228,7 +228,7 @@ namespace Object.Map
             var instance = clone.gameObject;
             var id = instance.GetInstanceID();
             _records.Add(id, clone);
-            
+
             instance.SetActive(true);
         }
 
@@ -248,16 +248,16 @@ namespace Object.Map
             var id = instance.GetInstanceID();
             var clone = _records[id];
             _records.Remove(id);
-            
+
             _queue.Enqueue(clone.SpawnData);
-            
+
             ObjectManager.OnRelease(instance);
 
             yield return _delay;
-            
+
             SpawnEnemyCharacter(_queue.Dequeue());
         }
-        
+
         private void ReleasePlayerCharacter(CharacterBase character)
         {
             LogManager.LogProgress();
@@ -269,7 +269,7 @@ namespace Object.Map
         {
             PlayerCharacterCache = null;
             PlayerCharacterLifeCount--;
-            
+
             var instance = character.gameObject;
             ObjectManager.OnRelease(instance);
 
@@ -277,14 +277,14 @@ namespace Object.Map
             {
                 record.Value.SetWaitState();
             }
-            
+
             if (PlayerCharacterLifeCount != 0)
             {
                 yield return StartCoroutine(SpawningPlayerCharacter());
-                
+
                 PlayerCharacterCache?.EnablePlayerCharacterControls();
                 PlayerCharacterCache?.SetWaitState();
-                
+
                 foreach (var record in _records)
                 {
                     record.Value.SetLatestState();
@@ -305,7 +305,7 @@ namespace Object.Map
         private void RemoveEnemyCharacterRecord(CharacterBase character)
         {
             LogManager.LogProgress();
-            
+
             var instance = character.gameObject;
             var id = instance.GetInstanceID();
             _records.Remove(id);
@@ -314,12 +314,12 @@ namespace Object.Map
         private void ReleaseEnemyCharacter(CharacterBase character)
         {
             LogManager.LogProgress();
-            
+
             SpawnedEnemyCharacterCount--;
             EnemyCharacterDeathCount++;
-            
+
             _screen.DisplayCurrentEnemyCharacterCount(SpawnedEnemyCharacterCount);
-            
+
             var instance = character.gameObject;
             ObjectManager.OnRelease(instance);
         }
@@ -329,10 +329,10 @@ namespace Object.Map
             LogManager.LogProgress();
 
             ChapterScore += score;
-            
+
             _screen.DisplayChapterScore(ChapterScore);
         }
-        
+
         /// <returns>
         /// The closest enemy character that has not passed the player character.
         /// </returns>
@@ -357,15 +357,15 @@ namespace Object.Map
                 {
                     continue;
                 }
-                
+
                 position = list[i].Position;
 
                 break;
             }
-            
+
             return position;
         }
-        
+
         /// <summary>
         /// Sort enemy character positions in descending order based on the player character's position.
         /// </summary>
@@ -373,19 +373,19 @@ namespace Object.Map
         {
             var u = a.HorizontalPosition;
             var v = b.HorizontalPosition;
-            
+
             return u < v ? -1 : 1;
         }
-        
+
         /// <returns>
         /// The number of enemy characters spawned.
         /// </returns>
         private int SpawnedEnemyCharacterCount { get; set; }
-        
+
         public int ChapterScore { get; private set; }
-        
+
         public PlayerCharacter PlayerCharacterCache { get; private set; }
-        
+
         /// <summary>
         /// The number of player character lives.
         /// </summary>
@@ -395,29 +395,29 @@ namespace Object.Map
         /// The number of enemy character deaths.
         /// </summary>
         public int EnemyCharacterDeathCount { get; private set; }
-        
+
         /// <summary>
         /// True if enemy characters in stage is spawning, otherwise false.
         /// </summary>
         public bool IsEnemyCharactersSpawning { get; private set; }
-        
+
         /// <returns>
         /// True if the player character is spawning, otherwise false.
         /// </returns>
         public bool IsPlayerCharacterSpawning { get; private set; }
-        
+
         /// <returns>
         /// True if the player character is moving to destination, otherwise false.
         /// </returns>
         public bool IsPlayerCharacterMoving { get; private set; }
 
         #region DELEGATE DECLARATION
-        
+
         public delegate Vector3? ClosestEnemyCharacterPositionCallback();
 
         public delegate void RemoveRecordCallback(CharacterBase character);
         public delegate void ReleaseCharacterCallback(CharacterBase character);
-        
+
         #endregion
     }
 }

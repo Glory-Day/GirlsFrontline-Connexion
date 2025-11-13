@@ -2,15 +2,15 @@
 using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
 using GloryDay.Debug;
-using Object.Map;
+using Backend.Object.Map;
 using UnityEngine;
-using Utility;
-using Utility.Data;
-using Utility.Extension;
-using Utility.Manager;
+using Backend.Utility;
+using Backend.Utility.Data;
+using Backend.Utility.Extension;
+using Backend.Utility.Management;
 using Random = UnityEngine.Random;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     [RequireComponent(typeof(SkeletonAnimationHandler))]
     public abstract class CharacterBase : MonoBehaviour, IHorizontalComparable
@@ -21,74 +21,74 @@ namespace Object.Character
         protected CharacterData characterData;
 
         #endregion
-        
+
         #region COMPONENT FIELD API
 
         protected Rigidbody Rigidbody;
-        
+
         protected HealthPointBar HealthPointBar;
         protected ParticleSystemHandler ParticleSystemHandler;
-        
+
         protected SkeletonAnimationHandler SkeletonAnimationHandler;
-        
+
         #endregion
 
         #region CONSTANT FIELD API
 
         private const int GroundLayerMask = 1 << 14;
-        
+
         private const float MaximumRayDistance = 8f;
 
         #endregion
-        
+
         // For checking if the ground is slope or flat.
         private bool _isGround;
         private RaycastHit _groundHit;
-        
+
         // Character default stat points.
         protected float HealthPoint;
         protected float DamagePoint;
         protected float DefensePenetrationPoint;
         protected float DefensePoint;
         protected float SpeedPoint;
-        
+
         protected PlaneMeshVertexExtractor Extractor;
         protected TileMap TileMap;
-        
+
         protected Vector3? Destination;
-        
+
         protected AudioClip HitSound;
 
-        private readonly WaitUntil _instruction = new WaitUntil(() => GameManager.IsApplicationPaused == false);
+        private readonly WaitUntil _instruction = new WaitUntil(() => ApplicationManager.IsPaused == false);
 
 #if UNITY_EDITOR
 
         protected readonly LabelBuilder LabelBuilder = new LabelBuilder();
-        
+
 #endif
-        
+
         protected virtual void Awake()
         {
             LogManager.LogProgress();
-            
+
             // Set default stat points of character.
             HealthPoint = characterData.HealthPoint;
             DamagePoint = characterData.DamagePoint;
             DefensePenetrationPoint = characterData.DefensePenetrationPoint;
             DefensePoint = characterData.DefensePoint;
             SpeedPoint = characterData.SpeedPoint;
-            
+
             Rigidbody = GetComponent<Rigidbody>();
-            
+
             // Initialize health point bar component.
             var child = transform.GetChild(0);
             HealthPointBar = child.GetComponent<HealthPointBar>();
             HealthPointBar.Initialize();
-            
+
             // Initialize particle system handler.
             child = transform.GetChild(1);
             ParticleSystemHandler = child.GetComponent<ParticleSystemHandler>();
-            
+
             // Initialize skeleton animation handler component.
             SkeletonAnimationHandler = GetComponent<SkeletonAnimationHandler>();
             SkeletonAnimationHandler.Initialize();
@@ -97,7 +97,7 @@ namespace Object.Character
             child = sibling.GetChild(0);
             Extractor = sibling.GetComponent<PlaneMeshVertexExtractor>();
             TileMap = child.GetComponent<TileMap>();
-            
+
             InstanceID = GetInstanceID();
             InstanceName = characterData.CharacterName;
         }
@@ -105,12 +105,12 @@ namespace Object.Character
         protected virtual void OnEnable()
         {
             LogManager.LogProgress();
-            
+
             // Set health point and shield point in the health point bar.
             var shieldPoint = characterData.ShieldPoint;
             var count = characterData.ShieldPointCount;
             HealthPointBar.SetPoints(HealthPoint, shieldPoint, count);
-            
+
             // Reset alpha value of skeleton in skeleton animation handler.
             SkeletonAnimationHandler.ResetSkeletonAlpha();
         }
@@ -118,14 +118,14 @@ namespace Object.Character
         protected virtual void OnDestroy()
         {
             LogManager.LogProgress();
-            
+
             SkeletonAnimationHandler.RemoveAllEventListener();
             SkeletonAnimationHandler = null;
-            
+
             Rigidbody = null;
-            
+
             HealthPointBar = null;
-            
+
             Extractor = null;
             TileMap = null;
         }
@@ -138,7 +138,7 @@ namespace Object.Character
             {
                 return;
             }
-            
+
             // Draw a label to display the character's position.
             LabelBuilder.Append("Position");
             var position = Rigidbody.position;
@@ -146,7 +146,7 @@ namespace Object.Character
             var style = new GUIStyle { richText = true };
             UnityEditor.Handles.Label(position, text, style);
             LabelBuilder.Clear();
-            
+
             // Draw a cube that display the range to check if the character is standing on the ground.
             var center = new Vector3(position.x, position.y - 2f, position.z);
             var size = new Vector3(HealthPointBar.Collider.size.x, 4f, HealthPointBar.Collider.size.z);
@@ -160,13 +160,13 @@ namespace Object.Character
             {
                 return;
             }
-            
+
             // Draw a line to display the difference between the character's position and destination.
             var destination = Destination.Value;
             position = Rigidbody.position;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(position, destination);
-            
+
             // Draw a label to display the destination.
             LabelBuilder.SetStyle("red", 8);
             LabelBuilder.Append("Destination");
@@ -177,7 +177,7 @@ namespace Object.Character
         }
 
 #endif
-        
+
         /// <summary>
         /// Fade out images of the character and disables the components that the character has.
         /// </summary>
@@ -188,15 +188,15 @@ namespace Object.Character
             {
                 HealthPointBar.BackgroundImageColor = new Color(1f, 1f, 1f, i);
                 SkeletonAnimationHandler.Skeleton.A = i;
-                
+
                 yield return null;
             }
-            
+
             SkeletonAnimationHandler.ResetPose();
-            
+
             OnReleaseCharacter(this);
         }
-        
+
         /// <summary>
         /// Move to the destination in a given amount of time.
         /// </summary>
@@ -205,14 +205,14 @@ namespace Object.Character
         {
             StartCoroutine(MovingToDestinationInTime(time));
         }
-        
+
         protected virtual IEnumerator MovingToDestinationInTime(float time)
         {
             if (Destination.HasValue == false)
             {
                 yield break;
             }
-            
+
             var position = Rigidbody.position;
             for (var deltaTime = 0f; deltaTime <= time; deltaTime += Time.fixedDeltaTime)
             {
@@ -222,7 +222,7 @@ namespace Object.Character
                 yield return _instruction;
             }
         }
-        
+
         /// <summary>
         /// It is calculated by applying the variable for the slope to the direction vector being moved.
         /// </summary>
@@ -233,7 +233,7 @@ namespace Object.Character
             if (IsGrounded() && IsSlope())
             {
                 direction = Vector3.ProjectOnPlane(direction, _groundHit.normal).normalized;
-                
+
                 Rigidbody.useGravity = false;
             }
             else
@@ -243,7 +243,7 @@ namespace Object.Character
 
             return direction;
         }
-        
+
         /// <returns>
         /// True if the character is standing on the ground, otherwise false.
         /// </returns>
@@ -256,7 +256,7 @@ namespace Object.Character
             var check = Physics.CheckBox(center, size, Quaternion.identity, GroundLayerMask);
             return check;
         }
-        
+
         /// <returns>
         /// True if the ground is slope, otherwise false.
         /// </returns>
@@ -289,9 +289,9 @@ namespace Object.Character
             {
                 return;
             }
-            
+
             SoundManager.OnPlayEffectAudioSource(HitSound);
-            
+
             // Generate random number factor.
             damagePoint *= Random.Range(85f, 115f) / 100f;
 
@@ -302,10 +302,10 @@ namespace Object.Character
 
                 return;
             }
-            
+
             var defensePoint = DefensePoint - DefensePoint * defensePenetratePoint;
             damagePoint = damagePoint < defensePoint ? 1f : damagePoint - defensePoint;
-            
+
             index = 0 < defensePoint ? 0 : 2;
             HealthPointBar.Calculate(damagePoint, index);
 
@@ -316,28 +316,28 @@ namespace Object.Character
         public void EmitHitEffect()
         {
             LogManager.LogProgress();
-            
+
             ParticleSystemHandler.Emit(0);
         }
 
         #region DELEGATE CALLBACK API
-        
+
         public ValueChangedCallback<int> OnScoreChanged;
 
         public CharacterSpawner.ReleaseCharacterCallback OnReleaseCharacter;
 
         #endregion
-        
+
         public Vector3 Position => Rigidbody.position;
-        
+
         public float HorizontalPosition => Rigidbody.position.x;
-        
+
         public bool IsAlive => HealthPointBar.IsEnabled;
-        
+
         protected DamageType DeadCause { get; private set; }
-        
+
         public int InstanceID { get; private set; }
-        
+
         public string InstanceName { get; private set; }
     }
 }

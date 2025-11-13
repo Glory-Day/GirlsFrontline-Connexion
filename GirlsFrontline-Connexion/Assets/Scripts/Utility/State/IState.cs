@@ -1,11 +1,11 @@
-﻿namespace Utility.State
+﻿namespace Backend.Utility.State
 {
     public interface IState
     {
         void Start();
-        
+
         void Update();
-        
+
         void End();
     }
 }

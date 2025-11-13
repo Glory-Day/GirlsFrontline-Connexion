@@ -1,16 +1,16 @@
 ﻿using System;
 using Library.UI.CommandConsole;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Utility.Command
+namespace Backend.Utility.Command
 {
     public class QuitApplication : BaseCommand
     {
         public override void Execute(ParameterData data)
         {
             base.Execute(data);
-            
-            GameManager.OnApplicationQuit();
+
+            ApplicationManager.Quit();
         }
     }
 }

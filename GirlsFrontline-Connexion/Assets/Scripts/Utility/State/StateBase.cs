@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
-namespace Utility.State
+namespace Backend.Utility.State
 {
     public abstract class StateBase<T> : IState where T : MonoBehaviour
     {
         protected readonly T Component;
-        
+
         protected StateBase(T component)
         {
             Component = component;
         }
-        
+
         /// <summary>
         /// Initialize the state before its starts.
         /// </summary>

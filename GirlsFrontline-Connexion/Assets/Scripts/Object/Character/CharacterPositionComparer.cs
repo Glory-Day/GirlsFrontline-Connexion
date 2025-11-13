@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using GloryDay.Debug.Log;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class CharacterPositionComparer : IComparer<IHorizontalComparable>
     {
         private IHorizontalComparable _pivot;
-        
+
         /// <summary>
         /// Set the horizontal position that becomes the pivot for comparision of the character's horizontal position.
         /// </summary>
@@ -14,10 +14,10 @@ namespace Object.Character
         public void SetPivot(IHorizontalComparable pivot)
         {
             LogManager.LogProgress();
-            
+
             _pivot = pivot;
         }
-        
+
         public int Compare(IHorizontalComparable a, IHorizontalComparable b)
         {
             if (a is null || b is null)
@@ -29,7 +29,7 @@ namespace Object.Character
             {
                 return -1;
             }
-            
+
             var x01 = a.HorizontalPosition;
             var x02 = b.HorizontalPosition;
 

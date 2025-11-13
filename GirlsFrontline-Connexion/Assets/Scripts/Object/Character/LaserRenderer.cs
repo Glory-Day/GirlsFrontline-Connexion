@@ -3,7 +3,7 @@ using System.Collections;
 using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class LaserRenderer : MonoBehaviour
     {
@@ -18,11 +18,11 @@ namespace Object.Character
         private LineRenderer _renderer;
 
         #endregion
-        
+
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             _renderer = GetComponent<LineRenderer>();
         }
 
@@ -41,17 +41,17 @@ namespace Object.Character
             _renderer.SetPosition(1, end);
 
             yield return new WaitForSeconds(1f);
-            
+
             for (var i = 0f; i < 0.335f; i += Time.deltaTime)
             {
                 var percentage = i / 0.335f;
                 var width = Mathf.Lerp(10f, 0f, percentage);
                 _renderer.startWidth = width;
                 _renderer.endWidth = width;
-                
+
                 yield return null;
             }
-            
+
             _renderer.SetPosition(0, start);
             _renderer.SetPosition(1, start);
             _renderer.startWidth = 10f;

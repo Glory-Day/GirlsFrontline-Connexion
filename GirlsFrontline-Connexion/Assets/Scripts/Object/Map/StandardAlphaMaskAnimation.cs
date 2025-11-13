@@ -2,13 +2,13 @@
 using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class StandardAlphaMaskAnimation : MonoBehaviour, IUVAnimation
     {
         #region SERIALIZABLE FIELD API
-        
+
         [Header("UV Speed Properties")]
         [SerializeField] [Range(0, 1)] private float horizontalSpeed;
         [SerializeField] [Range(0, 1)] private float verticalSpeed;
@@ -21,7 +21,7 @@ namespace Object.Map
         private const string MaskTexturePropertyName = "_MaskTex";
 
         #endregion
-        
+
         #region COMPONENT FIELD API
 
         private Material _material;
@@ -29,7 +29,7 @@ namespace Object.Map
         #endregion
 
         private IEnumerator _routine;
-        
+
         private static readonly int MainTexturePropertyID = Shader.PropertyToID(MainTexturePropertyName);
         private static readonly int MaskTexturePropertyID = Shader.PropertyToID(MaskTexturePropertyName);
 
@@ -48,11 +48,11 @@ namespace Object.Map
             _routine = Moving();
             StartCoroutine(_routine);
         }
-        
+
         public void Pause()
         {
             LogManager.LogProgress();
-            
+
             StopCoroutine(_routine);
             _routine = null;
         }
@@ -60,7 +60,7 @@ namespace Object.Map
         public void Stop()
         {
             LogManager.LogProgress();
-            
+
             StopCoroutine(_routine);
             _routine = null;
 
@@ -79,10 +79,10 @@ namespace Object.Map
                 position.y += verticalSpeed * fixedDeltaTime;
                 position.x %= 1f;
                 position.y %= 1f;
-                
+
                 _material.SetTextureOffset(MainTexturePropertyID, position);
                 _material.SetTextureOffset(MaskTexturePropertyID, position);
-                
+
                 yield return null;
             }
         }
@@ -93,7 +93,7 @@ namespace Object.Map
         private void PlayAnimationForTesting()
         {
             LogManager.LogProgress();
-            
+
             Awake();
             Play();
         }
@@ -102,7 +102,7 @@ namespace Object.Map
         private void PauseAnimationForTesting()
         {
             LogManager.LogProgress();
-            
+
             Pause();
         }
 
@@ -110,10 +110,10 @@ namespace Object.Map
         private void StopAnimationForTesting()
         {
             LogManager.LogProgress();
-            
+
             Stop();
         }
-        
+
 #endif
     }
 }

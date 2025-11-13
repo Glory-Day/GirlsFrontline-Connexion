@@ -1,9 +1,9 @@
 ﻿using System;
 using GloryDay.Debug.Log;
 using Spine;
-using Utility.State;
+using Backend.Utility.State;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class IsomerCharacter
     {
@@ -14,12 +14,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -37,23 +37,23 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveEventListener(FadeOut);
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<IsomerCharacter>
         {
             public MoveState(IsomerCharacter component) : base(component) { }
@@ -61,9 +61,9 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.MoveToLeftDirection();
-                
+
                 Component.SkeletonAnimationHandler.Play(1, 0, true);
             }
 
@@ -72,11 +72,11 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.StopMoving();
             }
         }
-        
+
         private new class WaitState : StateBase<IsomerCharacter>
         {
             public WaitState(IsomerCharacter component) : base(component) { }
@@ -84,7 +84,7 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.Play(2, 0, true);
             }
 

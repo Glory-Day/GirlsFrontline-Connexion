@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class BitmapTextParticleSystem : MonoBehaviour
@@ -17,11 +17,11 @@ namespace Object.Character
             [Header("Font Texture")]
             public Texture texture;
 
-            [Header("Bitmap Tile Information")] 
+            [Header("Bitmap Tile Information")]
             public int columnCount;
             public int rowCount;
 
-            [Header("Available Character List")] 
+            [Header("Available Character List")]
             public char[] characters;
 
             public void Initialize()
@@ -34,7 +34,7 @@ namespace Object.Character
                     {
                         continue;
                     }
-                    
+
                     var x = i % columnCount;
                     var y = rowCount - 1 - i / rowCount;
                     Coordinates.Add(key, new Vector2(x, y));
@@ -44,7 +44,7 @@ namespace Object.Character
             public Vector2 GetTextureCoordinates(char character)
             {
                 var key = char.ToLowerInvariant(character);
-                
+
                 return Coordinates.TryGetValue(key, out var coordinates) ? coordinates : Vector2.zero;
             }
 
@@ -54,31 +54,31 @@ namespace Object.Character
         #endregion
 
         #region SERIALIZABLE FIELD API
-        
+
         public BitmapFontInformation bitmapFontInformation;
 
         #endregion
-        
+
         #region COMPONENT FIELD API
 
         private ParticleSystem _particleSystem;
         private ParticleSystemRenderer _particleSystemRenderer;
 
         #endregion
-        
+
         #region CONSTANT FIELD API
 
         private const int MaximumMessageLength = 24;
 
         #endregion
-        
+
         private void Awake()
         {
             LogManager.LogProgress();
 
             _particleSystem = GetComponent<ParticleSystem>();
             _particleSystemRenderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
-            
+
             var streams = new List<ParticleSystemVertexStream>();
             _particleSystemRenderer.GetActiveVertexStreams(streams);
             if (streams.Contains(ParticleSystemVertexStream.UV2) == false)
@@ -94,7 +94,7 @@ namespace Object.Character
                 streams.Add(ParticleSystemVertexStream.Custom2XYZW);
             }
             _particleSystemRenderer.SetActiveVertexStreams(streams);
-            
+
             bitmapFontInformation.Initialize();
         }
 
@@ -121,7 +121,7 @@ namespace Object.Character
 
                 var customData01 = CreateCustomData(coordinates);
                 var customData02 = CreateCustomData(coordinates, 12);
-                
+
                 var emitParams = new ParticleSystem.EmitParams
                                  {
                                      startSize3D = new Vector3(message.Length, 1f, 1f)
@@ -131,9 +131,9 @@ namespace Object.Character
                 {
                     emitParams.startSize3D *= startSize.Value * _particleSystem.main.startSizeMultiplier;
                 }
-                
+
                 _particleSystem.Emit(emitParams, 1);
-                
+
                 var customData = new List<Vector4>();
                 _particleSystem.GetCustomParticleData(customData, ParticleSystemCustomData.Custom1);
                 if (customData.Count != 0)
@@ -141,7 +141,7 @@ namespace Object.Character
                     customData[customData.Count - 1] = customData01;
                 }
                 _particleSystem.SetCustomParticleData(customData, ParticleSystemCustomData.Custom1);
-                
+
                 _particleSystem.GetCustomParticleData(customData, ParticleSystemCustomData.Custom2);
                 if (customData.Count != 0)
                 {
@@ -192,7 +192,7 @@ namespace Object.Character
             {
                 return 0f;
             }
-            
+
             var result = uvs[0].y * 10000f + uvs[0].x * 100000f;
             if (uvs.Length > 1)
             {
@@ -202,25 +202,25 @@ namespace Object.Character
             {
                 result += uvs[2].y + uvs[2].x * 10f;
             }
-            
+
             return result;
         }
 
 #if UNITY_EDITOR
-        
+
         #region COMPONENT TEST API
 
         private IEnumerator _coroutine;
-        
+
         [ContextMenu("Start component test")]
         public void StartTest()
         {
             Awake();
-            
+
             _coroutine = Testing();
             StartCoroutine(_coroutine);
         }
-        
+
         [ContextMenu("Stop component test")]
         public void StopTest()
         {
@@ -239,7 +239,7 @@ namespace Object.Character
         }
 
         #endregion
-        
+
 #endif
     }
 }

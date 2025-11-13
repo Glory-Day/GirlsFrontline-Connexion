@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using GloryDay.Debug.Log;
 using UnityEngine;
-using Utility.Data;
-using Utility.Manager;
+using Backend.Utility.Data;
+using Backend.Utility.Management;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class MeleeAttackAction : AttackAction
     {
@@ -18,21 +18,21 @@ namespace Object.Character
         #endregion
 
         #region CONSTANT FIELD API
-        
+
         private const int TriggerInPlayerCharacterLayerMask = 1 << 21;
 
         #endregion
-        
+
         private List<WeaponData> _meleeDataList = new List<WeaponData>();
-        
+
         private readonly Collider[] _colliders = new Collider[1];
 
         private void FixedUpdate()
         {
             var center = transform.position - position;
-            var count = Physics.OverlapBoxNonAlloc(center, scale, _colliders, rotation, 
+            var count = Physics.OverlapBoxNonAlloc(center, scale, _colliders, rotation,
                                                    TriggerInPlayerCharacterLayerMask);
-            
+
             switch (0 < count)
             {
                 case true:
@@ -44,11 +44,11 @@ namespace Object.Character
                     break;
             }
         }
-        
+
         private void OnDestroy()
         {
             LogManager.LogProgress();
-            
+
             _meleeDataList.Clear();
             _meleeDataList = null;
         }
@@ -58,7 +58,7 @@ namespace Object.Character
         /// </summary>
         /// <param name="data"> The damage value of melee data. </param>
         public void AddMeleeData(WeaponData data) => _meleeDataList.Add(data);
-        
+
         /// <summary>
         /// Hit the character with melee attack.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Object.Character
         public void Hit(int index)
         {
             LogManager.LogProgress();
-            
+
             if (_colliders[0] is null)
             {
                 return;
@@ -77,27 +77,27 @@ namespace Object.Character
             {
                 return;
             }
-            
+
             var damagePoint = _meleeDataList[index].DamagePoint;
             var defensePenetrationPoint = _meleeDataList[index].DefensePenetrationPoint;
             damagePoint += DefaultDamagePoint;
             defensePenetrationPoint += DefaultDefensePenetrationPoint;
-            
+
             character.TakeDamage(damagePoint, defensePenetrationPoint, DamageType.Default);
         }
-        
+
         public bool IsDetected { get; private set; }
-        
+
         #region UNITY EDITOR API
 
 #if UNITY_EDITOR
-        
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube (transform.position - position, scale);
         }
-        
+
 #endif
 
         #endregion

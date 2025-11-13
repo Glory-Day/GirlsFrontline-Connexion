@@ -2,10 +2,10 @@
 using GloryDay.SpineServices;
 using Spine;
 using UnityEngine;
-using Utility.State;
+using Backend.Utility.State;
 using Event = Spine.Event;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class CerynitisCharacter
     {
@@ -16,10 +16,10 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Shoot);
-                
+
                 Component.SkeletonAnimationHandler.Play(0);
             }
 
@@ -28,7 +28,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Shoot);
             }
@@ -36,14 +36,14 @@ namespace Object.Character.Enemy
             private void Completed(TrackEntry trackEntry)
             {
                 LogManager.LogProgress();
-                
+
                 Component.FiniteStateMachine.ChangeTo(Component.States[2]);
             }
 
             private void Shoot(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
@@ -54,7 +54,7 @@ namespace Object.Character.Enemy
                 Component._action.Prepare(0, 0, index).Fire(0);
             }
         }
-        
+
         private new class DieState : StateBase<CerynitisCharacter>
         {
             public DieState(CerynitisCharacter component) : base(component) { }
@@ -62,12 +62,12 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -89,23 +89,23 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveEventListener(FadeOut);
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(1) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<CerynitisCharacter>
         {
             public MoveState(CerynitisCharacter component) : base(component) { }
@@ -113,9 +113,9 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.MoveToDestination();
-                
+
                 Component.SkeletonAnimationHandler.Play(4, 0, true);
             }
 
@@ -132,7 +132,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
             }
         }
-        
+
         private class CoolDownState : StateBase<CerynitisCharacter>
         {
             private float _coolDownTime;
@@ -144,7 +144,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
 
                 _coolDownTime = 0f;
-                
+
                 Component.SkeletonAnimationHandler.Play(5, 0, true);
             }
 
@@ -155,7 +155,7 @@ namespace Object.Character.Enemy
                 {
                     return;
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(Component.States[0]);
             }
 
@@ -164,7 +164,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
             }
         }
-        
+
         private new class WaitState : StateBase<CerynitisCharacter>
         {
             public WaitState(CerynitisCharacter component) : base(component) { }

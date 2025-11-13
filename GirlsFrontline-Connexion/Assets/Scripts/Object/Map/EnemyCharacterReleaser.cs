@@ -1,9 +1,9 @@
 ﻿using GloryDay.Debug.Log;
-using Object.Character.Enemy;
+using Backend.Object.Character.Enemy;
 using UnityEngine;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class EnemyCharacterReleaser : MonoBehaviour
     {
@@ -18,10 +18,10 @@ namespace Object.Map
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             _spawner = GetComponentInParent<CharacterSpawner>();
         }
-        
+
         private void OnCollisionEnter(Collision other)
         {
             LogManager.LogProgress();
@@ -33,12 +33,12 @@ namespace Object.Map
 
                 return;
             }
-            
+
             if (other.collider.CompareTag(EnemyCharacterTag) == false)
             {
                 return;
             }
-            
+
             _spawner.RespawnEnemyCharacter(instance);
         }
     }

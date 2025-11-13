@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Object.Map;
+using Backend.Object.Map;
 using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class BackgroundAnimation : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace Object.Map
             for (var i = 0; i < count; i++)
             {
                 var component = transform.GetChild(i).GetComponent<StandardAlphaMaskAnimation>();
-                
+
                 _animations.Add(component);
             }
         }
@@ -40,7 +40,7 @@ namespace Object.Map
         public void Pause()
         {
             LogManager.LogProgress();
-            
+
             var count = _animations.Count;
             for (var i = 0; i < count; i++)
             {
@@ -54,7 +54,7 @@ namespace Object.Map
         public void Stop()
         {
             LogManager.LogProgress();
-            
+
             var count = _animations.Count;
             for (var i = 0; i < count; i++)
             {

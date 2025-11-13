@@ -1,7 +1,7 @@
 ﻿using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object.Map
+namespace Backend.Object.Map
 {
     public class PlaneMeshResolutionEditor : MonoBehaviour
     {
@@ -9,16 +9,16 @@ namespace Object.Map
 
         [Header("Materials")]
         [SerializeField] private Material material;
-        
+
         [Header("Resolution Setting")]
         [SerializeField] [Range(2, 256)] private int count;
         [SerializeField] [Range(1f, 100f)] private float width;
         [SerializeField] [Range(1f, 100f)] private float height;
-        
+
         #endregion
 
         #region COMPONENT FIELD API
-        
+
         private MeshFilter _filter;
         private MeshRenderer _renderer;
 
@@ -47,14 +47,14 @@ namespace Object.Map
             _mesh = new Mesh();
             _filter.mesh = _mesh;
             _renderer.material = material;
-            
+
             Generate();
         }
 
         private void Generate()
         {
             LogManager.LogProgress();
-            
+
             var resolution = (int)(count * height / width);
 
             var quad = new Vector3(width, 0f, height);
@@ -63,11 +63,11 @@ namespace Object.Map
 
             var x = count + 1;
             var y = resolution + 1;
-            
+
             _vertices = new Vector3[x * y];
             _triangles = new int[count * resolution * 6];
             _uvs = new Vector2[x * y];
-            
+
             for (var i = 0; i < y; i++)
             {
                 for (var j = 0; j < x; j++)
@@ -78,7 +78,7 @@ namespace Object.Map
                     _uvs[index] = new Vector2((float)j / (x - 1), (float)i / (y - 1));
                 }
             }
-            
+
             var index01 = 0;
             for (var i = 0; i < y - 1; i++)
             {
@@ -101,13 +101,13 @@ namespace Object.Map
         public void Edit()
         {
             LogManager.LogProgress();
-            
+
             Initialize();
-            
+
             _mesh.vertices = _vertices;
             _mesh.triangles = _triangles;
             _mesh.uv = _uvs;
-            
+
             _mesh.RecalculateNormals();
         }
     }

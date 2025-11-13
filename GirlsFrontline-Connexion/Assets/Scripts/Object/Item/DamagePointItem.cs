@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Object.Item
+namespace Backend.Object.Item
 {
     public class DamagePointItem : ItemBase
     {

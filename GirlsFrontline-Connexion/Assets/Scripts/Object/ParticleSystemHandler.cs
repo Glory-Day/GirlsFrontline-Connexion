@@ -2,7 +2,7 @@
 using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object
+namespace Backend.Object
 {
     public class ParticleSystemHandler : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace Object
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             var count = transform.childCount;
             for (var i = 0; i < count; i++)
             {
@@ -27,7 +27,7 @@ namespace Object
         public void Emit(int index)
         {
             LogManager.LogProgress();
-            
+
             _systems[index].Emit(1);
         }
 
@@ -44,14 +44,14 @@ namespace Object
         public void Play(int index)
         {
             LogManager.LogProgress();
-            
+
             _systems[index].Play();
         }
 
         public void Stop(int index)
         {
             LogManager.LogProgress();
-            
+
             _systems[index].Stop();
         }
 

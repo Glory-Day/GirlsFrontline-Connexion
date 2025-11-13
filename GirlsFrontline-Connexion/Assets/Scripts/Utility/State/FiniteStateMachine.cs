@@ -1,11 +1,11 @@
 ﻿using GloryDay.Debug.Log;
 
-namespace Utility.State
+namespace Backend.Utility.State
 {
     public class FiniteStateMachine
     {
         private IState _current;
-        
+
         /// <summary>
         /// Run the initial state of the finite state machine.
         /// </summary>
@@ -13,13 +13,13 @@ namespace Utility.State
         public void Run(IState state)
         {
             LogManager.LogProgress();
-            
+
             _current = state;
             _current.Start();
 
             Previous = null;
         }
-        
+
         /// <summary>
         /// Stop the current running state and update it to a new state.
         /// </summary>
@@ -28,17 +28,17 @@ namespace Utility.State
         {
             // Save the current state.
             Previous = _current;
-            
+
             _current.End();
             _current = state;
-            
+
             LogManager.LogMessage("<b>Finite State Machine</b> is updated.");
-            
+
             _current.Start();
         }
-        
+
         /// <summary>
-        /// Update the running current state on the finite state machine. 
+        /// Update the running current state on the finite state machine.
         /// </summary>
         public void Update()
         {
@@ -51,13 +51,13 @@ namespace Utility.State
         public void ShutDown()
         {
             LogManager.LogProgress();
-            
+
             _current?.End();
             _current = null;
-            
+
             Previous = null;
         }
-        
+
         /// <summary>
         /// Previously running state in finite state machine.
         /// </summary>

@@ -3,41 +3,41 @@ using System.Collections.Generic;
 using GloryDay.Debug.Log;
 using GloryDay.Math;
 using GloryDay.Debug;
-using Object.Map;
+using Backend.Object.Map;
 using UnityEngine;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Object.Weapon
+namespace Backend.Object.Weapon
 {
     public class Grenade : ProjectileBase
     {
         private TileMap _tileMap;
-        
+
         private readonly Vector3[] _points = new Vector3[4];
         private float _factor;
 
         private AudioClip _launchGrenadeSound;
-        
-        private readonly WaitUntil _instruction = new WaitUntil(() => GameManager.IsApplicationPaused == false);
-        
+
+        private readonly WaitUntil _instruction = new WaitUntil(() => ApplicationManager.IsPaused == false);
+
 #if UNITY_EDITOR
 
         private readonly LabelBuilder _labelBuilder = new LabelBuilder();
-        
+
 #endif
-        
+
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             InstanceID = GetInstanceID();
-            
+
             _tileMap = FindObjectOfType<TileMap>();
             _tileMap.WarningStateTiles.Add(InstanceID, new Queue<Tile>());
 
             var key = DataManager.AudioData.Effect[11];
             _launchGrenadeSound = ResourceManager.AudioClipResource.Effect[key];
-            
+
             DefensePenetrationPoint = 1f;
         }
 
@@ -54,32 +54,32 @@ namespace Object.Weapon
         private void OnDrawGizmos()
         {
             var style = new GUIStyle { richText = true };
-            
+
             _labelBuilder.SetStyle("magenta", 8);
             _labelBuilder.Append("Point 01");
             var label = _labelBuilder.ToString();
             UnityEditor.Handles.Label(_points[0], label, style);
             _labelBuilder.Clear();
-            
+
             _labelBuilder.Append("Point 02");
             label = _labelBuilder.ToString();
             UnityEditor.Handles.Label(_points[1], label, style);
             _labelBuilder.Clear();
-            
+
             _labelBuilder.Append("Point 03");
             label = _labelBuilder.ToString();
             UnityEditor.Handles.Label(_points[2], label, style);
             _labelBuilder.Clear();
-            
+
             _labelBuilder.Append("Point 04");
             label = _labelBuilder.ToString();
             UnityEditor.Handles.Label(_points[3], label, style);
             _labelBuilder.Clear();
-            
+
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(_points[0], _points[1]);
             Gizmos.DrawLine(_points[2], _points[3]);
-            
+
             Gizmos.color = Color.red;
             for (var i = 0f; i < 100f; i++)
             {
@@ -88,7 +88,7 @@ namespace Object.Weapon
 
                 time = (i + 1f) / 100f;
                 var after = BezierCurve.GetPosition(time, _points);
-                
+
                 Gizmos.DrawLine(before, after);
             }
         }
@@ -103,9 +103,9 @@ namespace Object.Weapon
             {
                 SoundManager.OnPlayEffectAudioSource(_launchGrenadeSound);
             }
-            
+
             gameObject.SetActive(true);
-            
+
             StartCoroutine(Moving());
         }
 
@@ -117,7 +117,7 @@ namespace Object.Weapon
             for (var deltaTime = 0f; deltaTime <= totalTime; deltaTime += fixedDeltaTime)
             {
                 var time = deltaTime / totalTime;
-                
+
                 var position = transform.position;
                 var movedPosition = BezierCurve.GetPosition(time, _points);
                 var direction = movedPosition - position;
@@ -128,7 +128,7 @@ namespace Object.Weapon
                 yield return _instruction;
             }
         }
-        
+
         /// <summary>
         /// Set the destination point and height of the bézier curve.
         /// </summary>
@@ -139,27 +139,27 @@ namespace Object.Weapon
             var position = transform.position;
             var distance = Vector3.Distance(position, destination);
             var height = distance / _factor;
-            
+
             _points[0] = _points[1] = position;
             _points[2] = _points[3] = destination;
-            
+
             // Set bézier curve point positions.
             var delta = (_points[2].x - _points[1].x) / 4;
             _points[1].x += delta;
             _points[2].x -= delta;
-            
+
             delta = _points[1].y - _points[2].y;
             _points[1].y += height;
             _points[2].y += height + delta;
         }
-        
+
         public void SetData(float damagePoint, float defensePenetrationPoint, float speedPoint, float height)
         {
             base.SetData(damagePoint, defensePenetrationPoint, speedPoint);
 
             _factor = height;
         }
-        
+
         public int InstanceID { get; private set; }
     }
 }

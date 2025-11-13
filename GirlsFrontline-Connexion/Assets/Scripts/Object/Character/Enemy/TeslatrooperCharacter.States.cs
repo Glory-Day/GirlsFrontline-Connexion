@@ -1,13 +1,13 @@
 ﻿using System;
 using GloryDay.Debug.Log;
 using GloryDay.SpineServices;
-using Object.Map;
-using Object.Weapon;
+using Backend.Object.Map;
+using Backend.Object.Weapon;
 using Spine;
-using Utility.Manager;
-using Utility.State;
+using Backend.Utility.Management;
+using Backend.Utility.State;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class TeslatrooperCharacter
     {
@@ -18,10 +18,10 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Hit);
-                
+
                 Component.SkeletonAnimationHandler.Play(0, 0, true);
             }
 
@@ -30,15 +30,15 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Hit);
             }
-            
+
             private void Completed(TrackEntry trackEntry)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component._meleeAttackAction.IsDetected == false)
                 {
                     Component.FiniteStateMachine.ChangeTo(Component.States[1]);
@@ -48,20 +48,20 @@ namespace Object.Character.Enemy
                     Component.FiniteStateMachine.ChangeTo(Component.States[2]);
                 }
             }
-            
+
             private void Hit(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(0) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component._meleeAttackAction.Hit(0);
             }
         }
-        
+
         private new class DieState : StateBase<TeslatrooperCharacter>
         {
             public DieState(TeslatrooperCharacter component) : base(component) { }
@@ -72,9 +72,9 @@ namespace Object.Character.Enemy
 
                 Component.ItemSpawner.Spawn();
                 Component.OnRemoveRecord.Invoke(Component);
-                
+
                 Component.SkeletonAnimationHandler.AddEventListener(FadeOut);
-                
+
                 switch (Component.DeadCause)
                 {
                     case DamageType.Default:
@@ -96,23 +96,23 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveEventListener(FadeOut);
             }
-            
+
             private void FadeOut(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(2) != @event.Data)
                 {
                     return;
                 }
-                
+
                 Component.StartCoroutine(Component.FadeOut());
             }
         }
-        
+
         private class MoveState : StateBase<TeslatrooperCharacter>
         {
             private bool _isEnabled;
@@ -125,9 +125,9 @@ namespace Object.Character.Enemy
             public override void Start()
             {
                 LogManager.LogProgress();
-                
+
                 Component.MoveToLeftDirection();
-                
+
                 Component.SkeletonAnimationHandler.Play(4, 0, true);
             }
 
@@ -140,7 +140,7 @@ namespace Object.Character.Enemy
 
                     return;
                 }
-                
+
                 if (Component._meleeAttackAction.IsDetected)
                 {
                     Component.FiniteStateMachine.ChangeTo(Component.States[0]);
@@ -154,7 +154,7 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.StopMoving();
             }
         }
@@ -165,7 +165,7 @@ namespace Object.Character.Enemy
 
             private bool _isShot;
             private readonly Grenade[] _grenades = new Grenade[4];
-            
+
             public UseSkill01(TeslatrooperCharacter component) : base(component) { }
 
             public override void Start()
@@ -177,18 +177,18 @@ namespace Object.Character.Enemy
                 for (var i = 0; i < 4; i++)
                 {
                     _tiles[i] = Component.TileMap.GetRandom();
-                    
+
                     var destination = _tiles[i].transform.position;
                     _grenades[i] = Component._projectileAttackAction.Prepare(0, destination, 0, i);
-                    
+
                     _tiles[i]?.StartWarningState(_grenades[i].InstanceID);
                 }
 
                 _isShot = false;
-                
+
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.AddEventListener(Shoot);
-                
+
                 Component.SkeletonAnimationHandler.Play(5);
             }
 
@@ -197,11 +197,11 @@ namespace Object.Character.Enemy
             public override void End()
             {
                 LogManager.LogProgress();
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
                 Component.SkeletonAnimationHandler.RemoveEventListener(Shoot);
             }
-            
+
             private void Completed(TrackEntry trackEntry)
             {
                 LogManager.LogProgress();
@@ -211,37 +211,37 @@ namespace Object.Character.Enemy
                     for (var i = 0; i < 4; i++)
                     {
                         _tiles[i]?.StopWarningState(_grenades[i].InstanceID);
-                        
+
                         ObjectManager.OnRelease(_grenades[i].gameObject);
                         _grenades[i] = null;
                     }
                 }
-                
+
                 var state = Component.States[1];
                 if (Component._meleeAttackAction.IsDetected)
                 {
                     state = Component.States[0];
                 }
-                
+
                 Component.FiniteStateMachine.ChangeTo(state);
             }
 
             private void Shoot(TrackEntry trackEntry, Event @event)
             {
                 LogManager.LogProgress();
-                
+
                 if (Component.SkeletonAnimationHandler.GetEventData(1) != @event.Data)
                 {
                     return;
                 }
-                
+
                 for (var i = 0; i < 4; i++)
                 {
                     Component.ParticleSystemHandler.Emit(i + 1);
-                    
+
                     _grenades[i].Launch();
                 }
-                
+
                 _isShot = true;
             }
         }
@@ -257,7 +257,7 @@ namespace Object.Character.Enemy
                 Component.DefensePoint += AdditionalDefense;
 
                 Component.SkeletonAnimationHandler.AddListener(AnimationEventType.Complete, Completed);
-                
+
                 Component.SkeletonAnimationHandler.AddAnimation(6);
             }
 
@@ -268,7 +268,7 @@ namespace Object.Character.Enemy
                 LogManager.LogProgress();
 
                 Component.DefensePoint -= AdditionalDefense;
-                
+
                 Component.SkeletonAnimationHandler.RemoveListener(AnimationEventType.Complete, Completed);
             }
 
@@ -290,7 +290,7 @@ namespace Object.Character.Enemy
                 }
             }
         }
-        
+
         private new class WaitState : StateBase<TeslatrooperCharacter>
         {
             public WaitState(TeslatrooperCharacter component) : base(component) { }

@@ -2,19 +2,19 @@
 using GloryDay.Debug.Log;
 using UnityEngine;
 
-namespace Object.Character
+namespace Backend.Object.Character
 {
     public class AttackAction : MonoBehaviour
     {
         protected float DefaultDamagePoint;
         protected float DefaultDefensePenetrationPoint;
-        
+
         protected string Tag;
 
         private void Awake()
         {
             LogManager.LogProgress();
-            
+
             var child = transform.GetChild(0);
             Tag = child.tag;
         }

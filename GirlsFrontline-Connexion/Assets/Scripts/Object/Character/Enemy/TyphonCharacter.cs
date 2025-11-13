@@ -1,9 +1,9 @@
 ﻿using GloryDay.Debug.Log;
-using Object.Map;
+using Backend.Object.Map;
 using UnityEngine;
-using Utility.Manager;
+using Backend.Utility.Management;
 
-namespace Object.Character.Enemy
+namespace Backend.Object.Character.Enemy
 {
     public partial class TyphonCharacter : EnemyCharacter
     {
@@ -12,51 +12,51 @@ namespace Object.Character.Enemy
         private LaserRenderer _laserRenderer;
 
         #endregion
-        
+
         #region CONSTANT FIELD API
-        
+
         private const int TileLayerMask = 1 << 13;
-        
+
         private const float MaximumCoolDownTime = 10f;
         private const float MaximumDistance = 100f;
 
         #endregion
-        
+
         private Tile[] _tiles;
-        
+
         private AudioClip _chargeLaserSound;
         private AudioClip _launchLaserSound;
-        
+
         protected override void Awake()
         {
             LogManager.LogProgress();
-            
+
             base.Awake();
-            
+
             // Initialize laser renderer
             _laserRenderer = GetComponentInChildren<LaserRenderer>();
-            
+
             // Set character states in state machine.
             States.Add(new AttackState(this));
             States.Add(new MoveState(this));
             States.Add(new CoolDownState(this));
-            
+
             base.DieState = new DieState(this);
             base.WaitState = new WaitState(this);
 
             var key = DataManager.AudioData.Effect[13];
             _chargeLaserSound = ResourceManager.AudioClipResource.Effect[key];
-            
+
             key = DataManager.AudioData.Effect[14];
             _launchLaserSound = ResourceManager.AudioClipResource.Effect[key];
         }
-        
+
         protected override void OnEnable()
         {
             LogManager.LogProgress();
-            
+
             base.OnEnable();
-            
+
             FiniteStateMachine.Run(States[1]);
         }
 
@@ -68,7 +68,7 @@ namespace Object.Character.Enemy
             {
                 return;
             }
-            
+
             base.OnDrawGizmos();
 
             var position = Rigidbody.position;
@@ -78,7 +78,7 @@ namespace Object.Character.Enemy
             var orientation = transform.rotation;
 
             Gizmos.color = Color.magenta;
-            
+
             if (Physics.BoxCast(center, extents, direction, out var hit, orientation, MaximumDistance, TileLayerMask))
             {
                 Gizmos.DrawRay(position, direction * hit.distance);
