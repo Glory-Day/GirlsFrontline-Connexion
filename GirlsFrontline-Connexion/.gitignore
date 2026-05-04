@@ -109,3 +109,10 @@ InitTestScene*.unity*
 
 # Visual Studio Code cache directory
 /.vscode/
+
+# External package direacotories and meta files
+/[Aa]ssets/TextMesh Pro/
+/[Aa]ssets/TextMesh Pro.meta
+/[Aa]ssets/Spine/
+/[Aa]ssets/Spine Example/
+/[Aa]ssets/Spine.meta
