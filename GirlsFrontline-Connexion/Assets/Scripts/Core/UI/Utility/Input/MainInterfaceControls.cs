@@ -98,7 +98,7 @@ namespace Core.UI.Utility.Input
                     ""name"": ""Display Skill Information"",
                     ""type"": ""Button"",
                     ""id"": ""58882f9f-3151-498c-918d-10e8df8a2788"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Main Interface Controls",
     "maps": [
         {
@@ -9,9 +10,10 @@
                     "name": "Display Skill Information",
                     "type": "Button",
                     "id": "58882f9f-3151-498c-918d-10e8df8a2788",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Display Character Stat Point Information",
@@ -19,7 +21,8 @@
                     "id": "5bb7c706-9425-4182-a815-552fbd18e73f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -57,7 +60,8 @@
                     "id": "aca5d531-59a2-4150-8075-7231a6f5d3cc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -84,7 +88,8 @@
                     "id": "9005d84f-8771-497f-96cb-2bda50f58235",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

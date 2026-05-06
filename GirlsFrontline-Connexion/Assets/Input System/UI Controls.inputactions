@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "UI Controls",
     "maps": [
         {
@@ -9,9 +10,10 @@
                     "name": "Skip",
                     "type": "Button",
                     "id": "04c293b8-57fa-463a-9a1c-0c0421317035",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -38,7 +40,8 @@
                     "id": "6771a31a-c0c9-42a8-b41e-5b6cfdc4dafa",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -65,7 +68,8 @@
                     "id": "4603a1f8-cdcd-45e2-be04-d5f8f55d2e56",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Select Previous Chapter",
@@ -73,7 +77,8 @@
                     "id": "6c997041-541e-439a-8feb-17119e34f98d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Return To Title",
@@ -81,7 +86,8 @@
                     "id": "4db22f72-b5da-4957-9faa-d3e4e0d63fee",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -130,7 +136,8 @@
                     "id": "1f6a33fb-0533-4e15-9ca3-ec62e52fec16",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Display Character Stat Point Information",
@@ -138,7 +145,8 @@
                     "id": "a0501f39-7329-4190-b94f-334097d93f08",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Restart",
@@ -146,7 +154,8 @@
                     "id": "d5bebd59-f577-49fe-beb9-cef218858417",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Pause",
@@ -154,7 +163,8 @@
                     "id": "fc39d9f2-f615-45e1-8ab8-a0fc2ebe52a9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Quit",
@@ -162,7 +172,8 @@
                     "id": "65e04fb2-9523-4fab-b84c-a14da9081a31",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -233,7 +244,8 @@
                     "id": "0c8c7593-0fc3-4217-b0d6-4140bf275fc4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -260,7 +272,8 @@
                     "id": "982d8211-9a54-47fa-b9fc-5bbbdb18faab",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
