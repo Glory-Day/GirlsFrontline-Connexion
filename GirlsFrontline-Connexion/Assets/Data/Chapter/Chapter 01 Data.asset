@@ -16,19 +16,9 @@ MonoBehaviour:
   - waveData:
     - delay: 0
       spawnData:
-      - characterName: Aegis GA
-        destinationIndex: 
-        spawnedPositionIndex: 15
-    - delay: 0
-      spawnData:
-      - characterName: Aegis GA
+      - characterName: Teslatrooper
         destinationIndex: 
         spawnedPositionIndex: 10
-    - delay: 0
-      spawnData:
-      - characterName: Aegis GA
-        destinationIndex: 
-        spawnedPositionIndex: 5
   - waveData:
     - delay: 0
       spawnData:

@@ -1,0 +1,7 @@
+{
+  "name": "com.gloryday.addressables.key-generator",
+  "displayName": "Addressables Key Generator",
+  "version": "1.0.0",
+  "unity": "2019.2",
+  "description": "A Unity Editor tool for GloryDay projects that automatically generates C# scripts \ncontaining the address keys of assets registered in Unity's Addressable Asset System.\n\nEliminates hardcoded address strings scattered across the codebase by centralizing \nall addressable keys into a single generated script, reducing the risk of runtime \nerrors caused by typos or outdated address references."
+}

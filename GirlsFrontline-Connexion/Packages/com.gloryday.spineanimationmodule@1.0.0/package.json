@@ -1,8 +1,0 @@
-{
-  "name": "com.gloryday.spineanimationmodule",
-  "displayName": "Spine Animation Module",
-  "version": "1.0.0",
-  "dependencies": {
-    "com.gloryday.debugmodule": "1.0.0"
-  }
-}

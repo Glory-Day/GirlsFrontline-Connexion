@@ -1,0 +1,7 @@
+{
+  "name": "com.gloryday.commons",
+  "displayName": "Common Utilities",
+  "version": "1.0.0",
+  "description": "A collection of common utilities and design patterns for GloryDay Unity projects.\r\n\r\nProvides foundational building blocks including singleton patterns for both pure C# and MonoBehaviour, with plans to expand into event bus, object pooling, and other shared runtime utilities.",
+  "unity": "2019.2"
+}

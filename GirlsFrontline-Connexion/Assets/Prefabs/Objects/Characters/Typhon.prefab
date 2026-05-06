@@ -5105,8 +5105,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062038332749971649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.367007, y: -2.0938103, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 18.443367, y: -1.5077255, z: 0}
+  m_LocalScale: {x: 22.227661, y: 1.6050767, z: 1}
   m_Children: []
   m_Father: {fileID: 2480642750472717289}
   m_RootOrder: 0
@@ -14970,7 +14970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7192054977408288050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08999451, y: 14.828405, z: 0}
+  m_LocalPosition: {x: -0.08999451, y: 13.843085, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2480642750472717289}
@@ -20012,7 +20012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 5809416043796029857}
-  animationName: 
+  animationName: typhon_attack
   timeline: 0
 --- !u!114 &-3350826379734130829
 MonoBehaviour:
@@ -20117,8 +20117,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8435535277070089642}
-  m_LocalRotation: {x: 0, y: 0, z: 0.999969, w: 0.00787341}
-  m_LocalPosition: {x: 1.44, y: 3.9599946, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.99961406, w: -0.027780458}
+  m_LocalPosition: {x: 2.977545, y: 3.9599946, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3036201169077807600}

@@ -1,0 +1,7 @@
+{
+  "name": "com.gloryday.font.bitmap.bitmap-font-generator",
+  "displayName": "Bitmap Font Generator",
+  "version": "1.0.0",
+  "unity": "2019.2",
+  "description": "A Unity Editor tool for GloryDay projects that converts bitmap font files (.fnt) \ninto TextMeshPro font assets.\n\nParses .fnt file format to extract glyph metrics, kerning information, and texture \ncoordinates, then applies the data to an existing TMP_FontAsset, allowing bitmap \nfonts to be used seamlessly within Unity's TextMeshPro system."
+}

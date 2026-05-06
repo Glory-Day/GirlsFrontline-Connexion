@@ -1,0 +1,7 @@
+{
+  "name": "com.gloryday.mathematics",
+  "displayName": "Mathematics",
+  "description": "A collection of mathematical utilities for GloryDay Unity projects.\n\nProvides a set of reusable math utilities designed to support and extend \nUnity's built-in mathematics, covering a wide range of common mathematical \noperations used in game development.",
+  "version": "1.0.0",
+  "unity": "2019.2"
+}

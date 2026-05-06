@@ -1,0 +1,7 @@
+{
+  "name": "com.gloryday.debug.console-log-formatter",
+  "displayName": "Console Log Formatter",
+  "description": "A lightweight debug logging utility for Unity that provides structured, color-coded rich text output in the Unity Console during editor sessions, and real-time file logging in development builds. Supports multiple log levels including Progress, Message, Event, Warning, Error, Success, and Administrator.",
+  "version": "1.0.0",
+  "unity": "2020.2"
+}

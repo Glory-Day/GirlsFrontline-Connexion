@@ -1,0 +1,20 @@
+{
+    "name": "GloryDay.Addressable.KeyGenerator.Editor",
+    "rootNamespace": "GloryDay.Addressables",
+    "references": [
+        "GUID:b1a14f8fd53d6884b94d3e42b2445380",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:69448af7b92c7f342b298e06a37122aa"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
