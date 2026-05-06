@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Manager/ResourceManager.cs
 ﻿using GloryDay.Debug;
 using GloryDay.Utility;
 using Core.Utility.Manager.Resource;
 using Core.Utility.Manager.Resource.Addressable;
 
 namespace Core.Utility.Manager
+========
+﻿using Backend.Utility.Management.Resource;
+using Backend.Utility.Management.Resource.Addressable;
+using GloryDay;
+using GloryDay.Debug.Log;
+
+namespace Backend.Utility.Management
+>>>>>>>> develop:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Management/ResourceManager.cs
 {
     public class ResourceManager : Singleton<ResourceManager>
     {
@@ -26,7 +35,11 @@ namespace Core.Utility.Manager
 
         private void LoadAllResources()
         {
+<<<<<<<< HEAD:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Manager/ResourceManager.cs
             Console.LogProgress();
+========
+            LogManager.LogProgress();
+>>>>>>>> develop:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Management/ResourceManager.cs
 
             var length = _resourceLoaders.Length;
             for (var i = 0; i < length; i++)
@@ -37,7 +50,11 @@ namespace Core.Utility.Manager
 
         private void UnloadAllResources()
         {
+<<<<<<<< HEAD:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Manager/ResourceManager.cs
             Console.LogProgress();
+========
+            LogManager.LogProgress();
+>>>>>>>> develop:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Management/ResourceManager.cs
 
             var length = _resourceLoaders.Length;
             for (var i = 0; i < length; i++)
@@ -53,7 +70,11 @@ namespace Core.Utility.Manager
         /// </summary>
         public static void OnLoadAllResources()
         {
+<<<<<<<< HEAD:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Manager/ResourceManager.cs
             Console.LogProgress();
+========
+            LogManager.LogProgress();
+>>>>>>>> develop:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Management/ResourceManager.cs
 
             Instance.LoadAllResources();
         }
@@ -63,7 +84,11 @@ namespace Core.Utility.Manager
         /// </summary>
         public static void OnUnloadAllResources()
         {
+<<<<<<<< HEAD:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Manager/ResourceManager.cs
             Console.LogProgress();
+========
+            LogManager.LogProgress();
+>>>>>>>> develop:GirlsFrontline-Connexion/Assets/Scripts/Core/Utility/Management/ResourceManager.cs
 
             Instance.UnloadAllResources();
         }

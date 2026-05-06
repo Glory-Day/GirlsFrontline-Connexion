@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 72bad817baf6c924ab45afd6d7132de9
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: JetBrainsMono Nerd Font
+  fontNames:
+  - JetBrainsMono Nerd Font
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7191f8b3b4e2024499d1ce252279b71d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
