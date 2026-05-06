@@ -98,7 +98,7 @@ namespace Core.Object.Character
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""bf8d63fa-1f3b-4200-8db4-ae028460e5da"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

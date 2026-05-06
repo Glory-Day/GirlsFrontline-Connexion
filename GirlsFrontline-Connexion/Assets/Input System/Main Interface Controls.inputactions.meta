@@ -11,4 +11,4 @@ ScriptedImporter:
   generateWrapperCode: 1
   wrapperCodePath: Assets/Scripts/Core/UI/Utility/Input/MainInterfaceControls.cs
   wrapperClassName: 
-  wrapperCodeNamespace: UI.Utility.Input
+  wrapperCodeNamespace: Core.UI.Utility.Input

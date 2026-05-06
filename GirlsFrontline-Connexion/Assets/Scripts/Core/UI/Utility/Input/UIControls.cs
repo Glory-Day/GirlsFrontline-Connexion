@@ -98,7 +98,7 @@ namespace Core.UI.Utility.Input
                     ""name"": ""Skip"",
                     ""type"": ""Button"",
                     ""id"": ""04c293b8-57fa-463a-9a1c-0c0421317035"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
