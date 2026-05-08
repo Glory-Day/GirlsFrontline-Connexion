@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GloryDay.Debug;
@@ -7,7 +7,7 @@ using Core.Object.Map;
 using Core.Object.Weapon;
 using UnityEngine;
 using Core.Utility;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
 

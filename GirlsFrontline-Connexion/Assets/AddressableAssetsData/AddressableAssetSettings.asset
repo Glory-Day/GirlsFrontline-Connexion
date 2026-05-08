@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: acfab8f45f2450745a9ae095c7f72781
   m_currentHash:
     serializedVersion: 2
-    Hash: 5e5eb1d934e8554a59006bb04e4f51c8
+    Hash: c6cde5a3a3fa6cbe1d37a09d54153b6a
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -89,19 +89,19 @@ MonoBehaviour:
         m_Value: 'http://localhost/[BuildTarget]'
     m_ProfileEntryNames:
     - m_Id: 07f7a8221c068d442ab657e19a8b3743
-      m_Name: RemoteBuildPath
+      m_Name: Remote.BuildPath
       m_InlineUsage: 0
     - m_Id: 4129491fec5cc2c4dac92eb239ee2a61
-      m_Name: LocalLoadPath
+      m_Name: Local.LoadPath
       m_InlineUsage: 0
     - m_Id: 584d1139d96de58488d8287ca958a27e
-      m_Name: LocalBuildPath
+      m_Name: Local.BuildPath
       m_InlineUsage: 0
     - m_Id: 65f29cefa9ca1e440826fb7fe48d8150
       m_Name: BuildTarget
       m_InlineUsage: 0
     - m_Id: 938aa07dbc658ca4a87e69773bbbb152
-      m_Name: RemoteLoadPath
+      m_Name: Remote.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:

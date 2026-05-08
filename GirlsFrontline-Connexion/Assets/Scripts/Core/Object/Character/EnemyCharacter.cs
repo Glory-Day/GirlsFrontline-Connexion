@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using Core.Object.Map;
 using UnityEngine;
 using Core.Utility.Data;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.State;
 
 namespace Core.Object.Character

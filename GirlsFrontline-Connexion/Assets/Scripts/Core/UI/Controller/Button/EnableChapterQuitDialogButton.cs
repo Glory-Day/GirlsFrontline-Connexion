@@ -6,7 +6,7 @@ using Core.Utility.Extension;
 
 namespace Core.UI.Controller.Button
 {
-    public class EnableChapterQuitDialogButton : UIButtonBase
+    public class EnableChapterQuitDialogButton : ButtonBase
     {
         #region SERIALIZABLE FIELD API
 
@@ -14,32 +14,29 @@ namespace Core.UI.Controller.Button
         [SerializeField] private GameObject dialogObject;
 
         #endregion
-        
+
         private PauseScreen _pauseScreen;
         private ChapterStateDisplay _chapterStateDisplay;
-        
+
         private MainInterfaceControls.QuitButtonActions _actions;
-        
+
         protected override void Awake()
         {
             Console.LogProgress();
-            
+
             base.Awake();
-            
+
             _actions = new MainInterfaceControls().QuitButton;
             _actions.Toggle.performed += Toggle;
-            
+
             _pauseScreen = FindObjectOfType<PauseScreen>();
             _chapterStateDisplay = FindObjectOfType<ChapterStateDisplay>();
-            
-            SetHoverSound(0);
-            SetClickSound(1);
         }
-        
+
         private void Start()
         {
             Console.LogProgress();
-            
+
             _actions.Enable();
         }
 
@@ -50,30 +47,26 @@ namespace Core.UI.Controller.Button
             Click();
         }
 
-        #region BUTTON EVENT API
-
         protected override void Click()
         {
             Console.LogProgress();
 
             base.Click();
-            
+
             if (dialogObject.activeSelf)
             {
                 _pauseScreen.TurnOff();
                 _chapterStateDisplay.DisableState();
-                
+
                 dialogObject.SetActive(false);
             }
             else
             {
                 _pauseScreen.TurnOn();
                 _chapterStateDisplay.EnableState();
-                
+
                 dialogObject.SetActive(true);
             }
         }
-
-        #endregion
     }
 }

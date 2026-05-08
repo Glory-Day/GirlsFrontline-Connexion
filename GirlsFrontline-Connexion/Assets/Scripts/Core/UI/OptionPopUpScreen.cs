@@ -1,8 +1,8 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using GloryDay.UI;
 using Core.UI.Controller.Toggle;
 using UnityEngine.InputSystem;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.UI
 {

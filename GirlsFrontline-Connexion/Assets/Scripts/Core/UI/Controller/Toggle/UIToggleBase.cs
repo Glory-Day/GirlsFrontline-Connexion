@@ -1,7 +1,7 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using GloryDay.UI.Controller.Toggle;
 using UnityEngine.EventSystems;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.UI.Controller.Toggle
 {

@@ -1,9 +1,9 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using Core.Object.Weapon;
 using Spine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Character
 {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using GloryDay.Animation;
 using GloryDay.Debug;
@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Core.Utility.Extension;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
 

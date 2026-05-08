@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using Core.Object.Item;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
 using Random = UnityEngine.Random;

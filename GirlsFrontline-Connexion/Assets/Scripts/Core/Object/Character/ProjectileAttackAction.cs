@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using Core.Object.Weapon;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.Data;
 
 using Console = GloryDay.Debug.Console;

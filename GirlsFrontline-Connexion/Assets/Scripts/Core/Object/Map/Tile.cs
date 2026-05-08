@@ -1,10 +1,10 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using GloryDay.Debug.Gizmos;
 using Core.Object.Character;
 using Core.Object.Weapon;
 using UnityEngine;
 using Core.Utility;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
 

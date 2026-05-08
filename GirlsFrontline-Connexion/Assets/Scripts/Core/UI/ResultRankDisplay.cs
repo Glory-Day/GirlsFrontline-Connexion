@@ -1,9 +1,9 @@
-﻿using GloryDay.Animation;
+using GloryDay.Animation;
 using GloryDay.Debug;
 using UnityEngine;
 using UnityEngine.UI;
 using Core.Utility.Extension;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.UI
 {

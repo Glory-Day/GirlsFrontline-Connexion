@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using GloryDay.Debug;
 using Core.Object.Character;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Weapon
 {

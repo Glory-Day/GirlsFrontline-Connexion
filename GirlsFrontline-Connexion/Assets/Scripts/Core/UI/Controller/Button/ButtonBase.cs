@@ -1,35 +1,51 @@
-﻿using GloryDay.Debug;
+﻿using Core.Utility.Management;
+using GloryDay.Debug;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GloryDay.UI.Controller.Button
+namespace Core.UI.Controller.Button
 {
     public abstract class ButtonBase : MonoBehaviour, IPointerEnterHandler
     {
-        #region COMPONENT FIELD API
+        #region SERIALIZABLE FIELD API
 
-        protected UnityEngine.UI.Button Button;
+        [Title("Audio")]
+        [SerializeField] private AudioClip hoverSound;
+        [SerializeField] private AudioClip clickSound;
 
         #endregion
 
-        protected AudioClip HoverSound;
-        protected AudioClip ClickSound;
-        
+        protected UnityEngine.UI.Button Button;
+
         protected virtual void Awake()
         {
             Console.LogProgress();
-            
+
             Button = GetComponent<UnityEngine.UI.Button>();
             Button.onClick.AddListener(Click);
         }
-        
+
         /// <summary>
         /// Invokes when a user clicks the button and releases it
         /// </summary>
-        protected abstract void Click();
+        protected virtual void Click()
+        {
+            Console.LogProgress();
 
-        public abstract void OnPointerEnter(PointerEventData eventData);
-        
+            SoundManager.OnPlayEffectAudioSource(clickSound);
+        }
+
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            Console.LogProgress();
+
+            if (Button.IsActive() && Button.IsInteractable())
+            {
+                SoundManager.OnPlayEffectAudioSource(hoverSound);
+            }
+        }
+
         public UnityEngine.UI.Button.ButtonClickedEvent OnClick => Button.onClick;
     }
 }

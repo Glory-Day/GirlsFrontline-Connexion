@@ -1,7 +1,7 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using Core.Object.Character.Enemy;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Map
 {

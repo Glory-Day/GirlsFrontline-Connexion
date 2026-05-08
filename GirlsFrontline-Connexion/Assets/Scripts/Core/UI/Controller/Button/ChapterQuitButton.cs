@@ -1,32 +1,30 @@
 ﻿using GloryDay.Debug;
-using Core.Utility.Manager;
+using Core.Utility.Management;
+using UnityEngine;
 
 namespace Core.UI.Controller.Button
 {
-    public class ChapterQuitButton : UIButtonBase
+    public class ChapterQuitButton : ButtonBase
     {
         private TransitionScreen _transitionScreen;
-        
+
         protected override void Awake()
         {
             Console.LogProgress();
-            
+
             base.Awake();
-            
+
             _transitionScreen = FindObjectOfType<TransitionScreen>();
-            
-            SetHoverSound(0);
-            SetClickSound(1);
         }
-        
+
         protected override void Click()
         {
             Console.LogMessage("<b>Disable Dialog Button</b> is clicked");
-            
+
             base.Click();
-            
+
             GameManager.OnApplicationPlay();
-            
+
             _transitionScreen.Transition(2, TransitionType.Gate);
         }
     }

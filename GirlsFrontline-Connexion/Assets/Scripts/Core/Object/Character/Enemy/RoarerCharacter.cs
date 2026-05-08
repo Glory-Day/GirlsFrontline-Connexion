@@ -1,6 +1,6 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Character.Enemy
 {

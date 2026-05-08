@@ -1,8 +1,8 @@
-﻿using GloryDay.Animation;
+using GloryDay.Animation;
 using GloryDay.Debug;
 using GloryDay.UI;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.UI
 {

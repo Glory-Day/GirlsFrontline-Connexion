@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using GloryDay.Debug.Gizmos;
 using GloryDay.Mathematics;
 using Core.Object.Map;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Weapon
 {

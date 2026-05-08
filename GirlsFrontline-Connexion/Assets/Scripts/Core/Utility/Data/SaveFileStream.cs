@@ -16,6 +16,11 @@ namespace GloryDay.Data.File.Stream
         {
             Console.LogProgress();
 
+            if (IsSaveFileExisted == false)
+            {
+                return string.Empty;
+            }
+
             string data;
             using (var reader = new StreamReader(_savePath))
             {
@@ -28,7 +33,13 @@ namespace GloryDay.Data.File.Stream
         public void Write(string data)
         {
             Console.LogProgress();
-            
+
+            var directory = Path.GetDirectoryName(_savePath);
+            if (Directory.Exists(directory) == false)
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             using (var writer = new StreamWriter(_savePath, false, Encoding.UTF8))
             {
                 writer.WriteLine(data);

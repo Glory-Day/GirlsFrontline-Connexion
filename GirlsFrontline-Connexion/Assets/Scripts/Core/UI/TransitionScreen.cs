@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using GloryDay.Animation;
 using GloryDay.Debug;
 using GloryDay.UI;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
 

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using GloryDay.Debug;
 using GloryDay.SpineServices;
 using Core.Object.Map;
 using Core.Object.Weapon;
 using Spine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.State;
 
 using Console = GloryDay.Debug.Console;

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using GloryDay.SpineServices;
 using Core.Object.Map;
 using Spine;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Event = Spine.Event;
 using Core.Utility.State;
 
