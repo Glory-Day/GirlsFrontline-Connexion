@@ -6,6 +6,7 @@ using GloryDay.Mathematics;
 using Core.Object.Map;
 using UnityEngine;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Weapon
 {
@@ -35,8 +36,7 @@ namespace Core.Object.Weapon
             _tileMap = FindObjectOfType<TileMap>();
             _tileMap.WarningStateTiles.Add(InstanceID, new Queue<Tile>());
 
-            var key = DataManager.AudioData.Effect[11];
-            _launchGrenadeSound = ResourceManager.AudioClipResource.Effect[key];
+            _launchGrenadeSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Launch_Grenade_Wav];
             
             DefensePenetrationPoint = 1f;
         }
@@ -102,7 +102,7 @@ namespace Core.Object.Weapon
 
             if (hasSound)
             {
-                SoundManager.OnPlayEffectAudioSource(_launchGrenadeSound);
+                SoundManager.PlayEffectAudioSource(_launchGrenadeSound);
             }
             
             gameObject.SetActive(true);

@@ -3,6 +3,7 @@ using GloryDay.Debug;
 using GloryDay.UI;
 using UnityEngine;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -27,15 +28,14 @@ namespace Core.UI
             _animation = GetComponent<Animation>();
             _animationNames = new AnimationNameList(_animation);
 
-            var key = DataManager.AudioData.Effect[2];
-            _openDialogSound = ResourceManager.AudioClipResource.Effect[key];
+            _openDialogSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Dialog_Wav];
         }
         
         public void Open()
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_openDialogSound);
+            SoundManager.PlayEffectAudioSource(_openDialogSound);
             
             _animation.Play(_animationNames[0]);
         }

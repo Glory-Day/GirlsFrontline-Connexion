@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GloryDay.Debug;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
 using AnimationState = Spine.AnimationState;
-
-using Console = GloryDay.Debug.Console;
 
 namespace GloryDay.SpineServices
 {
@@ -40,9 +37,7 @@ namespace GloryDay.SpineServices
         private float _trackTime;
 
         private void Awake()
-        {
-            Console.LogProgress();
-            
+        {     
             if (_isInitialized)
             {
                 return;
@@ -53,8 +48,6 @@ namespace GloryDay.SpineServices
 
         public void Initialize()
         {
-            Console.LogProgress();
-            
             _skeletonAnimation = GetComponent<SkeletonAnimation>();
             _skeletonData = _skeletonAnimation.SkeletonDataAsset.GetSkeletonData(true);
             _animationState = _skeletonAnimation.AnimationState;
@@ -64,8 +57,6 @@ namespace GloryDay.SpineServices
 
         public void ResetPose()
         {
-            Console.LogProgress();
-            
             _animationState.ClearTracks();
             Skeleton.SetToSetupPose();
         }
@@ -131,7 +122,7 @@ namespace GloryDay.SpineServices
             }
             catch (IndexOutOfRangeException exception)
             {
-                Console.LogError(exception.Message);
+                Debug.LogError(exception.Message);
 
                 trackEntry = null;
             }
@@ -164,7 +155,7 @@ namespace GloryDay.SpineServices
             }
             catch (IndexOutOfRangeException exception)
             {
-                Console.LogError(exception.Message);
+                Debug.LogError(exception.Message);
 
                 trackEntry = null;
             }
@@ -202,7 +193,7 @@ namespace GloryDay.SpineServices
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                Console.LogError(exception.Message);
+                Debug.LogError(exception.Message);
             }
         }
         
@@ -242,7 +233,7 @@ namespace GloryDay.SpineServices
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                Console.LogError(exception.Message);
+                Debug.LogError(exception.Message);
             }
         }
 

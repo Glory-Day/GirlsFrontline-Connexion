@@ -2,7 +2,7 @@
 using UnityEditorInternal;
 using UnityEngine.Events;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomPropertyDrawer(typeof(UnityEventBase), true)]
     public class ReorderableUnityEventDrawer : UnityEventDrawer

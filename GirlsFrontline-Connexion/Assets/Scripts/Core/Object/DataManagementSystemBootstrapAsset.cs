@@ -15,9 +15,6 @@ namespace Core.Object
             // Initialize user data stored in the local repository.
             DataManager.OnLoadUserData();
 
-            // Load all data and instantiate all user interface game objects used by the application.
-            DataManager.OnLoadAllData();
-
             Console.LogSuccess("Booting data management system is completed");
 
             yield return null;

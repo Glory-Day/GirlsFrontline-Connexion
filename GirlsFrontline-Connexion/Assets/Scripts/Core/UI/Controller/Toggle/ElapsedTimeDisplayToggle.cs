@@ -3,7 +3,7 @@ using Core.Utility.Management;
 
 namespace Core.UI.Controller.Toggle
 {
-    public class ElapsedTimeDisplayToggle : UIToggleBase
+    public class ElapsedTimeDisplayToggle : ToggleBase
     {
         protected override void Awake()
         {
@@ -12,17 +12,14 @@ namespace Core.UI.Controller.Toggle
             base.Awake();
 
             IsOn = DataManager.UserData.Default.IsDisplayAllowed[2];
-            
-            SetHoverSound(0);
-            SetClickSound(1);
         }
-        
+
         protected override void ValueChanged(bool value)
         {
             Console.LogProgress();
 
             base.ValueChanged(value);
-            
+
             DataManager.UserData.Default.IsDisplayAllowed[2] = value;
             DataManager.OnSaveUserData();
         }

@@ -1,6 +1,7 @@
 using GloryDay.Debug;
 using UnityEngine;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Character.Enemy
 {
@@ -39,8 +40,7 @@ namespace Core.Object.Character.Enemy
             base.DieState = new DieState(this);
             base.WaitState = new WaitState(this);
 
-            var key = DataManager.AudioData.Effect[12];
-            _explosionSound = ResourceManager.AudioClipResource.Effect[key];
+            _explosionSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
         }
         
         protected override void OnEnable()

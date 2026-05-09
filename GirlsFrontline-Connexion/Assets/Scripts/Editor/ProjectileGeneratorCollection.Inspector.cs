@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomEditor(typeof(ProjectileAttackAction))]
     public class ProjectileGeneratorCollectionInspector : UnityEditor.Editor
@@ -12,13 +12,12 @@ namespace Core.Utility.Extension.Editor
 
         private void OnEnable()
         {
-            _list = new ReorderableList(serializedObject, serializedObject.FindProperty("list"),
-                                        true, true, true, true)
-                    {
-                        elementHeightCallback = SetElementHeight,
-                        drawElementCallback = DrawElement,
-                        drawHeaderCallback = DrawHeader
-                    };
+            _list = new ReorderableList(serializedObject, serializedObject.FindProperty("list"), true, true, true, true)
+            {
+                elementHeightCallback = SetElementHeight,
+                drawElementCallback = DrawElement,
+                drawHeaderCallback = DrawHeader
+            };
         }
 
         public override void OnInspectorGUI()
@@ -45,7 +44,7 @@ namespace Core.Utility.Extension.Editor
             EditorGUI.PropertyField(rect, property, true);
             EditorGUI.indentLevel--;
         }
-        
+
         private void DrawHeader(Rect rect)
         {
             EditorGUI.LabelField(rect, "Projectile Generator Collection");

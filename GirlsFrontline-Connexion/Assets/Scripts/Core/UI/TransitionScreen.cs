@@ -7,6 +7,7 @@ using UnityEngine;
 using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -51,11 +52,8 @@ namespace Core.UI
             switch (type)
             {
                 case TransitionType.Gate:
-                    var key = DataManager.AudioData.Effect[4];
-                    _openSound = ResourceManager.AudioClipResource.Effect[key];
-                    
-                    key = DataManager.AudioData.Effect[5];
-                    _closeSound = ResourceManager.AudioClipResource.Effect[key];
+                    _openSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Gate_Wav];
+                    _closeSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Close_Gate_Wav];
                     
                     openingAnimationName = _animationNames[0];
                     closingAnimationName = _animationNames[1];
@@ -71,7 +69,7 @@ namespace Core.UI
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
             
-            SoundManager.OnPlayEffectAudioSource(_openSound);
+            SoundManager.PlayEffectAudioSource(_openSound);
             
             _animation.Play(closingAnimationName);
             while (_animation.isPlaying)
@@ -85,7 +83,7 @@ namespace Core.UI
                 yield return null;
             }
             
-            SoundManager.OnPlayEffectAudioSource(_closeSound);
+            SoundManager.PlayEffectAudioSource(_closeSound);
             
             _animation.Play(openingAnimationName);
         }

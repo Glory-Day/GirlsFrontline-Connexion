@@ -1,8 +1,9 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 using GloryDay.Debug;
 using GloryDay.Utility;
-using Core.Utility.Extension;
+using Core.Utility.Attribute;
 
 namespace Core.Utility.Management
 {
@@ -10,24 +11,28 @@ namespace Core.Utility.Management
     {
         #region SERIALIZABLE FIELD API
 
-        [Label("Master")]
-        [SerializeField] private AudioMixer masterAudioMixer;
-        [Label("Background")]
-        [SerializeField] private AudioMixerGroup backgroundAudioMixerGroup;
-        [Label("Effect")]
-        [SerializeField] private AudioMixerGroup effectAudioMixerGroup;
-        [Label("Voice")]
-        [SerializeField] private AudioMixerGroup voiceAudioMixerGroup;
+        [field: Title("Audio")]
+        [field: Alias("Master Audio Mixer")]
+        [field: SerializeField]
+        private AudioMixer MasterAudioMixer_Internal { get; set; }
+
+        [field: Alias("Background Audio Mixer")]
+        [field: SerializeField]
+        private AudioMixerGroup BackgroundAudioMixer_Internal { get; set; }
+
+        [field: Alias("Effect Audio Mixer")]
+        [field: SerializeField]
+        private AudioMixerGroup EffectAudioMixer_Internal { get; set; }
+
+        [field: Alias("Voice Audio Mixer")]
+        [field: SerializeField]
+        private AudioMixerGroup VoiceAudioMixer_Internal { get; set; }
 
         #endregion
-
-        #region COMPONENT FIELD API
 
         private AudioSource _backgroundAudioSource;
         private AudioSource _effectAudioSource;
         private AudioSource _voiceAudioSource;
-
-        #endregion
 
         protected override void Awake()
         {
@@ -43,7 +48,7 @@ namespace Core.Utility.Management
             Console.LogSuccess("<b>All Audio Sources</b> are initialized");
         }
 
-        private void PlayBackgroundAudioSource(AudioClip clip)
+        private void PlayBackgroundAudioSource_Internal(AudioClip clip)
         {
             Console.LogProgress();
 
@@ -53,7 +58,7 @@ namespace Core.Utility.Management
             Console.LogMessage($"Play <b>{clip.name}</b>");
         }
 
-        private void StopBackgroundAudioSource()
+        private void StopBackgroundAudioSource_Internal()
         {
             Console.LogProgress();
 
@@ -63,11 +68,11 @@ namespace Core.Utility.Management
             }
         }
 
-        private void PlayEffectAudioSource(AudioClip clip)
+        private void PlayEffectAudioSource_Internal(AudioClip clip)
         {
             Console.LogProgress();
 
-            if (clip is null)
+            if (clip == null)
             {
                 return;
             }
@@ -75,7 +80,7 @@ namespace Core.Utility.Management
             _effectAudioSource.PlayOneShot(clip);
         }
 
-        private void PlayVoiceAudioSource(AudioClip clip)
+        private void PlayVoiceAudioSource_Internal(AudioClip clip)
         {
             Console.LogProgress();
 
@@ -85,11 +90,27 @@ namespace Core.Utility.Management
             Console.LogMessage($"Play <b>{clip.name}</b>");
         }
 
-        private string BackgroundAudioMixerControllerName => backgroundAudioMixerGroup.name;
+        public bool IsBackgroundAudioSourcePlaying_Internal(string backgroundMusicName)
+        {
+            var source = _backgroundAudioSource;
 
-        private string EffectAudioMixerControllerName => effectAudioMixerGroup.name;
+            return source != null && source.isPlaying && source.clip.name == backgroundMusicName;
+        }
 
-        private string VoiceAudioMixerControllerName => voiceAudioMixerGroup.name;
+        private float BackgroundAudioVolume_Internal
+        {
+            set => MasterAudioMixer_Internal.SetFloat(BackgroundAudioMixer_Internal.name, value);
+        }
+
+        private float EffectAudioVolume_Internal
+        {
+            set => MasterAudioMixer_Internal.SetFloat(EffectAudioMixer_Internal.name, value);
+        }
+
+        private float VoiceAudioVolume_Internal
+        {
+            set => MasterAudioMixer_Internal.SetFloat(VoiceAudioMixer_Internal.name, value);
+        }
 
         #region STATIC METHOD API
 
@@ -97,82 +118,57 @@ namespace Core.Utility.Management
         /// Play background music with that name.
         /// </summary>
         /// <param name="clip"> Name of background music. </param>
-        public static void OnPlayBackgroundAudioSource(AudioClip clip)
+        public static void PlayBackgroundAudioSource(AudioClip clip)
         {
             Console.LogProgress();
 
-            Instance.PlayBackgroundAudioSource(clip);
+            Instance.PlayBackgroundAudioSource_Internal(clip);
         }
 
         /// <summary>
         /// Stop the background music that is currently playing.
         /// </summary>
-        public static void OnStopBackgroundMusic()
+        public static void StopBackgroundMusic()
         {
             Console.LogProgress();
 
-            Instance.StopBackgroundAudioSource();
+            Instance.StopBackgroundAudioSource_Internal();
         }
 
-        public static void OnPlayEffectAudioSource(AudioClip clip)
+        public static void PlayEffectAudioSource(AudioClip clip)
         {
             Console.LogProgress();
 
-            Instance.PlayEffectAudioSource(clip);
+            Instance.PlayEffectAudioSource_Internal(clip);
         }
 
-        public static void OnPlayVoiceAudioSource(AudioClip clip)
+        public static void PlayVoiceAudioSource(AudioClip clip)
         {
             Console.LogProgress();
 
-            Instance.PlayVoiceAudioSource(clip);
+            Instance.PlayVoiceAudioSource_Internal(clip);
         }
-
-        /// <summary>
-        /// Set the volume value for background sound.
-        /// </summary>
-        /// <param name="value"> Value of the volume. </param>
-        public static void SetBackgroundAudioVolume(float value) =>
-            Instance.masterAudioMixer.SetFloat(Instance.BackgroundAudioMixerControllerName, value);
-
-        /// <summary>
-        /// Set the volume value for effect sound.
-        /// </summary>
-        /// <param name="value"> Value of the volume. </param>
-        public static void SetEffectAudioVolume(float value) =>
-            Instance.masterAudioMixer.SetFloat(Instance.EffectAudioMixerControllerName, value);
-
-        /// <summary>
-        /// Set the volume value for voice sound.
-        /// </summary>
-        /// <param name="value"> Value of the volume. </param>
-        public static void SetVoiceAudioVolume(float value) =>
-            Instance.masterAudioMixer.SetFloat(Instance.VoiceAudioMixerControllerName, value);
 
         /// <summary>
         /// Check is background music is playing.
         /// </summary>
-        /// <param name="backgroundMusicName"> Name of background music. </param>
-        public static bool IsBackgroundAudioSourcePlaying(string backgroundMusicName)
+        /// <param name="backgroundAudioSourceName"> Name of background music. </param>
+        public static bool IsBackgroundAudioSourcePlaying(string backgroundAudioSourceName)
         {
-            var source = Instance._backgroundAudioSource;
-
-            return source is null == false && source.isPlaying && source.clip.name == backgroundMusicName;
+            return Instance.IsBackgroundAudioSourcePlaying_Internal(backgroundAudioSourceName);
         }
 
         #endregion
 
         #region STATIC PROPERTIES API
 
-        public static AudioMixer MasterAudioMixer => Instance.masterAudioMixer;
+        public static AudioMixer MasterAudioMixer => Instance.MasterAudioMixer_Internal;
 
-        public static AudioMixerGroup BackgroundAudioMixerGroup => Instance.backgroundAudioMixerGroup;
+        public static AudioMixerGroup BackgroundAudioMixer => Instance.BackgroundAudioMixer_Internal;
 
-        public static AudioMixerGroup EffectAudioMixerGroup => Instance.effectAudioMixerGroup;
+        public static AudioMixerGroup EffectAudioMixer => Instance.EffectAudioMixer_Internal;
 
-        public static AudioMixerGroup VoiceAudioMixerGroup => Instance.voiceAudioMixerGroup;
-
-        public static AudioSource BackgroundAudioSource => Instance._backgroundAudioSource;
+        public static AudioMixerGroup VoiceAudioMixer => Instance.VoiceAudioMixer_Internal;
 
         public static bool IsBackgroundAudioMute
         {
@@ -190,6 +186,24 @@ namespace Core.Utility.Management
         {
             get => Instance._voiceAudioSource.mute;
             set => Instance._voiceAudioSource.mute = value;
+        }
+
+        /// <param name="value"> Volume value for background sound. </param>
+        public static float BackgroundAudioVolume
+        {
+            set => Instance.BackgroundAudioVolume_Internal = value;
+        }
+
+        /// <param name="value"> Volume value for effect sound. </param>
+        public static float EffectAudioVolume
+        {
+            set => Instance.EffectAudioVolume_Internal = value;
+        }
+
+        /// <param name="value"> Volume value for voice sound. </param>
+        public static float VoiceAudioVolume
+        {
+            set => Instance.VoiceAudioVolume_Internal = value;
         }
 
         #endregion

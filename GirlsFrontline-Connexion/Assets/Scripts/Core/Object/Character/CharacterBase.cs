@@ -293,7 +293,7 @@ namespace Core.Object.Character
                 return;
             }
 
-            SoundManager.OnPlayEffectAudioSource(HitSound);
+            SoundManager.PlayEffectAudioSource(HitSound);
 
             // Generate random number factor.
             damagePoint *= Random.Range(85f, 115f) / 100f;

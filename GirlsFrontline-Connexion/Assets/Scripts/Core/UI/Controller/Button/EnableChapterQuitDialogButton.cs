@@ -2,7 +2,7 @@
 using Core.UI.Utility.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Core.Utility.Extension;
+using Core.Utility.Attribute;
 
 namespace Core.UI.Controller.Button
 {
@@ -10,7 +10,7 @@ namespace Core.UI.Controller.Button
     {
         #region SERIALIZABLE FIELD API
 
-        [Label("Target Dialog")]
+        [Alias("Target Dialog")]
         [SerializeField] private GameObject dialogObject;
 
         #endregion

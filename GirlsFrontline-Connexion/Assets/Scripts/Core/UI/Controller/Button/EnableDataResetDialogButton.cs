@@ -23,7 +23,7 @@ namespace Core.UI.Controller.Button
 
             base.Click();
 
-            SoundManager.OnPlayEffectAudioSource(openDialogSound);
+            SoundManager.PlayEffectAudioSource(openDialogSound);
 
             dialogObject.SetActive(true);
         }

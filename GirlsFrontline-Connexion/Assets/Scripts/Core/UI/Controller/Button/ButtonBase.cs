@@ -1,4 +1,5 @@
 ﻿using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 using GloryDay.Debug;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,19 +9,18 @@ namespace Core.UI.Controller.Button
 {
     public abstract class ButtonBase : MonoBehaviour, IPointerEnterHandler
     {
-        #region SERIALIZABLE FIELD API
-
-        [Title("Audio")]
-        [SerializeField] private AudioClip hoverSound;
-        [SerializeField] private AudioClip clickSound;
-
-        #endregion
+        protected AudioClip HoverSound;
+        protected AudioClip ClickSound;
 
         protected UnityEngine.UI.Button Button;
 
         protected virtual void Awake()
         {
             Console.LogProgress();
+
+            //TODO: You must fix it! Change audio clip resource to UI.
+            HoverSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Hover_Button_Wav];
+            ClickSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Click_Button_Wav];
 
             Button = GetComponent<UnityEngine.UI.Button>();
             Button.onClick.AddListener(Click);
@@ -33,7 +33,7 @@ namespace Core.UI.Controller.Button
         {
             Console.LogProgress();
 
-            SoundManager.OnPlayEffectAudioSource(clickSound);
+            SoundManager.PlayEffectAudioSource(ClickSound);
         }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
@@ -42,7 +42,7 @@ namespace Core.UI.Controller.Button
 
             if (Button.IsActive() && Button.IsInteractable())
             {
-                SoundManager.OnPlayEffectAudioSource(hoverSound);
+                SoundManager.PlayEffectAudioSource(HoverSound);
             }
         }
 

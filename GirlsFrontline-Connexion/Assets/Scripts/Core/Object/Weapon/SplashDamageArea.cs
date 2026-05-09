@@ -3,6 +3,7 @@ using GloryDay.Debug;
 using Core.Object.Character;
 using UnityEngine;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Weapon
 {
@@ -30,8 +31,7 @@ namespace Core.Object.Weapon
         {
             Console.LogProgress();
 
-            var key = DataManager.AudioData.Effect[12];
-            _explosionSound = ResourceManager.AudioClipResource.Effect[key];
+            _explosionSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
             
             _particleSystemHandler = GetComponentInChildren<ParticleSystemHandler>();
         }
@@ -63,7 +63,7 @@ namespace Core.Object.Weapon
                 character.TakeDamage(DamagePoint, DefensePenetrationPoint, DamageType.Explosive);
             }
 
-            SoundManager.OnPlayEffectAudioSource(_explosionSound);
+            SoundManager.PlayEffectAudioSource(_explosionSound);
             
             _particleSystemHandler.Play(0);
             while (_particleSystemHandler.IsPlaying(0))

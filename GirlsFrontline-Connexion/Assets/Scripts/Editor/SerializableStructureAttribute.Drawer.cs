@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using Core.Utility.Attribute;
+using UnityEditor;
 using UnityEngine;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomPropertyDrawer(typeof(SerializableStructureAttribute))]
-    public class SerializableStructureDrawer : PropertyDrawer
+    public class SerializableStructureAttribute_Drawer : PropertyDrawer
     {
         #region CONSTANT FIELD API
 

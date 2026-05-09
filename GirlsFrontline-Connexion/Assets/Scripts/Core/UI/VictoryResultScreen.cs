@@ -11,6 +11,7 @@ using Core.Utility.Extension;
 using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -55,11 +56,9 @@ namespace Core.UI
             
             _transitionScreen = FindObjectOfType<TransitionScreen>();
 
-            var key = DataManager.AudioData.Background[9];
-            BackgroundSound = ResourceManager.AudioClipResource.Background[key];
+            BackgroundSound = ResourceManager.AudioClipResource.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Victory_Background_Wav];
             
-            key = DataManager.AudioData.Effect[7];
-            _displayTextSound = ResourceManager.AudioClipResource.Effect[key];
+            _displayTextSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
         }
 
         private void OnEnable()
@@ -180,7 +179,7 @@ namespace Core.UI
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_displayTextSound);
+            SoundManager.PlayEffectAudioSource(_displayTextSound);
         }
     }
 }

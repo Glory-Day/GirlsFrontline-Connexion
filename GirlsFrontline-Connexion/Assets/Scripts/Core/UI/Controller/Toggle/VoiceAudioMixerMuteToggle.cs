@@ -3,7 +3,7 @@ using Core.Utility.Management;
 
 namespace Core.UI.Controller.Toggle
 {
-    public class VoiceAudioMixerMuteToggle : UIToggleBase
+    public class VoiceAudioMixerMuteToggle : ToggleBase
     {
         // Start is called before the first frame update
         protected override void Awake()
@@ -14,18 +14,16 @@ namespace Core.UI.Controller.Toggle
 
             var isMute = DataManager.UserData.Sound[2].IsMute;
             SoundManager.IsVoiceAudioMute = isMute;
+
             IsOn = isMute;
-            
-            SetHoverSound(0);
-            SetClickSound(1);
         }
-        
+
         protected override void ValueChanged(bool value)
         {
             Console.LogProgress();
-            
+
             base.ValueChanged(value);
-            
+
             SoundManager.IsVoiceAudioMute = value;
 
             DataManager.UserData.Sound[2].IsMute = value;

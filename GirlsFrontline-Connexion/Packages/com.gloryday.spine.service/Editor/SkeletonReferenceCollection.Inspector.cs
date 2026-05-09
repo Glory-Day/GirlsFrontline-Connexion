@@ -7,30 +7,26 @@ using UnityEngine;
 namespace GloryDay.SpineServices.Editor
 {
     [CustomEditor(typeof(SkeletonReferenceCollectionObject))]
-    public class SkeletonReferenceCollectionInspector : UnityEditor.Editor
+    public class SkeletonReferenceCollection_Inspector : UnityEditor.Editor
     {
         private ReorderableList _animationList;
         private ReorderableList _eventDataList;
 
         private void OnEnable()
         {
-            _animationList = new ReorderableList(
-                                 serializedObject, serializedObject.FindProperty("animations"),
-                                 true, true, true, true)
-                             {
-                                 drawElementCallback = DrawSkeletonAnimationReferenceAsset,
-                                 drawHeaderCallback =
-                                     rect => EditorGUI.LabelField(rect, "Skeleton Animation Reference Assets")
-                             };
+            _animationList = new ReorderableList(serializedObject, serializedObject.FindProperty("animations"), true, true, true, true)
+            {
+                drawElementCallback = DrawSkeletonAnimationReferenceAsset,
+                drawHeaderCallback =
+                    rect => EditorGUI.LabelField(rect, "Skeleton Animation Reference Assets")
+            };
 
-            _eventDataList = new ReorderableList(
-                                 serializedObject, serializedObject.FindProperty("events"),
-                                 true, true, true, true)
-                             {
-                                 drawElementCallback = DrawEventDataReferenceAsset,
-                                 drawHeaderCallback =
-                                     rect => EditorGUI.LabelField(rect, "Event Data Reference Assets")
-                             };
+            _eventDataList = new ReorderableList(serializedObject, serializedObject.FindProperty("events"), true, true, true, true)
+            {
+                drawElementCallback = DrawEventDataReferenceAsset,
+                drawHeaderCallback =
+                    rect => EditorGUI.LabelField(rect, "Event Data Reference Assets")
+            };
         }
 
         public override void OnInspectorGUI()

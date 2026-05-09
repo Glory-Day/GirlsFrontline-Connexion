@@ -202,7 +202,7 @@ namespace Core.Object.Character.Enemy
                     return;
                 }
                 
-                SoundManager.OnPlayEffectAudioSource(Component._explosionSound);
+                SoundManager.PlayEffectAudioSource(Component._explosionSound);
                 
                 Component.ParticleSystemHandler.Emit(1, 6);
                 Component._action.Hit(1);

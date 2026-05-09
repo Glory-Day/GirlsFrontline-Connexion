@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Core.Utility.Attribute;
+using UnityEngine;
 using UnityEditor;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomPropertyDrawer(typeof(NamedArrayAttribute))]
-    public class NamedArrayDrawer : PropertyDrawer
+    public class NamedArrayAttribute_Drawer : PropertyDrawer
     {
         #region OVERRIDE METHOD API
 

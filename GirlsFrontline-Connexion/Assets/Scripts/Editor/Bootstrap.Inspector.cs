@@ -1,8 +1,9 @@
-﻿using UnityEditor;
+﻿using Core.Utility;
+using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomEditor(typeof(Bootstrap))]
     [CanEditMultipleObjects]

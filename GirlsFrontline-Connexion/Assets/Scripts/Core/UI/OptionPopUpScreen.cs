@@ -3,6 +3,7 @@ using GloryDay.UI;
 using Core.UI.Controller.Toggle;
 using UnityEngine.InputSystem;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -22,9 +23,7 @@ namespace Core.UI
             DisplayToggles[2] = GetComponentInChildren<ElapsedTimeDisplayToggle>();
             DisplayToggles[3] = GetComponentInChildren<ChapterScoreDisplayToggle>();
             
-            var key = DataManager.AudioData.Effect[2];
-            var clip = ResourceManager.AudioClipResource.Effect[key];
-            OpenPopUpSound = clip;
+            OpenPopUpSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Pop_Up_Wav];
         }
 
         protected override void Start()
@@ -53,7 +52,7 @@ namespace Core.UI
             }
             else
             {
-                SoundManager.OnPlayEffectAudioSource(OpenPopUpSound);
+                SoundManager.PlayEffectAudioSource(OpenPopUpSound);
                 
                 ScreenObject.SetActive(true);
                 
@@ -61,6 +60,6 @@ namespace Core.UI
             }
         }
 
-        public UIToggleBase[] DisplayToggles { get; } = new UIToggleBase[4];
+        public ToggleBase[] DisplayToggles { get; } = new ToggleBase[4];
     }
 }

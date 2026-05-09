@@ -4,30 +4,31 @@ using System.Collections.Generic;
 using GloryDay.Debug;
 using UnityEditor;
 using UnityEngine;
+using Core.Utility.Attribute;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
-    [CustomPropertyDrawer(typeof(LabelAttribute), true)]
-    public class LabelAttributeDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(AliasAttribute), true)]
+    public class AliasAttribute_Drawer : PropertyDrawer
     {
-        private LabelAttribute _attribute;
-        
+        private AliasAttribute _attribute;
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            _attribute = (LabelAttribute)attribute;
-            
+            _attribute = (AliasAttribute)attribute;
+
             var fieldType = fieldInfo.FieldType;
             var isArrayType = fieldType.IsArray;
             var isGenericType = fieldType.IsGenericType && fieldType.GetGenericTypeDefinition() == typeof(List<>);
             if (isArrayType || isGenericType)
             {
                 Console.LogError("Can't draw label attribute because it's an array type.");
-                
+
                 EditorGUI.PropertyField(position, property, label, true);
-                
+
                 return;
             }
-            
+
             EditorGUI.PropertyField(position, property, new GUIContent(_attribute.Text), true);
         }
 

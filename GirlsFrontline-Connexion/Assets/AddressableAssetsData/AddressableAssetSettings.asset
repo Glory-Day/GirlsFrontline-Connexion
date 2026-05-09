@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: acfab8f45f2450745a9ae095c7f72781
   m_currentHash:
     serializedVersion: 2
-    Hash: c6cde5a3a3fa6cbe1d37a09d54153b6a
+    Hash: 52837a179a6aff9e550df3c658d61709
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -107,19 +107,17 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - audio/background
-    - audio/effect
-    - audio/voice
-    - data
-    - object/character/player
-    - object/character/enemy
-    - object/item
-    - object/weapon
-    - object/weapon/bullet
-    - object/weapon/grenade
-    - ui/option_screen
-    - ui/pause_screen
-    - ui/transition_screen
+    - Audio/Background
+    - Audio/Effect
+    - Audio/Voice
+    - Data
+    - Object/Character/Player
+    - Object/Character/Enemy
+    - Object/Item
+    - Object/Weapon
+    - Object/Weapon/Bullet
+    - Object/Weapon/Grenade
+    - UI
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: cb22bd576f048e542a09feee1d690170, type: 2}
@@ -127,10 +125,9 @@ MonoBehaviour:
   m_CertificateHandlerType:
     m_AssemblyName: 
     m_ClassName: 
-  m_ActivePlayerDataBuilderIndex: 3
+  m_ActivePlayerDataBuilderIndex: 2
   m_DataBuilders:
   - {fileID: 11400000, guid: f1e694ba9484f3c489291c11dd06a273, type: 2}
-  - {fileID: 11400000, guid: eacb59ffeb9ac9244be3185bab817f41, type: 2}
   - {fileID: 11400000, guid: cfaecd128a5c6644d8b743a23e6cec6c, type: 2}
   - {fileID: 11400000, guid: bdb17f41ae1c48048a3d91769ef57b5e, type: 2}
   m_ActiveProfileId: 782e18a391d396f4fafdd5f1df72badd

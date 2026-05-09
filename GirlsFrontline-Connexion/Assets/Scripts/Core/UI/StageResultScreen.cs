@@ -38,7 +38,7 @@ namespace Core.UI
             
             _backgroundImageObject.SetActive(true);
             
-            SoundManager.OnPlayBackgroundAudioSource(BackgroundSound);
+            SoundManager.PlayBackgroundAudioSource(BackgroundSound);
             
             Animation.Play(_animationNames[0]);
         }

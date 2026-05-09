@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Utility.Extension
+namespace Core.Utility.Attribute
 {
     public class NamedArrayAttribute : PropertyAttribute
     {

@@ -2,8 +2,9 @@ using GloryDay.Animation;
 using GloryDay.Debug;
 using UnityEngine;
 using UnityEngine.UI;
-using Core.Utility.Extension;
+using Core.Utility.Attribute;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -14,35 +15,40 @@ namespace Core.UI
 
         [SerializeField] private RawImage rankImage;
         [SerializeField] private RawImage backgroundImage;
-        
+
         [Header("S Rank")]
-        [Label("Texture")]
+        [Alias("Texture")]
         [SerializeField] private Texture sRankTexture;
-        [Label("Background Color")]
+
+        [Alias("Background Color")]
         [SerializeField] private Color sRankBackgroundColor;
-        
+
         [Header("A Rank")]
-        [Label("Texture")]
+        [Alias("Texture")]
         [SerializeField] private Texture aRankTexture;
-        [Label("Background Color")]
+
+        [Alias("Background Color")]
         [SerializeField] private Color aRankBackgroundColor;
-        
+
         [Header("B Rank")]
-        [Label("Texture")]
+        [Alias("Texture")]
         [SerializeField] private Texture bRankTexture;
-        [Label("Background Color")]
+
+        [Alias("Background Color")]
         [SerializeField] private Color bRankBackgroundColor;
-        
+
         [Header("C Rank")]
-        [Label("Texture")]
+        [Alias("Texture")]
         [SerializeField] private Texture cRankTexture;
-        [Label("Background Color")]
+
+        [Alias("Background Color")]
         [SerializeField] private Color cRankBackgroundColor;
-        
+
         [Header("D Rank")]
-        [Label("Texture")]
+        [Alias("Texture")]
         [SerializeField] private Texture dRankTexture;
-        [Label("Background Color")]
+
+        [Alias("Background Color")]
         [SerializeField] private Color dRankBackgroundColor;
 
         #endregion
@@ -73,8 +79,7 @@ namespace Core.UI
             _animation = GetComponent<Animation>();
             _animationNames = new AnimationNameList(_animation);
             
-            var key = DataManager.AudioData.Effect[8];
-            _displayRankSound = ResourceManager.AudioClipResource.Effect[key];
+            _displayRankSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Rank_Wav];
         }
 
         public void SetRank(int score)
@@ -120,7 +125,7 @@ namespace Core.UI
 
             if (gameObject.activeSelf)
             {
-                SoundManager.OnPlayEffectAudioSource(_displayRankSound);
+                SoundManager.PlayEffectAudioSource(_displayRankSound);
             }
             
             _animation[_animationNames[0]].speed = 1f;

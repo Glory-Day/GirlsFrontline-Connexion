@@ -72,7 +72,7 @@ namespace Core.Object.Character
                 return;
             }
             
-            SoundManager.OnPlayEffectAudioSource(_skillSounds[Random.Range(0, 3)]);
+            SoundManager.PlayEffectAudioSource(_skillSounds[Random.Range(0, 3)]);
             
             _skillAction.Run(0);
         }
@@ -115,7 +115,7 @@ namespace Core.Object.Character
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_shieldSound);
+            SoundManager.PlayEffectAudioSource(_shieldSound);
             
             ParticleSystemHandler.Emit(5);
             
@@ -147,7 +147,7 @@ namespace Core.Object.Character
 
             SpeedPoint += 10f;
             
-            SoundManager.OnPlayEffectAudioSource(_buffSound);
+            SoundManager.PlayEffectAudioSource(_buffSound);
             
             ParticleSystemHandler.Play(6);
             

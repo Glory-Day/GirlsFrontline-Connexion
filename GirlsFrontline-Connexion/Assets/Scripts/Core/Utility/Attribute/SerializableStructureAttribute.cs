@@ -2,7 +2,7 @@
 using System.Globalization;
 using UnityEngine;
 
-namespace Core.Utility.Extension
+namespace Core.Utility.Attribute
 {
     public class SerializableStructureAttribute : PropertyAttribute
     {

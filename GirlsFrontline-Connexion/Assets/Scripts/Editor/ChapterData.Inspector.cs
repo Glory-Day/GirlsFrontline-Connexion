@@ -4,7 +4,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using Core.Utility.Data;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomEditor(typeof(ChapterData))]
     [CanEditMultipleObjects]
@@ -42,7 +42,7 @@ namespace Core.Utility.Extension.Editor
             for (var i = 0; i < 5; i++)
             {
                 var j = i;
-                
+
                 _properties[i] = property01.GetArrayElementAtIndex(i);
                 _lists01[i] = new ReorderableList(_properties[i].serializedObject, _properties[i].FindPropertyRelative(PropertyPath02))
                               {

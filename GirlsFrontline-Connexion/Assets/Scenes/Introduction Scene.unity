@@ -151,13 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPersistent: 1
-  masterAudioMixer: {fileID: 24100000, guid: 233da3b239d06eb4babee463cb7c83f5, type: 2}
-  backgroundAudioMixerGroup: {fileID: -394282703503994211, guid: 233da3b239d06eb4babee463cb7c83f5,
-    type: 2}
-  effectAudioMixerGroup: {fileID: 7295739615888400115, guid: 233da3b239d06eb4babee463cb7c83f5,
-    type: 2}
-  voiceAudioMixerGroup: {fileID: 1546774121728245463, guid: 233da3b239d06eb4babee463cb7c83f5,
-    type: 2}
+  <MasterAudioMixer_Internal>k__BackingField: {fileID: 0}
+  <BackgroundAudioMixer_Internal>k__BackingField: {fileID: 0}
+  <EffectAudioMixer_Internal>k__BackingField: {fileID: 0}
+  <VoiceAudioMixer_Internal>k__BackingField: {fileID: 0}
 --- !u!4 &606362568
 Transform:
   m_ObjectHideFlags: 0
@@ -943,8 +940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a827c5dbdfa45b08ad3b64c486aba97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSound: {fileID: 0}
-  clickSound: {fileID: 0}
+  hoverSound: {fileID: 8300000, guid: 7b3340dd90c66fc44a72b63aa3f22617, type: 3}
+  clickSound: {fileID: 8300000, guid: a3fe1fae8b19bb9489577480c530fc5b, type: 3}
 --- !u!224 &1209125530555338798
 RectTransform:
   m_ObjectHideFlags: 0

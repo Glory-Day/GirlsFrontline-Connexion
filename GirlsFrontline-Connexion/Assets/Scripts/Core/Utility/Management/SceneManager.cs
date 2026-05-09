@@ -9,12 +9,15 @@ using UnityEngine;
 
 using Console = GloryDay.Debug.Console;
 using SceneManagement = UnityEngine.SceneManagement;
+using Core.Utility.Management.Resource;
 
 namespace Core.Utility.Management
 {
     public class SceneManager : Singleton<SceneManager>
     {
         private readonly List<string> _sceneNames = new List<string>();
+
+        private readonly List<string> _backgroundAudioClipNames;
 
         private int _currentSceneIndex;
 
@@ -35,6 +38,18 @@ namespace Core.Utility.Management
             }
 
             _currentSceneIndex = 0;
+
+            //TODO: You need to fix it. Temporary code.
+            _backgroundAudioClipNames = new List<string>
+            {
+                string.Empty,
+                AddressableAssetKeys.Assets_External_Audios_Background_Main_Background_Wav,
+                AddressableAssetKeys.Assets_External_Audios_Background_Chapter_01_Background_Wav,
+                AddressableAssetKeys.Assets_External_Audios_Background_Chapter_02_Background_Wav,
+                AddressableAssetKeys.Assets_External_Audios_Background_Chapter_03_Background_Wav,
+                AddressableAssetKeys.Assets_External_Audios_Background_Chapter_04_Background_Wav,
+                AddressableAssetKeys.Assets_External_Audios_Background_Chapter_05_Background_Wav
+            };
         }
 
         private IEnumerator LoadingScene(string sceneName)
@@ -63,20 +78,20 @@ namespace Core.Utility.Management
             {
                 _currentSceneIndex = index;
 
-                var sceneName  = _sceneNames[_currentSceneIndex];
-                var audioSourceName = DataManager.AudioData.Background[_currentSceneIndex];
+                var sceneName = _sceneNames[_currentSceneIndex];
+                var audioSourceName = _backgroundAudioClipNames[_currentSceneIndex];
                 if (SoundManager.IsBackgroundAudioSourcePlaying(audioSourceName))
                 {
                     StaticCoroutine.Start(LoadingScene(sceneName));
                 }
                 else
                 {
-                    SoundManager.OnStopBackgroundMusic();
+                    SoundManager.StopBackgroundMusic();
 
                     StaticCoroutine.Start(LoadingScene(sceneName));
 
                     var clip = ResourceManager.AudioClipResource.Background[audioSourceName];
-                    SoundManager.OnPlayBackgroundAudioSource(clip);
+                    SoundManager.PlayBackgroundAudioSource(clip);
                 }
             }
             catch (IndexOutOfRangeException exception)

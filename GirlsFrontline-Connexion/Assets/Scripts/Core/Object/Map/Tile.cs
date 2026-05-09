@@ -7,6 +7,7 @@ using Core.Utility;
 using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Map
 {
@@ -55,8 +56,7 @@ namespace Core.Object.Map
 
             _particleSystemHandler = transform.GetChild(2).GetComponent<ParticleSystemHandler>();
 
-            var key = DataManager.AudioData.Effect[12];
-            _explosionSound = ResourceManager.AudioClipResource.Effect[key];
+            _explosionSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
         }
 
         private void Update()
@@ -108,7 +108,7 @@ namespace Core.Object.Map
             var instanceID = grenade.InstanceID;
             StopWarningState(instanceID, grenade.DamagePoint, grenade.DefensePenetrationPoint);
             
-            SoundManager.OnPlayEffectAudioSource(_explosionSound);
+            SoundManager.PlayEffectAudioSource(_explosionSound);
             
             ObjectManager.OnRelease(instance);
         }

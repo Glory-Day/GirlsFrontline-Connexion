@@ -10,7 +10,6 @@ namespace Core.Utility.Management
 {
     public class DataManager : Singleton<DataManager>
     {
-        private AudioData _audioData;
         private UserData _userData;
 
         private readonly SaveFileStream _saveFileStream;
@@ -26,14 +25,6 @@ namespace Core.Utility.Management
             Console.LogProgress();
 
             _saveFileStream = new SaveFileStream();
-        }
-
-        private void LoadAudioData_Internal()
-        {
-            Console.LogProgress();
-
-            var data = ResourceManager.TextResource.Data[nameof(AudioData)].text;
-            _audioData = JsonConvert.DeserializeObject<AudioData>(data);
         }
 
         private void LoadUserData_Internal()
@@ -90,19 +81,6 @@ namespace Core.Utility.Management
         #region STATIC METHOD API
 
         /// <summary>
-        /// Loads all data related to application running.
-        /// </summary>
-        public static void OnLoadAllData()
-        {
-            Console.LogProgress();
-            Console.LogMessage("<b>All Data</b> is loading...");
-
-            Instance.LoadAudioData_Internal();
-
-            Console.LogSuccess("<b>All Data</b> is loaded");
-        }
-
-        /// <summary>
         /// Load user data stored in the local repository.
         /// </summary>
         public static void OnLoadUserData()
@@ -141,11 +119,6 @@ namespace Core.Utility.Management
         #endregion
 
         #region STATIC PROPERTIES API
-
-        /// <summary>
-        /// Data related to audio source.
-        /// </summary>
-        public static AudioData AudioData => Instance._audioData;
 
         /// <summary>
         /// Data related to user.

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace Core.Utility.Extension.Editor
+namespace Editor
 {
     [CustomEditor(typeof(SkillAction))]
     [CanEditMultipleObjects]

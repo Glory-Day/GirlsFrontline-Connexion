@@ -3,7 +3,7 @@ using UnityEngine;
 
 #pragma warning disable CS0618 // Type or member is obsolete
 
-namespace GloryDay.SpineServices
+namespace GloryDay.SpineServices.Editor
 {
     [ExecuteInEditMode]
     public class SpineAnimationPreviewer : MonoBehaviour

@@ -14,13 +14,13 @@ namespace Core.UI.Controller.Slider
             base.Awake();
 
             var volume = DataManager.UserData.Sound[0].Volume;
-            SoundManager.SetBackgroundAudioVolume(volume);
+            SoundManager.BackgroundAudioVolume = volume;
             Slider.value = volume;
         }
 
         protected override void ValueChanged(float value)
         {
-            SoundManager.SetBackgroundAudioVolume(value);
+            SoundManager.BackgroundAudioVolume = value;
             
             DataManager.UserData.Sound[0].Volume = value;
             DataManager.OnSaveUserData();

@@ -6,6 +6,7 @@ using UnityEngine;
 using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Weapon
 {
@@ -35,11 +36,8 @@ namespace Core.Object.Weapon
             
             _particleSystemHandler = GetComponentInChildren<ParticleSystemHandler>();
             
-            var key = DataManager.AudioData.Effect[9];
-            _fireSounds[0] = ResourceManager.AudioClipResource.Effect[key];
-            
-            key = DataManager.AudioData.Effect[10];
-            _fireSounds[1] = ResourceManager.AudioClipResource.Effect[key];
+            _fireSounds[0] = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Fire_01_Wav];
+            _fireSounds[1] = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Fire_02_Wav];
         }
 
         private void OnEnable()
@@ -142,7 +140,7 @@ namespace Core.Object.Weapon
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_fireSounds[index]);
+            SoundManager.PlayEffectAudioSource(_fireSounds[index]);
             
             gameObject.SetActive(true);
         }

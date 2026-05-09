@@ -13,7 +13,7 @@ namespace Core.Utility.Management
             var color = spriteRenderer.color;
             while (total < time)
             {
-                spriteRenderer.color = new Color(color.r, color.g, color.b, color.a - total / time);
+                spriteRenderer.color = new Color(color.r, color.g, color.b, color.a - (total / time));
                 total += Time.deltaTime;
 
                 yield return null;

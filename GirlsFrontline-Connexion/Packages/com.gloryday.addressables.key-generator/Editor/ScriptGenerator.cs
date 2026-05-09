@@ -27,9 +27,12 @@ namespace GloryDay.Addressables
             var set = new HashSet<string>(metadata.Groups.Values.SelectMany(group => group.Keys));
 
             Builder.Append("using System.Collections.Generic;\n\n");
-            Builder.Append($"namespace {data.Namespace}\n\n");
+            Builder.Append($"namespace {data.Namespace}\n");
+            Builder.Append("{\n");
             Builder.Append($"\tpublic static class {data.ClassName}\n");
             Builder.Append("\t{\n");
+
+            metadata.Addresses.Sort();
 
             var count = metadata.Addresses.Count;
             for (var i = 0; i < count; i++)
@@ -42,19 +45,19 @@ namespace GloryDay.Addressables
             Builder.Append("\t\tpublic static Dictionary<string, Dictionary<string, HashSet<string>>> Groups = new ()\n");
             Builder.Append("\t\t{\n");
 
-            foreach (var group in metadata.Groups)
+            foreach (var group in metadata.Groups.OrderBy(group => group.Key))
             {
                 Builder.Append("\t\t\t{\n");
                 Builder.Append($"\t\t\t\t\"{group.Key}\",\n");
                 Builder.Append("\t\t\t\tnew Dictionary<string, HashSet<string>>()\n");
                 Builder.Append("\t\t\t\t{\n");
 
-                foreach (var label in set.Where(label => metadata.Groups[group.Key].ContainsKey(label) == false))
+                foreach (var label in set.Where(label => metadata.Groups[group.Key].ContainsKey(label) == false).OrderBy(label => label))
                 {
                     Builder.Append($"\t\t\t\t\t{{ \"{label}\", new HashSet<string> {{ }} }},\n");
                 }
 
-                foreach (var item in metadata.Groups[group.Key])
+                foreach (var item in metadata.Groups[group.Key].OrderBy(item => item.Key))
                 {
                     var value = string.Join(",", item.Value.Select(i => $"\"{i}\""));
                     Builder.Append($"\t\t\t\t\t{{ \"{item.Key}\", new HashSet<string> {{ {value} }} }},\n");
@@ -71,7 +74,7 @@ namespace GloryDay.Addressables
             Builder.Append("\t\tpublic struct Group\n");
             Builder.Append("\t\t{\n");
 
-            foreach (var key in metadata.Groups.Keys)
+            foreach (var key in metadata.Groups.Keys.OrderBy(key => key))
             {
                 Builder.Append($"\t\t\tpublic const string {key.Replace(" ", "_")} = \"{key}\";\n");
             }
@@ -81,9 +84,9 @@ namespace GloryDay.Addressables
             Builder.Append("\t\tpublic struct Label\n");
             Builder.Append("\t\t{\n");
 
-            foreach (var key in set)
+            foreach (var key in set.OrderBy(key => key))
             {
-                Builder.Append($"\t\t\tpublic const string {key} = \"{key}\";\n");
+                Builder.Append($"\t\t\tpublic const string {key.Replace("/", "_")} = \"{key}\";\n");
             }
 
             Builder.Append("\t\t}\n\n");
