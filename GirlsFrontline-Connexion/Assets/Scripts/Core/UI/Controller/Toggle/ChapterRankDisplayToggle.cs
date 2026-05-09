@@ -5,11 +5,11 @@ namespace Core.UI.Controller.Toggle
 {
     public class ChapterRankDisplayToggle : ToggleBase
     {
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             IsOn = DataManager.UserData.Default.IsDisplayAllowed[0];
         }

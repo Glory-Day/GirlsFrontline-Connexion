@@ -12,11 +12,11 @@ namespace Core.UI.Controller.Button
         #endregion
 
         // Start is called before the first frame update
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             _text = GetComponentInChildren<TMP_Text>();
         }

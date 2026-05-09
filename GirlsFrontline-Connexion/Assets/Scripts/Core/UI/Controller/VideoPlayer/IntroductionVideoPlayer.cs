@@ -21,10 +21,11 @@ namespace Core.UI.Controller.VideoPlayer
 
             base.Initialize();
 
+            skipVideoButton.Initialize();
+            DisableSkipVideoButton();
+
             // Set the video to loop.
             IsVideoLoop = true;
-
-            DisableSkipVideoButton();
 
             OnPreparingCompleted += Play;
 

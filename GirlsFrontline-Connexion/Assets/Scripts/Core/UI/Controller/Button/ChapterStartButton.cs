@@ -18,12 +18,11 @@ namespace Core.UI.Controller.Button
 
         #endregion
 
-        // Awake is called when the script instance is being loaded.
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             _transitionScreen = FindObjectOfType<TransitionScreen>();
         }

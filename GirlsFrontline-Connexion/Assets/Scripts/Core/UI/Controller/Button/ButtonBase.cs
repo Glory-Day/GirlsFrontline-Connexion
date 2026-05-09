@@ -14,7 +14,7 @@ namespace Core.UI.Controller.Button
 
         protected UnityEngine.UI.Button Button;
 
-        protected virtual void Awake()
+        public virtual void Initialize()
         {
             Console.LogProgress();
 

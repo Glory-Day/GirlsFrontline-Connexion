@@ -12,8 +12,12 @@ namespace Core.UI.Controller.Toggle
 
         #endregion
 
-        protected void Start()
+        public override void Initialize()
         {
+            Console.LogProgress();
+
+            base.Initialize();
+
             screen.SetActive(IsOn);
         }
 

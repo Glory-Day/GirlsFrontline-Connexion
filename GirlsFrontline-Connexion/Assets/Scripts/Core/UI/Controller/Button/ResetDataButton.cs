@@ -10,12 +10,11 @@ namespace Core.UI.Controller.Button
 
         private GameObject _resetDataScreen;
 
-        // Awake is called when the script instance is being loaded.
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             var parent = transform.parent;
             _resetDataScreen = parent.gameObject;

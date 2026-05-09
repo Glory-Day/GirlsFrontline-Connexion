@@ -7,12 +7,11 @@ namespace Core.UI.Controller.Button
 {
     public class PreviousChapterSelectionButton : ButtonBase
     {
-        // Awake is called when the script instance is being loaded.
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             var component = GetComponentInParent<ChapterSelectionScreen>();
             IsPossibleCallback = component.IsPreviousChapterSelectionPossible;

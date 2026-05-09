@@ -20,11 +20,11 @@ namespace Core.UI.Controller.Button
 
         private MainInterfaceControls.QuitButtonActions _actions;
 
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             _actions = new MainInterfaceControls().QuitButton;
             _actions.Toggle.performed += Toggle;

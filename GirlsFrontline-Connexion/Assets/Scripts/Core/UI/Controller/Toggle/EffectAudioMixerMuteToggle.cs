@@ -6,11 +6,11 @@ namespace Core.UI.Controller.Toggle
     public class EffectAudioMixerMuteToggle : ToggleBase
     {
         // Start is called before the first frame update
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             var isMute = DataManager.UserData.Sound[1].IsMute;
             SoundManager.IsEffectAudioMute = isMute;

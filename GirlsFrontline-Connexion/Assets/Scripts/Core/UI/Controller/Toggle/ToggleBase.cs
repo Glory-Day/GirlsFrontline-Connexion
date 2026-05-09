@@ -13,7 +13,7 @@ namespace Core.UI.Controller.Toggle
 
         protected UnityEngine.UI.Toggle Toggle;
 
-        protected virtual void Awake()
+        public virtual void Initialize()
         {
             Console.LogProgress();
 

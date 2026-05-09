@@ -10,11 +10,11 @@ namespace Core.UI.Controller.Button
         private PauseScreen _pauseScreen;
         private ChapterStateDisplay _chapterStateDisplay;
 
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             _dialogObject = transform.parent.gameObject;
 

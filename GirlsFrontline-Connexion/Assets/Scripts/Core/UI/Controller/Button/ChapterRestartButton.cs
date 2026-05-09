@@ -7,11 +7,11 @@ namespace Core.UI.Controller.Button
     {
         private TransitionScreen _transitionScreen;
 
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             _transitionScreen = FindObjectOfType<TransitionScreen>();
         }
