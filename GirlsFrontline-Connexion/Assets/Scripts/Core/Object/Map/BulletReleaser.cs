@@ -18,7 +18,7 @@ namespace Core.Object.Map
             
             if (other.CompareTag(BulletTag))
             {
-                ObjectManager.OnRelease(other.gameObject);
+                ObjectPoolManager.Release(other.gameObject);
             }
         }
     }

@@ -34,7 +34,7 @@ namespace Core.Object.Character
             
             var position = transform.position;
             
-            _items.AddRange(ResourceManager.GameObjectResource.Item);
+            _items.AddRange(AssetManager.Asset.Object.Item.Values);
             for (var i = 0; i < count; i++)
             {
                 var index = Random.Range(0, _items.Count);
@@ -42,7 +42,7 @@ namespace Core.Object.Character
                 _items.RemoveAt(index);
                 
                 var destination = new Vector3(position.x + _distances[count - 1][i], position.y, position.z);
-                var clone = ObjectManager.OnSpawn<ItemBase>(original, position);
+                var clone = ObjectPoolManager.Spawn<ItemBase>(original, position);
                 clone.gameObject.SetActive(true);
                 clone.Drop(destination);
             }

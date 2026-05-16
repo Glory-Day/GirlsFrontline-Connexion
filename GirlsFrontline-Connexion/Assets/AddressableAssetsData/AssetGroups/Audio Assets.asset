@@ -19,211 +19,281 @@ MonoBehaviour:
     m_Address: Assets/External/Audios/Voice/Start Stage.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Voice
+    - Audio
+    - Introduction
+    - Voice
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 017ff55dd64bb1c4690174368ce16ea2
     m_Address: Assets/External/Audios/Effect/UI/Close Gate.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 02ce5b32af696fe4ca529bcab07958bb
     m_Address: Assets/External/Audios/Background/Chapter Failed Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0571f9782d2d23b46bd29ed956900d43
     m_Address: Assets/External/Audios/Effect/Charge Laser.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 08526cbad2887ed4ba83ee6bdf494b37
     m_Address: Assets/External/Audios/Background/Chapter 04 Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0de2821bfbe3461438e2c9e73bc4ed79
     m_Address: Assets/External/Audios/Voice/Skill 01.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Voice
+    - Audio
+    - Introduction
+    - Voice
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 26dd4f7d74aec4e47b6dba7b5abae025
     m_Address: Assets/External/Audios/Background/Chapter 01 Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dedaa528e818644d99745d4f03d3942
     m_Address: Assets/External/Audios/Effect/Player Character Fall Down.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3dd14a5668ee7f248b5528fad6d7ae59
     m_Address: Assets/External/Audios/Voice/Dead.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Voice
+    - Audio
+    - Introduction
+    - Voice
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 40b24b1d8ab11494d8b7c7696a650d91
     m_Address: Assets/External/Audios/Effect/Fire 01.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 418158649e61bcb47aae70d052923510
     m_Address: Assets/External/Audios/Background/Chapter 05 Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46e9b81a2836dbe499684cd58ffc2dd4
     m_Address: Assets/External/Audios/Voice/Victory.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Voice
+    - Audio
+    - Introduction
+    - Voice
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ab59563d73e3c24c8d11bdaa98b133d
     m_Address: Assets/External/Audios/Effect/Get Item.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 59cac8a39fc5e6c458ae87dfb28fc463
     m_Address: Assets/External/Audios/Voice/Skill 02.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Voice
+    - Audio
+    - Introduction
+    - Voice
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5ec1dee9787b9e7469a52e170e0ab77d
     m_Address: Assets/External/Audios/Effect/Fire 02.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6d4e9752b9e18544086db67adf4e4399
     m_Address: Assets/External/Audios/Effect/Launch Grenade.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78167191232d36c4a92dfd050bcfd595
     m_Address: Assets/External/Audios/Background/Main Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78ca808dd2f65cd408ae0c7627254d07
     m_Address: Assets/External/Audios/Voice/Skill 03.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Voice
+    - Audio
+    - Introduction
+    - Voice
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a03598483347ea44a70092abbb8c891
     m_Address: Assets/External/Audios/Effect/UI/Open Dialog.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b3340dd90c66fc44a72b63aa3f22617
     m_Address: Assets/External/Audios/Effect/UI/Hover Button.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b471a85ccd58dd4cb17ea0103338172
     m_Address: Assets/External/Audios/Effect/UI/Open Pop Up.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 836df05d505289349be0c02f59245dc9
     m_Address: Assets/External/Audios/Effect/UI/Display Rank.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88d67a57424f01c4dbc06bdfe87822bb
     m_Address: Assets/External/Audios/Effect/Buff.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b26b6e6296503542b221d15c8920ca2
     m_Address: Assets/External/Audios/Effect/UI/Open Gate.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9163f44ac2191d14bb035343b96174da
     m_Address: Assets/External/Audios/Effect/Shield.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 936b4ac3974156a4a8b0beffebdcb7ac
     m_Address: Assets/External/Audios/Effect/Enemy Character Hit.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3fe1fae8b19bb9489577480c530fc5b
     m_Address: Assets/External/Audios/Effect/UI/Click Button.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a58e16e1f54ddb34080d8cc6cde2ea3a
     m_Address: Assets/External/Audios/Effect/UI/Select Chapter.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aa8ba748f27543a4f94a4ad48803d374
     m_Address: Assets/External/Audios/Effect/Explosion.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b2606fb7715e58a4fa24f9cb3217ecca
     m_Address: Assets/External/Audios/Background/Chapter 03 Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb117ed51c7a0e24999f25596b437d94
     m_Address: Assets/External/Audios/Effect/Player Character Hit.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccd9ab4ac42ac8145aad94b69fa114be
     m_Address: Assets/External/Audios/Background/Chapter Victory Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d193ea3f258274242a2463139b0d91cc
     m_Address: Assets/External/Audios/Effect/UI/Display Text.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Introduction
+    - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d41d396e88bb3934ba255a9aa42238f4
     m_Address: Assets/External/Audios/Background/Chapter 02 Background.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Background
+    - Audio
+    - Background
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fd018674dcd1084429ad11abb8d50108
     m_Address: Assets/External/Audios/Effect/Launch Laser.wav
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Audio/Effect
+    - Audio
+    - Effect
+    - Introduction
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 289173a06d78e0f4eba0d49bb69078f2, type: 2}

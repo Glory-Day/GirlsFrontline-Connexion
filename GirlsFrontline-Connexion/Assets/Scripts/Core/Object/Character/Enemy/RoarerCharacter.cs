@@ -40,7 +40,7 @@ namespace Core.Object.Character.Enemy
             base.DieState = new DieState(this);
             base.WaitState = new WaitState(this);
 
-            _explosionSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
+            _explosionSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
         }
         
         protected override void OnEnable()

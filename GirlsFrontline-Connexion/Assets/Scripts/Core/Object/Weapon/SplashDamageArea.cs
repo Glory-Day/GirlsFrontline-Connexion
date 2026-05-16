@@ -31,7 +31,7 @@ namespace Core.Object.Weapon
         {
             Console.LogProgress();
 
-            _explosionSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
+            _explosionSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
             
             _particleSystemHandler = GetComponentInChildren<ParticleSystemHandler>();
         }
@@ -71,7 +71,7 @@ namespace Core.Object.Weapon
                 yield return null;
             }
             
-            ObjectManager.OnRelease(gameObject);
+            ObjectPoolManager.Release(gameObject);
         }
     }
 }

@@ -13,13 +13,9 @@ namespace Core.UI.Controller.Toggle
 
         protected UnityEngine.UI.Toggle Toggle;
 
-        public virtual void Initialize()
+        protected virtual void Awake()
         {
             Console.LogProgress();
-
-            //TODO: You must fix it! Change audio clip resource to UI.
-            HoverSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Hover_Button_Wav];
-            ClickSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Click_Button_Wav];
 
             Toggle = GetComponent<UnityEngine.UI.Toggle>();
             Toggle.onValueChanged.AddListener(ValueChanged);
@@ -28,6 +24,15 @@ namespace Core.UI.Controller.Toggle
             {
                 Toggle.Select();
             }
+        }
+
+        public virtual void Initialize()
+        {
+            Console.LogProgress();
+
+            //TODO: You must fix it! Change audio clip resource to UI.
+            HoverSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Hover_Button_Wav];
+            ClickSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Click_Button_Wav];
         }
 
         protected virtual void ValueChanged(bool value)

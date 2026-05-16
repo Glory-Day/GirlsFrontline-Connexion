@@ -28,7 +28,7 @@ namespace Core.UI
             _animation = GetComponent<Animation>();
             _animationNames = new AnimationNameList(_animation);
 
-            _openDialogSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Dialog_Wav];
+            _openDialogSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Dialog_Wav];
         }
         
         public void Open()

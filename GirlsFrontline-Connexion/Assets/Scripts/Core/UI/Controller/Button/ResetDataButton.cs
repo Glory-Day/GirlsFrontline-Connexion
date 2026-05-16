@@ -42,7 +42,7 @@ namespace Core.UI.Controller.Button
             Console.LogMessage("<b>All Assets, Data and Objects</b> are reloading...");
 
             // Reset user data to initial values and load game start scene.
-            DataManager.OnResetUserData();
+            DataManager.ResetUserData();
             SceneManager.OnLoadSceneByIndex(1);
 
             Console.LogSuccess("<b>All Data, Assets and Objects</b> are reloaded done");

@@ -21,9 +21,6 @@ namespace Core.UI.Controller.VideoPlayer
 
             base.Initialize();
 
-            skipVideoButton.Initialize();
-            DisableSkipVideoButton();
-
             // Set the video to loop.
             IsVideoLoop = true;
 
@@ -36,6 +33,7 @@ namespace Core.UI.Controller.VideoPlayer
         {
             Console.LogProgress();
 
+            skipVideoButton.Initialize();
             skipVideoButton.gameObject.SetActive(true);
         }
 

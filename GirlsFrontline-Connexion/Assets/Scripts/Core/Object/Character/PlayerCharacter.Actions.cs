@@ -90,7 +90,7 @@ namespace Core.Object.Character
                 return;
             }
             
-            var clone = ObjectManager.OnSpawn<SplashDamageArea>(_splashDamageArea.gameObject, position);
+            var clone = ObjectPoolManager.Spawn<SplashDamageArea>(_splashDamageArea.gameObject, position);
             clone.SetData(DamagePoint * 2f, 1f);
             clone.gameObject.SetActive(true);
             

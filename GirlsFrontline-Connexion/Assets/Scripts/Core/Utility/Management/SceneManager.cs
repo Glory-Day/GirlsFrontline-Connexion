@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using GloryDay.Debug;
 using GloryDay.Utility;
 using GloryDay.Services;
 using UnityEngine;
@@ -90,7 +89,7 @@ namespace Core.Utility.Management
 
                     StaticCoroutine.Start(LoadingScene(sceneName));
 
-                    var clip = ResourceManager.AudioClipResource.Background[audioSourceName];
+                    var clip = AssetManager.Asset.Audio.Background[audioSourceName];
                     SoundManager.PlayBackgroundAudioSource(clip);
                 }
             }
@@ -115,6 +114,8 @@ namespace Core.Utility.Management
         public static bool IsSceneLoaded { get; private set; }
 
         public static int CurrentSceneIndex => Instance._currentSceneIndex;
+
+        public static string CurrentSceneName => SceneManagement.SceneManager.GetActiveScene().name;
 
         #endregion
     }

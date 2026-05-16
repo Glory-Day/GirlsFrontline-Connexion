@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2273befc5cf56a346a87afc70ffc0223, type: 3}
   m_Name: Sound Management System Bootstrap Asset
   m_EditorClassIdentifier: 
+  <MasterAudioMixer>k__BackingField: {fileID: 24100000, guid: 233da3b239d06eb4babee463cb7c83f5,
+    type: 2}
+  <BackgroundAudioMixer>k__BackingField: {fileID: -394282703503994211, guid: 233da3b239d06eb4babee463cb7c83f5,
+    type: 2}
+  <EffectAudioMixer>k__BackingField: {fileID: 7295739615888400115, guid: 233da3b239d06eb4babee463cb7c83f5,
+    type: 2}
+  <VoiceAudioMixer>k__BackingField: {fileID: 1546774121728245463, guid: 233da3b239d06eb4babee463cb7c83f5,
+    type: 2}

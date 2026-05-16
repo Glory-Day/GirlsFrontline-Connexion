@@ -25,9 +25,9 @@ namespace Core.UI
             
             _dialogScreen = FindObjectOfType<ChapterRestartDialogScreen>();
             
-            BackgroundSound = ResourceManager.AudioClipResource.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Failed_Background_Wav];
+            BackgroundSound = AssetManager.Asset.Audio.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Failed_Background_Wav];
             
-            _displayTextSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
+            _displayTextSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
         }
         
         private void OnEnable()

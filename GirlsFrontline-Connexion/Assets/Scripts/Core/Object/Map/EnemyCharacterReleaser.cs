@@ -29,7 +29,7 @@ namespace Core.Object.Map
             var instance = other.gameObject;
             if (instance.TryGetComponent<PathfinderCharacter>(out var character))
             {
-                ObjectManager.OnRelease(instance);
+                ObjectPoolManager.Release(instance);
 
                 return;
             }

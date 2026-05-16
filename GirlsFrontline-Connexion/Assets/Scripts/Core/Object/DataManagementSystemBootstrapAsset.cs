@@ -13,7 +13,7 @@ namespace Core.Object
             Console.LogMessage("Data management system is booting...");
 
             // Initialize user data stored in the local repository.
-            DataManager.OnLoadUserData();
+            DataManager.LoadUserData();
 
             Console.LogSuccess("Booting data management system is completed");
 

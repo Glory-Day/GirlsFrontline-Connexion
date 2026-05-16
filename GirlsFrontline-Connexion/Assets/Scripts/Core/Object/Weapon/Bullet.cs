@@ -36,8 +36,8 @@ namespace Core.Object.Weapon
             
             _particleSystemHandler = GetComponentInChildren<ParticleSystemHandler>();
             
-            _fireSounds[0] = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Fire_01_Wav];
-            _fireSounds[1] = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Fire_02_Wav];
+            _fireSounds[0] = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Fire_01_Wav];
+            _fireSounds[1] = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Fire_02_Wav];
         }
 
         private void OnEnable()
@@ -91,7 +91,7 @@ namespace Core.Object.Weapon
                 character.TakeDamage(DamagePoint, DefensePenetrationPoint, DamageType.Default);
             }
             
-            ObjectManager.OnRelease(gameObject);
+            ObjectPoolManager.Release(gameObject);
         }
 
         private IEnumerator PlayingEffect()
@@ -104,7 +104,7 @@ namespace Core.Object.Weapon
                 yield return _instruction;
             }
                 
-            ObjectManager.OnRelease(gameObject);
+            ObjectPoolManager.Release(gameObject);
         }
 
         public void SetTarget(Vector3? position)

@@ -48,7 +48,7 @@ namespace Core.Object.Character
             States = new List<IState>();
             FiniteStateMachine = new FiniteStateMachine();
 
-            HitSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Enemy_Character_Hit_Wav];
+            HitSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Enemy_Character_Hit_Wav];
             
             var layer = gameObject.layer;
             Physics.IgnoreLayerCollision(layer, WallForPlayerCharacterLayer);

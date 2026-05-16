@@ -79,7 +79,7 @@ namespace Core.UI
             _animation = GetComponent<Animation>();
             _animationNames = new AnimationNameList(_animation);
             
-            _displayRankSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Rank_Wav];
+            _displayRankSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Rank_Wav];
         }
 
         public void SetRank(int score)

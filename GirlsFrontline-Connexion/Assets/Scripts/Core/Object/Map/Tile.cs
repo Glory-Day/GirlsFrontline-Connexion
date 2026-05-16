@@ -56,7 +56,7 @@ namespace Core.Object.Map
 
             _particleSystemHandler = transform.GetChild(2).GetComponent<ParticleSystemHandler>();
 
-            _explosionSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
+            _explosionSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Explosion_Wav];
         }
 
         private void Update()
@@ -110,7 +110,7 @@ namespace Core.Object.Map
             
             SoundManager.PlayEffectAudioSource(_explosionSound);
             
-            ObjectManager.OnRelease(instance);
+            ObjectPoolManager.Release(instance);
         }
 
         private void OnTriggerExit(Collider other)

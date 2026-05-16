@@ -36,7 +36,7 @@ namespace Core.Object.Weapon
             _tileMap = FindObjectOfType<TileMap>();
             _tileMap.WarningStateTiles.Add(InstanceID, new Queue<Tile>());
 
-            _launchGrenadeSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Launch_Grenade_Wav];
+            _launchGrenadeSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Launch_Grenade_Wav];
             
             DefensePenetrationPoint = 1f;
         }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Core.UI.Controller.VideoPlayer;
+using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Core.UI.Controller.VideoPlayer;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 using Console = GloryDay.Debug.Console;
 
@@ -56,7 +56,7 @@ namespace Core.Object
             OnBootingStarted?.Invoke();
 
             var count = assets.Count;
-            for (var i = 0; i < 2; i++)
+            for (var i = 0; i < count; i++)
             {
                 yield return StartCoroutine(assets[i].Booting());
             }

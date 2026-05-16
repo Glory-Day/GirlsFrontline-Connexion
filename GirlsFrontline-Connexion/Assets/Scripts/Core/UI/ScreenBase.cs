@@ -1,5 +1,4 @@
 ﻿using System;
-using GloryDay.Debug;
 using UnityEngine;
 
 using Console = GloryDay.Debug.Console;
@@ -45,7 +44,7 @@ namespace GloryDay.UI
         protected void SetRenderMode(RenderMode mode)
         {
             Console.LogProgress();
-            
+
             _canvas.renderMode = mode;
             switch (mode)
             {
@@ -64,7 +63,7 @@ namespace GloryDay.UI
         public int CompareTo(ScreenBase other)
         {
             var value = Type.CompareTo(other.Type);
-            
+
             return value == 0 ? SortingOrder.CompareTo(other.SortingOrder) : value;
         }
 

@@ -56,9 +56,9 @@ namespace Core.UI
             
             _transitionScreen = FindObjectOfType<TransitionScreen>();
 
-            BackgroundSound = ResourceManager.AudioClipResource.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Victory_Background_Wav];
+            BackgroundSound = AssetManager.Asset.Audio.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Victory_Background_Wav];
             
-            _displayTextSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
+            _displayTextSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
         }
 
         private void OnEnable()
@@ -135,7 +135,7 @@ namespace Core.UI
             var total = _killCount * 2 + _time + _lifeCount * 5 + _score;
             var index = SceneManager.CurrentSceneIndex - 3;
             DataManager.UserData.Chapter[index].Score = total;
-            DataManager.OnSaveUserData();
+            DataManager.SaveUserData();
             
             _resultRankDisplay.SetRank(total);
             

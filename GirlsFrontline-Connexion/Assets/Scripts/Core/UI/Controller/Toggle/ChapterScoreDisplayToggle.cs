@@ -21,7 +21,7 @@ namespace Core.UI.Controller.Toggle
             base.ValueChanged(value);
 
             DataManager.UserData.Default.IsDisplayAllowed[3] = value;
-            DataManager.OnSaveUserData();
+            DataManager.SaveUserData();
         }
     }
 }

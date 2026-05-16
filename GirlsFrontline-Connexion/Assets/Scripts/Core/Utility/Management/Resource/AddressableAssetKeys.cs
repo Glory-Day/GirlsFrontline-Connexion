@@ -87,84 +87,84 @@ namespace Core.Utility.Management.Resource
 				"Animation Assets",
 				new Dictionary<string, HashSet<string>>()
 				{
-					{ "Audio/Background", new HashSet<string> { } },
-					{ "Audio/Effect", new HashSet<string> { } },
-					{ "Audio/Voice", new HashSet<string> { } },
+					{ "Audio", new HashSet<string> { } },
+					{ "Background", new HashSet<string> { } },
+					{ "Character", new HashSet<string> { } },
 					{ "Data", new HashSet<string> { } },
-					{ "Object/Character/Enemy", new HashSet<string> { } },
-					{ "Object/Character/Player", new HashSet<string> { } },
-					{ "Object/Item", new HashSet<string> { } },
-					{ "Object/Weapon", new HashSet<string> { } },
-					{ "Object/Weapon/Bullet", new HashSet<string> { } },
-					{ "Object/Weapon/Grenade", new HashSet<string> { } },
+					{ "Effect", new HashSet<string> { } },
+					{ "Introduction", new HashSet<string> { } },
+					{ "Item", new HashSet<string> { } },
+					{ "Object", new HashSet<string> { } },
 					{ "UI", new HashSet<string> { } },
+					{ "Voice", new HashSet<string> { } },
+					{ "Weapon", new HashSet<string> { } },
 				}
 			},
 			{
 				"Audio Assets",
 				new Dictionary<string, HashSet<string>>()
 				{
+					{ "Character", new HashSet<string> { } },
 					{ "Data", new HashSet<string> { } },
-					{ "Object/Character/Enemy", new HashSet<string> { } },
-					{ "Object/Character/Player", new HashSet<string> { } },
-					{ "Object/Item", new HashSet<string> { } },
-					{ "Object/Weapon", new HashSet<string> { } },
-					{ "Object/Weapon/Bullet", new HashSet<string> { } },
-					{ "Object/Weapon/Grenade", new HashSet<string> { } },
-					{ "UI", new HashSet<string> { } },
-					{ "Audio/Background", new HashSet<string> { "Assets/External/Audios/Background/Chapter Failed Background.wav","Assets/External/Audios/Background/Chapter 04 Background.wav","Assets/External/Audios/Background/Chapter 01 Background.wav","Assets/External/Audios/Background/Chapter 05 Background.wav","Assets/External/Audios/Background/Main Background.wav","Assets/External/Audios/Background/Chapter 03 Background.wav","Assets/External/Audios/Background/Chapter Victory Background.wav","Assets/External/Audios/Background/Chapter 02 Background.wav" } },
-					{ "Audio/Effect", new HashSet<string> { "Assets/External/Audios/Effect/UI/Close Gate.wav","Assets/External/Audios/Effect/Charge Laser.wav","Assets/External/Audios/Effect/Player Character Fall Down.wav","Assets/External/Audios/Effect/Fire 01.wav","Assets/External/Audios/Effect/Get Item.wav","Assets/External/Audios/Effect/Fire 02.wav","Assets/External/Audios/Effect/Launch Grenade.wav","Assets/External/Audios/Effect/UI/Open Dialog.wav","Assets/External/Audios/Effect/UI/Hover Button.wav","Assets/External/Audios/Effect/UI/Open Pop Up.wav","Assets/External/Audios/Effect/UI/Display Rank.wav","Assets/External/Audios/Effect/Buff.wav","Assets/External/Audios/Effect/UI/Open Gate.wav","Assets/External/Audios/Effect/Shield.wav","Assets/External/Audios/Effect/Enemy Character Hit.wav","Assets/External/Audios/Effect/UI/Click Button.wav","Assets/External/Audios/Effect/UI/Select Chapter.wav","Assets/External/Audios/Effect/Explosion.wav","Assets/External/Audios/Effect/Player Character Hit.wav","Assets/External/Audios/Effect/UI/Display Text.wav","Assets/External/Audios/Effect/Launch Laser.wav" } },
-					{ "Audio/Voice", new HashSet<string> { "Assets/External/Audios/Voice/Start Stage.wav","Assets/External/Audios/Voice/Skill 01.wav","Assets/External/Audios/Voice/Dead.wav","Assets/External/Audios/Voice/Victory.wav","Assets/External/Audios/Voice/Skill 02.wav","Assets/External/Audios/Voice/Skill 03.wav" } },
+					{ "Item", new HashSet<string> { } },
+					{ "Object", new HashSet<string> { } },
+					{ "Weapon", new HashSet<string> { } },
+					{ "Audio", new HashSet<string> { "Assets/External/Audios/Voice/Start Stage.wav","Assets/External/Audios/Effect/UI/Close Gate.wav","Assets/External/Audios/Background/Chapter Failed Background.wav","Assets/External/Audios/Effect/Charge Laser.wav","Assets/External/Audios/Background/Chapter 04 Background.wav","Assets/External/Audios/Voice/Skill 01.wav","Assets/External/Audios/Background/Chapter 01 Background.wav","Assets/External/Audios/Effect/Player Character Fall Down.wav","Assets/External/Audios/Voice/Dead.wav","Assets/External/Audios/Effect/Fire 01.wav","Assets/External/Audios/Background/Chapter 05 Background.wav","Assets/External/Audios/Voice/Victory.wav","Assets/External/Audios/Effect/Get Item.wav","Assets/External/Audios/Voice/Skill 02.wav","Assets/External/Audios/Effect/Fire 02.wav","Assets/External/Audios/Effect/Launch Grenade.wav","Assets/External/Audios/Background/Main Background.wav","Assets/External/Audios/Voice/Skill 03.wav","Assets/External/Audios/Effect/UI/Open Dialog.wav","Assets/External/Audios/Effect/UI/Hover Button.wav","Assets/External/Audios/Effect/UI/Open Pop Up.wav","Assets/External/Audios/Effect/UI/Display Rank.wav","Assets/External/Audios/Effect/Buff.wav","Assets/External/Audios/Effect/UI/Open Gate.wav","Assets/External/Audios/Effect/Shield.wav","Assets/External/Audios/Effect/Enemy Character Hit.wav","Assets/External/Audios/Effect/UI/Click Button.wav","Assets/External/Audios/Effect/UI/Select Chapter.wav","Assets/External/Audios/Effect/Explosion.wav","Assets/External/Audios/Background/Chapter 03 Background.wav","Assets/External/Audios/Effect/Player Character Hit.wav","Assets/External/Audios/Background/Chapter Victory Background.wav","Assets/External/Audios/Effect/UI/Display Text.wav","Assets/External/Audios/Background/Chapter 02 Background.wav","Assets/External/Audios/Effect/Launch Laser.wav" } },
+					{ "Background", new HashSet<string> { "Assets/External/Audios/Background/Chapter Failed Background.wav","Assets/External/Audios/Background/Chapter 04 Background.wav","Assets/External/Audios/Background/Chapter 01 Background.wav","Assets/External/Audios/Background/Chapter 05 Background.wav","Assets/External/Audios/Background/Main Background.wav","Assets/External/Audios/Background/Chapter 03 Background.wav","Assets/External/Audios/Background/Chapter Victory Background.wav","Assets/External/Audios/Background/Chapter 02 Background.wav" } },
+					{ "Effect", new HashSet<string> { "Assets/External/Audios/Effect/UI/Close Gate.wav","Assets/External/Audios/Effect/Charge Laser.wav","Assets/External/Audios/Effect/Player Character Fall Down.wav","Assets/External/Audios/Effect/Fire 01.wav","Assets/External/Audios/Effect/Get Item.wav","Assets/External/Audios/Effect/Fire 02.wav","Assets/External/Audios/Effect/Launch Grenade.wav","Assets/External/Audios/Effect/Buff.wav","Assets/External/Audios/Effect/Shield.wav","Assets/External/Audios/Effect/Enemy Character Hit.wav","Assets/External/Audios/Effect/Explosion.wav","Assets/External/Audios/Effect/Player Character Hit.wav","Assets/External/Audios/Effect/Launch Laser.wav" } },
+					{ "Introduction", new HashSet<string> { "Assets/External/Audios/Voice/Start Stage.wav","Assets/External/Audios/Effect/UI/Close Gate.wav","Assets/External/Audios/Background/Chapter Failed Background.wav","Assets/External/Audios/Effect/Charge Laser.wav","Assets/External/Audios/Background/Chapter 04 Background.wav","Assets/External/Audios/Voice/Skill 01.wav","Assets/External/Audios/Background/Chapter 01 Background.wav","Assets/External/Audios/Effect/Player Character Fall Down.wav","Assets/External/Audios/Voice/Dead.wav","Assets/External/Audios/Effect/Fire 01.wav","Assets/External/Audios/Background/Chapter 05 Background.wav","Assets/External/Audios/Voice/Victory.wav","Assets/External/Audios/Effect/Get Item.wav","Assets/External/Audios/Voice/Skill 02.wav","Assets/External/Audios/Effect/Fire 02.wav","Assets/External/Audios/Effect/Launch Grenade.wav","Assets/External/Audios/Background/Main Background.wav","Assets/External/Audios/Voice/Skill 03.wav","Assets/External/Audios/Effect/UI/Open Dialog.wav","Assets/External/Audios/Effect/UI/Hover Button.wav","Assets/External/Audios/Effect/UI/Open Pop Up.wav","Assets/External/Audios/Effect/UI/Display Rank.wav","Assets/External/Audios/Effect/Buff.wav","Assets/External/Audios/Effect/UI/Open Gate.wav","Assets/External/Audios/Effect/Shield.wav","Assets/External/Audios/Effect/Enemy Character Hit.wav","Assets/External/Audios/Effect/UI/Click Button.wav","Assets/External/Audios/Effect/UI/Select Chapter.wav","Assets/External/Audios/Effect/Explosion.wav","Assets/External/Audios/Background/Chapter 03 Background.wav","Assets/External/Audios/Effect/Player Character Hit.wav","Assets/External/Audios/Background/Chapter Victory Background.wav","Assets/External/Audios/Effect/UI/Display Text.wav","Assets/External/Audios/Background/Chapter 02 Background.wav","Assets/External/Audios/Effect/Launch Laser.wav" } },
+					{ "UI", new HashSet<string> { "Assets/External/Audios/Effect/UI/Open Dialog.wav","Assets/External/Audios/Effect/UI/Hover Button.wav","Assets/External/Audios/Effect/UI/Open Pop Up.wav","Assets/External/Audios/Effect/UI/Display Rank.wav","Assets/External/Audios/Effect/UI/Open Gate.wav","Assets/External/Audios/Effect/UI/Click Button.wav","Assets/External/Audios/Effect/UI/Select Chapter.wav","Assets/External/Audios/Effect/UI/Display Text.wav" } },
+					{ "Voice", new HashSet<string> { "Assets/External/Audios/Voice/Start Stage.wav","Assets/External/Audios/Voice/Skill 01.wav","Assets/External/Audios/Voice/Dead.wav","Assets/External/Audios/Voice/Victory.wav","Assets/External/Audios/Voice/Skill 02.wav","Assets/External/Audios/Voice/Skill 03.wav" } },
 				}
 			},
 			{
 				"Image Assets",
 				new Dictionary<string, HashSet<string>>()
 				{
-					{ "Audio/Background", new HashSet<string> { } },
-					{ "Audio/Effect", new HashSet<string> { } },
-					{ "Audio/Voice", new HashSet<string> { } },
+					{ "Audio", new HashSet<string> { } },
+					{ "Background", new HashSet<string> { } },
+					{ "Character", new HashSet<string> { } },
 					{ "Data", new HashSet<string> { } },
-					{ "Object/Character/Enemy", new HashSet<string> { } },
-					{ "Object/Character/Player", new HashSet<string> { } },
-					{ "Object/Item", new HashSet<string> { } },
-					{ "Object/Weapon", new HashSet<string> { } },
-					{ "Object/Weapon/Bullet", new HashSet<string> { } },
-					{ "Object/Weapon/Grenade", new HashSet<string> { } },
+					{ "Effect", new HashSet<string> { } },
+					{ "Introduction", new HashSet<string> { } },
+					{ "Item", new HashSet<string> { } },
+					{ "Object", new HashSet<string> { } },
 					{ "UI", new HashSet<string> { } },
+					{ "Voice", new HashSet<string> { } },
+					{ "Weapon", new HashSet<string> { } },
 				}
 			},
 			{
 				"Prefab Assets",
 				new Dictionary<string, HashSet<string>>()
 				{
-					{ "Audio/Background", new HashSet<string> { } },
-					{ "Audio/Effect", new HashSet<string> { } },
-					{ "Audio/Voice", new HashSet<string> { } },
+					{ "Audio", new HashSet<string> { } },
+					{ "Background", new HashSet<string> { } },
 					{ "Data", new HashSet<string> { } },
-					{ "Object/Character/Enemy", new HashSet<string> { "Assets/Prefabs/Objects/Characters/Pathfinder.prefab","Assets/Prefabs/Objects/Characters/Cyclops.prefab","Assets/Prefabs/Objects/Characters/Uhlan.prefab","Assets/Prefabs/Objects/Characters/Thunder.prefab","Assets/Prefabs/Objects/Characters/Strelet.prefab","Assets/Prefabs/Objects/Characters/Unknown.prefab","Assets/Prefabs/Objects/Characters/Hydra.prefab","Assets/Prefabs/Objects/Characters/Roarer.prefab","Assets/Prefabs/Objects/Characters/Doppelsoldner.prefab","Assets/Prefabs/Objects/Characters/Aegis GA.prefab","Assets/Prefabs/Objects/Characters/Reccecentre.prefab","Assets/Prefabs/Objects/Characters/Isomer.prefab","Assets/Prefabs/Objects/Characters/Archer.prefab","Assets/Prefabs/Objects/Characters/Zombie B.prefab","Assets/Prefabs/Objects/Characters/Typhon.prefab","Assets/Prefabs/Objects/Characters/Pyxis.prefab","Assets/Prefabs/Objects/Characters/Teslatrooper.prefab","Assets/Prefabs/Objects/Characters/Zombie A.prefab","Assets/Prefabs/Objects/Characters/Cerynitis.prefab" } },
-					{ "Object/Character/Player", new HashSet<string> { "Assets/Prefabs/Objects/Characters/M4A1 Mod.prefab" } },
-					{ "Object/Item", new HashSet<string> { "Assets/Prefabs/Objects/Item/Defensive Point Item.prefab","Assets/Prefabs/Objects/Item/Speed Point Item.prefab","Assets/Prefabs/Objects/Item/Health Point Item.prefab","Assets/Prefabs/Objects/Item/Damage Point Item.prefab" } },
-					{ "Object/Weapon", new HashSet<string> { "Assets/Prefabs/Objects/Weapon/Splash Damage Area.prefab" } },
-					{ "Object/Weapon/Bullet", new HashSet<string> { "Assets/Prefabs/Objects/Weapon/Arrow 01.prefab","Assets/Prefabs/Objects/Weapon/Bullet 03.prefab","Assets/Prefabs/Objects/Weapon/Bullet 04.prefab","Assets/Prefabs/Objects/Weapon/Bullet 01.prefab","Assets/Prefabs/Objects/Weapon/Bullet 05.prefab","Assets/Prefabs/Objects/Weapon/Bullet 02.prefab","Assets/Prefabs/Objects/Weapon/Bullet 06.prefab" } },
-					{ "Object/Weapon/Grenade", new HashSet<string> { "Assets/Prefabs/Objects/Weapon/Missile 02.prefab","Assets/Prefabs/Objects/Weapon/Missile 01.prefab","Assets/Prefabs/Objects/Weapon/Grenade 01.prefab","Assets/Prefabs/Objects/Weapon/Arrow 02.prefab","Assets/Prefabs/Objects/Weapon/Grenade 02.prefab" } },
+					{ "Effect", new HashSet<string> { } },
+					{ "Voice", new HashSet<string> { } },
+					{ "Character", new HashSet<string> { "Assets/Prefabs/Objects/Characters/Pathfinder.prefab","Assets/Prefabs/Objects/Characters/Cyclops.prefab","Assets/Prefabs/Objects/Characters/Uhlan.prefab","Assets/Prefabs/Objects/Characters/Thunder.prefab","Assets/Prefabs/Objects/Characters/Strelet.prefab","Assets/Prefabs/Objects/Characters/Unknown.prefab","Assets/Prefabs/Objects/Characters/Hydra.prefab","Assets/Prefabs/Objects/Characters/Roarer.prefab","Assets/Prefabs/Objects/Characters/Doppelsoldner.prefab","Assets/Prefabs/Objects/Characters/M4A1 Mod.prefab","Assets/Prefabs/Objects/Characters/Aegis GA.prefab","Assets/Prefabs/Objects/Characters/Reccecentre.prefab","Assets/Prefabs/Objects/Characters/Isomer.prefab","Assets/Prefabs/Objects/Characters/Archer.prefab","Assets/Prefabs/Objects/Characters/Zombie B.prefab","Assets/Prefabs/Objects/Characters/Typhon.prefab","Assets/Prefabs/Objects/Characters/Pyxis.prefab","Assets/Prefabs/Objects/Characters/Teslatrooper.prefab","Assets/Prefabs/Objects/Characters/Zombie A.prefab","Assets/Prefabs/Objects/Characters/Cerynitis.prefab" } },
+					{ "Introduction", new HashSet<string> { "Assets/Prefabs/UI/Option Screen.prefab","Assets/Prefabs/Objects/Characters/Pathfinder.prefab","Assets/Prefabs/Objects/Characters/Cyclops.prefab","Assets/Prefabs/Objects/Weapon/Arrow 01.prefab","Assets/Prefabs/Objects/Weapon/Bullet 03.prefab","Assets/Prefabs/UI/Transition Screen.prefab","Assets/Prefabs/Objects/Characters/Uhlan.prefab","Assets/Prefabs/Objects/Characters/Thunder.prefab","Assets/Prefabs/Objects/Weapon/Bullet 04.prefab","Assets/Prefabs/Objects/Characters/Strelet.prefab","Assets/Prefabs/Objects/Weapon/Bullet 01.prefab","Assets/Prefabs/Objects/Characters/Unknown.prefab","Assets/Prefabs/Objects/Weapon/Missile 02.prefab","Assets/Prefabs/Objects/Item/Defensive Point Item.prefab","Assets/Prefabs/UI/Pause Screen.prefab","Assets/Prefabs/Objects/Characters/Hydra.prefab","Assets/Prefabs/Objects/Item/Speed Point Item.prefab","Assets/Prefabs/Objects/Weapon/Missile 01.prefab","Assets/Prefabs/Objects/Weapon/Grenade 01.prefab","Assets/Prefabs/Objects/Characters/Roarer.prefab","Assets/Prefabs/Objects/Characters/Doppelsoldner.prefab","Assets/Prefabs/Objects/Weapon/Bullet 05.prefab","Assets/Prefabs/Objects/Characters/M4A1 Mod.prefab","Assets/Prefabs/Objects/Weapon/Bullet 02.prefab","Assets/Prefabs/Objects/Characters/Aegis GA.prefab","Assets/Prefabs/Objects/Weapon/Splash Damage Area.prefab","Assets/Prefabs/Objects/Characters/Reccecentre.prefab","Assets/Prefabs/Objects/Characters/Isomer.prefab","Assets/Prefabs/Objects/Characters/Archer.prefab","Assets/Prefabs/Objects/Weapon/Bullet 06.prefab","Assets/Prefabs/Objects/Characters/Zombie B.prefab","Assets/Prefabs/Objects/Characters/Typhon.prefab","Assets/Prefabs/Objects/Item/Health Point Item.prefab","Assets/Prefabs/Objects/Characters/Pyxis.prefab","Assets/Prefabs/Objects/Characters/Teslatrooper.prefab","Assets/Prefabs/Objects/Characters/Zombie A.prefab","Assets/Prefabs/Objects/Characters/Cerynitis.prefab","Assets/Prefabs/Objects/Item/Damage Point Item.prefab","Assets/Prefabs/Objects/Weapon/Arrow 02.prefab","Assets/Prefabs/Objects/Weapon/Grenade 02.prefab" } },
+					{ "Item", new HashSet<string> { "Assets/Prefabs/Objects/Item/Defensive Point Item.prefab","Assets/Prefabs/Objects/Item/Speed Point Item.prefab","Assets/Prefabs/Objects/Item/Health Point Item.prefab","Assets/Prefabs/Objects/Item/Damage Point Item.prefab" } },
+					{ "Object", new HashSet<string> { "Assets/Prefabs/Objects/Characters/Pathfinder.prefab","Assets/Prefabs/Objects/Characters/Cyclops.prefab","Assets/Prefabs/Objects/Weapon/Arrow 01.prefab","Assets/Prefabs/Objects/Weapon/Bullet 03.prefab","Assets/Prefabs/Objects/Characters/Uhlan.prefab","Assets/Prefabs/Objects/Characters/Thunder.prefab","Assets/Prefabs/Objects/Weapon/Bullet 04.prefab","Assets/Prefabs/Objects/Characters/Strelet.prefab","Assets/Prefabs/Objects/Weapon/Bullet 01.prefab","Assets/Prefabs/Objects/Characters/Unknown.prefab","Assets/Prefabs/Objects/Weapon/Missile 02.prefab","Assets/Prefabs/Objects/Item/Defensive Point Item.prefab","Assets/Prefabs/Objects/Characters/Hydra.prefab","Assets/Prefabs/Objects/Item/Speed Point Item.prefab","Assets/Prefabs/Objects/Weapon/Missile 01.prefab","Assets/Prefabs/Objects/Weapon/Grenade 01.prefab","Assets/Prefabs/Objects/Characters/Roarer.prefab","Assets/Prefabs/Objects/Characters/Doppelsoldner.prefab","Assets/Prefabs/Objects/Weapon/Bullet 05.prefab","Assets/Prefabs/Objects/Characters/M4A1 Mod.prefab","Assets/Prefabs/Objects/Weapon/Bullet 02.prefab","Assets/Prefabs/Objects/Characters/Aegis GA.prefab","Assets/Prefabs/Objects/Weapon/Splash Damage Area.prefab","Assets/Prefabs/Objects/Characters/Reccecentre.prefab","Assets/Prefabs/Objects/Characters/Isomer.prefab","Assets/Prefabs/Objects/Characters/Archer.prefab","Assets/Prefabs/Objects/Weapon/Bullet 06.prefab","Assets/Prefabs/Objects/Characters/Zombie B.prefab","Assets/Prefabs/Objects/Characters/Typhon.prefab","Assets/Prefabs/Objects/Item/Health Point Item.prefab","Assets/Prefabs/Objects/Characters/Pyxis.prefab","Assets/Prefabs/Objects/Characters/Teslatrooper.prefab","Assets/Prefabs/Objects/Characters/Zombie A.prefab","Assets/Prefabs/Objects/Characters/Cerynitis.prefab","Assets/Prefabs/Objects/Item/Damage Point Item.prefab","Assets/Prefabs/Objects/Weapon/Arrow 02.prefab","Assets/Prefabs/Objects/Weapon/Grenade 02.prefab" } },
 					{ "UI", new HashSet<string> { "Assets/Prefabs/UI/Option Screen.prefab","Assets/Prefabs/UI/Transition Screen.prefab","Assets/Prefabs/UI/Pause Screen.prefab" } },
+					{ "Weapon", new HashSet<string> { "Assets/Prefabs/Objects/Weapon/Arrow 01.prefab","Assets/Prefabs/Objects/Weapon/Bullet 03.prefab","Assets/Prefabs/Objects/Weapon/Bullet 04.prefab","Assets/Prefabs/Objects/Weapon/Bullet 01.prefab","Assets/Prefabs/Objects/Weapon/Missile 02.prefab","Assets/Prefabs/Objects/Weapon/Missile 01.prefab","Assets/Prefabs/Objects/Weapon/Grenade 01.prefab","Assets/Prefabs/Objects/Weapon/Bullet 05.prefab","Assets/Prefabs/Objects/Weapon/Bullet 02.prefab","Assets/Prefabs/Objects/Weapon/Splash Damage Area.prefab","Assets/Prefabs/Objects/Weapon/Bullet 06.prefab","Assets/Prefabs/Objects/Weapon/Arrow 02.prefab","Assets/Prefabs/Objects/Weapon/Grenade 02.prefab" } },
 				}
 			},
 			{
 				"Text Assets",
 				new Dictionary<string, HashSet<string>>()
 				{
-					{ "Audio/Background", new HashSet<string> { } },
-					{ "Audio/Effect", new HashSet<string> { } },
-					{ "Audio/Voice", new HashSet<string> { } },
-					{ "Object/Character/Enemy", new HashSet<string> { } },
-					{ "Object/Character/Player", new HashSet<string> { } },
-					{ "Object/Item", new HashSet<string> { } },
-					{ "Object/Weapon", new HashSet<string> { } },
-					{ "Object/Weapon/Bullet", new HashSet<string> { } },
-					{ "Object/Weapon/Grenade", new HashSet<string> { } },
+					{ "Audio", new HashSet<string> { } },
+					{ "Background", new HashSet<string> { } },
+					{ "Character", new HashSet<string> { } },
+					{ "Effect", new HashSet<string> { } },
+					{ "Introduction", new HashSet<string> { } },
+					{ "Item", new HashSet<string> { } },
+					{ "Object", new HashSet<string> { } },
 					{ "UI", new HashSet<string> { } },
+					{ "Voice", new HashSet<string> { } },
+					{ "Weapon", new HashSet<string> { } },
 					{ "Data", new HashSet<string> { "Audio Data" } },
 				}
 			},
@@ -172,17 +172,17 @@ namespace Core.Utility.Management.Resource
 				"Video Assets",
 				new Dictionary<string, HashSet<string>>()
 				{
-					{ "Audio/Background", new HashSet<string> { } },
-					{ "Audio/Effect", new HashSet<string> { } },
-					{ "Audio/Voice", new HashSet<string> { } },
+					{ "Audio", new HashSet<string> { } },
+					{ "Background", new HashSet<string> { } },
+					{ "Character", new HashSet<string> { } },
 					{ "Data", new HashSet<string> { } },
-					{ "Object/Character/Enemy", new HashSet<string> { } },
-					{ "Object/Character/Player", new HashSet<string> { } },
-					{ "Object/Item", new HashSet<string> { } },
-					{ "Object/Weapon", new HashSet<string> { } },
-					{ "Object/Weapon/Bullet", new HashSet<string> { } },
-					{ "Object/Weapon/Grenade", new HashSet<string> { } },
+					{ "Effect", new HashSet<string> { } },
+					{ "Introduction", new HashSet<string> { } },
+					{ "Item", new HashSet<string> { } },
+					{ "Object", new HashSet<string> { } },
 					{ "UI", new HashSet<string> { } },
+					{ "Voice", new HashSet<string> { } },
+					{ "Weapon", new HashSet<string> { } },
 				}
 			},
 		};
@@ -201,17 +201,17 @@ namespace Core.Utility.Management.Resource
 
 		public struct Label
 		{
-			public const string Audio_Background = "Audio/Background";
-			public const string Audio_Effect = "Audio/Effect";
-			public const string Audio_Voice = "Audio/Voice";
+			public const string Audio = "Audio";
+			public const string Background = "Background";
+			public const string Character = "Character";
 			public const string Data = "Data";
-			public const string Object_Character_Enemy = "Object/Character/Enemy";
-			public const string Object_Character_Player = "Object/Character/Player";
-			public const string Object_Item = "Object/Item";
-			public const string Object_Weapon = "Object/Weapon";
-			public const string Object_Weapon_Bullet = "Object/Weapon/Bullet";
-			public const string Object_Weapon_Grenade = "Object/Weapon/Grenade";
+			public const string Effect = "Effect";
+			public const string Introduction = "Introduction";
+			public const string Item = "Item";
+			public const string Object = "Object";
 			public const string UI = "UI";
+			public const string Voice = "Voice";
+			public const string Weapon = "Weapon";
 		}
 
 		#endregion

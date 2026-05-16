@@ -14,16 +14,21 @@ namespace Core.UI.Controller.Button
 
         protected UnityEngine.UI.Button Button;
 
+        protected virtual void Awake()
+        {
+            Console.LogProgress();
+
+            Button = GetComponent<UnityEngine.UI.Button>();
+            Button.onClick.AddListener(Click);
+        }
+
         public virtual void Initialize()
         {
             Console.LogProgress();
 
             //TODO: You must fix it! Change audio clip resource to UI.
-            HoverSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Hover_Button_Wav];
-            ClickSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Click_Button_Wav];
-
-            Button = GetComponent<UnityEngine.UI.Button>();
-            Button.onClick.AddListener(Click);
+            HoverSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Hover_Button_Wav];
+            ClickSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Click_Button_Wav];
         }
 
         /// <summary>
@@ -33,7 +38,7 @@ namespace Core.UI.Controller.Button
         {
             Console.LogProgress();
 
-            SoundManager.PlayEffectAudioSource(ClickSound);
+            SoundManager.PlayUIAudioSource(ClickSound);
         }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
@@ -42,7 +47,7 @@ namespace Core.UI.Controller.Button
 
             if (Button.IsActive() && Button.IsInteractable())
             {
-                SoundManager.PlayEffectAudioSource(HoverSound);
+                SoundManager.PlayUIAudioSource(HoverSound);
             }
         }
 

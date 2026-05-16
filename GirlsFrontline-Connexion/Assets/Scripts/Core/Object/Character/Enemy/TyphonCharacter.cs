@@ -45,8 +45,8 @@ namespace Core.Object.Character.Enemy
             base.DieState = new DieState(this);
             base.WaitState = new WaitState(this);
 
-            _chargeLaserSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Charge_Laser_Wav];
-            _launchLaserSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Launch_Laser_Wav];
+            _chargeLaserSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Charge_Laser_Wav];
+            _launchLaserSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Launch_Laser_Wav];
         }
         
         protected override void OnEnable()

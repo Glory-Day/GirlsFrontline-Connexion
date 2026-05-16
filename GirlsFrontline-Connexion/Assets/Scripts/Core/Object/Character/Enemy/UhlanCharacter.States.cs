@@ -203,7 +203,7 @@ namespace Core.Object.Character.Enemy
                         _tiles[i]?.StopWarningState(_grenade.InstanceID);
                     }
                     
-                    ObjectManager.OnRelease(_grenade.gameObject);
+                    ObjectPoolManager.Release(_grenade.gameObject);
                     _grenade = null;
                 }
                 

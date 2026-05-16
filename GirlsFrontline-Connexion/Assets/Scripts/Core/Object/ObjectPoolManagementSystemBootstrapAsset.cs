@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 using GloryDay.Debug;
 using UnityEngine;
 
@@ -12,9 +13,11 @@ namespace Core.Object
         {
             Console.LogMessage("Object pool management system is booting...");
 
-            ObjectManager.OnSpawn(ResourceManager.UIResource.TransitionScreen).SetActive(true);
-            ObjectManager.OnSpawn(ResourceManager.UIResource.OptionScreen).SetActive(true);
-            ObjectManager.OnSpawn(ResourceManager.UIResource.PauseScreen).SetActive(true);
+            ObjectPoolManager.CreateObjectPool();
+
+            ObjectPoolManager.Spawn(AssetManager.Asset.UI[AddressableAssetKeys.Assets_Prefabs_UI_Transition_Screen_Prefab]).SetActive(true);
+            ObjectPoolManager.Spawn(AssetManager.Asset.UI[AddressableAssetKeys.Assets_Prefabs_UI_Option_Screen_Prefab]).SetActive(true);
+            ObjectPoolManager.Spawn(AssetManager.Asset.UI[AddressableAssetKeys.Assets_Prefabs_UI_Pause_Screen_Prefab]).SetActive(true);
 
             Console.LogSuccess("Booting object pool management system is completed");
 

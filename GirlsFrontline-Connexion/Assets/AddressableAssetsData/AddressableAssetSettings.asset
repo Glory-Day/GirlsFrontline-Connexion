@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: acfab8f45f2450745a9ae095c7f72781
   m_currentHash:
     serializedVersion: 2
-    Hash: 52837a179a6aff9e550df3c658d61709
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -106,18 +106,19 @@ MonoBehaviour:
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - default
-    - Audio/Background
-    - Audio/Effect
-    - Audio/Voice
+    - Audio
     - Data
-    - Object/Character/Player
-    - Object/Character/Enemy
-    - Object/Item
-    - Object/Weapon
-    - Object/Weapon/Bullet
-    - Object/Weapon/Grenade
     - UI
+    - Background
+    - Effect
+    - Voice
+    - Object
+    - Character
+    - Item
+    - Weapon
+    - Introduction
+    - Main
+    - Selection
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: cb22bd576f048e542a09feee1d690170, type: 2}

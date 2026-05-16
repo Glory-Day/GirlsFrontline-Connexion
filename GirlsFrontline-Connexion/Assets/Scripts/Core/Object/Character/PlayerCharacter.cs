@@ -84,20 +84,20 @@ namespace Core.Object.Character
             _skillAction.Timers[2].OnCountingDownStarted += EnableBuff;
             _skillAction.Timers[2].OnCountingDownCompleted += DisableBuff;
             
-            HitSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Player_Character_Hit_Wav];
-            _buffSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Buff_Wav];
-            _shieldSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Shield_Wav];
+            HitSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Player_Character_Hit_Wav];
+            _buffSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Buff_Wav];
+            _shieldSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Shield_Wav];
             
-            _deadSound = ResourceManager.AudioClipResource.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Dead_Wav];
-            _startStageSound = ResourceManager.AudioClipResource.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Start_Stage_Wav];
-            _skillSounds[0] = ResourceManager.AudioClipResource.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_01_Wav];
-            _skillSounds[1] = ResourceManager.AudioClipResource.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_02_Wav];
-            _skillSounds[2] = ResourceManager.AudioClipResource.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_03_Wav];
-            _victorySound = ResourceManager.AudioClipResource.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Victory_Wav];
+            _deadSound = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Dead_Wav];
+            _startStageSound = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Start_Stage_Wav];
+            _skillSounds[0] = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_01_Wav];
+            _skillSounds[1] = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_02_Wav];
+            _skillSounds[2] = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_03_Wav];
+            _victorySound = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Victory_Wav];
             
             var data = characterData.WeaponData[0];
-            _splashDamageArea = ResourceManager.GameObjectResource.Weapon[data.Name];
-            ObjectManager.OnCreate(_splashDamageArea.gameObject, transform.parent, 10);
+            _splashDamageArea = AssetManager.Asset.Object.Weapon[data.Name].GetComponent<WeaponBase>();
+            ObjectPoolManager.Create(_splashDamageArea.gameObject, transform.parent, 10);
             
             SkeletonAnimationHandler.AddEventListener(Shoot01);
             SkeletonAnimationHandler.AddEventListener(Shoot02);

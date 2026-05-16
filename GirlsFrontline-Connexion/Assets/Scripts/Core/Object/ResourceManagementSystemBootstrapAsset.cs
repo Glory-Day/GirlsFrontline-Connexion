@@ -13,8 +13,8 @@ namespace Core.Object
             Console.LogMessage("Resource management system is booting...");
 
             // Load all resources used by the application.
-            ResourceManager.OnLoadAllResources();
-            while (ResourceManager.IsAllResourcesLoadedDone == false)
+            AssetManager.Load();
+            while (AssetManager.IsLoadedDone == false)
             {
                 yield return null;
             }

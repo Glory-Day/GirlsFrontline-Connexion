@@ -83,7 +83,7 @@ namespace Core.Utility.Management
         /// <summary>
         /// Load user data stored in the local repository.
         /// </summary>
-        public static void OnLoadUserData()
+        public static void LoadUserData()
         {
             Console.LogProgress();
 
@@ -95,7 +95,7 @@ namespace Core.Utility.Management
         /// <summary>
         /// Save the current user data stored in the application as a file.
         /// </summary>
-        public static void OnSaveUserData()
+        public static void SaveUserData()
         {
             Console.LogProgress();
 
@@ -107,7 +107,7 @@ namespace Core.Utility.Management
         /// <summary>
         /// Reset the current user data stored in the application and save it in a local repository.
         /// </summary>
-        public static void OnResetUserData()
+        public static void ResetUserData()
         {
             Console.LogProgress();
 

@@ -27,7 +27,7 @@ namespace Core.UI.Controller.Toggle
             SoundManager.IsBackgroundAudioMute = value;
 
             DataManager.UserData.Sound[0].IsMute = value;
-            DataManager.OnSaveUserData();
+            DataManager.SaveUserData();
         }
     }
 }

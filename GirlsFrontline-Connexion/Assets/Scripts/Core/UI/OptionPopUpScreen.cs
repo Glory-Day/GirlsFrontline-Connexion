@@ -12,9 +12,9 @@ namespace Core.UI
         protected override void Awake()
         {
             Console.LogProgress();
-            
+
             base.Awake();
-            
+
             SetInputActionCallbackName(typeof(OptionPopUpScreen), "Toggle");
             SetInputAction("escape");
 
@@ -22,19 +22,19 @@ namespace Core.UI
             DisplayToggles[1] = GetComponentInChildren<EnemyCountDisplayToggle>();
             DisplayToggles[2] = GetComponentInChildren<ElapsedTimeDisplayToggle>();
             DisplayToggles[3] = GetComponentInChildren<ChapterScoreDisplayToggle>();
-            
-            OpenPopUpSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Pop_Up_Wav];
+
+            OpenPopUpSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Pop_Up_Wav];
         }
 
         protected override void Start()
         {
             Console.LogProgress();
-            
+
             base.Start();
-            
+
             ScreenObject.SetActive(false);
         }
-        
+
         protected override void Toggle(InputAction.CallbackContext context)
         {
             Toggle();
@@ -43,19 +43,19 @@ namespace Core.UI
         public void Toggle()
         {
             Console.LogProgress();
-            
+
             if (ScreenObject.activeSelf)
             {
                 ScreenObject.SetActive(false);
-                
+
                 GameManager.OnApplicationPlay();
             }
             else
             {
                 SoundManager.PlayEffectAudioSource(OpenPopUpSound);
-                
+
                 ScreenObject.SetActive(true);
-                
+
                 GameManager.OnApplicationPause();
             }
         }

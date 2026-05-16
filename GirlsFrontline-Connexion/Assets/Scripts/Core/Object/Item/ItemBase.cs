@@ -36,7 +36,7 @@ namespace Core.Object.Item
         {
             Console.LogProgress();
 
-            _gainItemSound = ResourceManager.AudioClipResource.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Get_Item_Wav];
+            _gainItemSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Get_Item_Wav];
         }
         
         private void OnEnable()
@@ -76,7 +76,7 @@ namespace Core.Object.Item
             StopCoroutine(_routine);
             _routine = null;
             
-            ObjectManager.OnRelease(gameObject);
+            ObjectPoolManager.Release(gameObject);
         }
 
 #if UNITY_EDITOR

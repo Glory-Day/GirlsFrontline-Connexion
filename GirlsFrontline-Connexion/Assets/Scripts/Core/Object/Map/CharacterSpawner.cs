@@ -10,6 +10,7 @@ using Core.Utility.Data;
 using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Map
 {
@@ -48,8 +49,8 @@ namespace Core.Object.Map
             Console.LogProgress();
             
             // Create player character.
-            var original = ResourceManager.GameObjectResource.PlayerCharacter;
-            ObjectManager.OnCreate(original, transform, 1);
+            var original = AssetManager.Asset.Object.Character[AddressableAssetKeys.Assets_Prefabs_Objects_Characters_M4A1_Mod_Prefab];
+            ObjectPoolManager.Create(original, transform, 1);
 
             // Set the number of enemy characters of each type.
             var count = 0;
@@ -79,15 +80,15 @@ namespace Core.Object.Map
             foreach (var cache in caches)
             {
                 var key = cache.Key;
-                original = ResourceManager.GameObjectResource.EnemyCharacter[key];
-                ObjectManager.OnCreate(original, transform, cache.Value);
+                original = AssetManager.Asset.Object.Character[key];
+                ObjectPoolManager.Create(original, transform, cache.Value);
             }
 
             // Create all items from the enemy character.
             for (var i = 0; i < 4; i++)
             {
-                original = ResourceManager.GameObjectResource.Item[i];
-                ObjectManager.OnCreate(original, transform, count);
+                original = AssetManager.Asset.Object.Item.Values.ToList()[i];
+                ObjectPoolManager.Create(original, transform, count);
             }
         }
         
@@ -109,10 +110,10 @@ namespace Core.Object.Map
 
         private IEnumerator SpawningPlayerCharacter()
         {
-            var original = ResourceManager.GameObjectResource.PlayerCharacter;
+            var original = AssetManager.Asset.Object.Character[AddressableAssetKeys.Assets_Prefabs_Objects_Characters_M4A1_Mod_Prefab];
             var position = _extractor.GetPosition(302);
             var rotation = original.transform.rotation;
-            var clone = ObjectManager.OnSpawn<PlayerCharacter>(original, position, rotation, transform);
+            var clone = ObjectPoolManager.Spawn<PlayerCharacter>(original, position, rotation, transform);
             clone.OnDamagePointTextChanged = _screen.DisplayPlayerCharacterDamagePoint;
             clone.OnDefensePenetratePointTextChanged = _screen.DisplayPlayerCharacterDefensePenetratePoint;
             clone.OnDefensePointTextChanged = _screen.DisplayPlayerCharacterDefensePoint;
@@ -218,10 +219,10 @@ namespace Core.Object.Map
             Console.LogProgress();
             
             var key = data.CharacterName;
-            var original = ResourceManager.GameObjectResource.EnemyCharacter[key];
+            var original = AssetManager.Asset.Object.Character[key];
             var position = _extractor.GetSpawnPosition(data.SpawnedPositionIndex);
             var rotation = original.transform.rotation;
-            var clone = ObjectManager.OnSpawn<EnemyCharacter>(original, position, rotation, transform);
+            var clone = ObjectPoolManager.Spawn<EnemyCharacter>(original, position, rotation, transform);
             clone.SpawnData = data;
             clone.OnScoreChanged = SetChapterScore;
             clone.OnRemoveRecord = RemoveEnemyCharacterRecord;
@@ -253,7 +254,7 @@ namespace Core.Object.Map
             
             _queue.Enqueue(clone.SpawnData);
             
-            ObjectManager.OnRelease(instance);
+            ObjectPoolManager.Release(instance);
 
             yield return _delay;
             
@@ -273,7 +274,7 @@ namespace Core.Object.Map
             PlayerCharacterLifeCount--;
             
             var instance = character.gameObject;
-            ObjectManager.OnRelease(instance);
+            ObjectPoolManager.Release(instance);
 
             foreach (var record in _records)
             {
@@ -323,7 +324,7 @@ namespace Core.Object.Map
             _screen.DisplayCurrentEnemyCharacterCount(SpawnedEnemyCharacterCount);
             
             var instance = character.gameObject;
-            ObjectManager.OnRelease(instance);
+            ObjectPoolManager.Release(instance);
         }
 
         private void SetChapterScore(int score)
