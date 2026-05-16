@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using GloryDay.Debug;
 using UnityEngine;
 using Core.Utility.Data;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Character
 {

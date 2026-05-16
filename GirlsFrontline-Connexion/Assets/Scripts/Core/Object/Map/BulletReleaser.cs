@@ -1,6 +1,6 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Map
 {
@@ -18,7 +18,7 @@ namespace Core.Object.Map
             
             if (other.CompareTag(BulletTag))
             {
-                ObjectManager.OnRelease(other.gameObject);
+                ObjectPoolManager.Release(other.gameObject);
             }
         }
     }

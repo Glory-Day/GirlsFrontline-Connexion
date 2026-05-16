@@ -1,8 +1,9 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using Core.UI.Utility.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Core.Utility.Manager;
+using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -24,11 +25,9 @@ namespace Core.UI
             
             _dialogScreen = FindObjectOfType<ChapterRestartDialogScreen>();
             
-            var key = DataManager.AudioData.Background[8];
-            BackgroundSound = ResourceManager.AudioClipResource.Background[key];
+            BackgroundSound = AssetManager.Asset.Audio.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Failed_Background_Wav];
             
-            key = DataManager.AudioData.Effect[7];
-            _displayTextSound = ResourceManager.AudioClipResource.Effect[key];
+            _displayTextSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
         }
         
         private void OnEnable()
@@ -73,7 +72,7 @@ namespace Core.UI
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_displayTextSound);
+            SoundManager.PlayEffectAudioSource(_displayTextSound);
         }
     }
 }

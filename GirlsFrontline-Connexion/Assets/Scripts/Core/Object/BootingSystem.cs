@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Core.UI.Controller.VideoPlayer;
+using Sirenix.OdinInspector;
+using System;
 using System.Collections;
-using Core.UI.Controller.Button;
-using Core.UI.Controller.VideoPlayer;
+using System.Collections.Generic;
 using UnityEngine;
-using Core.Utility.Manager;
 
 using Console = GloryDay.Debug.Console;
 
@@ -11,29 +11,39 @@ namespace Core.Object
 {
     public class BootingSystem : MonoBehaviour
     {
-        private IntroductionVideoPlayer _videoPlayer;
-        private SkipVideoButton _button;
+        [Title("UI - Video Player")]
+        [SerializeField] private IntroductionVideoPlayer videoPlayer;
+
+        [Title("Booting System")]
+        [SerializeField] private List<BootstrapAsset> assets;
 
         private void Awake()
         {
             Console.LogProgress();
 
-            // Initialize video player for playing introduction video.
-            _videoPlayer = FindObjectOfType<IntroductionVideoPlayer>();
+            videoPlayer.Initialize();
 
-            // Initialize button to skip video.
-            _button = FindObjectOfType<SkipVideoButton>();
-            _button.gameObject.SetActive(false);
+            StartCoroutine(Booting());
         }
 
-        private void Start()
+        private void OnEnable()
+        {
+            OnBootingStarted += HandleBootingStarted;
+            OnBootingCompleted += HandleBootingCompleted;
+        }
+
+        private void OnDisable()
+        {
+            OnBootingStarted -= HandleBootingStarted;
+            OnBootingCompleted -= HandleBootingCompleted;
+        }
+
+        private void OnDestroy()
         {
             Console.LogProgress();
 
-            // Set the video to loop.
-            _videoPlayer.IsVideoLoop = true;
-
-            StartCoroutine(Booting());
+            OnBootingStarted = null;
+            OnBootingCompleted = null;
         }
 
         /// <summary>
@@ -45,61 +55,33 @@ namespace Core.Object
 
             OnBootingStarted?.Invoke();
 
-            // Initialize user data stored in the local repository.
-            DataManager.OnLoadUserData();
-
-            // Set volume values and whether to mute in user data.
-            var sound = DataManager.UserData.Sound;
-            SoundManager.SetBackgroundAudioVolume(sound[0].Volume);
-            SoundManager.SetEffectAudioVolume(sound[1].Volume);
-            SoundManager.SetVoiceAudioVolume(sound[2].Volume);
-            SoundManager.IsBackgroundAudioMute = sound[0].IsMute;
-            SoundManager.IsEffectAudioMute = sound[1].IsMute;
-            SoundManager.IsVoiceAudioMute = sound[2].IsMute;
-
-            Console.LogSuccess("<b>Sound Settings</b> is completed.");
-
-            // Prepare to play the introduction video.
-            _videoPlayer.Prepare();
-            while (_videoPlayer.IsVideoPrepared == false)
+            var count = assets.Count;
+            for (var i = 0; i < count; i++)
             {
-                yield return null;
+                yield return StartCoroutine(assets[i].Booting());
             }
-
-            // Play the introduction video when it's prepared done.
-            _videoPlayer.Play();
-
-            Console.LogMessage("<b>All Assets, Data, and Game Objects</b> are loading...");
-
-            // Load all resources used by the application.
-            ResourceManager.OnLoadAllResources();
-            while (ResourceManager.IsAllResourcesLoadedDone == false)
-            {
-                yield return null;
-            }
-
-            // Load all data and instantiate all user interface game objects used by the application.
-            DataManager.OnLoadAllData();
-
-            Console.LogSuccess("<b>All Data, Assets and Game Objects</b> are loaded done.");
-
-            ObjectManager.OnSpawn(ResourceManager.UIResource.TransitionScreen).SetActive(true);
-            ObjectManager.OnSpawn(ResourceManager.UIResource.OptionScreen).SetActive(true);
-            ObjectManager.OnSpawn(ResourceManager.UIResource.PauseScreen).SetActive(true);
 
             OnBootingCompleted?.Invoke();
 
-            Console.LogSuccess("<b>All UI Game Objects</b> are instantiated completely.");
+            Console.LogSuccess("<b>Booting All Management System</b> is completed");
+        }
 
+        private void HandleBootingStarted()
+        {
+            // Set the video to loop.
+            videoPlayer.IsVideoLoop = true;
+
+            videoPlayer.Prepare();
+        }
+
+        private void HandleBootingCompleted()
+        {
             // Unset the loop of the video and set the event called at the end of the video.
-            _videoPlayer.IsVideoLoop = false;
-            _videoPlayer.LoopPointReached += delegate
-            {
-                _button.OnClick.Invoke();
-            };
+            videoPlayer.RegisterLoopPointEventHandler();
+            videoPlayer.IsVideoLoop = false;
 
-            // Activate the skip button
-            _button.gameObject.SetActive(true);
+            // Activate the skip button.
+            videoPlayer.EnableSkipVideoButton();
         }
 
         public event Action OnBootingStarted;

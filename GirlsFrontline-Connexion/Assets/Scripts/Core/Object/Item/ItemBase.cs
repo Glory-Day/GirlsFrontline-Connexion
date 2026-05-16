@@ -1,13 +1,14 @@
-﻿using System;
+using System;
 using System.Collections;
 using GloryDay.Debug;
 using GloryDay.Debug.Gizmos;
 using GloryDay.Mathematics;
 using Core.Object.Character;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Item
 {
@@ -35,8 +36,7 @@ namespace Core.Object.Item
         {
             Console.LogProgress();
 
-            var key = DataManager.AudioData.Effect[17];
-            _gainItemSound = ResourceManager.AudioClipResource.Effect[key];
+            _gainItemSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Get_Item_Wav];
         }
         
         private void OnEnable()
@@ -69,14 +69,14 @@ namespace Core.Object.Item
                 return;
             }
             
-            SoundManager.OnPlayEffectAudioSource(_gainItemSound);
+            SoundManager.PlayEffectAudioSource(_gainItemSound);
             
             character.ApplyItem(this);
             
             StopCoroutine(_routine);
             _routine = null;
             
-            ObjectManager.OnRelease(gameObject);
+            ObjectPoolManager.Release(gameObject);
         }
 
 #if UNITY_EDITOR

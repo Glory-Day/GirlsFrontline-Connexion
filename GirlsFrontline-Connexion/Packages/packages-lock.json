@@ -42,6 +42,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.gloryday.spine.services": {
+      "version": "file:com.gloryday.spine.service",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

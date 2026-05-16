@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using GloryDay.Animation;
 using GloryDay.Debug;
@@ -8,9 +8,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Core.Utility.Extension;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.UI
 {
@@ -55,11 +56,9 @@ namespace Core.UI
             
             _transitionScreen = FindObjectOfType<TransitionScreen>();
 
-            var key = DataManager.AudioData.Background[9];
-            BackgroundSound = ResourceManager.AudioClipResource.Background[key];
+            BackgroundSound = AssetManager.Asset.Audio.Background[AddressableAssetKeys.Assets_External_Audios_Background_Chapter_Victory_Background_Wav];
             
-            key = DataManager.AudioData.Effect[7];
-            _displayTextSound = ResourceManager.AudioClipResource.Effect[key];
+            _displayTextSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Display_Text_Wav];
         }
 
         private void OnEnable()
@@ -136,7 +135,7 @@ namespace Core.UI
             var total = _killCount * 2 + _time + _lifeCount * 5 + _score;
             var index = SceneManager.CurrentSceneIndex - 3;
             DataManager.UserData.Chapter[index].Score = total;
-            DataManager.OnSaveUserData();
+            DataManager.SaveUserData();
             
             _resultRankDisplay.SetRank(total);
             
@@ -180,7 +179,7 @@ namespace Core.UI
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_displayTextSound);
+            SoundManager.PlayEffectAudioSource(_displayTextSound);
         }
     }
 }

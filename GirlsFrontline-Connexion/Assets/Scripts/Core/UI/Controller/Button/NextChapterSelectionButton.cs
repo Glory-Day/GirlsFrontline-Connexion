@@ -1,23 +1,18 @@
 ﻿using System;
 using GloryDay.Debug;
-using GloryDay.UI.Controller.Button;
 
 using Console = GloryDay.Debug.Console;
 
 namespace Core.UI.Controller.Button
 {
-    public class NextChapterSelectionButton : UIButtonBase
+    public class NextChapterSelectionButton : ButtonBase
     {
-        // Awake is called when the script instance is being loaded.
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
-            
-            base.Awake();
 
-            SetHoverSound(0);
-            SetClickSound(6);
-            
+            base.Initialize();
+
             var component = GetComponentInParent<ChapterSelectionScreen>();
             IsPossibleCallback = component.IsNextChapterSelectionPossible;
             PlayAnimationCallback = component.SelectNextChapter;
@@ -38,25 +33,16 @@ namespace Core.UI.Controller.Button
 
         #endregion
 
-        #region BUTTON EVENT API
-
         protected override void Click()
         {
             Console.LogMessage("<b>Next Button</b> is clicked");
 
             base.Click();
-            
             PlayAnimationCallback?.Invoke();
         }
-
-        #endregion
-
-        #region CALLBACK EVENT API
 
         private event Func<bool> IsPossibleCallback;
 
         private event Action PlayAnimationCallback;
-
-        #endregion
     }
 }

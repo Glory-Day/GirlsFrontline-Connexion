@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using GloryDay.Debug;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Utility.Command
 {

@@ -1,7 +1,8 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using Core.Object.Map;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Character.Enemy
 {
@@ -44,11 +45,8 @@ namespace Core.Object.Character.Enemy
             base.DieState = new DieState(this);
             base.WaitState = new WaitState(this);
 
-            var key = DataManager.AudioData.Effect[13];
-            _chargeLaserSound = ResourceManager.AudioClipResource.Effect[key];
-            
-            key = DataManager.AudioData.Effect[14];
-            _launchLaserSound = ResourceManager.AudioClipResource.Effect[key];
+            _chargeLaserSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Charge_Laser_Wav];
+            _launchLaserSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Launch_Laser_Wav];
         }
         
         protected override void OnEnable()

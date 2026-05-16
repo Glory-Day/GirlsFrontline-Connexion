@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using GloryDay.Animation;
 using GloryDay.Debug;
 using GloryDay.UI;
-using Core.Utility.Manager;
-using Core.Utility.Extension;
+using Core.Utility.Management;
+using Core.Utility.Attribute;
 
 using Console = GloryDay.Debug.Console;
 

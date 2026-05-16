@@ -1,10 +1,10 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using GloryDay.SpineServices;
 using Core.Object.Map;
 using Core.Object.Weapon;
 using Spine;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.State;
 
 namespace Core.Object.Character.Enemy
@@ -209,7 +209,7 @@ namespace Core.Object.Character.Enemy
                     {
                         _tiles[i]?.StopWarningState(_grenades[i].InstanceID);
                         
-                        ObjectManager.OnRelease(_grenades[i].gameObject);
+                        ObjectPoolManager.Release(_grenades[i].gameObject);
                         _grenades[i] = null;
                     }
                 }

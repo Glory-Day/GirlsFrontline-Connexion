@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GloryDay.Debug;
@@ -7,9 +7,10 @@ using Core.Object.Map;
 using Core.Object.Weapon;
 using UnityEngine;
 using Core.Utility;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Character
 {
@@ -83,36 +84,20 @@ namespace Core.Object.Character
             _skillAction.Timers[2].OnCountingDownStarted += EnableBuff;
             _skillAction.Timers[2].OnCountingDownCompleted += DisableBuff;
             
-            var key = DataManager.AudioData.Effect[19];
-            HitSound = ResourceManager.AudioClipResource.Effect[key];
+            HitSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Player_Character_Hit_Wav];
+            _buffSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Buff_Wav];
+            _shieldSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Shield_Wav];
             
-            key = DataManager.AudioData.Effect[15];
-            _buffSound = ResourceManager.AudioClipResource.Effect[key];
-            
-            key = DataManager.AudioData.Effect[16];
-            _shieldSound = ResourceManager.AudioClipResource.Effect[key];
-            
-            key = DataManager.AudioData.Voice[0];
-            _deadSound = ResourceManager.AudioClipResource.Voice[key];
-            
-            key = DataManager.AudioData.Voice[1];
-            _startStageSound = ResourceManager.AudioClipResource.Voice[key];
-            
-            key = DataManager.AudioData.Voice[2];
-            _skillSounds[0] = ResourceManager.AudioClipResource.Voice[key];
-            
-            key = DataManager.AudioData.Voice[3];
-            _skillSounds[1] = ResourceManager.AudioClipResource.Voice[key];
-            
-            key = DataManager.AudioData.Voice[4];
-            _skillSounds[2] = ResourceManager.AudioClipResource.Voice[key];
-            
-            key = DataManager.AudioData.Voice[5];
-            _victorySound = ResourceManager.AudioClipResource.Voice[key];
+            _deadSound = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Dead_Wav];
+            _startStageSound = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Start_Stage_Wav];
+            _skillSounds[0] = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_01_Wav];
+            _skillSounds[1] = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_02_Wav];
+            _skillSounds[2] = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Skill_03_Wav];
+            _victorySound = AssetManager.Asset.Audio.Voice[AddressableAssetKeys.Assets_External_Audios_Voice_Victory_Wav];
             
             var data = characterData.WeaponData[0];
-            _splashDamageArea = ResourceManager.GameObjectResource.Weapon[data.Name];
-            ObjectManager.OnCreate(_splashDamageArea.gameObject, transform.parent, 10);
+            _splashDamageArea = AssetManager.Asset.Object.Weapon[data.Name].GetComponent<WeaponBase>();
+            ObjectPoolManager.Create(_splashDamageArea.gameObject, transform.parent, 10);
             
             SkeletonAnimationHandler.AddEventListener(Shoot01);
             SkeletonAnimationHandler.AddEventListener(Shoot02);
@@ -234,7 +219,7 @@ namespace Core.Object.Character
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayVoiceAudioSource(_startStageSound);
+            SoundManager.PlayVoiceAudioSource(_startStageSound);
             
             SkeletonAnimationHandler.Play(12, 0, true);
         }
@@ -246,7 +231,7 @@ namespace Core.Object.Character
         {
             Console.LogProgress();
 
-            SoundManager.OnPlayVoiceAudioSource(_victorySound);
+            SoundManager.PlayVoiceAudioSource(_victorySound);
             
             SkeletonAnimationHandler.Play(10);
             SkeletonAnimationHandler.Play(11, 0, true);
@@ -345,8 +330,8 @@ namespace Core.Object.Character
             
             DisablePlayerCharacterControls();
             
-            SoundManager.OnPlayEffectAudioSource(_fallDownSound);
-            SoundManager.OnPlayVoiceAudioSource(_deadSound);
+            SoundManager.PlayEffectAudioSource(_fallDownSound);
+            SoundManager.PlayVoiceAudioSource(_deadSound);
             
             SkeletonAnimationHandler.Play(5);
         }

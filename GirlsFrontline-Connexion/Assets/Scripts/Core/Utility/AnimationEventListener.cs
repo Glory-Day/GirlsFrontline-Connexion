@@ -1,11 +1,10 @@
 ﻿using System;
-using GloryDay.Debug;
 using UnityEngine;
 using UnityEngine.Events;
 
 using Console = GloryDay.Debug.Console;
 
-namespace GloryDay.Animation
+namespace Core.Utility.Animation
 {
     /// <summary>
     /// Event listener for animation component

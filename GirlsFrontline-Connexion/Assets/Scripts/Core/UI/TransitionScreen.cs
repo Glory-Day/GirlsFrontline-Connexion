@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using GloryDay.Animation;
-using GloryDay.Debug;
 using GloryDay.UI;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
+using Core.Utility.Management.Resource;
 
 using Console = GloryDay.Debug.Console;
 
@@ -17,30 +17,30 @@ namespace Core.UI
         private Animation _animation;
 
         #endregion
-        
+
         private AnimationNameList _animationNames;
 
         private AudioClip _openSound;
         private AudioClip _closeSound;
-        
+
         protected override void Awake()
         {
             Console.LogProgress();
-            
+
             base.Awake();
 
             if (TryGetComponent(out _animation) == false)
             {
                 _animation = GetComponentInChildren<Animation>();
             }
-            
+
             _animationNames = new AnimationNameList(_animation);
         }
 
         public void Transition(int index, TransitionType type)
         {
             Console.LogProgress();
-            
+
             StartCoroutine(Transitioning(index, type));
         }
 
@@ -51,42 +51,39 @@ namespace Core.UI
             switch (type)
             {
                 case TransitionType.Gate:
-                    var key = DataManager.AudioData.Effect[4];
-                    _openSound = ResourceManager.AudioClipResource.Effect[key];
-                    
-                    key = DataManager.AudioData.Effect[5];
-                    _closeSound = ResourceManager.AudioClipResource.Effect[key];
-                    
+                    _openSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Open_Gate_Wav];
+                    _closeSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Close_Gate_Wav];
+
                     openingAnimationName = _animationNames[0];
                     closingAnimationName = _animationNames[1];
                     break;
                 case TransitionType.Slide:
                     _openSound = null;
                     _closeSound = null;
-                    
+
                     openingAnimationName = _animationNames[2];
                     closingAnimationName = _animationNames[3];
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
-            
-            SoundManager.OnPlayEffectAudioSource(_openSound);
-            
+
+            SoundManager.PlayEffectAudioSource(_openSound);
+
             _animation.Play(closingAnimationName);
             while (_animation.isPlaying)
             {
                 yield return null;
             }
-            
+
             SceneManager.OnLoadSceneByIndex(index);
             while (SceneManager.IsSceneLoaded == false)
             {
                 yield return null;
             }
-            
-            SoundManager.OnPlayEffectAudioSource(_closeSound);
-            
+
+            SoundManager.PlayEffectAudioSource(_closeSound);
+
             _animation.Play(openingAnimationName);
         }
     }

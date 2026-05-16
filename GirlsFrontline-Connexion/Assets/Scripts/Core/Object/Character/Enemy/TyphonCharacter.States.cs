@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using GloryDay.SpineServices;
 using Core.Object.Map;
 using Spine;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Event = Spine.Event;
 using Core.Utility.State;
 
@@ -42,7 +42,7 @@ namespace Core.Object.Character.Enemy
                 
                 Component.SkeletonAnimationHandler.Play(0);
                 
-                SoundManager.OnPlayEffectAudioSource(Component._chargeLaserSound);
+                SoundManager.PlayEffectAudioSource(Component._chargeLaserSound);
                 
                 Component.ParticleSystemHandler.Emit(1);
             }
@@ -93,7 +93,7 @@ namespace Core.Object.Character.Enemy
                     Component._tiles[i].StartCriticalState(id, Component.DamagePoint);
                 }
 
-                SoundManager.OnPlayEffectAudioSource(Component._launchLaserSound);
+                SoundManager.PlayEffectAudioSource(Component._launchLaserSound);
                 
                 Component.ParticleSystemHandler.Emit(2, 4);
                 Component._laserRenderer.Draw();

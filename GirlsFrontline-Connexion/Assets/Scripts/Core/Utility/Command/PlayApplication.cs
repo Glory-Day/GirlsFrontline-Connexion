@@ -1,5 +1,5 @@
-﻿using GloryDay.Debug;
-using Core.Utility.Manager;
+using GloryDay.Debug;
+using Core.Utility.Management;
 
 namespace Core.Utility.Command
 {

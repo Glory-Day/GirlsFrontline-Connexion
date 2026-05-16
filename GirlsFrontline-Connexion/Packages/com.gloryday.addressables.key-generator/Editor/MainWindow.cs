@@ -9,7 +9,7 @@ namespace GloryDay.Addressables
     {
         #region CONSTANT FIELD API
 
-        private const string TabPath = "Window/Addressables/Addressables Key Generator";
+        private const string TabPath = "Window/Services/Addressables Key Generator";
         private const string Title = "Addressables Key Generator";
 
         private const int MinimizeWindowWidth = 400;

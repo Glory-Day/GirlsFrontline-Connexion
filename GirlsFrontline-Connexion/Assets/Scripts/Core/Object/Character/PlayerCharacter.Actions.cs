@@ -1,9 +1,9 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using Core.Object.Weapon;
 using Spine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Character
 {
@@ -72,7 +72,7 @@ namespace Core.Object.Character
                 return;
             }
             
-            SoundManager.OnPlayEffectAudioSource(_skillSounds[Random.Range(0, 3)]);
+            SoundManager.PlayEffectAudioSource(_skillSounds[Random.Range(0, 3)]);
             
             _skillAction.Run(0);
         }
@@ -90,7 +90,7 @@ namespace Core.Object.Character
                 return;
             }
             
-            var clone = ObjectManager.OnSpawn<SplashDamageArea>(_splashDamageArea.gameObject, position);
+            var clone = ObjectPoolManager.Spawn<SplashDamageArea>(_splashDamageArea.gameObject, position);
             clone.SetData(DamagePoint * 2f, 1f);
             clone.gameObject.SetActive(true);
             
@@ -115,7 +115,7 @@ namespace Core.Object.Character
         {
             Console.LogProgress();
             
-            SoundManager.OnPlayEffectAudioSource(_shieldSound);
+            SoundManager.PlayEffectAudioSource(_shieldSound);
             
             ParticleSystemHandler.Emit(5);
             
@@ -147,7 +147,7 @@ namespace Core.Object.Character
 
             SpeedPoint += 10f;
             
-            SoundManager.OnPlayEffectAudioSource(_buffSound);
+            SoundManager.PlayEffectAudioSource(_buffSound);
             
             ParticleSystemHandler.Play(6);
             

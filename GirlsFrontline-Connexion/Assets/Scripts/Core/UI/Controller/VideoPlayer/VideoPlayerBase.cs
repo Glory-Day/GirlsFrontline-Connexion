@@ -1,4 +1,4 @@
-﻿using Core.Utility.Extension;
+﻿using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -14,36 +14,41 @@ namespace Core.UI.Controller.VideoPlayer
     {
         #region SERIALIZABLE FIELD API
 
-        [SerializeField]
-        private VideoClip videoClip;
-
-        [SerializeField]
-        private RenderTexture renderTexture;
+        [Title("UI - Video Player")]
+        [SerializeField] private VideoClip videoClip;
+        [SerializeField] private RenderTexture renderTexture;
 
         #endregion
 
         private AudioSource _audioSource;
 
-        private RawImage _texture;
+        private LoopPointEventBinder _binder;
 
-        // Awake is called when the script instance is being loaded
-        protected virtual void Awake()
+        public virtual void Initialize()
         {
             Console.LogProgress();
 
-            _texture = gameObject.GetOrAddComponent<RawImage>();
-            _texture.texture = renderTexture;
+            _audioSource = GetComponent<AudioSource>();
 
-            _audioSource = gameObject.GetOrAddComponent<AudioSource>();
+            VideoPlayer = GetComponent<UnityEngine.Video.VideoPlayer>();
 
-            VideoPlayer = gameObject.GetOrAddComponent<UnityEngine.Video.VideoPlayer>();
-            VideoPlayer.targetTexture = renderTexture;
-            VideoPlayer.clip = videoClip;
-
-            IsAudioPlayOnAwake = false;
-            IsVideoPlayOnAwake = false;
+            _binder = new LoopPointEventBinder(VideoPlayer);
 
             Pause();
+        }
+
+        protected virtual void OnDestroy()
+        {
+            Console.LogProgress();
+
+            OnPreparingStarted = null;
+            OnPreparingCompleted = null;
+            OnPlayingStarted = null;
+            OnPlayingCompleted = null;
+            OnPausingStarted = null;
+            OnPausingCompleted = null;
+
+            _binder.Clear();
         }
 
         /// <summary>
@@ -53,18 +58,20 @@ namespace Core.UI.Controller.VideoPlayer
         {
             Console.LogProgress();
 
-            StartCoroutine(PrepareVideoPlayer());
+            StartCoroutine(Preparing());
         }
 
-        private IEnumerator PrepareVideoPlayer()
+        private IEnumerator Preparing()
         {
+            Console.LogProgress();
+
+            Console.LogMessage($"{VideoPlayer.clip.name} is preparing...");
+
             OnPreparingStarted?.Invoke();
 
             VideoPlayer.EnableAudioTrack(0, true);
             VideoPlayer.SetTargetAudioSource(0, _audioSource);
             VideoPlayer.Prepare();
-
-            Console.LogMessage($"{VideoPlayer.clip.name} is preparing...");
 
             while (VideoPlayer.isPrepared == false)
             {
@@ -123,7 +130,7 @@ namespace Core.UI.Controller.VideoPlayer
         /// <summary>
         /// If set to true, the audio source will automatically start playing on awake
         /// </summary>
-        protected bool IsAudioPlayOnAwake
+        public bool IsAudioPlayOnAwake
         {
             get => _audioSource.playOnAwake;
             set => _audioSource.playOnAwake = value;
@@ -132,7 +139,7 @@ namespace Core.UI.Controller.VideoPlayer
         /// <summary>
         /// Whether the content will start playing back as soon as the component awakes
         /// </summary>
-        protected bool IsVideoPlayOnAwake
+        public bool IsVideoPlayOnAwake
         {
             get => VideoPlayer.playOnAwake;
             set => VideoPlayer.playOnAwake = value;
@@ -146,7 +153,7 @@ namespace Core.UI.Controller.VideoPlayer
         /// <summary>
         /// Determines whether the audio source restarts from the beginning when it reaches the end of the clip
         /// </summary>
-        protected bool IsAudioLoop
+        public bool IsAudioLoop
         {
             get => _audioSource.loop;
             set => _audioSource.loop = value;
@@ -164,7 +171,7 @@ namespace Core.UI.Controller.VideoPlayer
         /// <summary>
         /// The target group to which the audio source should route its signal
         /// </summary>
-        protected AudioMixerGroup OutputAudioMixerGroup
+        public AudioMixerGroup OutputAudioMixerGroup
         {
             get => _audioSource.outputAudioMixerGroup;
             set => _audioSource.outputAudioMixerGroup = value;
@@ -173,16 +180,16 @@ namespace Core.UI.Controller.VideoPlayer
         /// <summary>
         /// Destination for the audio embedded in the video
         /// </summary>
-        protected VideoAudioOutputMode VideoAudioOutputMode
+        public VideoAudioOutputMode VideoAudioOutputMode
         {
             get => VideoPlayer.audioOutputMode;
             set => VideoPlayer.audioOutputMode = value;
         }
 
-        public event UnityEngine.Video.VideoPlayer.EventHandler LoopPointReached
+        public event UnityEngine.Video.VideoPlayer.EventHandler OnLoopPointReached
         {
-            add => VideoPlayer.loopPointReached += value;
-            remove => VideoPlayer.loopPointReached -= value;
+            add => _binder.Add(value);
+            remove => _binder.Remove(value);
         }
     }
 }

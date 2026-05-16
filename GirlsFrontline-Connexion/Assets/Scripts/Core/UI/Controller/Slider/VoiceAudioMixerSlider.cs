@@ -1,29 +1,28 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using GloryDay.UI.Controller.Slider;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.UI.Controller.Slider
 {
     public class VoiceAudioMixerSlider : SliderBase
     {
-        // Start is called before the first frame update
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
-            
-            base.Awake();
-            
+
+            base.Initialize();
+
             var volume = DataManager.UserData.Sound[2].Volume;
-            SoundManager.SetVoiceAudioVolume(volume);
+            SoundManager.VoiceAudioVolume = volume;
             Slider.value = volume;
         }
 
         protected override void ValueChanged(float value)
         {
-            SoundManager.SetVoiceAudioVolume(value);
-            
+            SoundManager.VoiceAudioVolume = value;
+
             DataManager.UserData.Sound[2].Volume = value;
-            DataManager.OnSaveUserData();
+            DataManager.SaveUserData();
         }
     }
 }

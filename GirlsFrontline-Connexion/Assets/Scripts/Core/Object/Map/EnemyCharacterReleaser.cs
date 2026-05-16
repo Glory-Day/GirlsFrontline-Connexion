@@ -1,7 +1,7 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using Core.Object.Character.Enemy;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 namespace Core.Object.Map
 {
@@ -29,7 +29,7 @@ namespace Core.Object.Map
             var instance = other.gameObject;
             if (instance.TryGetComponent<PathfinderCharacter>(out var character))
             {
-                ObjectManager.OnRelease(instance);
+                ObjectPoolManager.Release(instance);
 
                 return;
             }

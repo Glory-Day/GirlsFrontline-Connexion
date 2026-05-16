@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: acfab8f45f2450745a9ae095c7f72781
   m_currentHash:
     serializedVersion: 2
-    Hash: 5e5eb1d934e8554a59006bb04e4f51c8
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -89,37 +89,36 @@ MonoBehaviour:
         m_Value: 'http://localhost/[BuildTarget]'
     m_ProfileEntryNames:
     - m_Id: 07f7a8221c068d442ab657e19a8b3743
-      m_Name: RemoteBuildPath
+      m_Name: Remote.BuildPath
       m_InlineUsage: 0
     - m_Id: 4129491fec5cc2c4dac92eb239ee2a61
-      m_Name: LocalLoadPath
+      m_Name: Local.LoadPath
       m_InlineUsage: 0
     - m_Id: 584d1139d96de58488d8287ca958a27e
-      m_Name: LocalBuildPath
+      m_Name: Local.BuildPath
       m_InlineUsage: 0
     - m_Id: 65f29cefa9ca1e440826fb7fe48d8150
       m_Name: BuildTarget
       m_InlineUsage: 0
     - m_Id: 938aa07dbc658ca4a87e69773bbbb152
-      m_Name: RemoteLoadPath
+      m_Name: Remote.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - default
-    - audio/background
-    - audio/effect
-    - audio/voice
-    - data
-    - object/character/player
-    - object/character/enemy
-    - object/item
-    - object/weapon
-    - object/weapon/bullet
-    - object/weapon/grenade
-    - ui/option_screen
-    - ui/pause_screen
-    - ui/transition_screen
+    - Audio
+    - Data
+    - UI
+    - Background
+    - Effect
+    - Voice
+    - Object
+    - Character
+    - Item
+    - Weapon
+    - Introduction
+    - Main
+    - Selection
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: cb22bd576f048e542a09feee1d690170, type: 2}
@@ -127,10 +126,9 @@ MonoBehaviour:
   m_CertificateHandlerType:
     m_AssemblyName: 
     m_ClassName: 
-  m_ActivePlayerDataBuilderIndex: 3
+  m_ActivePlayerDataBuilderIndex: 2
   m_DataBuilders:
   - {fileID: 11400000, guid: f1e694ba9484f3c489291c11dd06a273, type: 2}
-  - {fileID: 11400000, guid: eacb59ffeb9ac9244be3185bab817f41, type: 2}
   - {fileID: 11400000, guid: cfaecd128a5c6644d8b743a23e6cec6c, type: 2}
   - {fileID: 11400000, guid: bdb17f41ae1c48048a3d91769ef57b5e, type: 2}
   m_ActiveProfileId: 782e18a391d396f4fafdd5f1df72badd

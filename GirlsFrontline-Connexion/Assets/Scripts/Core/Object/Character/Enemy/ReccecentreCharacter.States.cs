@@ -1,8 +1,8 @@
-﻿using GloryDay.Debug;
+using GloryDay.Debug;
 using GloryDay.SpineServices;
 using Spine;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.State;
 using Event = Spine.Event;
 

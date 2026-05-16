@@ -1,30 +1,27 @@
-﻿using GloryDay.Debug;
-using Core.Utility.Manager;
+using GloryDay.Debug;
+using Core.Utility.Management;
 
 namespace Core.UI.Controller.Toggle
 {
-    public class ChapterRankDisplayToggle : UIToggleBase
+    public class ChapterRankDisplayToggle : ToggleBase
     {
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
+            base.Initialize();
 
             IsOn = DataManager.UserData.Default.IsDisplayAllowed[0];
-            
-            SetHoverSound(0);
-            SetClickSound(1);
         }
-        
+
         protected override void ValueChanged(bool value)
         {
             Console.LogProgress();
 
             base.ValueChanged(value);
-            
+
             DataManager.UserData.Default.IsDisplayAllowed[0] = value;
-            DataManager.OnSaveUserData();
+            DataManager.SaveUserData();
         }
     }
 }

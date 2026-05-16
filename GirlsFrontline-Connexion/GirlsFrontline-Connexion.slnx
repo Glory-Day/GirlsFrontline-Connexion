@@ -1,14 +1,16 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="spine-unity-editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="spine-unity.csproj" />
   <Project Path="GloryDay.Debug.ConsoleLogFormatter.csproj" />
   <Project Path="GloryDay.Addressable.KeyGenerator.Editor.csproj" />
   <Project Path="GloryDay.Debug.CommandConsole.csproj" />
+  <Project Path="GloryDay.Spine.Services.Editor.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj" />
   <Project Path="GloryDay.Font.Bitmap.BitmapFontGenerator.csproj" />
   <Project Path="GloryDay.Mathematics.csproj" />
+  <Project Path="GloryDay.Spine.Services.csproj" />
   <Project Path="GloryDay.Commons.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
   <Project Path="GloryDay.Font.Bitmap.BitmapFontGenerator.Editor.csproj" />

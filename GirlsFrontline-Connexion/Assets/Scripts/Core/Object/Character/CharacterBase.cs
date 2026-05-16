@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using GloryDay.SpineServices;
 using GloryDay.Debug;
 using GloryDay.Debug.Gizmos;
@@ -7,7 +7,7 @@ using UnityEngine;
 using Core.Utility;
 using Core.Utility.Data;
 using Core.Utility.Extension;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 
 using Console = GloryDay.Debug.Console;
 using Random = UnityEngine.Random;
@@ -293,7 +293,7 @@ namespace Core.Object.Character
                 return;
             }
 
-            SoundManager.OnPlayEffectAudioSource(HitSound);
+            SoundManager.PlayEffectAudioSource(HitSound);
 
             // Generate random number factor.
             damagePoint *= Random.Range(85f, 115f) / 100f;

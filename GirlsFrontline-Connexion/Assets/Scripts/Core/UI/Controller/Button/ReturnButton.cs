@@ -2,35 +2,27 @@
 
 namespace Core.UI.Controller.Button
 {
-    public class ReturnButton : UIButtonBase
+    public class ReturnButton : ButtonBase
     {
-        #region COMPONENT FIELD API
-
         private TransitionScreen _transitionScreen;
 
-        #endregion
-        
-        // Awake is called when the script instance is being loaded.
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
-            
-            base.Awake();
-            
+
+            base.Initialize();
+
             _transitionScreen = FindObjectOfType<TransitionScreen>();
-            
-            SetHoverSound(0);
-            SetClickSound(1);
         }
 
         protected override void Click()
         {
             Console.LogMessage("<b>Return Button</b> is clicked");
-            
+
             base.Click();
-            
+
             Button.interactable = false;
-            
+
             _transitionScreen.Transition(1, TransitionType.Slide);
         }
     }

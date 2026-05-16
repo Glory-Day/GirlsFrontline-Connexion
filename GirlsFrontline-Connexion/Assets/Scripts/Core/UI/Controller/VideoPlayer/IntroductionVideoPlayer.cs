@@ -1,7 +1,6 @@
 ﻿using Core.UI.Controller.Button;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Video;
-using Core.Utility.Manager;
 
 using Console = GloryDay.Debug.Console;
 
@@ -11,44 +10,48 @@ namespace Core.UI.Controller.VideoPlayer
     {
         #region SERIALIZABLE FIELD API
 
-        [SerializeField]
-        private SkipVideoButton skipVideoButton;
+        [Title("UI - Button")]
+        [SerializeField] private SkipVideoButton skipVideoButton;
 
         #endregion
 
-        // Awake is called when the script instance is being loaded
-        protected override void Awake()
+        public override void Initialize()
         {
             Console.LogProgress();
 
-            base.Awake();
-
-            VideoAudioOutputMode = VideoAudioOutputMode.AudioSource;
-            OutputAudioMixerGroup = SoundManager.BackgroundAudioMixerGroup;
-
-            DisableSkipVideoButton();
-        }
-
-        private void Start()
-        {
-            Console.LogProgress();
+            base.Initialize();
 
             // Set the video to loop.
             IsVideoLoop = true;
+
+            OnPreparingCompleted += Play;
+
+            Pause();
         }
 
-        private void EnableSkipVideoButton()
+        public void EnableSkipVideoButton()
         {
             Console.LogProgress();
 
+            skipVideoButton.Initialize();
             skipVideoButton.gameObject.SetActive(true);
         }
 
-        private void DisableSkipVideoButton()
+        public void DisableSkipVideoButton()
         {
             Console.LogProgress();
 
             skipVideoButton.gameObject.SetActive(false);
+        }
+
+        public void RegisterLoopPointEventHandler()
+        {
+            Console.LogProgress();
+
+            OnLoopPointReached += delegate
+            {
+                skipVideoButton.OnClick.Invoke();
+            };
         }
     }
 }

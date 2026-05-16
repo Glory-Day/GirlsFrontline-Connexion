@@ -1,39 +1,59 @@
-﻿using GloryDay.Debug;
+﻿using Core.Utility.Management;
+using Core.Utility.Management.Resource;
+using GloryDay.Debug;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GloryDay.UI.Controller.Toggle
+namespace Core.UI.Controller.Toggle
 {
     public abstract class ToggleBase : MonoBehaviour, IPointerEnterHandler
     {
-        #region COMPONENT FIELD APT
+        protected AudioClip HoverSound;
+        protected AudioClip ClickSound;
 
         protected UnityEngine.UI.Toggle Toggle;
 
-        #endregion
-
-        protected AudioClip HoverSound;
-        protected AudioClip ClickSound;
-        
         protected virtual void Awake()
         {
             Console.LogProgress();
 
             Toggle = GetComponent<UnityEngine.UI.Toggle>();
             Toggle.onValueChanged.AddListener(ValueChanged);
-            
+
             if (IsOn)
             {
                 Toggle.Select();
             }
         }
 
-        protected abstract void ValueChanged(bool value);
-        
-        public abstract void OnPointerEnter(PointerEventData eventData);
+        public virtual void Initialize()
+        {
+            Console.LogProgress();
+
+            //TODO: You must fix it! Change audio clip resource to UI.
+            HoverSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Hover_Button_Wav];
+            ClickSound = AssetManager.Asset.Audio.UI[AddressableAssetKeys.Assets_External_Audios_Effect_UI_Click_Button_Wav];
+        }
+
+        protected virtual void ValueChanged(bool value)
+        {
+            Console.LogProgress();
+
+            SoundManager.PlayEffectAudioSource(ClickSound);
+        }
+
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            Console.LogProgress();
+
+            if (Toggle.IsActive() && Toggle.IsInteractable())
+            {
+                SoundManager.PlayEffectAudioSource(HoverSound);
+            }
+        }
 
         public UnityEngine.UI.Toggle.ToggleEvent OnValueChanged => Toggle.onValueChanged;
-        
+
         public bool IsOn
         {
             get => Toggle.isOn;

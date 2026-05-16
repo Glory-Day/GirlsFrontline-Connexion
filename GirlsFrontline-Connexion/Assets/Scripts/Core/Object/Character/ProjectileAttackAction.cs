@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using Core.Object.Weapon;
 using UnityEngine;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.Data;
 
 using Console = GloryDay.Debug.Console;
@@ -21,12 +21,12 @@ namespace Core.Object.Character
         }
 
         #endregion
-        
+
         #region SERIALZABLE FIELD API
-        
+
         [SerializeField]
         private List<ProjectileGeneratorList> list = new List<ProjectileGeneratorList>();
-        
+
         #endregion
 
         private List<BulletData> _bulletDataList = new List<BulletData>();
@@ -35,21 +35,21 @@ namespace Core.Object.Character
         private void OnDestroy()
         {
             Console.LogProgress();
-            
+
             _bulletDataList.Clear();
             _bulletDataList = null;
-            
+
             _grenadeDataList.Clear();
             _grenadeDataList = null;
         }
 
         public void AddData(string data)
         {
-            var original = ResourceManager.GameObjectResource.EnemyCharacter[data];
+            var original = AssetManager.Asset.Object.Character[data];
             var parent = transform.parent;
-            ObjectManager.OnCreate(original, parent, 10);
+            ObjectPoolManager.Create(original, parent, 10);
         }
-        
+
         /// <summary>
         /// Add bullet data for the character.
         /// Create 10 bullet objects in the object pool.
@@ -57,9 +57,9 @@ namespace Core.Object.Character
         /// <param name="data"> Bullet data held by a character. </param>
         public void AddBulletData(BulletData data)
         {
-            var original = ResourceManager.GameObjectResource.Bullet[data.Name].gameObject;
-            ObjectManager.OnCreate(original, transform.parent, 10);
-            
+            var original = AssetManager.Asset.Object.Weapon[data.Name].gameObject;
+            ObjectPoolManager.Create(original, transform.parent, 10);
+
             _bulletDataList.Add(data);
         }
 
@@ -70,9 +70,9 @@ namespace Core.Object.Character
         /// <param name="data"> Grenade data held by a character. </param>
         public void AddGrenadeData(GrenadeData data)
         {
-            var original = ResourceManager.GameObjectResource.Grenade[data.Name].gameObject;
-            ObjectManager.OnCreate(original, transform.parent, 10);
-            
+            var original = AssetManager.Asset.Object.Weapon[data.Name].gameObject;
+            ObjectPoolManager.Create(original, transform.parent, 10);
+
             _grenadeDataList.Add(data);
         }
 
@@ -84,15 +84,15 @@ namespace Core.Object.Character
         public void Spawn(string data, int generatorIndex, int iterator)
         {
             Console.LogProgress();
-            
+
             var generator = list[generatorIndex].generators[iterator];
-            
-            var original = ResourceManager.GameObjectResource.EnemyCharacter[data];
-            var clone = ObjectManager.OnSpawn(original, generator.position, generator.rotation);
-            
+
+            var original = AssetManager.Asset.Object.Character[data];
+            var clone = ObjectPoolManager.Spawn(original, generator.position, generator.rotation);
+
             clone.gameObject.SetActive(true);
         }
-        
+
         /// <summary>
         /// Shoot a bullet.
         /// </summary>
@@ -103,21 +103,21 @@ namespace Core.Object.Character
         public Bullet Prepare(int dataIndex, int generatorIndex, int iterator, Vector3? target = null)
         {
             Console.LogProgress();
-            
+
             var generator = list[generatorIndex].generators[iterator];
             var data = _bulletDataList[dataIndex];
             var damagePoint = data.DamagePoint + DefaultDamagePoint;
             var defensePenetrationPoint = data.DefensePenetrationPoint + DefaultDefensePenetrationPoint;
-            
-            var original = ResourceManager.GameObjectResource.Bullet[data.Name];
-            var clone = ObjectManager.OnSpawn<Bullet>(original.gameObject, generator.position, generator.rotation);
+
+            var original = AssetManager.Asset.Object.Weapon[data.Name];
+            var clone = ObjectPoolManager.Spawn<Bullet>(original.gameObject, generator.position, generator.rotation);
             clone.SetData(damagePoint, defensePenetrationPoint, data.SpeedPoint, data.IsFlip);
             clone.SetCalledCharacterInfo(Tag);
             clone.SetTarget(target);
-            
+
             return clone;
         }
-        
+
         /// <summary>
         /// Prepare a grenade that shoot to the destination.
         /// </summary>
@@ -128,15 +128,15 @@ namespace Core.Object.Character
         public Grenade Prepare(int dataIndex, Vector3 destination, int generatorIndex, int iterator)
         {
             Console.LogProgress();
-            
+
             var generator = list[generatorIndex].generators[iterator];
 
             var data = _grenadeDataList[dataIndex];
             var damagePoint = data.DamagePoint + DefaultDamagePoint;
             var defensePenetrationPoint = data.DefensePenetrationPoint + DefaultDefensePenetrationPoint;
-            
-            var original = ResourceManager.GameObjectResource.Grenade[data.Name];
-            var clone = ObjectManager.OnSpawn<Grenade>(original.gameObject, generator.position, generator.rotation);
+
+            var original = AssetManager.Asset.Object.Weapon[data.Name];
+            var clone = ObjectPoolManager.Spawn<Grenade>(original.gameObject, generator.position, generator.rotation);
             clone.SetData(damagePoint, defensePenetrationPoint, data.SpeedPoint, data.Height);
             clone.SetBezierCurvePoints(destination);
             clone.SetCalledCharacterInfo(Tag);

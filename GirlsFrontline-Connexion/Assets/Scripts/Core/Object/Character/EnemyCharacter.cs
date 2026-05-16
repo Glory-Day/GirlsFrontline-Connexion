@@ -1,11 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using GloryDay.Debug;
 using Core.Object.Map;
 using UnityEngine;
 using Core.Utility.Data;
-using Core.Utility.Manager;
+using Core.Utility.Management;
 using Core.Utility.State;
+using Core.Utility.Management.Resource;
 
 namespace Core.Object.Character
 {
@@ -47,8 +48,7 @@ namespace Core.Object.Character
             States = new List<IState>();
             FiniteStateMachine = new FiniteStateMachine();
 
-            var key = DataManager.AudioData.Effect[20];
-            HitSound = ResourceManager.AudioClipResource.Effect[key];
+            HitSound = AssetManager.Asset.Audio.Effect[AddressableAssetKeys.Assets_External_Audios_Effect_Enemy_Character_Hit_Wav];
             
             var layer = gameObject.layer;
             Physics.IgnoreLayerCollision(layer, WallForPlayerCharacterLayer);
